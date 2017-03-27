@@ -42,7 +42,7 @@
             </div>
           </div>
           <div class="form-group">
-            <div class="form-inline"">
+            <div class="form-inline">
               <button  class="btn btn-default col-sm-3 col-sm-offset-3" type="submit">Clock In</button>
               <button  class="btn btn-default" type="submit">Clock Out</button>
             </div>
@@ -142,6 +142,8 @@
         </div>
     </div>
 </div>
+
+
     		
     		
     	</section>

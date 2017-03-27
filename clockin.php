@@ -25,17 +25,6 @@
     	<section class="panel-body">
 <ul><li>&nbsp;Thank you!</li></ul>
 
-
-<!--clock out form-->
-<form id="form" action="index.php" method="post" class="form-horizontal">
-
-          <div class="form-group">
-            <div class="col-sm-2 col-sm-offset-4">
-              <button class="btn btn-default" type="submit">Clock Out</button>
-            </div>
-          </div>
-</form>
-
 <!--clock out form-->
 <form id="form" action="index.php" method="post" class="form-horizontal">
 
@@ -46,8 +35,6 @@
           </div>
 </form>
     		
-    		
-    		<ul><li>&nbsp;<a href="forms.php">Don't work here yet? Apply.</a></li></ul>
     	</section>
     </div>
 </body>
