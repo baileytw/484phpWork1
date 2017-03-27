@@ -96,12 +96,12 @@
     			</div>
     			<div class="form-group">
     			  <div class="col-sm-12">
-      				<input type="password" id="hours" class="form-control" value="" name="password" required="required" placeholder="Hours" />
+      				<input type="number" id="hours" class="form-control" value="" name="password" required="required" placeholder="Hours" />
       			</div>
     			</div>
     			<div class="form-group">
     			  <div class="col-sm-12">
-      				<input type="password" id="mileage" class="form-control" value="" name="password" required="required" placeholder="Mileage" />
+      				<input type="number" id="mileage" class="form-control" value="" name="password" required="required" placeholder="Mileage" />
       			</div>
     			</div>
     			<div class="form-group">
