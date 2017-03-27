@@ -123,7 +123,7 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                <form id="form" action="forms.php" method="post" class="form-horizontal">
+                <form id="form" method="post" class="form-horizontal"> <!-- action="forms.php"-->
           <div class="form-group">
             <div class="col-sm-12">
               <input type="text" id="username"  class="form-control" value="" name="username" required="required" placeholder="Email Address" />
