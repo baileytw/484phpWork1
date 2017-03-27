@@ -53,36 +53,6 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Log in</a>
-                </h4>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <form id="form" action="profile.php" method="post" class="form-horizontal">
-    			<div class="form-group">
-    			  <div class="col-sm-12">
-      				<input type="text" id="username"  class="form-control" value="" name="username" required="required" placeholder="Username" />
-    				</div>
-    			</div>
-    			<div class="form-group">
-    			  <div class="col-sm-12">
-      				<input type="password" id="password" class="form-control" value="" name="password" required="required" placeholder="Password" />
-      			</div>
-    			</div>
-    			<div class="form-group">
-    			  <div class="col-sm-2 col-sm-offset-4">
-      				<button class="btn btn-default" type="submit">Login</button>
-      			</div>
-      		</div>
-</form>
-                    
-                    
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Transporter</a>
                 </h4>
             </div>
@@ -115,6 +85,38 @@
                 </div>
             </div>
         </div>
+		
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Log in</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <form id="form" action="profile.php" method="post" class="form-horizontal">
+    			<div class="form-group">
+    			  <div class="col-sm-12">
+      				<input type="text" id="username"  class="form-control" value="" name="username" required="required" placeholder="Username" />
+    				</div>
+    			</div>
+    			<div class="form-group">
+    			  <div class="col-sm-12">
+      				<input type="password" id="password" class="form-control" value="" name="password" required="required" placeholder="Password" />
+      			</div>
+    			</div>
+    			<div class="form-group">
+    			  <div class="col-sm-2 col-sm-offset-4">
+      				<button class="btn btn-default" type="submit">Login</button>
+      			</div>
+      		</div>
+</form>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
