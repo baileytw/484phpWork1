@@ -31,7 +31,7 @@
 </head>
 <body class="login">
     <div class="login-box main-content panel panel-default">
-      <header class="panel-heading"><img src="../streamlined/images/logo_small.png" alt="Wildlife Logo"></header>
+      <header class="panel-heading"><img src="../484phpWork1/images/logo_small.png" alt="Wildlife Logo"></header>
     	<section class="panel-body">
 
 <!--clock in form-->

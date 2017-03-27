@@ -35,7 +35,7 @@ error_reporting(E_ALL);
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                       <a class="navbar-brand" href=""><img src="../streamlined/images/logo_short.png" alt="Wildlife Small Logo"></a>
+                       <a class="navbar-brand" href=""><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     </div>
     
                   
