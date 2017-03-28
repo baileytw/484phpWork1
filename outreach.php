@@ -214,8 +214,26 @@ error_reporting(E_ALL);
                                             </footer>
                                         </form>
 										<?php
+if(isset($_POST['upload']))
+{
+	$server = "localhost";
+        $user = "root";
+        $password = "Twspike1994?";
+        $database = "wildlife";
+        $conn = mysqli_connect($server, $user, $password, $database);
+        if (mysqli_connect_errno()) 
+		{
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+		
+		if(!mysqli_select_db($conn, 'test_1'))
+        {
+            echo "Database Not Selected";
+        }
+	echo 'weiner';
+}
 					
-if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
+/* if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
 {
 	$server = "localhost";
         $user = "root";
@@ -254,7 +272,7 @@ mysqli_query($conn, $query) or die('Error, query failed');
 
 
 echo "<br>File $fileName uploaded<br>";
-} 
+}  */
 ?>
                                     </div>
                 
