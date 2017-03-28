@@ -132,12 +132,9 @@ error_reporting(E_ALL);
                                                     <label class="col-sm-5">Do you have a permit to rehabilitate wildlife?</label>
                                                     <div class="col-sm-7">
                                                         <div class="checkbox">
-                                                            Yes<label>
-                                                                <input class="checkbox" type="checkbox"/>
-                                                            </label>
-                                                            No<label>
-                                                                <input class="checkbox" type="checkbox" checked="checked"/>
-                                                            </label>
+														<input type="radio" name="permit" value="Yes"> Yes
+														<input type="radio" name="permit" value="No"> No
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -145,12 +142,8 @@ error_reporting(E_ALL);
                                                     <label class="col-sm-5">Are you rabies vaccinated?</label>
                                                     <div class="col-sm-7">
                                                         <div class="checkbox">
-                                                            Yes<label>
-                                                                <input class="checkbox" type="checkbox"/>
-                                                            </label>
-                                                            No<label>
-                                                                <input class="checkbox" type="checkbox" checked="checked"/>
-                                                            </label>
+                                                            <input type="radio" name="rabies" value="Yes"> Yes
+															<input type="radio" name="rabies" value="No"> No
                                                         </div>
                                                     </div>
                                                 </div>
