@@ -241,7 +241,7 @@ if(isset($_POST['upload']))
         $secondaryPhone = 5555;
         $city = '';
         $county = '';
-        $state = '';
+        $state = 'VA';
         $zip = 0;
         $dob = 10/10/1999;
         $street = $_POST['address'];
@@ -269,12 +269,12 @@ if(isset($_POST['upload']))
 
 
 		
-		$query = "INSERT INTO person (UserName, FirstName, middleInitial, LastName, Email, PhonePrimary, PhoneAlternate, City, County,
-			State, ZipCode, DateOfBirth, Picture, Status, RabbiesVaccinateDate, PermitRehabilitate, LastVolunteered, Allergies, SpecialNeeds,
-			WorkOutside, TotalHours, WOLimitations, Lift40Pounds, street)
-					VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$city',
-					'$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitrehab', NOW(), '$allergies',
-					'$specialNeeds', '$workOutside', '$totalHours', '$workOutsideLimitations', '$lift40', '$street')";
+		$query = "INSERT INTO person (Person_UserName, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
+			Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
+					VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
+					'$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
+					'$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
 
 					mysqli_query($conn, $query) or die(mysqli_error($conn)); 
 
