@@ -1,4 +1,8 @@
+<?php ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+?>
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -72,7 +76,7 @@
                                 <section class="panel-body container-fluid">
 
                                     <div class="leading">
-                                    	  <form id="form" action="confirmation.php" class="form-horizontal panel panel-default">
+                                    	  <form id="form" method="post" enctype = "multipart/form-data" class="form-horizontal panel panel-default">
                                             <header class="panel-heading"><h2 class="panel-title">Basic Information</h2></header>
             
                                             <fieldset class="panel-body">
@@ -199,7 +203,19 @@
                 <div class="col-sm-6">
                 <textarea class="form-control" name = 'additionalInfo' rows="5" cols="90"></textarea>
                             </div>
-                            </div> </div>
+
+<div class="col-sm-12">Please upload a current resume.</div>
+<div class="fileinput fileinput-new col-sm-3 col-sm-offset-3 btn-lg" data-provides="fileinput">
+    <span class="btn btn-default btn-file">
+
+      <input name="userfile" id = "userfile" type="file" multiple /></span>
+    <span class="fileinput-filename col-sm-3"></span>
+    <span class="fileinput-new"></span>
+</div>
+
+
+
+                            </div>
                                                                             
                                                 
                                                 
@@ -211,17 +227,17 @@
                                             </fieldset>
             
                                             <footer class="panel-footer">
-                                                <button class="btn btn-primary" type="submit">Submit form</button>
+                                                <button class="btn btn-primary" name = 'upload' type="submit" id = 'upload'>Submit form</button>
                                                 <button class="btn btn-default" type="reset">Reset</button>
                                             </footer>
                                         </form>
-                                    </div>
 
 
-
-
-  <?
+<?php
   
+
+  if(isset($_POST['upload']))
+{
   $server = "localhost";
   $user = "root";
   $password = "password";
@@ -243,23 +259,31 @@
         $lastName = $_POST['lastName'];
         $userName = $_POST['email'];
         $email = $_POST['email'];
-        $middleInitial = '';
+        $middleInitial = 'I';
         $primaryPhone = $_POST['phone'];
-        $secondaryPhone = 5555;
-        $city = '';
-        $county = '';
-        $state = 'VA';
-        $zip = 0;
+        $secondaryPhone = 7034316161;
+        $city = 'Sterling';
+        $county = 'Loudoun';
+        $state = 'MA';
+        $zip = 22525;
         $dob = 10/10/1999;
         $street = $_POST['address'];
         $tmpName  = $_FILES['userfile']['tmp_name'];
         $fileSize = $_FILES['userfile']['size'];
-
+        $rabies = $_POST['rabies'];
+        $experience = $_POST['experience'];
+        $deadAnimals = $_POST['deadAnimals'];
+        $livePrey = $_POST['livePrey'];
+        $seasons = $_POST['seasons'];
+        $groups = $_POST['groups'];
+        $accomplish = $_POST['accomplish'];
+        $issue = $_POST['issue'];
+        $additionalInfo = $_POST['additionalInfo'];
         $fp      = fopen($tmpName, 'r');
         $picture = fread($fp, filesize($tmpName));
         $picture = addslashes($picture);
         fclose($fp);
-        $status = '';
+        $status = 'Applicant';
         $rabiesVac = 10/10/2010;
         $permitrehab ='';
         $lastVolunteered = 10/10/2011;
@@ -269,27 +293,30 @@
         $totalHours = 10;
         $workOutsideLimitations = '';
         $lift40 = '';
+        $permitRehab = $_POST['permit'];
 
               $query = "INSERT INTO person (Person_UserName, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
-                Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds, Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-                    VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
-                    '$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
-                    '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
+      Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+      Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
+          VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
+          '$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
+          '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
 
-                     mysqli_query($conn, $query) or die(mysqli_error($conn));
-
-
-
+           mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 
+
+}
 
   ?>
+                                    </div>
 
 
 
 
-                
-    
+
+
+
                     <!-- Main Section End -->
 
                 </div>
