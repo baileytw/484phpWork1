@@ -83,19 +83,19 @@ error_reporting(E_ALL);
                                                 <div class="form-group">
                                                     <label class="col-sm-2">First Name *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" required="required" />
+                                                      <input class="form-control" id = 'firstName' name = 'firstName' type="text" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Last Name *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" required="required" />
+                                                      <input class="form-control" id = 'lastName' name = 'lastName' type="text" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Password *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="password" name="password" required="required"/>
+                                                      <input class="form-control" id = 'password'type="password" name="password" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -107,25 +107,25 @@ error_reporting(E_ALL);
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Email *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="email" required="required" />
+                                                      <input class="form-control" id = 'email' name = 'email' type="email" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Phone *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="number" name="phone" required="required" />
+                                                      <input class="form-control" id = 'phone' type="number" name="phone" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Age *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="number" name="age" required="required" value="0" />
+                                                      <input class="form-control" id = 'age' type="number" name="age" required="required" value="0" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Address *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" name="address" />
+                                                      <input class="form-control" id = 'address' type="text" name="address" />
                                                     </div>
                                                 </div>
 <div class="form-group">
@@ -153,38 +153,38 @@ error_reporting(E_ALL);
 <div class="form-group">
          <label class="col-sm-3">Do you have any allergies or physical limitations?</label>
                 <div class="col-sm-9">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id = 'allergies' name = 'allergies' rows="5" cols="90"></textarea>
                             </div>
  <label class="col-sm-3">Please describe your availability weekly and seasonally. WCVV needs consistency in scheduling, and is open on weekends.</label>
                 <div class="col-sm-9">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id = 'availability' name = 'availability'rows="5" cols="90"></textarea>
                             </div>                            
                                                 
          <label class="col-sm-3">Why are you interested in volunteering as an outreach docent?</label>
                 <div class="col-sm-9">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id = 'whyInterested' name = 'whyInterested'rows="5" cols="90"></textarea>
                             </div>
                             
                             
          <label class="col-sm-3">What’s an environmental or wildlife issue you feel passionately about, and why?</label>
                 <div class="col-sm-9">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id = 'wildlifeIssue' name = 'wildlifeIssue'rows="5" cols="90"></textarea>
                             </div>
                             
 
          <label class="col-sm-3">Do you have prior experience speaking to the public? Please describe.</label>
                 <div class="col-sm-9">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id = 'priorExperience' name ='priorExperience'rows="5" cols="90"></textarea>
                             </div>
                            
          <label class="col-sm-3">Do you belong to any animal rights groups (PETA, The Humane Society, etc.)? If so, which ones?</label>
                 <div class="col-sm-9">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id = 'groups' name = 'groups' rows="5" cols="90"></textarea>
                             </div>
                            
          <label class="col-sm-3">What do you think you’d bring to the outreach volunteer team?</label>
                 <div class="col-sm-9">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id = 'valueAdded' name = 'valueAdded' rows="5" cols="90"></textarea>
                             </div>
 <div class="col-sm-12">Please upload a current resume.</div>
 <div class="fileinput fileinput-new col-sm-3 col-sm-offset-3 btn-lg" data-provides="fileinput">
@@ -213,12 +213,13 @@ error_reporting(E_ALL);
                                                 <button class="btn btn-default" type="reset">Reset</button>
                                             </footer>
                                         </form>
+
 										<?php
 if(isset($_POST['upload']))
 {
-	$server = "localhost";
+		$server = "localhost";
         $user = "root";
-        $password = "Twspike1994?";
+        $password = "password";
         $database = "wildlife";
         $conn = mysqli_connect($server, $user, $password, $database);
         if (mysqli_connect_errno()) 
@@ -226,11 +227,57 @@ if(isset($_POST['upload']))
 			echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
 		
-		if(!mysqli_select_db($conn, 'test_1'))
+		if(!mysqli_select_db($conn, 'wildlife'))
         {
             echo "Database Not Selected";
         }
-	echo 'weiner';
+
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+        $userName = $_POST['email'];
+        $email = $_POST['email'];
+        $middleInitial = '';
+        $primaryPhone = $_POST['phone'];
+        $secondaryPhone = 5555;
+        $city = '';
+        $county = '';
+        $state = '';
+        $zip = 0;
+        $dob = 10/10/1999;
+        $street = $_POST['address'];
+        $tmpName  = $_FILES['userfile']['tmp_name'];
+		$fileSize = $_FILES['userfile']['size'];
+
+		$fp      = fopen($tmpName, 'r');
+		$picture = fread($fp, filesize($tmpName));
+		$picture = addslashes($picture);
+		fclose($fp);
+		$status = '';
+		$rabiesVac = 10/10/2010;
+		$permitrehab ='';
+		$lastVolunteered = 10/10/2011;
+		$allergies = $_POST['allergies'];
+		$specialNeeds = '';
+		$workOutside = '';
+		$totalHours = 10;
+		$workOutsideLimitations = '';
+		$lift40 = '';
+
+
+
+
+
+
+		
+		$query = "INSERT INTO person (UserName, FirstName, middleInitial, LastName, Email, PhonePrimary, PhoneAlternate, City, County,
+			State, ZipCode, DateOfBirth, Picture, Status, RabbiesVaccinateDate, PermitRehabilitate, LastVolunteered, Allergies, SpecialNeeds,
+			WorkOutside, TotalHours, WOLimitations, Lift40Pounds, street)
+					VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$city',
+					'$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitrehab', NOW(), '$allergies',
+					'$specialNeeds', '$workOutside', '$totalHours', '$workOutsideLimitations', '$lift40', '$street')";
+
+					mysqli_query($conn, $query) or die(mysqli_error($conn)); 
+
 }
 					
 /* if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
