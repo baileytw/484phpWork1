@@ -263,6 +263,12 @@ if(isset($_POST['upload']))
 		$workOutsideLimitations = '';
 		$lift40 = '';
 
+		$whyInterested = $_POST['whyInterested'];
+		$wildlifeIssue = $_POST['wildlifeIssue'];
+		$priorExperience = $_POST['priorExperience'];
+		$groups = $_POST['groups'];
+		$valueAdded = $_POST['valueAdded'];
+
 
 
 
@@ -276,7 +282,14 @@ if(isset($_POST['upload']))
 					'$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
 					'$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
 
-					mysqli_query($conn, $query) or die(mysqli_error($conn)); 
+					 mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+
+					$outreachQuery = "INSERT INTO outreachApp (OutreachApp_WhyInterested, OutreachApp_PassionateWildlifeIssue, OutreachApp_ExperiencePublicSpeaking, OutreachApp_BelongToAnimalRightsGroup, OutreachApp_BringToTeam)
+					VALUES ('$whyInterested', '$wildlifeIssue', '$priorExperience', '$groups', '$valueAdded')";
+
+
+					mysqli_query($conn, $outreachQuery) or die(mysqli_error($conn)); 
 
 }
 					
