@@ -79,13 +79,13 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2">First Name *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" required="required" />
+                                                      <input class="form-control" name = 'firstName' type="text" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Last Name *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" required="required" />
+                                                      <input class="form-control" name = 'lastName' type="text" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -103,7 +103,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Email *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="email" required="required" />
+                                                      <input class="form-control" type="email" name = 'email' required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -149,55 +149,55 @@
 <div class="form-group">
          <label class="col-sm-6">Do you have any allergies or physical limitations?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'allergies' rows="5" cols="90"></textarea>
                             </div>
  <label class="col-sm-6">Please describe your availability weekly and seasonally. The Wildlife Center of Virginia needs consistency in scheduling, and is open on weekends.</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'availability' rows="5" cols="90"></textarea>
                             </div>                            
  
   <label class="col-sm-6">Please briefly describe your relevant hands-on experience with animals, if any. What did you enjoy about the experience? What did you dislike?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'experience' rows="5" cols="90"></textarea>
                             </div>
                             
          <label class="col-sm-6">Carnivorous patients are sometimes unable to eat food items whole due to their injuries; you may be required to cut and divide dead rodents, chicks, and fishes into smaller portions. Are you comfortable handling dead animals for this purpose?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'deadAnimals' rows="5" cols="90"></textarea>
                             </div>
                             
 
          <label class="col-sm-6">Prior to release from the Wildlife Center, many predatory birds are presented with live mice in order to evaluate their ability to capture prey in a controlled and measurable environment. What is your opinion on using live-prey for this purpose?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'livePrey' rows="5" cols="90"></textarea>
                             </div>
                            
          <label class="col-sm-6">Wildlife rehabilitation requires daily outdoor work -- year-round and regardless of weather conditions. Are you able to work outside during all seasons? If not, what are your limitations?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'seasons' rows="5" cols="90"></textarea>
                             </div>
                             
          <label class="col-sm-6">Do you belong to any animal rights groups (PETA, The Humane Society, etc.)? If so, which ones?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'groups' rows="5" cols="90"></textarea>
                             </div>
                          
                             
  <label class="col-sm-6">What do you hope to learn or accomplish by volunteering at the Wildlife Center of Virginia?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'accomplish' rows="5" cols="90"></textarea>
                             </div>
                             
                             
 <label class="col-sm-6">Please describe an environmental or wildlife-based issue you feel passionately about, and why.</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'issue' rows="5" cols="90"></textarea>
                             </div>
                          
                             
 <label class="col-sm-6">Is there anything else that you’d like us to know about yourself or your experience?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'additionalInfo' rows="5" cols="90"></textarea>
                             </div>
                             </div> </div>
                                                                             
@@ -216,6 +216,78 @@
                                             </footer>
                                         </form>
                                     </div>
+
+
+
+
+  <?
+  
+  $server = "localhost";
+  $user = "root";
+  $password = "password";
+  $database = "wildlife";
+
+  $conn = mysqli_connect($server, $user, $password, $database);
+        if (mysqli_connect_errno()) 
+        {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+
+      if(!mysqli_select_db($conn, 'wildlife'))
+        {
+            echo "Database Not Selected";
+        }
+
+
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+        $userName = $_POST['email'];
+        $email = $_POST['email'];
+        $middleInitial = '';
+        $primaryPhone = $_POST['phone'];
+        $secondaryPhone = 5555;
+        $city = '';
+        $county = '';
+        $state = 'VA';
+        $zip = 0;
+        $dob = 10/10/1999;
+        $street = $_POST['address'];
+        $tmpName  = $_FILES['userfile']['tmp_name'];
+        $fileSize = $_FILES['userfile']['size'];
+
+        $fp      = fopen($tmpName, 'r');
+        $picture = fread($fp, filesize($tmpName));
+        $picture = addslashes($picture);
+        fclose($fp);
+        $status = '';
+        $rabiesVac = 10/10/2010;
+        $permitrehab ='';
+        $lastVolunteered = 10/10/2011;
+        $allergies = $_POST['allergies'];
+        $specialNeeds = '';
+        $workOutside = '';
+        $totalHours = 10;
+        $workOutsideLimitations = '';
+        $lift40 = '';
+
+              $query = "INSERT INTO person (Person_UserName, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
+                Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds, Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
+                    VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
+                    '$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
+                    '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
+
+                     mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+
+
+
+
+
+  ?>
+
+
+
+
                 
     
                     <!-- Main Section End -->
