@@ -9,7 +9,6 @@ error_reporting(E_ALL);
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>Wildlife Center of Virginia Application</title>
-
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -76,7 +75,7 @@ error_reporting(E_ALL);
                                 <section class="panel-body container-fluid">
 
                                     <div class="leading">
-                                    	  <form id="form" method="post" enctype = "multipart/form-data"  class="form-horizontal panel panel-default">
+                                    	  <form id="form" action="confirmation.php" method="post" enctype = "multipart/form-data"  class="form-horizontal panel panel-default">
                                             <header class="panel-heading"><h2 class="panel-title">Basic Information</h2></header>
             
                                             <fieldset class="panel-body">
@@ -291,48 +290,11 @@ if(isset($_POST['upload']))
 
 					mysqli_query($conn, $outreachQuery) or die(mysqli_error($conn)); 
 
+
+
 }
 					
-/* if(isset($_POST['upload']) && $_FILES['userfile']['size'] > 0)
-{
-	$server = "localhost";
-        $user = "root";
-        $password = "Twspike1994?";
-        $database = "test_1";
-        $conn = mysqli_connect($server, $user, $password, $database);
-        if (mysqli_connect_errno()) 
-		{
-			echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
-		
-		if(!mysqli_select_db($conn, 'test_1'))
-        {
-            echo "Database Not Selected";
-        }
-$fileName = $_FILES['userfile']['name'];
-$tmpName  = $_FILES['userfile']['tmp_name'];
-$fileSize = $_FILES['userfile']['size'];
-$fileType = $_FILES['userfile']['type'];
 
-$fp      = fopen($tmpName, 'r');
-$content = fread($fp, filesize($tmpName));
-$content = addslashes($content);
-fclose($fp);
-
-if(!get_magic_quotes_gpc())
-{
-    $fileName = addslashes($fileName);
-}
-
-
-$query = "INSERT INTO picture (name_a, type_a, size, content ) ".
-"VALUES ('$fileName', '$fileType', '$fileSize', '$content')";
-
-mysqli_query($conn, $query) or die('Error, query failed'); 
-
-
-echo "<br>File $fileName uploaded<br>";
-}  */
 ?>
                                     </div>
                 

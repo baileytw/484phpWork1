@@ -132,8 +132,8 @@ error_reporting(E_ALL);
                                                     <label class="col-sm-5">Do you have a permit to rehabilitate wildlife?</label>
                                                     <div class="col-sm-7">
                                                         <div class="checkbox">
-														<input type="radio" name="permit" value="Yes"> Yes
-														<input type="radio" name="permit" value="No"> No
+														<input type="radio" name="permit" value="Y"> Yes
+														<input type="radio" name="permit" value="N"> No
 
                                                         </div>
                                                     </div>
@@ -234,6 +234,8 @@ error_reporting(E_ALL);
 
 
 <?php
+
+
   
 
   if(isset($_POST['upload']))
@@ -254,6 +256,15 @@ error_reporting(E_ALL);
             echo "Database Not Selected";
         }
 
+         if ($_POST['password']!= $_POST['check'])
+            {
+              echo '<script language="javascript">';
+              echo 'alert("Your passwords do not match!")';
+              echo '</script>';
+              
+             
+          }
+ else {
 
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
@@ -261,7 +272,7 @@ error_reporting(E_ALL);
         $email = $_POST['email'];
         $middleInitial = 'I';
         $primaryPhone = $_POST['phone'];
-        $secondaryPhone = 7034316161;
+        $secondaryPhone = 1;
         $city = 'Sterling';
         $county = 'Loudoun';
         $state = 'MA';
@@ -271,21 +282,20 @@ error_reporting(E_ALL);
         $tmpName  = $_FILES['userfile']['tmp_name'];
         $fileSize = $_FILES['userfile']['size'];
         $rabies = $_POST['rabies'];
-        $experience = $_POST['experience'];
-        $deadAnimals = $_POST['deadAnimals'];
-        $livePrey = $_POST['livePrey'];
-        $seasons = $_POST['seasons'];
-        $groups = $_POST['groups'];
-        $accomplish = $_POST['accomplish'];
-        $issue = $_POST['issue'];
-        $additionalInfo = $_POST['additionalInfo'];
+        //$experience = $_POST['experience'];
+        //$deadAnimals = $_POST['deadAnimals'];
+        //$livePrey = $_POST['livePrey'];
+        //$seasons = $_POST['seasons'];
+        //$groups = $_POST['groups'];
+        //$accomplish = $_POST['accomplish'];
+        //$issue = $_POST['issue'];
+        //$additionalInfo = $_POST['additionalInfo'];
         $fp      = fopen($tmpName, 'r');
         $picture = fread($fp, filesize($tmpName));
         $picture = addslashes($picture);
         fclose($fp);
         $status = 'Applicant';
         $rabiesVac = 10/10/2010;
-        $permitrehab ='';
         $lastVolunteered = 10/10/2011;
         $allergies = $_POST['allergies'];
         $specialNeeds = '';
@@ -295,15 +305,54 @@ error_reporting(E_ALL);
         $lift40 = '';
         $permitRehab = $_POST['permit'];
 
-              $query = "INSERT INTO person (Person_UserName, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
-      Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+              $query = "INSERT INTO person (Person_UserName, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
       Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-          VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
-          '$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
-          '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
+          VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city', '$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitRehab', '$allergies', '$specialNeeds', '$workOutside', '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
 
-           mysqli_query($conn, $query) or die(mysqli_error($conn));
 
+
+    if(!mysqli_query($conn,$query))
+
+        {
+            echo("Error description: " . mysqli_error($conn));
+        }
+
+        else
+        {
+            echo "Application Sent! {person table}";
+        }
+
+        //animalCare app specific
+
+        $experience = $_POST['experience'];
+        $deadAnimals = $_POST['deadAnimals'];
+        $livePrey = $_POST['livePrey'];
+        $seasons = $_POST['seasons'];
+        $groups = $_POST['groups'];
+        $accomplish = $_POST['accomplish'];
+        $issue = $_POST['issue'];
+        $additionalInfo = $_POST['additionalInfo'];
+
+        
+
+        $animalQuery = "INSERT INTO AnimalCareApp (AnimalCareApp_HandsOnExperience, AnimalCareApp_HandleDeadAnimals, AnimalCareApp_OpinionLivePrey, AnimalCareApp_WorkOutside, AnimalCareApp_BelongToAnimalRightsGroup, AnimalCareApp_HopeToLearnAccomplish, AnimalCareApp_PassionateWildlifeIssue, AnimalCareApp_MoreAboutExperience)
+          VALUES ('$experience', '$deadAnimals', '$livePrey', '$seasons', '$groups', '$accomplish', '$issue', '$additionalInfo')";
+
+
+
+          if(!mysqli_query($conn,$animalQuery))
+
+        {
+            echo("Error description: " . mysqli_error($conn));
+        }
+
+        else
+        {
+            echo "Application Sent! {animalCareApp table}";
+        }
+      }
+        
+        //var_dump($_POST);
 
 
 }

@@ -190,10 +190,84 @@
                                             </fieldset>
             
                                             <footer class="panel-footer">
-                                                <button class="btn btn-primary" type="submit">Submit form</button>
+                                                <button class="btn btn-primary" name = "upload" type="submit"> Submit form</button>
                                                 <button class="btn btn-default" type="reset">Reset</button>
                                             </footer>
+
+
+
+<?php
+if(isset($_POST['upload']))
+{
+    $server = "localhost";
+        $user = "root";
+        $password = "password";
+        $database = "wildlife";
+        $conn = mysqli_connect($server, $user, $password, $database);
+        if (mysqli_connect_errno()) 
+    {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+    
+    if(!mysqli_select_db($conn, 'wildlife'))
+        {
+            echo "Database Not Selected";
+        }
+
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+        $userName = $_POST['email'];
+        $email = $_POST['email'];
+        $middleInitial = '';
+        $primaryPhone = $_POST['phone'];
+        $secondaryPhone = 5555;
+        $city = '';
+        $county = '';
+        $state = 'VA';
+        $zip = 0;
+        $dob = 10/10/1999;
+        $street = $_POST['address'];
+        $tmpName  = $_FILES['userfile']['tmp_name'];
+    $fileSize = $_FILES['userfile']['size'];
+
+    $fp      = fopen($tmpName, 'r');
+    $picture = fread($fp, filesize($tmpName));
+    $picture = addslashes($picture);
+    fclose($fp);
+    $status = '';
+    $rabiesVac = 10/10/2010;
+    $permitrehab ='';
+    $lastVolunteered = 10/10/2011;
+    $allergies = $_POST['allergies'];
+    $specialNeeds = '';
+    $workOutside = '';
+    $totalHours = 10;
+    $workOutsideLimitations = '';
+    $lift40 = '';
+
+      $query = "INSERT INTO person (Person_UserName, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
+            Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+            Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
+                VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
+                '$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
+                '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
+
+                 mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+
+
+?>
+
+
+
+
                                         </form>
+
+
+                                          
+
+
+
                                     </div>
                 
     
