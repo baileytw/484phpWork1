@@ -29,12 +29,12 @@
 <link rel="stylesheet" media="screen" href="css/style.css" />
 
 </head>
-<body class="login">
-    <div class="login-box main-content panel panel-default">
-      <header class="panel-heading"><img src="../484phpWork1/images/logo_small.png" alt="Wildlife Logo"></header>
-    	<section class="panel-body">
 
 <!--clock in form-->
+<body class="login">
+    <div class="login-box main-content panel panel-default">
+      <header class="panel-heading"><img src="../streamlined/images/logo_small.png" alt="Wildlife Logo"></header>
+    	<section class="panel-body">
 <form action="clockin.php" method="post" class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-12">
@@ -48,8 +48,13 @@
             </div>
           </div>
 </form>
+<!--end clock in form-->
+
+<!--Accordion Start-->
 <div class="bs-example">
     <div class="panel-group" id="accordion">
+
+       <!--Transporter Form-->
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -59,42 +64,44 @@
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
                     <form id="form" action="transporter.php" method="post" class="form-horizontal">
-    			<div class="form-group">
-    			  <div class="col-sm-12">
-      				<input type="text" id="username"  class="form-control" value="" name="username" required="required" placeholder="Username" />
-    				</div>
-    			</div>
-    			<div class="form-group">
-    			  <div class="col-sm-12">
-      				<input type="number" id="hours" class="form-control" value="" name="password" required="required" placeholder="Hours" />
-      			</div>
-    			</div>
-    			<div class="form-group">
-    			  <div class="col-sm-12">
-      				<input type="number" id="mileage" class="form-control" value="" name="password" required="required" placeholder="Mileage" />
-      			</div>
-    			</div>
-    			<div class="form-group">
-    			  <div class="col-sm-2 col-sm-offset-4">
-      				<button class="btn btn-default" type="submit">Submit</button>
-      			</div>
-      		</div>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" id="username"  class="form-control" value="" name="username" required="required" placeholder="Username" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="number" id="hours" class="form-control" value="" name="password" required="required" placeholder="Hours" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="number" id="mileage" class="form-control" value="" name="password" required="required" placeholder="Mileage" />
+            </div>
+          </div>
+          <div><a target="_blank" href="https://www.google.com/maps/place/Wildlife+Center+of+VA/@38.0392567,-78.9159496,17z/data=!3m1!4b1!4m5!3m4!1s0x89b3640efe4889c9:0xf47416d422aa90a9!8m2!3d38.0392567!4d-78.9137609">Click here to check how far you drove.</a></div>
+          <br>
+          <div class="form-group">
+            <div class="col-sm-2 col-sm-offset-4">
+              <button class="btn btn-default" type="submit">Submit</button>
+            </div>
+          </div>
 </form>
-                    
+  <!--end transporter form-->
                     
                 </div>
             </div>
         </div>
-		
-		<div class="panel panel-default">
+        <div class="panel panel-default">
             <div class="panel-heading">
+<!--Log in Form-->
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Log in</a>
                 </h4>
             </div>
             <div id="collapseOne" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <form id="form" action="profile.php" method="post" class="form-horizontal">
+  <form id="form" action="profile.php" method="post" class="form-horizontal">
     			<div class="form-group">
     			  <div class="col-sm-12">
       				<input type="text" id="username"  class="form-control" value="" name="username" required="required" placeholder="Username" />
@@ -111,12 +118,15 @@
       			</div>
       		</div>
 </form>
+<!--end log in form-->
                     
                     
                 </div>
             </div>
         </div>
-        
+
+       
+    <!--Apply Form-->
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -125,7 +135,7 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                <form id="form" method="post" class="form-horizontal"> <!-- action="forms.php"-->
+                <form id="form" action="forms.php" method="post" class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-12">
               <input type="text" id="username"  class="form-control" value="" name="username" required="required" placeholder="Email Address" />
@@ -137,6 +147,7 @@
             </div>
           </div>
 </form>    
+<!--end apply form-->
                     
                     
                 </div>
