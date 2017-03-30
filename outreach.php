@@ -22,6 +22,23 @@ error_reporting(E_ALL);
 <link rel="stylesheet" media="screen" href="css/style.css" />
 
 </head>
+<script>
+function StringCompare()
+{
+	var string1 = document.getElementById("password").value;
+	var string2 = document.getElementById("check").value;
+
+	if(string1 === string2)
+	{
+		return true;
+	}
+	else
+       {
+		alert("Values are different.");
+		return false;
+	}
+}
+</script>
 <body>
     <div id="wrapper">
         <header>
@@ -75,7 +92,7 @@ error_reporting(E_ALL);
                                 <section class="panel-body container-fluid">
 
                                     <div class="leading">
-                                    	  <form id="form" action="confirmation.php" method="post" enctype = "multipart/form-data"  class="form-horizontal panel panel-default">
+                                    	  <form id="form" action="confirmation.php" method="post" enctype = "multipart/form-data"  class="form-horizontal panel panel-default" onSubmit="return StringCompare();">
                                             <header class="panel-heading"><h2 class="panel-title">Basic Information</h2></header>
             
                                             <fieldset class="panel-body">
@@ -208,7 +225,7 @@ error_reporting(E_ALL);
                                             </fieldset>
             
                                             <footer class="panel-footer">
-                                                <button class="btn btn-primary" type="submit" name="upload" id="upload" >Submit form</button>
+                                                <input class="btn btn-default" type="submit" name = 'upload' type="submit" id = 'upload' value="Submit form"/>
                                                 <button class="btn btn-default" type="reset">Reset</button>
                                             </footer>
                                         </form>
@@ -218,7 +235,7 @@ if(isset($_POST['upload']))
 {
 		$server = "localhost";
         $user = "root";
-        $password = "password";
+        $password = "Twspike1994?";
         $database = "wildlife";
         $conn = mysqli_connect($server, $user, $password, $database);
         if (mysqli_connect_errno()) 

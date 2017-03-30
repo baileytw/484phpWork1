@@ -23,6 +23,23 @@ error_reporting(E_ALL);
 <link rel="stylesheet" media="screen" href="css/style.css" />
 
 </head>
+<script>
+function StringCompare()
+{
+	var string1 = document.getElementById("password").value;
+	var string2 = document.getElementById("check").value;
+
+	if(string1 === string2)
+	{
+		return true;
+	}
+	else
+       {
+		alert("Values are different.");
+		return false;
+	}
+}
+</script>
 <body>
     <div id="wrapper">
         <header>
@@ -76,7 +93,7 @@ error_reporting(E_ALL);
                                 <section class="panel-body container-fluid">
 
                                     <div class="leading">
-                                    	  <form id="form" method="post" enctype = "multipart/form-data" class="form-horizontal panel panel-default">
+                                    	  <form id="form" method="post" enctype = "multipart/form-data" class="form-horizontal panel panel-default" onSubmit="return StringCompare();">
                                             <header class="panel-heading"><h2 class="panel-title">Basic Information</h2></header>
             
                                             <fieldset class="panel-body">
@@ -95,13 +112,13 @@ error_reporting(E_ALL);
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Password *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="password" name="password" required="required"/>
+                                                      <input class="form-control" type="password" name="password" id="password" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Password check </label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="password" name="check" data-equals="password" required="required"/>
+                                                      <input class="form-control" type="password" name="check" id="check" data-equals="password" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -227,7 +244,7 @@ error_reporting(E_ALL);
                                             </fieldset>
             
                                             <footer class="panel-footer">
-                                                <button class="btn btn-primary" name = 'upload' type="submit" id = 'upload'>Submit form</button>
+                                                <input class="btn btn-default" type="submit" name = 'upload' type="submit" id = 'upload' value="Submit form"/>
                                                 <button class="btn btn-default" type="reset">Reset</button>
                                             </footer>
                                         </form>
@@ -235,127 +252,119 @@ error_reporting(E_ALL);
 
 <?php
 
-
   
 
-  if(isset($_POST['upload']))
-{
-  $server = "localhost";
-  $user = "root";
-  $password = "password";
-  $database = "wildlife";
+	  if(isset($_POST['upload']))
+	{
+	  $server = "localhost";
+	  $user = "root";
+	  $password = "Twspike1994?";
+	  $database = "wildlife";
 
-  $conn = mysqli_connect($server, $user, $password, $database);
-        if (mysqli_connect_errno()) 
-        {
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
+	  $conn = mysqli_connect($server, $user, $password, $database);
+			if (mysqli_connect_errno()) 
+			{
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			}
 
-      if(!mysqli_select_db($conn, 'wildlife'))
-        {
-            echo "Database Not Selected";
-        }
+		  if(!mysqli_select_db($conn, 'wildlife'))
+			{
+				echo "Database Not Selected";
+			}
 
-         if ($_POST['password']!= $_POST['check'])
-            {
-              echo '<script language="javascript">';
-              echo 'alert("Your passwords do not match!")';
-              echo '</script>';
-              
-             
-          }
- else {
+		 
 
-        $firstName = $_POST['firstName'];
-        $lastName = $_POST['lastName'];
-        $userName = $_POST['email'];
-        $email = $_POST['email'];
-        $middleInitial = 'I';
-        $primaryPhone = $_POST['phone'];
-        $secondaryPhone = 1;
-        $city = 'Sterling';
-        $county = 'Loudoun';
-        $state = 'MA';
-        $zip = 22525;
-        $dob = 10/10/1999;
-        $street = $_POST['address'];
-        $tmpName  = $_FILES['userfile']['tmp_name'];
-        $fileSize = $_FILES['userfile']['size'];
-        $rabies = $_POST['rabies'];
-        //$experience = $_POST['experience'];
-        //$deadAnimals = $_POST['deadAnimals'];
-        //$livePrey = $_POST['livePrey'];
-        //$seasons = $_POST['seasons'];
-        //$groups = $_POST['groups'];
-        //$accomplish = $_POST['accomplish'];
-        //$issue = $_POST['issue'];
-        //$additionalInfo = $_POST['additionalInfo'];
-        $fp      = fopen($tmpName, 'r');
-        $picture = fread($fp, filesize($tmpName));
-        $picture = addslashes($picture);
-        fclose($fp);
-        $status = 'Applicant';
-        $rabiesVac = 10/10/2010;
-        $lastVolunteered = 10/10/2011;
-        $allergies = $_POST['allergies'];
-        $specialNeeds = '';
-        $workOutside = '';
-        $totalHours = 10;
-        $workOutsideLimitations = '';
-        $lift40 = '';
-        $permitRehab = $_POST['permit'];
+			$firstName = $_POST['firstName'];
+			$lastName = $_POST['lastName'];
+			$userName = $_POST['email'];
+			$email = $_POST['email'];
+			$middleInitial = 'I';
+			$primaryPhone = $_POST['phone'];
+			$secondaryPhone = 1;
+			$city = 'Sterling';
+			$county = 'Loudoun';
+			$state = 'MA';
+			$zip = 22525;
+			$dob = 10/10/1999;
+			$street = $_POST['address'];
+			$tmpName  = $_FILES['userfile']['tmp_name'];
+			$fileSize = $_FILES['userfile']['size'];
+			$rabies = $_POST['rabies'];
+			//$experience = $_POST['experience'];
+			//$deadAnimals = $_POST['deadAnimals'];
+			//$livePrey = $_POST['livePrey'];
+			//$seasons = $_POST['seasons'];
+			//$groups = $_POST['groups'];
+			//$accomplish = $_POST['accomplish'];
+			//$issue = $_POST['issue'];
+			//$additionalInfo = $_POST['additionalInfo'];
+			$fp      = fopen($tmpName, 'r');
+			$picture = fread($fp, filesize($tmpName));
+			$picture = addslashes($picture);
+			fclose($fp);
+			$status = 'Applicant';
+			$rabiesVac = 10/10/2010;
+			$lastVolunteered = 10/10/2011;
+			$allergies = $_POST['allergies'];
+			$specialNeeds = '';
+			$workOutside = '';
+			$totalHours = 10;
+			$workOutsideLimitations = '';
+			$lift40 = '';
+			$permitRehab = $_POST['permit'];
 
-              $query = "INSERT INTO person (Person_UserName, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
-      Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-          VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city', '$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitRehab', '$allergies', '$specialNeeds', '$workOutside', '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
+				  $query = "INSERT INTO person (Person_UserName, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+		  Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
+			  VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city', '$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitRehab', '$allergies', '$specialNeeds', '$workOutside', '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
 
 
 
-    if(!mysqli_query($conn,$query))
+		if(!mysqli_query($conn,$query))
 
-        {
-            echo("Error description: " . mysqli_error($conn));
-        }
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
 
-        else
-        {
-            echo "Application Sent! {person table}";
-        }
+			else
+			{
+				echo "Application Sent! {person table}";
+			}
 
-        //animalCare app specific
+			//animalCare app specific
 
-        $experience = $_POST['experience'];
-        $deadAnimals = $_POST['deadAnimals'];
-        $livePrey = $_POST['livePrey'];
-        $seasons = $_POST['seasons'];
-        $groups = $_POST['groups'];
-        $accomplish = $_POST['accomplish'];
-        $issue = $_POST['issue'];
-        $additionalInfo = $_POST['additionalInfo'];
+			$experience = $_POST['experience'];
+			$deadAnimals = $_POST['deadAnimals'];
+			$livePrey = $_POST['livePrey'];
+			$seasons = $_POST['seasons'];
+			$groups = $_POST['groups'];
+			$accomplish = $_POST['accomplish'];
+			$issue = $_POST['issue'];
+			$additionalInfo = $_POST['additionalInfo'];
 
-        
+			
 
-        $animalQuery = "INSERT INTO AnimalCareApp (AnimalCareApp_HandsOnExperience, AnimalCareApp_HandleDeadAnimals, AnimalCareApp_OpinionLivePrey, AnimalCareApp_WorkOutside, AnimalCareApp_BelongToAnimalRightsGroup, AnimalCareApp_HopeToLearnAccomplish, AnimalCareApp_PassionateWildlifeIssue, AnimalCareApp_MoreAboutExperience)
-          VALUES ('$experience', '$deadAnimals', '$livePrey', '$seasons', '$groups', '$accomplish', '$issue', '$additionalInfo')";
-
-
-
-          if(!mysqli_query($conn,$animalQuery))
-
-        {
-            echo("Error description: " . mysqli_error($conn));
-        }
-
-        else
-        {
-            echo "Application Sent! {animalCareApp table}";
-        }
-      }
-        
-        //var_dump($_POST);
+			$animalQuery = "INSERT INTO AnimalCareApp (AnimalCareApp_HandsOnExperience, AnimalCareApp_HandleDeadAnimals, AnimalCareApp_OpinionLivePrey, AnimalCareApp_WorkOutside, AnimalCareApp_BelongToAnimalRightsGroup, AnimalCareApp_HopeToLearnAccomplish, AnimalCareApp_PassionateWildlifeIssue, AnimalCareApp_MoreAboutExperience)
+			  VALUES ('$experience', '$deadAnimals', '$livePrey', '$seasons', '$groups', '$accomplish', '$issue', '$additionalInfo')";
 
 
-}
+
+			  if(!mysqli_query($conn,$animalQuery))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
+
+			else
+			{
+				echo "Application Sent! {animalCareApp table}";
+			}
+		  
+			
+			//var_dump($_POST);
+
+
+	}
+
 
   ?>
                                     </div>
