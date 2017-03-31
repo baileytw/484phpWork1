@@ -77,6 +77,13 @@ if(isset($_POST['btnLogIn'])){
 		} else {
 
 		 // passwords didn't match, show an error
+			
+$message = 'This is a message.';
+
+echo "<SCRIPT>
+alert('$message');
+</SCRIPT>";
+
 
 		}
 	} 
