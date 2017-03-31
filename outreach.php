@@ -7,7 +7,6 @@ error_reporting(E_ALL);
 
 
 
-
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -27,6 +26,23 @@ error_reporting(E_ALL);
 <link rel="stylesheet" media="screen" href="css/style.css" />
 
 </head>
+<script>
+function StringCompare()
+{
+	var string1 = document.getElementById("password").value;
+	var string2 = document.getElementById("check").value;
+
+	if(string1 === string2)
+	{
+		return true;
+	}
+	else
+       {
+		alert("Values are different.");
+		return false;
+	}
+}
+</script>
 <body>
     <div id="wrapper">
         <header>
@@ -79,20 +95,26 @@ error_reporting(E_ALL);
                                 <section class="panel-body container-fluid">
 
                                     <div class="leading">
-                                    	  <form id="form" method="post" enctype = "multipart/form-data"  class="form-horizontal panel panel-default" >
+                                    	  <form id="form" method="post" enctype = "multipart/form-data"  class="form-horizontal panel panel-default" onSubmit="return StringCompare();">
                                             <header class="panel-heading"><h2 class="panel-title">Basic Information</h2></header>
             
                                             <fieldset class="panel-body">
                                                 <div class="form-group">
                                                     <label class="col-sm-2">First Name *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" id = 'firstName' name = 'firstName' value="<?php if (isset($_POST['upload'])) echo ($_POST['firstName']);?>" type="text" required="required" />
+                                                      <input class="form-control" id = 'firstName' name = 'firstName' type="text" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Last Name *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" id = 'lastName' name = 'lastName' value="<?php if (isset($_POST['upload'])) echo ($_POST['lastName']);?>" type="text" required="required" />
+                                                      <input class="form-control" id = 'lastName' name = 'lastName' type="text" required="required" />
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="col-sm-2">Create Username *</label>
+                                                    <div class="col-sm-10">
+                                                      <input class="form-control" type="text" name="username" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -110,56 +132,62 @@ error_reporting(E_ALL);
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Email *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" id = 'email' name = 'email' value="<?php if (isset($_POST['upload'])) echo ($_POST['email']);?>" type="email" required="required" />
+                                                      <input class="form-control" id = 'email' name = 'email' type="email" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Phone *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" id = 'phone' type="number" name="phone" value="<?php if (isset($_POST['upload'])) echo ($_POST['phone']);?>" required="required" />
+                                                      <input class="form-control" id = 'phone' type="number" name="phone" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Age *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" id = 'age' type="number" name="age" value="<?php if (isset($_POST['upload'])) echo ($_POST['age']);?>" required="required" value="0" />
+                                                      <input class="form-control" id = 'age' type="number" name="age" required="required" value="0" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2">Address *</label>
+                                                    <div class="col-sm-10">
+                                                      <input class="form-control" type="text" name="address" />
                                                     </div>
                                                 </div>
 												<div class="form-group">
                                                     <label class="col-sm-2">Address *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" id= 'address' name="address" type="text" value="<?php if (isset($_POST['upload'])) echo ($_POST['street']);?>" placeholder="street" name="street" />
+                                                      <input class="form-control" type="text" placeholder="street" name="street" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">City *</label>
                                                     <div class="col-sm-3">
-                                                      <input class="form-control" type="text" id="city" name="city" value="<?php if (isset($_POST['upload'])) echo ($_POST['city']);?>" placeholder="City" name="city" />
+                                                      <input class="form-control" type="text" placeholder="City" name="city" />
                                                     </div>
 
                                                     <label class="col-sm-1">State *</label>
                                                     <div class="col-sm-1">
-                                                      <input class="form-control" type="text" id="state" name="state" value="<?php if (isset($_POST['upload'])) echo ($_POST['state']);?>"placeholder="State" name="state" />
+                                                      <input class="form-control" type="text" placeholder="State" name="state" />
                                                     </div>
                                             
                                                     <label class="col-sm-2">Zip Code *</label>
                                                     <div class="col-sm-2">
-                                                      <input class="form-control" type="text" id="zipcode" name="zipcode" value="<?php if (isset($_POST['upload'])) echo ($_POST['zipcode']);?>" placeholder="Zip" name="zip" />
+                                                      <input class="form-control" type="text" placeholder="Zip" name="zip" />
                                                     </div>
                                                     
                                                 </div>
                                                                                                   <div class="form-group">
                                                     <label class="col-sm-2">Date of Birth *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="12/01/95" name="street" />
+                                                      <input class="form-control" type="text" placeholder="12/01/95" name="street" />
                                                     </div>
                                                 </div>
 <div class="form-group">
                                                     <label class="col-sm-5">Do you have a permit to rehabilitate wildlife?</label>
                                                     <div class="col-sm-7">
                                                         <div class="checkbox">
-														<input type="radio" name="permit1" value="Yes" <?php if ($_POST['permit1'] == 'Yes')) echo ' checked="checked"';?>> Yes
-														<input type="radio" name="permit2" value="No" <?php if ($_POST['permit2'] == 'No')) echo ' checked="checked"';?>> No
+														<input type="radio" name="permit" value="Yes"> Yes
+														<input type="radio" name="permit" value="No"> No
 
                                                         </div>
                                                     </div>
@@ -168,8 +196,8 @@ error_reporting(E_ALL);
                                                     <label class="col-sm-5">Are you rabies vaccinated?</label>
                                                     <div class="col-sm-7">
                                                         <div class="checkbox">
-                                                            <input type="radio" name="rabies1" value="Yes" <?php if ($_POST['rabies1'] == 'Yes')) echo ' checked="checked"';?>> Yes
-															<input type="radio" name="rabies2" value="No" <?php if ($_POST['rabies2'] == 'No')) echo ' checked="checked"';?>> No
+                                                            <input type="radio" name="rabies" value="Yes"> Yes
+															<input type="radio" name="rabies" value="No"> No
                                                         </div>
                                                     </div>
                                                 </div>
@@ -179,34 +207,34 @@ error_reporting(E_ALL);
 <div class="form-group">
          <label class="col-sm-3">Do you have any allergies or physical limitations?</label>
                 <div class="col-sm-9">
-                <textarea class="form-control" id = 'allergies' name = 'allergies' value="<?php if (isset($_POST['upload'])) echo ($_POST['allergies']);?>" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id = 'allergies' name = 'allergies' rows="5" cols="90"></textarea>
                             </div>
  <label class="col-sm-3">Please describe your availability weekly and seasonally. WCVV needs consistency in scheduling, and is open on weekends.</label>
                 <div class="col-sm-9">
-                <textarea class="form-control" id = 'availability' name = 'availability' value="<?php if (isset($_POST['upload'])) echo ($_POST['availability']);?>"rows="5" cols="90"></textarea>
+                <textarea class="form-control" id = 'availability' name = 'availability'rows="5" cols="90"></textarea>
                             </div>                            
                                                 
          <label class="col-sm-3">Why are you interested in volunteering as an outreach docent?</label>
                 <div class="col-sm-9">
-                <textarea class="form-control" id = 'whyInterested' name = 'whyInterested' value="<?php if (isset($_POST['upload'])) echo ($_POST['whyInterested']);?>" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id = 'whyInterested' name = 'whyInterested'rows="5" cols="90"></textarea>
                             </div>
                             
                             
          <label class="col-sm-3">What’s an environmental or wildlife issue you feel passionately about, and why?</label>
                 <div class="col-sm-9">
-                <textarea class="form-control" id = 'wildlifeIssue' name = 'wildlifeIssue' value="<?php if (isset($_POST['upload'])) echo ($_POST['wildlifeIssue']);?>" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id = 'wildlifeIssue' name = 'wildlifeIssue'rows="5" cols="90"></textarea>
                             </div>
                             
 
          <label class="col-sm-3">Do you have prior experience speaking to the public? Please describe.</label>
                 <div class="col-sm-9">
-                <textarea class="form-control" id = 'priorExperience' name ='priorExperience' value="<?php if (isset($_POST['upload'])) echo ($_POST['priorExperience']);?>" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id = 'priorExperience' name ='priorExperience'rows="5" cols="90"></textarea>
                             </div>
                         
                            
          <label class="col-sm-3">What do you think you’d bring to the outreach volunteer team?</label>
                 <div class="col-sm-9">
-                <textarea class="form-control" id = 'valueAdded' name = 'valueAdded' value="<?php if (isset($_POST['upload'])) echo ($_POST['valueAdded']);?>" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id = 'valueAdded' name = 'valueAdded' rows="5" cols="90"></textarea>
                             </div>
 <div class="col-sm-12 col-sm-offset-3">Please upload a current resume.</div>
 <div class="fileinput fileinput-new col-sm-3 col-sm-offset-3 btn-lg" data-provides="fileinput">
@@ -257,7 +285,6 @@ error_reporting(E_ALL);
 ****************************************/
 if(isset($_POST['upload']))
 {
-	if($_POST['password'] == $_POST['check']){
 	
 	
 		/****************************************
@@ -362,15 +389,7 @@ if(isset($_POST['upload']))
 					mysqli_query($conn, $outreachQuery) or die(mysqli_error($conn)); 
 */
 
-	}
-	else{
-		$message = 'Password values do not match. Please try again.';
 
-echo "<SCRIPT>
-alert('$message');
-</SCRIPT>";
-	}
-	
 }
 /****************************************
 	END DATABASE UPLOAD CODE 
