@@ -23,23 +23,6 @@ error_reporting(E_ALL);
 <link rel="stylesheet" media="screen" href="css/style.css" />
 
 </head>
-<script>
-function StringCompare()
-{
-	var string1 = document.getElementById("password").value;
-	var string2 = document.getElementById("check").value;
-
-	if(string1 === string2)
-	{
-		return true;
-	}
-	else
-       {
-		alert("Values are different.");
-		return false;
-	}
-}
-</script>
 <body>
     <div id="wrapper">
         <header>
@@ -364,6 +347,8 @@ function StringCompare()
 			$firstName = $_POST['firstName'];
 			$lastName = $_POST['lastName'];
 			$userName = $_POST['email'];
+			$passwordHash = $passwordHashPassed;
+			$userType = "Applicant";
 			$email = $_POST['email'];
 			$middleInitial = 'I';
 			$primaryPhone = $_POST['phone'];
@@ -400,9 +385,9 @@ function StringCompare()
 			$lift40 = '';
 			$permitRehab = $_POST['permit'];
 
-				  $query = "INSERT INTO person (Person_UserName, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+				  $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 		  Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-			  VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city', '$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitRehab', '$allergies', '$specialNeeds', '$workOutside', '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
+			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city', '$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitRehab', '$allergies', '$specialNeeds', '$workOutside', '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
 
 
 

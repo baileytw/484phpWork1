@@ -275,6 +275,8 @@ if(isset($_POST['upload']))
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
         $userName = $_POST['email'];
+		$passwordHash = $passwordHashPassed;
+		$userType = "Applicant";
         $email = $_POST['email'];
         $middleInitial = '';
         $primaryPhone = $_POST['phone'];
@@ -303,10 +305,10 @@ if(isset($_POST['upload']))
     $workOutsideLimitations = '';
     $lift40 = '';
 
-      $query = "INSERT INTO person (Person_UserName, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
+      $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
             Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
             Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-                VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
+                VALUES ('$userName', '$passwordHash', '$userType', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
                 '$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
                 '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
 
