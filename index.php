@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-
+<?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+?>
 
 <?php
 /****************************************
@@ -13,43 +16,70 @@
 		exit();
 	 }
 	 
+if(isset($_POST['btnLogIn'])){
+	// Help with password hashing from https://sunnysingh.io/blog/secure-passwords
+		//Get PasswordHash file
+		require("PasswordHash.php");
+		//Construct the class
+		$hasher = new PasswordHash(8, false);
+		// Password from form input
+		$password = $_POST["password"];
+		
+		if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
+		// Just in case the hash isn't found
+		$stored_hash = "*";
+		// Retrieve the stored hash
+		$servername = "localhost";
+		$username = "root";
+		$dbpassword = "Twspike1994?";
+		$dbname = "wildlife";
 
-// Help with password hashing from https://sunnysingh.io/blog/secure-passwords
-function verifyLogin(){
-	//Get PasswordHash file
-	require("PasswordHash.php");
-	//Construct the class
-	$hasher = new PasswordHash(8, false);
-	// Password from form input
-	$password = $_POST["password"];
-	if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
-	// Just in case the hash isn't found
-	$stored_hash = "*";
-	// Retrieve the stored hash
-	$stored_hash = "this is the hash we stored earlier";
-	// Check that the password is correct, returns a boolean
-	$check = $hasher->CheckPassword($password, $stored_hash);
-	if ($check) {
-
-	  // passwords matched! Go to the User Type specific page (Depends if they are applicant, volunteer, team leads, staff)
-		if ($userType == "Applicant"){
-			header("Location: profile.php");
-		exit();
-		}
-		if ($userType == "Volunteer"){
-		}
-		if ($userType == "Team Lead"){
-		}
-		if ($userType == "Staff"){
+		// Create connection
+		$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+		// Check connection
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		} 
+		//SQL Statement to gather hash
+		$sql = "SELECT Person_PasswordHash FROM Person WHERE Person_Email = '" . $_POST['usernameLogIn'] . "'";
+		
+		$result = $conn->query($sql);
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				echo "hello";
+				$stored_hash = $row['Person_PasswordHash'];
+			}
 		}
 		
+		;
+		$conn->close();
+		// Check that the password is correct, returns a boolean
+		$check = $hasher->CheckPassword($password, $stored_hash);
 		
-	} else {
+		if ($check) {
+		
+		$userType = "Volunteer";
+		  // passwords matched! Go to the User Type specific page (Depends if they are applicant, volunteer, team leads, staff)
+			if ($userType == "Applicant"){
+				
+			}
+			if ($userType == "Volunteer"){
+				header("Location: profile.php");
+			exit();
+			}
+			if ($userType == "Team Lead"){
+			}
+			if ($userType == "Staff"){
+			}
+			
+			
+		} else {
 
-	 // passwords didn't match, show an error
+		 // passwords didn't match, show an error
 
-	}
-} 
+		}
+	} 
 /****************************************
 	END PASWWORD CODE 
 ****************************************/
@@ -94,7 +124,7 @@ function verifyLogin(){
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-12">
-              <input type="text" id="clockInUsername"  class="form-control" value="" name="username" required="required" placeholder="Username" />
+              <input type="text" id="usernameClockIn"  class="form-control" value="" name="usernameClockIn" required="required" placeholder="Username" />
             </div>
           </div>
           <div class="form-group">
@@ -122,7 +152,7 @@ function verifyLogin(){
                     <form id="form" action="transporter.php" method="post" class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-12">
-              <input type="text" id="username"  class="form-control" value="" name="username" required="required" placeholder="Username" />
+              <input type="text" id="usernameTransporter"  class="form-control" value="" name="usernameTransporter" required="required" placeholder="Username" />
             </div>
           </div>
 		  <div class="form-group">
@@ -167,10 +197,10 @@ function verifyLogin(){
             </div>
             <div id="collapseOne" class="panel-collapse collapse">
                 <div class="panel-body">
-  <form id="form" action="profile.php" method="post" class="form-horizontal">
+  <form id="form" method="post" class="form-horizontal">
     			<div class="form-group">
     			  <div class="col-sm-12">
-      				<input type="text" id="username"  class="form-control" value="" name="username" required="required" placeholder="Username" />
+      				<input type="text" id="usernameLogIn"  class="form-control" value="" name="usernameLogIn" required="required" placeholder="Username" />
     				</div>
     			</div>
     			<div class="form-group">
@@ -180,7 +210,7 @@ function verifyLogin(){
     			</div>
     			<div class="form-group">
     			  <div class="col-sm-2 col-sm-offset-4">
-      				<button class="btn btn-default" type="submit">Login</button>
+      				<button ID="btnLogIn" name="btnLogIn" class="btn btn-default" type="submit">Login</button>
       			</div>
       		</div>
 </form>
@@ -269,7 +299,7 @@ if(!$mail->send()) {
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 }
  else {
-	  // This would be for when they fill out an application, not for when they enter they email to get a link sent to them********************************
+	  
   echo "<script>window.top.location='apply_confirmation.php'</script>";
   
 }
