@@ -231,9 +231,9 @@ if(isset($_POST['upload']))
 {
     $server = "localhost";
         $user = "root";
-        $password = "password";
+        $dbpassword = "password";
         $database = "wildlife";
-        $conn = mysqli_connect($server, $user, $password, $database);
+        $conn = mysqli_connect($server, $user, $dbpassword, $database);
         if (mysqli_connect_errno()) 
     {
       echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -285,7 +285,7 @@ if(isset($_POST['upload']))
                  mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 
-
+}
 ?>
 
 
