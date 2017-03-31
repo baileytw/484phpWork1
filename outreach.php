@@ -372,10 +372,10 @@ if(isset($_POST['upload']))
 
 
 		
-		$query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
+		$query = "INSERT INTO person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
 			Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-					VALUES ('$userName', '$passwordHash', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
+					VALUES ('$userName', '$passwordHash', 'Applicant', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
 					'$county', '$state', '$zip', NOW(), '$status', '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
 					'$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
 

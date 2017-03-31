@@ -41,13 +41,14 @@ if(isset($_POST['btnLogIn'])){
 			die("Connection failed: " . $conn->connect_error);
 		} 
 		//SQL Statement to gather hash
-		$sql = "SELECT Person_PasswordHash FROM Person WHERE Person_Email = '" . $_POST['usernameLogIn'] . "'";
+		$sql = "SELECT Person_PasswordHash, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameLogIn'] . "'";
 		
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
 				$stored_hash = $row['Person_PasswordHash'];
+				$userType = $row['Person_UserType'];
 			}
 		}
 		
@@ -58,18 +59,22 @@ if(isset($_POST['btnLogIn'])){
 		
 		if ($check) {
 		
-		$userType = "Volunteer";
 		  // passwords matched! Go to the User Type specific page (Depends if they are applicant, volunteer, team leads, staff)
 			if ($userType == "Applicant"){
-				
+				header("Location: applicantprofile.php");
+			exit();
 			}
 			if ($userType == "Volunteer"){
 				header("Location: profile.php");
 			exit();
 			}
 			if ($userType == "Team Lead"){
+				header("Location: profile2.php");
+			exit();
 			}
 			if ($userType == "Staff"){
+				header("Location: staffprofile.php");
+			exit();
 			}
 			
 			
