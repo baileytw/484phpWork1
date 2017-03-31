@@ -5,28 +5,48 @@
 /****************************************
 	START PASWWORD CODE 
 ****************************************/
-//Get PasswordHash file
-require("PasswordHash.php");
-//Construct the class
-$hasher = new PasswordHash(8, false);
-// Password from form input
-$password = $_POST["password"];
-if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
-// Just in case the hash isn't found
-$stored_hash = "*";
-// Retrieve the stored hash
-$stored_hash = "this is the hash we stored earlier";
-// Check that the password is correct, returns a boolean
-$check = $hasher->CheckPassword($password, $stored_hash);
-if ($check) {
+/*
+// Help with password hashing from https://sunnysingh.io/blog/secure-passwords
+function verifyLogin(){
+	
+	 if ($_POST['username'] == "test" ){
+			header("Location: profile.php");
+		exit();
+	
+	//Get PasswordHash file
+	require("PasswordHash.php");
+	//Construct the class
+	$hasher = new PasswordHashClass(8, false);
+	// Password from form input
+	$password = $_POST["password"];
+	if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
+	// Just in case the hash isn't found
+	$stored_hash = "*";
+	// Retrieve the stored hash
+	$stored_hash = "this is the hash we stored earlier";
+	// Check that the password is correct, returns a boolean
+	$check = $hasher->CheckPassword($password, $stored_hash);
+	if ($check) {
 
-  // passwords matched! show account dashboard or something
+	  // passwords matched! Go to the User Type specific page (Depends if they are applicant, volunteer, team leads, staff)
+		if ($userType == "Applicant"){
+			header("Location: profile.php");
+		exit();
+		}
+		if ($userType == "Volunteer"){
+		}
+		if ($userType == "Team Lead"){
+		}
+		if ($userType == "Staff"){
+		}
+		
+		
+	} else {
 
-} else {
+	 // passwords didn't match, show an error
 
- // passwords didn't match, show an error
-
-}
+	}
+} */
 /****************************************
 	END PASWWORD CODE 
 ****************************************/
@@ -112,7 +132,7 @@ if ($check) {
               <input type="number" id="mileage" class="form-control" value="" name="password" required="required" placeholder="Mileage" />
             </div>
           </div>
-          <div><a target="_blank" href="https://www.google.com/maps/place/Wildlife+Center+of+VA/@38.0392567,-78.9159496,17z/data=!3m1!4b1!4m5!3m4!1s0x89b3640efe4889c9:0xf47416d422aa90a9!8m2!3d38.0392567!4d-78.9137609">Click here to check how far you drove.</a></div>
+          <div><a target="_blank" href="https://www.google.com/maps/dir//Wildlife+Center+of+VA,+George+Washington+and+Jefferson+National+Forest,+1800+S+Delphine+Ave,+Waynesboro,+VA+22980/@38.0392567,-78.9159496,17z/data=!4m15!1m6!3m5!1s0x89b3640efe4889c9:0xf47416d422aa90a9!2sWildlife+Center+of+VA!8m2!3d38.0392567!4d-78.9137609!4m7!1m0!1m5!1m1!1s0x89b3640efe4889c9:0xf47416d422aa90a9!2m2!1d-78.9137609!2d38.0392567">Click here to check how far you drove.</a></div>
           <br>
           <div class="form-group">
             <div class="col-sm-2 col-sm-offset-4">

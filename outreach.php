@@ -9,6 +9,7 @@ error_reporting(E_ALL);
 /****************************************
 	START PASWWORD CODE 
 ****************************************/
+/*
 require("PasswordHash.php");
 // Retrieve password
 $password = $_POST["password"];
@@ -26,6 +27,7 @@ if (strlen($hash) >= 20) {
  // something went wrong
 
 }
+*/
 /****************************************
 	END PASWWORD CODE 
 ****************************************/
