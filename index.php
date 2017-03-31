@@ -125,14 +125,24 @@ function verifyLogin(){
               <input type="text" id="username"  class="form-control" value="" name="username" required="required" placeholder="Username" />
             </div>
           </div>
-          <div class="form-group">
+		  <div class="form-group">
             <div class="col-sm-12">
-              <input type="number" id="hours" class="form-control" value="" name="password" required="required" placeholder="Hours" />
+              <input type="text" id="address"  class="form-control" value="" name="address" required="required" placeholder="Pick Up Address" />
+            </div>
+          </div>
+		  <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" id="species"  class="form-control" value="" name="species" required="required" placeholder="Animal Species" />
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-12">
-              <input type="number" id="mileage" class="form-control" value="" name="password" required="required" placeholder="Mileage" />
+              <input type="number" id="hours" class="form-control" value="" name="hours" required="required" placeholder="Hours" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="number" id="mileage" class="form-control" value="" name="mileage" required="required" placeholder="Mileage" />
             </div>
           </div>
           <div><a target="_blank" href="https://www.google.com/maps/dir//Wildlife+Center+of+VA,+George+Washington+and+Jefferson+National+Forest,+1800+S+Delphine+Ave,+Waynesboro,+VA+22980/@38.0392567,-78.9159496,17z/data=!4m15!1m6!3m5!1s0x89b3640efe4889c9:0xf47416d422aa90a9!2sWildlife+Center+of+VA!8m2!3d38.0392567!4d-78.9137609!4m7!1m0!1m5!1m1!1s0x89b3640efe4889c9:0xf47416d422aa90a9!2m2!1d-78.9137609!2d38.0392567">Click here to check how far you drove.</a></div>
@@ -259,7 +269,9 @@ if(!$mail->send()) {
     echo 'Mailer Error: ' . $mail->ErrorInfo;
 }
  else {
+	 /* This would be for when they fill out an application, not for when they enter they email to get a link sent to them********************************
   echo "<script>window.top.location='confirmation.php'</script>";
+  */
 }
 
 
