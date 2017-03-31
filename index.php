@@ -145,7 +145,7 @@ function verifyLogin(){
               <input type="number" id="mileage" class="form-control" value="" name="mileage" required="required" placeholder="Mileage" />
             </div>
           </div>
-          <div><a target="_blank" href="https://www.google.com/maps/dir//Wildlife+Center+of+VA,+South+Delphine+Avenue,+Waynesboro,+VA///@38.0392515,-78.9487804,13z/data=!4m11!4m10!1m0!1m5!1m1!1s0x89b3640efe4889c9:0xf47416d422aa90a9!2m2!1d-78.9137609!2d38.0392567!1m0!1m0!3e0">Click here to check how far you drove.</a></div>
+          <div><a target="_blank" href="https://www.google.com/maps/dir///Wildlife+Center+of+VA,+South+Delphine+Avenue,+Waynesboro,+VA//@38.0808252,-78.9864842,13z/data=!4m11!4m10!1m0!1m0!1m5!1m1!1s0x89b3640efe4889c9:0xf47416d422aa90a9!2m2!1d-78.9137609!2d38.0392567!1m0!3e0">Click here to check how far you drove.</a></div>
           <br>
           <div class="form-group">
             <div class="col-sm-2 col-sm-offset-4">
