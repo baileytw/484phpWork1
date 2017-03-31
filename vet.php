@@ -88,14 +88,20 @@
                                                       <input class="form-control" type="text" required="required" />
                                                     </div>
                                                 </div>
+												<div class="form-group">
+                                                    <label class="col-sm-2">Create Username *</label>
+                                                    <div class="col-sm-10">
+                                                      <input class="form-control" type="text" name="username" required="required"/>
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
-                                                    <label class="col-sm-2">Password *</label>
+                                                    <label class="col-sm-2">Create Password *</label>
                                                     <div class="col-sm-10">
                                                       <input class="form-control" type="password" name="password" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-sm-2">Password check </label>
+                                                    <label class="col-sm-2">Confirm Password *</label>
                                                     <div class="col-sm-10">
                                                       <input class="form-control" type="password" name="check" data-equals="password" required="required"/>
                                                     </div>
