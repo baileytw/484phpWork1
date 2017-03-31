@@ -112,7 +112,7 @@ class PasswordHash {
 		if ($id != '$P$' && $id != '$H$')
 			return $output;
 
-		$count_log2 = strpos($this->itoa64, $setting[]);  //**************************************THIS WAS $setting[3] BUT I CHANGED IT AND IT FIXED AN ERROR**********************
+		$count_log2 = strpos($this->itoa64, $setting[1]);  //**************************************THIS WAS $setting[3] BUT I CHANGED IT AND IT FIXED AN ERROR**********************
 		if ($count_log2 < 7 || $count_log2 > 30)
 			return $output;
 

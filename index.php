@@ -47,7 +47,6 @@ if(isset($_POST['btnLogIn'])){
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
-				echo "hello";
 				$stored_hash = $row['Person_PasswordHash'];
 			}
 		}
@@ -77,7 +76,12 @@ if(isset($_POST['btnLogIn'])){
 		} else {
 
 		 // passwords didn't match, show an error
+			
+$message = 'Username and/or Password is incorrect. Please use your email address for your Username.';
 
+echo "<SCRIPT>
+alert('$message');
+</SCRIPT>";
 		}
 	} 
 /****************************************
