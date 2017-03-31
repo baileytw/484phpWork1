@@ -5,33 +5,7 @@ ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 ?>
 
-<?php
-/****************************************
-	START PASWWORD CODE 
-****************************************/
-/*
-require("PasswordHash.php");
-// Retrieve password
-$password = $_POST["password"];
-// Limit passwords to 72 characters to help prevent DoS attacks
-if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
-// The $hash variable will contain the hash of the password
-$hash = $hasher->HashPassword($password);
-if (strlen($hash) >= 20) {
 
- // Store the hash in the database
-
-
-} else {
-
- // something went wrong
-
-}
-*/
-/****************************************
-	END PASWWORD CODE 
-****************************************/
-?>
 
 <html>
 <head>
@@ -111,7 +85,6 @@ function StringCompare()
     
                     <section class="col-md-12">
                         <div class="main-section">
-
                             <div class="main-content panel panel-default">
                                 <header class="panel-heading clearfix">
 
@@ -122,7 +95,7 @@ function StringCompare()
                                 <section class="panel-body container-fluid">
 
                                     <div class="leading">
-                                    	  <form id="form" action="confirmation.php" method="post" enctype = "multipart/form-data"  class="form-horizontal panel panel-default" onSubmit="return StringCompare();">
+                                    	  <form id="form" method="post" enctype = "multipart/form-data"  class="form-horizontal panel panel-default" onSubmit="return StringCompare();">
                                             <header class="panel-heading"><h2 class="panel-title">Basic Information</h2></header>
             
                                             <fieldset class="panel-body">
@@ -312,6 +285,33 @@ function StringCompare()
 ****************************************/
 if(isset($_POST['upload']))
 {
+	
+	
+		/****************************************
+			START PASWWORD CODE 
+		****************************************/
+
+		require("PasswordHash.php");
+		$hasher = new PasswordHashClass(8, false);
+		// Retrieve password
+		$password = "bobby";//$_POST["password"];
+		// Limit passwords to 72 characters to help prevent DoS attacks
+		if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
+		// The $hash variable will contain the hash of the password
+		$hash = $hasher->HashPassword($password);
+		if (strlen($hash) >= 20) {
+			$passwordHash = $hash;
+				
+		} else {
+			
+		 // something went wrong
+
+		}
+
+		/****************************************
+			END PASWWORD CODE 
+		****************************************/
+
 		$server = "localhost";
         $user = "root";
         $password = "Twspike1994?";
@@ -330,6 +330,7 @@ if(isset($_POST['upload']))
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
         $userName = $_POST['email'];
+		$passwordHash = $hash;
         $email = $_POST['email'];
         $middleInitial = '';
         $primaryPhone = $_POST['phone'];
@@ -370,15 +371,15 @@ if(isset($_POST['upload']))
 
 
 		
-		$query = "INSERT INTO person (Person_UserName, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
+		$query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
 			Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-					VALUES ('$userName', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
+					VALUES ('$userName', '$passwordHash', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
 					'$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
 					'$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
 
 					 mysqli_query($conn, $query) or die(mysqli_error($conn));
-
+					
 
 					$outreachQuery = "INSERT INTO outreachApp (OutreachApp_WhyInterested, OutreachApp_PassionateWildlifeIssue, OutreachApp_ExperiencePublicSpeaking, OutreachApp_BelongToAnimalRightsGroup, OutreachApp_BringToTeam)
 					VALUES ('$whyInterested', '$wildlifeIssue', '$priorExperience', '$groups', '$valueAdded')";
