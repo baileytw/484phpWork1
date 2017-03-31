@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+
+<?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+?>
+
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -72,32 +79,26 @@
                                 <section class="panel-body container-fluid">
 
                                     <div class="leading">
-                                    	  <form id="form" action="confirmation.php" class="form-horizontal panel panel-default">
+                                    	  <form id="form" method="post" enctype = "multipart/form-data"  class="form-horizontal panel panel-default" >
                                             <header class="panel-heading"><h2 class="panel-title">Basic Information</h2></header>
             
                                             <fieldset class="panel-body">
                                                 <div class="form-group">
                                                     <label class="col-sm-2">First Name *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" required="required" />
+                                                      <input class="form-control" id = 'firstName' name = 'firstName' value="<?php if (isset($_POST['upload'])) echo ($_POST['firstName']);?>" type="text" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Last Name *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" required="required" />
-                                                    </div>
-                                                </div>
-												<div class="form-group">
-                                                    <label class="col-sm-2">Create Username *</label>
-                                                    <div class="col-sm-10">
-                                                      <input class="form-control" type="text" name="username" required="required"/>
+                                                      <input class="form-control" id = 'lastName' name = 'lastName' value="<?php if (isset($_POST['upload'])) echo ($_POST['lastName']);?>" type="text" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Create Password *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="password" name="password" required="required"/>
+                                                      <input class="form-control" id = 'password'type="password" name="password" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -109,33 +110,56 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Email *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="email" required="required" />
+                                                      <input class="form-control" id = 'email' name = 'email' value="<?php if (isset($_POST['upload'])) echo ($_POST['email']);?>" type="email" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Phone *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="number" name="phone" required="required" />
+                                                      <input class="form-control" id = 'phone' type="number" name="phone" value="<?php if (isset($_POST['upload'])) echo ($_POST['phone']);?>" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Age *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="number" name="age" required="required" value="0" />
+                                                      <input class="form-control" id = 'age' type="number" name="age" value="<?php if (isset($_POST['upload'])) echo ($_POST['age']);?>" required="required" value="0" />
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="col-sm-2">Address *</label>
+                                                    <div class="col-sm-10">
+                                                      <input class="form-control" id= 'address' name="address" type="text" value="<?php if (isset($_POST['upload'])) echo ($_POST['address']);?>" placeholder="street" name="street" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-sm-2">Address *</label>
+                                                    <label class="col-sm-2">City *</label>
+                                                    <div class="col-sm-3">
+                                                      <input class="form-control" type="text" id="city" name="city" value="<?php if (isset($_POST['upload'])) echo ($_POST['city']);?>" placeholder="City" name="city" />
+                                                    </div>
+
+                                                    <label class="col-sm-1">State *</label>
+                                                    <div class="col-sm-1">
+                                                      <input class="form-control" type="text" id="state" name="state" value="<?php if (isset($_POST['upload'])) echo ($_POST['state']);?>"placeholder="State" name="state" />
+                                                    </div>
+                                            
+                                                    <label class="col-sm-2">Zip Code *</label>
+                                                    <div class="col-sm-2">
+                                                      <input class="form-control" type="text" id="zipcode" name="zipcode" value="<?php if (isset($_POST['upload'])) echo ($_POST['zipcode']);?>" placeholder="Zip" name="zip" />
+                                                    </div>
+                                                    
+                                                </div>
+                                                                                                  <div class="form-group">
+                                                    <label class="col-sm-2">Date of Birth *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" name="address" />
+                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="12/01/95" name="street" />
                                                     </div>
                                                 </div>
 <div class="form-group">
                                                     <label class="col-sm-5">Do you have a permit to rehabilitate wildlife?</label>
                                                     <div class="col-sm-7">
-                                                        <div class="checkbox">
-														<input type="radio" name="permit" value="Yes"> Yes
-														<input type="radio" name="permit" value="No"> No
+                                                        <div class="checkbox" >
+														<input type="radio" name="permit" value="Yes" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'Yes') echo ' checked="checked"';?>> Yes
+														<input type="radio" name="permit" value="No" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'No') echo ' checked="checked"';?>> No
 
                                                         </div>
                                                     </div>
@@ -144,8 +168,8 @@
                                                     <label class="col-sm-5">Are you rabies vaccinated?</label>
                                                     <div class="col-sm-7">
                                                         <div class="checkbox">
-                                                            <input type="radio" name="rabies" value="Yes"> Yes
-															<input type="radio" name="rabies" value="No"> No
+                                                            <input type="radio" name="rabies" value="Yes" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'Yes') echo ' checked="checked"';?>> Yes
+															<input type="radio" name="rabies" value="No" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'No') echo ' checked="checked"';?>> No
                                                         </div>
                                                     </div>
                                                 </div>
@@ -155,33 +179,33 @@
 <div class="form-group">
          <label class="col-sm-6">Do you have any allergies or physical limitations?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id="allergies" name="allergies" value="<?php if (isset($_POST['upload'])) echo ($_POST['allergies']);?>" rows="5" cols="90"></textarea>
                             </div>
  <label class="col-sm-6">Please describe your availability weekly and seasonally. The Wildlife Center of Virginia needs consistency in scheduling, and is open on weekends.</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id="availability" name="availability" value="<?php if (isset($_POST['upload'])) echo ($_POST['availability']);?>"rows="5" cols="90"></textarea>
                             </div>                            
 
          <label class="col-sm-6">Please describe any previous medical or veterinary training you have completed.</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id="training" name="training" value="<?php if (isset($_POST['upload'])) echo ($_POST['training']);?>"rows="5" cols="90"></textarea>
                             </div>
                             
                             
          <label class="col-sm-6">The case load at the Center can be unpredictable and vary greatly depending on the time of year.  Please describe the work environment that you work best in including how you best retain information that is taught to you.</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id="workEnvironment" name="workEnvironment" value="<?php if (isset($_POST['upload'])) echo ($_POST['workEnvironment']);?>" rows="5" cols="90"></textarea>
                             </div>
                          
 
          <label class="col-sm-6">The Center admits many trauma cases.  In order for a patient to be released back into the wild it must be able to successfully survive on its own free of chronic pain.  Due to this, the Center does humanely euthanize patients that do not meet this standard.  Do you have experience with euthanasia and how does it affect you?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id="trauma" name="trauma" value="<?php if (isset($_POST['upload'])) echo ($_POST['trauma']);?>" rows="5" cols="90"></textarea>
                             </div>
                            
          <label class="col-sm-6">Taking care of animals is a messy job that requires all team members to clean out dirty crates, chop rats or mice for feeding to patients, and collect fecal samples for analysis for example.  Is this something that you foresee struggling with?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" rows="5" cols="90"></textarea>
+                <textarea class="form-control" id="messy" name="messy" value="<?php if (isset($_POST['upload'])) echo ($_POST['messy']);?>" rows="5" cols="90"></textarea>
                             </div>
                             </div>
  </div>
