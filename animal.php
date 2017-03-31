@@ -93,102 +93,96 @@ function StringCompare()
                                 <section class="panel-body container-fluid">
 
                                     <div class="leading">
-                                    	  <form id="form" method="post" enctype = "multipart/form-data" class="form-horizontal panel panel-default" onSubmit="return StringCompare();">
+                                    	  <form id="form" method="post" enctype = "multipart/form-data"  class="form-horizontal panel panel-default" >
                                             <header class="panel-heading"><h2 class="panel-title">Basic Information</h2></header>
             
                                             <fieldset class="panel-body">
                                                 <div class="form-group">
                                                     <label class="col-sm-2">First Name *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" name = 'firstName' type="text" required="required" />
+                                                      <input class="form-control" id = 'firstName' name = 'firstName' value="<?php if (isset($_POST['upload'])) echo ($_POST['firstName']);?>" type="text" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Last Name *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" name = 'lastName' type="text" required="required" />
-                                                    </div>
-                                                </div>
-												<div class="form-group">
-                                                    <label class="col-sm-2">Create Username *</label>
-                                                    <div class="col-sm-10">
-                                                      <input class="form-control" type="text" name="username" required="required"/>
+                                                      <input class="form-control" id = 'lastName' name = 'lastName' value="<?php if (isset($_POST['upload'])) echo ($_POST['lastName']);?>" type="text" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Create Password *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="password" name="password" id="password" required="required"/>
+                                                      <input class="form-control" id = 'password'type="password" name="password" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Confirm Password *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="password" name="check" id="check" data-equals="password" required="required"/>
+                                                      <input class="form-control" type="password" name="check" data-equals="password" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Email *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="email" name = 'email' required="required" />
+                                                      <input class="form-control" id = 'email' name = 'email' value="<?php if (isset($_POST['upload'])) echo ($_POST['email']);?>" type="email" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Phone *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="number" name="phone" required="required" />
+                                                      <input class="form-control" id = 'phone' type="number" name="phone" value="<?php if (isset($_POST['upload'])) echo ($_POST['phone']);?>" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Age *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="number" name="age" required="required" value="0" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2">Address *</label>
-                                                    <div class="col-sm-10">
-                                                      <input class="form-control" type="text" name="address" />
+                                                      <input class="form-control" id = 'age' type="number" name="age" value="<?php if (isset($_POST['upload'])) echo ($_POST['age']);?>" required="required" value="0" />
                                                     </div>
                                                 </div>
 												<div class="form-group">
                                                     <label class="col-sm-2">Address *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" placeholder="street" name="street" />
+                                                      <input class="form-control" id= 'address' name="address" type="text" value="<?php if (isset($_POST['upload'])) echo ($_POST['address']);?>" placeholder="street" name="street" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">City *</label>
                                                     <div class="col-sm-3">
-                                                      <input class="form-control" type="text" placeholder="City" name="city" />
+                                                      <input class="form-control" type="text" id="city" name="city" value="<?php if (isset($_POST['upload'])) echo ($_POST['city']);?>" placeholder="City" name="city" />
                                                     </div>
 
                                                     <label class="col-sm-1">State *</label>
                                                     <div class="col-sm-1">
-                                                      <input class="form-control" type="text" placeholder="State" name="state" />
+                                                      <input class="form-control" type="text" id="state" name="state" value="<?php if (isset($_POST['upload'])) echo ($_POST['state']);?>"placeholder="State" name="state" />
                                                     </div>
                                             
                                                     <label class="col-sm-2">Zip Code *</label>
                                                     <div class="col-sm-2">
-                                                      <input class="form-control" type="text" placeholder="Zip" name="zip" />
+                                                      <input class="form-control" type="text" id="zipcode" name="zipcode" value="<?php if (isset($_POST['upload'])) echo ($_POST['zipcode']);?>" placeholder="Zip" name="zip" />
                                                     </div>
                                                     
+                                                </div>
+                                                                                                  <div class="form-group">
+                                                    <label class="col-sm-2">Date of Birth *</label>
+                                                    <div class="col-sm-10">
+                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="12/01/95" name="street" />
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Emergency Contact*</label>
                                                     <div class="col-sm-5">
-                                                      <input class="form-control" type="text" placeholder="Name" name="ecName" />
+                                                      <input class="form-control" type="text" id="ec" name="ec" value="<?php if (isset($_POST['upload'])) echo ($_POST['ec']);?>" placeholder="Name" name="ecName" />
                                                     
                                                 </div>
                                                     <label class="col-sm-2">EC Phone*</label>
                                                     <div class="col-sm-3">
-                                                      <input class="form-control" type="text" placeholder="EC Phone" name="ecPhone" />
+                                                      <input class="form-control" id="ecPhone" name="ecPhone" value="<?php if (isset($_POST['upload'])) echo ($_POST['ecPhone']);?>"type="text" placeholder="EC Phone" name="ecPhone" />
  
                                                 </div></div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Relationship *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" placeholder="Relationship" name="relationship" />
+                                                      <input class="form-control" type="text" id="ecRelationship" name="ecRelationship" value="<?php if (isset($_POST['upload'])) echo ($_POST['ecRelationship']);?>" placeholder="Relationship" name="relationship" />
                                                     </div>
                                                 </div>
                                                  <div class="form-group">
@@ -201,8 +195,8 @@ function StringCompare()
                                                     <div class="col-sm-7">
                                                         <div class="checkbox">
                                                            
-                                                            <input type="radio" name="rabies" value="Yes"> Yes
-															<input type="radio" name="rabies" value="No"> No
+                                                            <input type="radio" name="rabies" value="Yes" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'Yes') echo ' checked="checked"';?>> Yes
+															<input type="radio" name="rabies" value="No" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'No') echo ' checked="checked"';?>> No
                                                         </div>
                                                     </div>
                                                 </div>
@@ -213,8 +207,8 @@ function StringCompare()
                                                     <div class="col-sm-7">
                                                         <div class="checkbox">
                                                            
-                                                            <input type="radio" name="rabies" value="Yes"> Yes
-															<input type="radio" name="rabies" value="No"> No
+                                                            <input type="radio" name="rabies2" value="Yes" <?php if (isset($_POST['rabies2']) && $_POST['rabies2'] == 'Yes') echo ' checked="checked"';?>> Yes
+															<input type="radio" name="rabies2" value="No" <?php if (isset($_POST['rabies2']) && $_POST['rabies2'] == 'Yes') echo ' checked="checked"';?>> No
                                                         </div>
                                                     </div>
                                                 </div>
@@ -222,8 +216,8 @@ function StringCompare()
                                                     <div class="col-sm-7">
                                                         <div class="checkbox">
                                                            
-                                                            <input type="radio" name="rabies" value="Yes"> Yes
-															<input type="radio" name="rabies" value="No"> No
+                                                            <input type="radio" name="lift" value="Yes" <?php if (isset($_POST['lift']) && $_POST['lift'] == 'Yes') echo ' checked="checked"';?>> Yes
+															<input type="radio" name="lift" value="No" <?php if (isset($_POST['lift']) && $_POST['lift'] == 'Yes') echo ' checked="checked"';?>> No
                                                         </div>
                                                     </div>
                                                 </div>
@@ -235,32 +229,32 @@ function StringCompare()
 <div class="form-group">
          <label class="col-sm-6">Do you have any allergies or physical limitations?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" name = 'allergies' rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'allergies' value="<?php if (isset($_POST['upload'])) echo ($_POST['allergies']);?>" rows="5" cols="90"></textarea>
                             </div>
  <label class="col-sm-6">Please describe your availability weekly and seasonally. The Wildlife Center of Virginia needs consistency in scheduling, and is open on weekends.</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" name = 'availability' rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'availability' value="<?php if (isset($_POST['upload'])) echo ($_POST['availability']);?>" rows="5" cols="90"></textarea>
                             </div>                            
  
   <label class="col-sm-6">Please briefly describe your relevant hands-on experience with animals, if any. What did you enjoy about the experience? What did you dislike?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" name = 'experience' rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'experience' value="<?php if (isset($_POST['upload'])) echo ($_POST['experience']);?>"rows="5" cols="90"></textarea>
                             </div>
                             
          <label class="col-sm-6">Carnivorous patients are sometimes unable to eat food items whole due to their injuries; you may be required to cut and divide dead rodents, chicks, and fishes into smaller portions. Are you comfortable handling dead animals for this purpose?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" name = 'deadAnimals' rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'deadAnimals' value="<?php if (isset($_POST['upload'])) echo ($_POST['deadAnimals']);?>" rows="5" cols="90"></textarea>
                             </div>
                             
 
          <label class="col-sm-6">Prior to release from the Wildlife Center, many predatory birds are presented with live mice in order to evaluate their ability to capture prey in a controlled and measurable environment. What is your opinion on using live-prey for this purpose?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" name = 'livePrey' rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'livePrey' value="<?php if (isset($_POST['upload'])) echo ($_POST['livePrey']);?>" rows="5" cols="90"></textarea>
                             </div>
                            
          <label class="col-sm-6">Wildlife rehabilitation requires daily outdoor work -- year-round and regardless of weather conditions. Are you able to work outside during all seasons? If not, what are your limitations?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" name = 'seasons' rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'seasons' value="<?php if (isset($_POST['upload'])) echo ($_POST['seasons']);?>" rows="5" cols="90"></textarea>
                             </div>
                             
          <label class="col-sm-6">Do you belong to any animal rights groups (PETA, The Humane Society, etc.)? If so, which ones?</label>
@@ -271,19 +265,19 @@ function StringCompare()
                             
  <label class="col-sm-6">What do you hope to learn or accomplish by volunteering at the Wildlife Center of Virginia?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" name = 'accomplish' rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'accomplish' value="<?php if (isset($_POST['upload'])) echo ($_POST['accomplish']);?>" rows="5" cols="90"></textarea>
                             </div>
                             
                             
 <label class="col-sm-6">Please describe an environmental or wildlife-based issue you feel passionately about, and why.</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" name = 'issue' rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'issue' value="<?php if (isset($_POST['upload'])) echo ($_POST['issue']);?>" rows="5" cols="90"></textarea>
                             </div>
                          
                             
 <label class="col-sm-6">Is there anything else that you’d like us to know about yourself or your experience?</label>
                 <div class="col-sm-6">
-                <textarea class="form-control" name = 'additionalInfo' rows="5" cols="90"></textarea>
+                <textarea class="form-control" name = 'additionalInfo' value="<?php if (isset($_POST['upload'])) echo ($_POST['additionalInfo']);?>" rows="5" cols="90"></textarea>
                             </div>
 
 <div class="col-sm-12">Please upload a current resume.</div>
@@ -321,6 +315,34 @@ function StringCompare()
 
 	  if(isset($_POST['upload']))
 	{
+		if($_POST['password'] == $_POST['check']){
+	
+	
+		/****************************************
+			START PASWWORD CODE 
+		****************************************/
+
+		require("PasswordHash.php");
+		$hasher = new PasswordHash(8, false);
+		// Retrieve password
+		$password = $_POST["password"];
+		// Limit passwords to 72 characters to help prevent DoS attacks
+		if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
+		// The $hash variable will contain the hash of the password
+		$hash = $hasher->HashPassword($password);
+		if (strlen($hash) >= 20) {
+			$passwordHashPassed = $hash;
+				
+		} else {
+			
+		 // something went wrong
+
+		}
+
+		/****************************************
+			END PASWWORD CODE 
+		****************************************/
+		
 	  $server = "localhost";
 	  $user = "root";
 	  $password = "Twspike1994?";
@@ -427,7 +449,14 @@ function StringCompare()
 			
 			//var_dump($_POST);
 
+}
+	else{
+		$message = 'Password values do not match. Please try again.';
 
+echo "<SCRIPT>
+alert('$message');
+</SCRIPT>";
+	}
 	}
 
 
