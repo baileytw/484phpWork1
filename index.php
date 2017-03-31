@@ -5,14 +5,17 @@
 /****************************************
 	START PASWWORD CODE 
 ****************************************/
-/*
+
+//Testing clockin here. Will be changed*********!!!!! (~Matt)
+	 if (isset($_POST['btnClockIn']) && ($_POST['username'] == "test" )){
+			
+			header("Location: clockin.php");
+		exit();
+	 }
+	 
+
 // Help with password hashing from https://sunnysingh.io/blog/secure-passwords
 function verifyLogin(){
-	
-	 if ($_POST['username'] == "test" ){
-			header("Location: profile.php");
-		exit();
-	
 	//Get PasswordHash file
 	require("PasswordHash.php");
 	//Construct the class
@@ -46,7 +49,7 @@ function verifyLogin(){
 	 // passwords didn't match, show an error
 
 	}
-} */
+} 
 /****************************************
 	END PASWWORD CODE 
 ****************************************/
@@ -88,16 +91,16 @@ function verifyLogin(){
     <div class="login-box main-content panel panel-default">
       <header class="panel-heading"><img src="../484phpWork1/images/logo_small.png" alt="Wildlife Logo"></header>
     	<section class="panel-body">
-<form action="clockin.php" method="post" class="form-horizontal">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-12">
-              <input type="text" id="username"  class="form-control" value="" name="username" required="required" placeholder="Username" />
+              <input type="text" id="clockInUsername"  class="form-control" value="" name="username" required="required" placeholder="Username" />
             </div>
           </div>
           <div class="form-group">
             <div class="form-inline">
-              <button  class="btn btn-default col-sm-3 col-sm-offset-3" type="submit">Clock In</button>
-              <button  class="btn btn-default" type="submit">Clock Out</button>
+              <button  ID="btnClockIn" name="btnClockIn" class="btn btn-default col-sm-3 col-sm-offset-3" type="submit">Clock In</button>
+              <button  ID="btnClockOut" name="btnClockOut" class="btn btn-default" type="submit">Clock Out</button>
             </div>
           </div>
 </form>
