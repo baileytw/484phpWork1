@@ -229,6 +229,34 @@ error_reporting(E_ALL);
 <?php
 if(isset($_POST['upload']))
 {
+	if($_POST['password'] == $_POST['check']){
+	
+	
+		/****************************************
+			START PASWWORD CODE 
+		****************************************/
+
+		require("PasswordHash.php");
+		$hasher = new PasswordHash(8, false);
+		// Retrieve password
+		$password = $_POST["password"];
+		// Limit passwords to 72 characters to help prevent DoS attacks
+		if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
+		// The $hash variable will contain the hash of the password
+		$hash = $hasher->HashPassword($password);
+		if (strlen($hash) >= 20) {
+			$passwordHashPassed = $hash;
+				
+		} else {
+			
+		 // something went wrong
+
+		}
+
+		/****************************************
+			END PASWWORD CODE 
+		****************************************/
+		
     $server = "localhost";
         $user = "root";
         $dbpassword = "password";
@@ -283,7 +311,14 @@ if(isset($_POST['upload']))
                 '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
 
                  mysqli_query($conn, $query) or die(mysqli_error($conn));
+	}
+	else{
+		$message = 'Password values do not match. Please try again.';
 
+echo "<SCRIPT>
+alert('$message');
+</SCRIPT>";
+	}
 
 }
 ?>
