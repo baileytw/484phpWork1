@@ -24,7 +24,7 @@
 # Obviously, since this code is in the public domain, the above are not
 # requirements (there can be none), but merely suggestions.
 #
-class PasswordHashClass {
+class PasswordHash {
 	var $itoa64;
 	var $iteration_count_log2;
 	var $portable_hashes;
@@ -112,7 +112,7 @@ class PasswordHashClass {
 		if ($id != '$P$' && $id != '$H$')
 			return $output;
 
-		$count_log2 = strpos($this->itoa64, $setting[2]);  //**************************************THIS WAS $setting[3] BUT I CHANGED IT AND IT FIXED AN ERROR**********************
+		$count_log2 = strpos($this->itoa64, $setting[1]);  //**************************************THIS WAS $setting[3] BUT I CHANGED IT AND IT FIXED AN ERROR**********************
 		if ($count_log2 < 7 || $count_log2 > 30)
 			return $output;
 

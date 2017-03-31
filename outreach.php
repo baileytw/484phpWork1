@@ -292,15 +292,15 @@ if(isset($_POST['upload']))
 		****************************************/
 
 		require("PasswordHash.php");
-		$hasher = new PasswordHashClass(8, false);
+		$hasher = new PasswordHash(8, false);
 		// Retrieve password
-		$password = "bobby";//$_POST["password"];
+		$password = $_POST["password"];
 		// Limit passwords to 72 characters to help prevent DoS attacks
 		if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
 		// The $hash variable will contain the hash of the password
 		$hash = $hasher->HashPassword($password);
 		if (strlen($hash) >= 20) {
-			$passwordHash = $hash;
+			$passwordHashPassed = $hash;
 				
 		} else {
 			
@@ -330,7 +330,7 @@ if(isset($_POST['upload']))
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
         $userName = $_POST['email'];
-		$passwordHash = $hash;
+		$passwordHash = $passwordHashPassed;
         $email = $_POST['email'];
         $middleInitial = '';
         $primaryPhone = $_POST['phone'];
@@ -343,13 +343,15 @@ if(isset($_POST['upload']))
         $street = $_POST['address'];
         $tmpName  = $_FILES['userfile']['tmp_name'];
 		$fileSize = $_FILES['userfile']['size'];
-
-		$fp      = fopen($tmpName, 'r');
+/*
+		$fp      = fopen($tmpName, 'r');					//ZACH MOVED PICTURE TO THE DOCUMENTS TABLE
 		$picture = fread($fp, filesize($tmpName));
 		$picture = addslashes($picture);
 		fclose($fp);
+		*/
+		
 		$status = '';
-		$rabiesVac = 10/10/2010;
+		//$rabiesVac = 10/10/2010;
 		$permitrehab ='';
 		$lastVolunteered = 10/10/2011;
 		$allergies = $_POST['allergies'];
@@ -362,7 +364,6 @@ if(isset($_POST['upload']))
 		$whyInterested = $_POST['whyInterested'];
 		$wildlifeIssue = $_POST['wildlifeIssue'];
 		$priorExperience = $_POST['priorExperience'];
-		$groups = $_POST['groups'];
 		$valueAdded = $_POST['valueAdded'];
 
 
@@ -372,21 +373,21 @@ if(isset($_POST['upload']))
 
 		
 		$query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
-			Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+			Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
 					VALUES ('$userName', '$passwordHash', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
-					'$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
+					'$county', '$state', '$zip', NOW(), '$status', '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
 					'$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
 
 					 mysqli_query($conn, $query) or die(mysqli_error($conn));
 					
-
-					$outreachQuery = "INSERT INTO outreachApp (OutreachApp_WhyInterested, OutreachApp_PassionateWildlifeIssue, OutreachApp_ExperiencePublicSpeaking, OutreachApp_BelongToAnimalRightsGroup, OutreachApp_BringToTeam)
-					VALUES ('$whyInterested', '$wildlifeIssue', '$priorExperience', '$groups', '$valueAdded')";
+/*
+					$outreachQuery = "INSERT INTO outreachApp (OutreachApp_WhyInterested, OutreachApp_PassionateWildlifeIssue, OutreachApp_ExperiencePublicSpeaking, OutreachApp_BringToTeam)
+					VALUES ('$whyInterested', '$wildlifeIssue', '$priorExperience', '$valueAdded')";
 
 
 					mysqli_query($conn, $outreachQuery) or die(mysqli_error($conn)); 
-
+*/
 
 
 }

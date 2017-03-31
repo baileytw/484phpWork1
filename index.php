@@ -19,7 +19,7 @@ function verifyLogin(){
 	//Get PasswordHash file
 	require("PasswordHash.php");
 	//Construct the class
-	$hasher = new PasswordHashClass(8, false);
+	$hasher = new PasswordHash(8, false);
 	// Password from form input
 	$password = $_POST["password"];
 	if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
