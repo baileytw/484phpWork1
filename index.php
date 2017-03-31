@@ -168,7 +168,7 @@ if ($check) {
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                <form id="form" action="forms.php" method="post" class="form-horizontal">
+                <form id="form" method="post" class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-12">
               <input type="text" id="username"  class="form-control" value="" name="username" required="required" placeholder="Email Address" />
@@ -176,11 +176,74 @@ if ($check) {
           </div>
           <div class="form-group">
             <div class="col-sm-2 col-sm-offset-4">
-              <button class="btn btn-default" type="submit">Apply</button>
+              <button class="btn btn-default" name = 'apply' type="submit">Apply</button>
             </div>
           </div>
+
+
 </form>    
 <!--end apply form-->
+
+
+
+<?php
+
+if(isset($_POST['apply']))
+{
+        $server = "localhost";
+        $user = "root";
+        $password = "password";
+        $database = "wildlife";
+        $conn = mysqli_connect($server, $user, $password, $database);
+        if (mysqli_connect_errno()) 
+        {
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        }
+    
+    if(!mysqli_select_db($conn, 'wildlife'))
+        {
+           echo "Database Not Selected";
+        }
+       
+$emailAddress = $_POST['username'];
+
+
+require_once('C:\inetpub\wwwroot\PHPMailer\class.phpmailer.php');      
+require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
+
+
+$mail = new PHPMailer;
+
+$mail->IsSMTP();
+$mail->Host = "smtp.gmail.com";
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = "ssl";
+$mail->Username = "dannymahoney33@gmail.com";
+$mail->Password = "enter a password here to test with (alter email as well)";
+$mail->Port = "465";
+
+
+$mail->setFrom('dannymahoney33@gmail.com', 'Wildlife Center of Virginia');
+$mail->addAddress($emailAddress, 'Danny Mahoney');     // recipient
+
+$mail->Subject = 'Wildlife Center of Virginia Volunteer Opportunity';
+$mail->Body    = 'Thank you for your interest in the Wildlife Center!<br />
+                  Please follow the link provided to fill out an application.
+                  <br />';
+
+if(!$mail->send()) {
+   echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+}
+ else {
+  echo "<script>window.top.location='confirmation.php'</script>";
+}
+
+
+
+
+}
+        ?>
                     
                     
                 </div>
@@ -194,5 +257,11 @@ if ($check) {
     		
     	</section>
     </div>
+
+
+
+
+
+
 </body>
 </html>
