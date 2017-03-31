@@ -151,25 +151,84 @@ function StringCompare()
                                                       <input class="form-control" type="text" name="address" />
                                                     </div>
                                                 </div>
-<div class="form-group">
-                                                    <label class="col-sm-5">Do you have a permit to rehabilitate wildlife?</label>
-                                                    <div class="col-sm-7">
-                                                        <div class="checkbox">
-														<input type="radio" name="permit" value="Y"> Yes
-														<input type="radio" name="permit" value="N"> No
+												<div class="form-group">
+                                                    <label class="col-sm-2">Address *</label>
+                                                    <div class="col-sm-10">
+                                                      <input class="form-control" type="text" placeholder="street" name="street" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2">City *</label>
+                                                    <div class="col-sm-3">
+                                                      <input class="form-control" type="text" placeholder="City" name="city" />
+                                                    </div>
 
-                                                        </div>
+                                                    <label class="col-sm-1">State *</label>
+                                                    <div class="col-sm-1">
+                                                      <input class="form-control" type="text" placeholder="State" name="state" />
+                                                    </div>
+                                            
+                                                    <label class="col-sm-2">Zip Code *</label>
+                                                    <div class="col-sm-2">
+                                                      <input class="form-control" type="text" placeholder="Zip" name="zip" />
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2">Emergency Contact*</label>
+                                                    <div class="col-sm-5">
+                                                      <input class="form-control" type="text" placeholder="Name" name="ecName" />
+                                                    
+                                                </div>
+                                                    <label class="col-sm-2">EC Phone*</label>
+                                                    <div class="col-sm-3">
+                                                      <input class="form-control" type="text" placeholder="EC Phone" name="ecPhone" />
+ 
+                                                </div></div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2">Relationship *</label>
+                                                    <div class="col-sm-10">
+                                                      <input class="form-control" type="text" placeholder="Relationship" name="relationship" />
+                                                    </div>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label class="col-sm-2"></label>
+                                                    
                                                     </div>
                                                 </div>
 <div class="form-group">
                                                     <label class="col-sm-5">Are you rabies vaccinated?</label>
                                                     <div class="col-sm-7">
                                                         <div class="checkbox">
+                                                           
                                                             <input type="radio" name="rabies" value="Yes"> Yes
 															<input type="radio" name="rabies" value="No"> No
                                                         </div>
                                                     </div>
                                                 </div>
+
+<div class="form-group">
+<div class="form-group">
+                                                    <label class="col-sm-5">Are you willing to be vaccinated at your own cost?</label>
+                                                    <div class="col-sm-7">
+                                                        <div class="checkbox">
+                                                           
+                                                            <input type="radio" name="rabies" value="Yes"> Yes
+															<input type="radio" name="rabies" value="No"> No
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                    <label class="col-sm-5">Are you able to lift 40lbs?</label>
+                                                    <div class="col-sm-7">
+                                                        <div class="checkbox">
+                                                           
+                                                            <input type="radio" name="rabies" value="Yes"> Yes
+															<input type="radio" name="rabies" value="No"> No
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
 
 <h4>Please answer the following questions.</h4>
                                                 

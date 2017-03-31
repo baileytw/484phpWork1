@@ -177,7 +177,36 @@ function StringCompare()
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Address *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" id = 'address' type="text" name="address" />
+                                                      <input class="form-control" type="text" name="address" />
+                                                    </div>
+                                                </div>
+												<div class="form-group">
+                                                    <label class="col-sm-2">Address *</label>
+                                                    <div class="col-sm-10">
+                                                      <input class="form-control" type="text" placeholder="street" name="street" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2">City *</label>
+                                                    <div class="col-sm-3">
+                                                      <input class="form-control" type="text" placeholder="City" name="city" />
+                                                    </div>
+
+                                                    <label class="col-sm-1">State *</label>
+                                                    <div class="col-sm-1">
+                                                      <input class="form-control" type="text" placeholder="State" name="state" />
+                                                    </div>
+                                            
+                                                    <label class="col-sm-2">Zip Code *</label>
+                                                    <div class="col-sm-2">
+                                                      <input class="form-control" type="text" placeholder="Zip" name="zip" />
+                                                    </div>
+                                                    
+                                                </div>
+                                                                                                  <div class="form-group">
+                                                    <label class="col-sm-2">Date of Birth *</label>
+                                                    <div class="col-sm-10">
+                                                      <input class="form-control" type="text" placeholder="12/01/95" name="street" />
                                                     </div>
                                                 </div>
 <div class="form-group">
@@ -228,17 +257,28 @@ function StringCompare()
                 <div class="col-sm-9">
                 <textarea class="form-control" id = 'priorExperience' name ='priorExperience'rows="5" cols="90"></textarea>
                             </div>
-                           
-         <label class="col-sm-3">Do you belong to any animal rights groups (PETA, The Humane Society, etc.)? If so, which ones?</label>
-                <div class="col-sm-9">
-                <textarea class="form-control" id = 'groups' name = 'groups' rows="5" cols="90"></textarea>
-                            </div>
+                        
                            
          <label class="col-sm-3">What do you think you’d bring to the outreach volunteer team?</label>
                 <div class="col-sm-9">
                 <textarea class="form-control" id = 'valueAdded' name = 'valueAdded' rows="5" cols="90"></textarea>
                             </div>
-<div class="col-sm-12">Please upload a current resume.</div>
+<div class="col-sm-12 col-sm-offset-3">Please upload a current resume.</div>
+<div class="fileinput fileinput-new col-sm-3 col-sm-offset-3 btn-lg" data-provides="fileinput">
+    <span class="btn btn-default btn-file">
+
+    	<input type="file" multiple /></span>
+    <span class="fileinput-filename col-sm-3"></span>
+    <span class="fileinput-new"></span>
+</div>
+<div class="col-sm-12 col-sm-offset-3">Recommendation Letter 1</div>
+<div class="fileinput fileinput-new col-sm-3 col-sm-offset-3 btn-lg" data-provides="fileinput">
+    <span class="btn btn-default btn-file">
+	    	<input type="file" multiple /></span>
+    <span class="fileinput-filename col-sm-3"></span>
+    <span class="fileinput-new"></span>
+</div>
+<div class="col-sm-12 col-sm-offset-3">Recommendation Letter 2</div>
 <div class="fileinput fileinput-new col-sm-3 col-sm-offset-3 btn-lg" data-provides="fileinput">
     <span class="btn btn-default btn-file">
 
