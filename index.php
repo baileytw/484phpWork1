@@ -1,4 +1,37 @@
 <!DOCTYPE html>
+
+
+<?php
+/****************************************
+	START PASWWORD CODE 
+****************************************/
+//Get PasswordHash file
+require("PasswordHash.php");
+//Construct the class
+$hasher = new PasswordHash(8, false);
+// Password from form input
+$password = $_POST["password"];
+if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
+// Just in case the hash isn't found
+$stored_hash = "*";
+// Retrieve the stored hash
+$stored_hash = "this is the hash we stored earlier";
+// Check that the password is correct, returns a boolean
+$check = $hasher->CheckPassword($password, $stored_hash);
+if ($check) {
+
+  // passwords matched! show account dashboard or something
+
+} else {
+
+ // passwords didn't match, show an error
+
+}
+/****************************************
+	END PASWWORD CODE 
+****************************************/
+?>
+
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,7 +66,7 @@
 <!--clock in form-->
 <body class="login">
     <div class="login-box main-content panel panel-default">
-      <header class="panel-heading"><img src="../streamlined/images/logo_small.png" alt="Wildlife Logo"></header>
+      <header class="panel-heading"><img src="../484phpWork1/images/logo_small.png" alt="Wildlife Logo"></header>
     	<section class="panel-body">
 <form action="clockin.php" method="post" class="form-horizontal">
           <div class="form-group">

@@ -1,7 +1,35 @@
-<?php ini_set('display_errors', 'On');
+
+<!DOCTYPE html>
+<?php
+ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 ?>
-<!DOCTYPE html>
+
+<?php
+/****************************************
+	START PASWWORD CODE 
+****************************************/
+require("PasswordHash.php");
+// Retrieve password
+$password = $_POST["password"];
+// Limit passwords to 72 characters to help prevent DoS attacks
+if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
+// The $hash variable will contain the hash of the password
+$hash = $hasher->HashPassword($password);
+if (strlen($hash) >= 20) {
+
+ // Store the hash in the database
+
+
+} else {
+
+ // something went wrong
+
+}
+/****************************************
+	END PASWWORD CODE 
+****************************************/
+?>
 
 <html>
 <head>
@@ -230,7 +258,10 @@ function StringCompare()
                                             </footer>
                                         </form>
 
-										<?php
+<?php
+/****************************************
+	START DATABASE UPLOAD CODE 
+****************************************/
 if(isset($_POST['upload']))
 {
 		$server = "localhost";
@@ -310,8 +341,9 @@ if(isset($_POST['upload']))
 
 
 }
-					
-
+/****************************************
+	END DATABASE UPLOAD CODE 
+****************************************/					
 ?>
                                     </div>
                 
