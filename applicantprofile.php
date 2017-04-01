@@ -1,4 +1,38 @@
 <!DOCTYPE html>
+
+<?php
+//Session variable: KEEP AT TOP
+session_start();
+$email = $_SESSION['emailSession']; 
+
+//Get user info
+$servername = "localhost";
+$username = "root";
+$dbpassword = "Twspike1994?";
+$dbname = "wildlife";
+
+// Create connection
+$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+// Check connection
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+} 
+//SQL Statement to gather hash
+$sql = "SELECT Person_FirstName, Person_LastName FROM Person WHERE Person_Email = '" . $email . "'";
+echo sql;
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$firstName = $row['Person_FirstName'];
+		$lastName = $row['Person_LastName'];
+	}
+	$conn->close();
+}
+
+?>
+
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -71,7 +105,7 @@
                                              <hgroup>
                                                  <a href="editprofile.php" class="btn btn-default pull-right" rel="#overlay">Edit Profile<i class="fa fa-question-circle"></i></a>
                                                  <h2>
-                                                     Mr. Applied
+                                                     <?php echo $firstName . " " . $lastName ?>
                                                  </h2>
                                                  <h4>Applicant</h4>
                                              </hgroup>

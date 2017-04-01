@@ -5,6 +5,12 @@ error_reporting(E_ALL);
 ?>
 
 <?php
+// remove all session variables
+session_unset(); 
+// destroy the session 
+session_destroy();
+//start new session
+session_start();
 /****************************************
 	START ClockIn CODE 
 ****************************************/
@@ -119,6 +125,7 @@ error_reporting(E_ALL);
  /****************************************
 	START Password CODE 
 ****************************************/
+
 if(isset($_POST['btnLogIn'])){
 	// Help with password hashing from https://sunnysingh.io/blog/secure-passwords
 		//Get PasswordHash file
@@ -136,7 +143,7 @@ if(isset($_POST['btnLogIn'])){
 		$username = "root";
 		$dbpassword = "Twspike1994?";
 		$dbname = "wildlife";
-
+ 
 		// Create connection
 		$conn = new mysqli($servername, $username, $dbpassword, $dbname);
 		// Check connection
@@ -160,6 +167,9 @@ if(isset($_POST['btnLogIn'])){
 		$check = $hasher->CheckPassword($password, $stored_hash);
 		
 		if ($check) {
+			
+			//Save session variable to be used on the next page
+			$_SESSION['emailSession'] = $_POST['usernameLogIn'];
 		
 		  // passwords matched! Go to the User Type specific page (Depends if they are applicant, volunteer, team leads, staff)
 			if ($userType == "Applicant"){
