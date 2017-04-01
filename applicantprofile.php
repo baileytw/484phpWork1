@@ -81,12 +81,12 @@ if ($result->num_rows > 0) {
                       </button>
                     </div>
     
-                  <a class="navbar-brand" href="profile.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
+                  <a class="navbar-brand" href="applicantprofile.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul id="main-nav" class="nav navbar-nav">
                             <li class="action">
 
-                            <li class="active"><a href="profile.php">Profile</a></li>
+                            <li class="active"><a href="applicantprofile.php">Profile</a></li>
                             <li><a href="index.php">Sign Out</a></li>
                                 </ul>
                             </li>
