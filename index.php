@@ -6,16 +6,63 @@ error_reporting(E_ALL);
 
 <?php
 /****************************************
-	START PASWWORD CODE 
+	START ClockIn CODE 
 ****************************************/
 
-//Testing clockin here. Will be changed*********!!!!! (~Matt)
-	 if (isset($_POST['btnClockIn']) && ($_POST['username'] == "test" )){
+//Clockin validation and action
+ if(isset($_POST['btnClockIn']) && ($_POST['usernameClockIn'] != "")){
+	$servername = "localhost";
+	$username = "root";
+	$dbpassword = "Twspike1994?";
+	$dbname = "wildlife";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	}
+	//SQL Statement to gather hash
+	$sql = "SELECT Person_Email, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameClockIn'] . "'";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0){
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$user = $row['Person_Email'];
+			$userType = $row['Person_UserType'];
+		}
+		$conn->close();
+		if($userType == "Volunteer" ){
+			
+			
+			//////INSERT THE TIME HERE INTO THE DATABASE
+			
 			
 			header("Location: clockin.php");
-		exit();
-	 }
-	 
+			exit();
+		}
+		else {
+		// Not a volunteer, show an error
+		$message = 'Error. If you are a transporter, please use the Transporter form.';
+		echo "<SCRIPT>
+		alert('$message');
+		</SCRIPT>";
+		}
+	}
+	else {
+	 // passwords didn't match, show an error
+		$message = 'Username incorrect. Please use your email address for your Username.';
+		echo "<SCRIPT>
+		alert('$message');
+		</SCRIPT>";
+	}
+ }
+ /****************************************
+	END ClockIn CODE 
+****************************************/
+ /****************************************
+	START Password CODE 
+****************************************/
 if(isset($_POST['btnLogIn'])){
 	// Help with password hashing from https://sunnysingh.io/blog/secure-passwords
 		//Get PasswordHash file
@@ -52,7 +99,6 @@ if(isset($_POST['btnLogIn'])){
 			}
 		}
 		
-		;
 		$conn->close();
 		// Check that the password is correct, returns a boolean
 		$check = $hasher->CheckPassword($password, $stored_hash);
