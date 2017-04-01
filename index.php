@@ -31,11 +31,67 @@ error_reporting(E_ALL);
 			$user = $row['Person_Email'];
 			$userType = $row['Person_UserType'];
 		}
+		
+		if($userType == "Volunteer" ){
+			
+			
+			//////INSERT THE clock in TIME HERE INTO THE DATABASE
+			
+			
+			$conn->close();
+			header("Location: clockin.php");
+			exit();
+		}
+		else {
+		// Not a volunteer, show an error
+		$message = 'Error. If you are a transporter, please use the Transporter form.';
+		echo "<SCRIPT>
+		alert('$message');
+		</SCRIPT>";
+		}
+	}
+	else {
+	 // passwords didn't match, show an error
+		$message = 'Username incorrect. Please use your email address for your Username.';
+		echo "<SCRIPT>
+		alert('$message');
+		</SCRIPT>";
+	}
+ }
+ /****************************************
+	END ClockIn CODE 
+****************************************/
+/****************************************
+	START ClockIn CODE 
+****************************************/
+
+//Clockin validation and action
+ if(isset($_POST['btnClockOut']) && ($_POST['usernameClockIn'] != "")){
+	$servername = "localhost";
+	$username = "root";
+	$dbpassword = "Twspike1994?";
+	$dbname = "wildlife";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	}
+	//SQL Statement to gather hash
+	$sql = "SELECT Person_Email, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameClockIn'] . "'";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0){
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$user = $row['Person_Email'];
+			$userType = $row['Person_UserType'];
+		}
 		$conn->close();
 		if($userType == "Volunteer" ){
 			
 			
-			//////INSERT THE TIME HERE INTO THE DATABASE
+			//////INSERT THE clock out TIME HERE INTO THE DATABASE
 			
 			
 			header("Location: clockin.php");
