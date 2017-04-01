@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 ?>
 
 <?php
+//DO NOT MOVE. KEEP AT TOP
 // destroy the session
 session_start(); 
 session_destroy();
