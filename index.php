@@ -5,9 +5,8 @@ error_reporting(E_ALL);
 ?>
 
 <?php
-// remove all session variables
-session_unset(); 
-// destroy the session 
+// destroy the session
+session_start(); 
 session_destroy();
 //start new session
 session_start();
@@ -38,7 +37,7 @@ session_start();
 			$userType = $row['Person_UserType'];
 		}
 		
-		if($userType == "Volunteer" ){
+		if($userType == "Volunteer" ){														//***************NEED TO MAKE A WAY TO DISTINGUISH BETWEEN REGULAR VOLUNTEERS AND TRANSPORTERS
 			
 			
 			//////INSERT THE clock in TIME HERE INTO THE DATABASE
@@ -68,10 +67,10 @@ session_start();
 	END ClockIn CODE 
 ****************************************/
 /****************************************
-	START ClockIn CODE 
+	START ClockOut CODE 
 ****************************************/
 
-//Clockin validation and action
+//Clockout validation and action
  if(isset($_POST['btnClockOut']) && ($_POST['usernameClockIn'] != "")){
 	$servername = "localhost";
 	$username = "root";
@@ -94,7 +93,7 @@ session_start();
 			$userType = $row['Person_UserType'];
 		}
 		$conn->close();
-		if($userType == "Volunteer" ){
+		if($userType == "Volunteer" ){											//***************NEED TO MAKE A WAY TO DISTINGUISH BETWEEN REGULAR VOLUNTEERS AND TRANSPORTERS
 			
 			
 			//////INSERT THE clock out TIME HERE INTO THE DATABASE
@@ -120,10 +119,66 @@ session_start();
 	}
  }
  /****************************************
-	END ClockIn CODE 
+	END ClockOut CODE 
 ****************************************/
  /****************************************
-	START Password CODE 
+	START Transporter CODE 
+****************************************/
+//Clockin validation and action
+ if(isset($_POST['btnTransporter']) && ($_POST['usernameTransporter'] != "")){
+	$servername = "localhost";
+	$username = "root";
+	$dbpassword = "Twspike1994?";
+	$dbname = "wildlife";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	}
+	//SQL Statement to gather hash
+	$sql = "SELECT Person_Email, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameTransporter'] . "'";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0){
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$user = $row['Person_Email'];
+			$userType = $row['Person_UserType'];
+		}
+		
+		if($userType == "Volunteer" ){									//***************NEED TO MAKE A WAY TO DISTINGUISH BETWEEN REGULAR VOLUNTEERS AND TRANSPORTERS
+			
+			
+			//////INSERT THE transporter INFO HERE INTO THE DATABASE
+			
+			
+			$conn->close();
+			header("Location: transporter.php");
+			exit();
+		}
+		else {
+		// Not a volunteer, show an error
+		$message = 'Error. For Transporter use only.';
+		echo "<SCRIPT>
+		alert('$message');
+		</SCRIPT>";
+		}
+	}
+	else {
+	 // passwords didn't match, show an error
+		$message = 'Username incorrect. Please use your email address for your Username.';
+		echo "<SCRIPT>
+		alert('$message');
+		</SCRIPT>";
+	}
+ }
+
+ /****************************************
+	END Transporter CODE 
+****************************************/
+ /****************************************
+	START Login CODE 
 ****************************************/
 
 if(isset($_POST['btnLogIn'])){
@@ -202,7 +257,7 @@ alert('$message');
 		}
 	} 
 /****************************************
-	END PASWWORD CODE 
+	END Login CODE 
 ****************************************/
 ?>
 
@@ -270,7 +325,7 @@ alert('$message');
             </div>
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <form id="form" action="transporter.php" method="post" class="form-horizontal">
+                    <form id="form" method="post" class="form-horizontal">
           <div class="form-group">
             <div class="col-sm-12">
               <input type="text" id="usernameTransporter"  class="form-control" value="" name="usernameTransporter" required="required" placeholder="Username" />
@@ -300,7 +355,7 @@ alert('$message');
           <br>
           <div class="form-group">
             <div class="col-sm-2 col-sm-offset-4">
-              <button class="btn btn-default" type="submit">Submit</button>
+              <button name="btnTransporter" class="btn btn-default" type="submit">Submit</button>
             </div>
           </div>
 </form>

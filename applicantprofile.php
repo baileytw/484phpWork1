@@ -5,6 +5,20 @@
 session_start();
 $email = $_SESSION['emailSession']; 
 
+
+//UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
+/*
+//If Session is empty, redirect user to restricted access notification
+if ($email == null){
+	header("Location: restrictedAccess.php");
+	exit();
+}
+
+*/
+
+
+
+
 //Get user info
 $servername = "localhost";
 $username = "root";
@@ -103,7 +117,7 @@ if ($result->num_rows > 0) {
 
                                              <img src="images/johndoe.png" class="img-responsive col-sm-4"></span>
                                              <hgroup>
-                                                 <a href="editprofile.php" class="btn btn-default pull-right" rel="#overlay">Edit Profile<i class="fa fa-question-circle"></i></a>
+                                                 <a href="applicanteditprofile.php" class="btn btn-default pull-right" rel="#overlay">Edit Profile<i class="fa fa-question-circle"></i></a>
                                                  <h2>
                                                      <?php echo $firstName . " " . $lastName ?>
                                                  </h2>
