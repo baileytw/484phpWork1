@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 <?php
 //*************
 //THIS PAGE IS NOT MEANT TO BE USED BY USERS...IT IS FOR EMAILING USERS THAT FORGOT TO CLOCKOUT
+//THIS PAGE RUNS BY WINDOWS TASK SCHEDULER AT PREDETERMINED TIMES AND RUNS THIS SCRIPT
 //*************
 require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
 			$emailAddress = 'seilermr@dukes.jmu.edu';

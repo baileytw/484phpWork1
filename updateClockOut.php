@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 ?>
 
 <?php
-//Update Clockout time based on the Id entered and new time entered
+/* //Update Clockout time based on the Id entered and new time entered
 $server = "localhost";
 $user = "root";
 $password = "Twspike1994?";
@@ -25,7 +25,7 @@ $query = "UPDATE LogHours SET LogHours_EndTime = '" . @newTime ."' WHERE LogHour
 
 					 mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-
+ */
 ?>
 
 
