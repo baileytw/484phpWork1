@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 
 <?php
-//Session variable: KEEP AT TOP
+//Session variables: KEEP AT TOP
 session_start();
-$email = $_SESSION['emailSession']; 
+$email = $_SESSION['emailSession'];
+$userTypeSession = $_SESSION['userType']; 
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
 /*
 //If Session is empty, redirect user to restricted access notification
-if ($email == null){
+if ($userTypeSession != "Applicant"){
 	header("Location: restrictedAccess.php");
 	exit();
 }
@@ -49,7 +50,7 @@ if ($email == null){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="profile.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
+                      <a class="navbar-brand" href="applicantprofile.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     </div>
     
                   
@@ -170,13 +171,6 @@ if ($email == null){
             <label class="col-lg-3 control-label">Additional Notes</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" value="">
-            </div>
-          </div>
-	
-          <div class="form-group">
-            <label class="col-md-3 control-label">Username:</label>
-            <div class="col-md-8">
-              <input class="form-control" type="text" value="johndoe">
             </div>
           </div>
           <div class="form-group">

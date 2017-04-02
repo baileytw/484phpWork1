@@ -2,19 +2,56 @@
 
 
 <?php
-//Session variable: KEEP AT TOP
+//Session variables: KEEP AT TOP
 session_start();
-$email = $_SESSION['emailSession']; 
+$email = $_SESSION['emailSession'];
+$userTypeSession = $_SESSION['userType']; 
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
 /*
 //If Session is empty, redirect user to restricted access notification
-if ($email == null){
+if ($userTypeSession != "Team Lead"){
 	header("Location: restrictedAccess.php");
 	exit();
 }
 
+*/
+
+
+
+//Determine the "userType" of the persons profile in order to determine if "Accept Application" button should be shown
+
+
+
+
+
+
+
+//Download docs
+/*
+if(isset($_POST['downloadResume']))
+	{
+		$connection =  mysqli_connect("localhost","root","Twspike1994?","wildlife")
+                             or die('Database Connection Failed');
+             mysqli_set_charset($connection,'utf-8');
+
+          $id = 1; // Change to whatever necessary Person_ID
+		  $whichDoc = ""; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
+          $query = "SELECT * " ."FROM *****TABLE NAME HERE****** WHERE Person_ID = '$id' AND WhichDoc = '$whichDoc'"; //query here to put in document and type of document. IDK how to write the join for that
+          $result = mysqli_query($connection,$query) 
+                     or die('Error, query failed');
+         list($id, $file, $type, $size,$content) =   mysqli_fetch_array($result);
+           //echo $id . $file . $type . $size;
+         header("Content-length: $size");
+         header("Content-type: $type");
+         header("Content-Disposition: attachment; filename=$file");
+         ob_clean();
+         flush();
+         echo $content;
+         mysqli_close($connection);
+         exit;
+	}
 */
 ?>
 
@@ -55,7 +92,7 @@ if ($email == null){
                       </button>
                     </div>
     
-                  <a class="navbar-brand" href="profile2.php"><img src="../streamlined/images/logo_short.png" alt="Wildlife Small Logo"></a>
+                  <a class="navbar-brand" href="profile2.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul id="main-nav" class="nav navbar-nav">
                             <li class="action">
@@ -152,7 +189,13 @@ if ($email == null){
                                             <p>No additional notes</p>
 
                                     </div></div></div>
-                               </div></div>
+                               </div>
+							   <p>Download Resume:</p>
+							   <button name="downloadResume" class="btn btn-default" type="submit">Download</button>
+							   <p>Download Letter Of Recommendation:</p>
+							   <button name="downloadLetter" class="btn btn-default" type="submit">Download</button>
+							   </div>
+							   
                                 <div class="preview-pane col-md-5">
         <div class="panel panel-default"><div class="panel-body"><h4>Team Lead Notes:</h4>  </ul>
     None
@@ -168,7 +211,10 @@ if ($email == null){
                                        
     <h4>Weekly Availability</h4>  </ul>
     <img src="images/joecalendar.png" alt="calendar" class="img-responsive">
-         </div>
+	<div class="col-sm-2 col-sm-offset-4">
+		<button name="btnAccept" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Accept Applicant</button>
+	</div>
+	  </div>
                                     
 
 
