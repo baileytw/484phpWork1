@@ -226,6 +226,7 @@ if(isset($_POST['btnLogIn'])){
 			
 			//Save session variable to be used on the next page
 			$_SESSION['emailSession'] = $_POST['usernameLogIn'];
+			$_SESSION['userType'] = $userType;
 		
 		  // passwords matched! Go to the User Type specific page (Depends if they are applicant, volunteer, team leads, staff)
 			if ($userType == "Applicant"){
