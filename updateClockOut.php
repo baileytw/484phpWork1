@@ -42,12 +42,12 @@ error_reporting(E_ALL);
     			<div class="form-group">
     			  <div class="col-sm-12">
 				  <p>Please enter the correct Clock Out time for "~DATE WILL GO HERE"
-      				<input type="text" id="usernameLogIn"  class="form-control" value="" name="usernameLogIn" required="required" placeholder="Unique ID" />
+      				<input type="text" id="uniqueid"  class="form-control" value="" name="uniqueid" required="required" placeholder="Unique ID" />
     				</div>
     			</div>
     			<div class="form-group">
     			  <div class="col-sm-12">
-      				<input type="password" id="password" class="form-control" value="" name="password" required="required" placeholder="Correct Clock Out Time" />
+      				<input type="date" id="date" class="form-control" value="" name="date" required="required" placeholder="Correct Clock Out Time" />
       			</div>
     			</div>
     			<div class="form-group">
