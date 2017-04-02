@@ -172,13 +172,6 @@ if ($email == null){
               <input class="form-control" type="text" value="">
             </div>
           </div>
-	
-          <div class="form-group">
-            <label class="col-md-3 control-label">Username:</label>
-            <div class="col-md-8">
-              <input class="form-control" type="text" value="johndoe">
-            </div>
-          </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
