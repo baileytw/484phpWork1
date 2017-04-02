@@ -278,9 +278,9 @@ $events = $req->fetchAll();
 				right: 'month,agendaWeek,agendaDay'
 			},
 			
-			editable: true,
+			editable: false,
 			eventLimit: true, // allow "more" link when too many events
-			selectable: true,
+			selectable: false,
 			selectHelper: true,
 			
 			select: function(start, end) {
