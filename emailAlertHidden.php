@@ -12,7 +12,7 @@ require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
 			$emailAddress = 'seilermr@dukes.jmu.edu';
 			$id = '22134';
 			$clockIn = '4/2/2017 3:00 PM';
-			$hyperlink = "<a href=\"52.43.142.237/484phpWork1/updateClockOutLogIn.php\">Click Here</a><p>";
+			$hyperlink = "52.43.142.237/484phpWork1/updateClockOutLogIn.php";
 			$mail = new PHPMailer;
 			
 
@@ -31,12 +31,13 @@ require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
 			//$mail->addAddress('ellen@example.com');               //Add team lead
 
 			$mail->Subject = 'Wildlife Center of VA Clock Out Update';
-			$mail->Body    = 'It seems you forgot to Clock Out from the Wildlife Center of Virginia on the following date and time:<b> '. $clockIn 
-			. ' </b>. Please go to the link below and enter the Unique ID '. $id . ' and enter the correct Clock Out date and time. Thank you! <br>
-			' . $hyperlink; //CHANGE IP ADDRESS TO THE CORRECT AWS INSTACE
+			$mail->Body    = '<p>It seems you forgot to Clock Out from the Wildlife Center of Virginia on the following date and time:<b> '. $clockIn 
+			. ' </b>. Please copy the link below and paste in the browser to log in. After logging in, enter the Unique ID '. $id . ' and enter the correct Clock Out date and time. Thank you! <br>
+			<br>' . $hyperlink . '</p>'; //CHANGE IP ADDRESS TO THE CORRECT AWS INSTACE
 			
-			$mail->AltBody = 'It seems you forgot to Clock Out from the Wildlife Center of Virginia on the following date and time:<b> '. $clockIn 
-			. ' </b>. Please go to the link below and enter the Unique ID '. $id . ' and enter the correct Clock Out date and time. Thank you!'; //CHANGE IP ADDRESS TO THE CORRECT AWS INSTACE
+			$mail->AltBody = 'It seems you forgot to Clock Out from the Wildlife Center of Virginia on the following date and time: '. $clockIn 
+			. ' . Please copy the link below and paste in the browser to log in. After logging in, enter the Unique ID '. $id . ' and enter the correct Clock Out date and time. Thank you!'
+			. $hyperlink; //CHANGE IP ADDRESS TO THE CORRECT AWS INSTACE
 
 			
 			$mail->isHTML(true);                                  // Set email format to HTML
