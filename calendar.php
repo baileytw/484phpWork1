@@ -175,14 +175,14 @@ $events = $req->fetchAll();
 				  <div class="form-group">
 					<label for="start" class="col-sm-2 control-label">Start Date:</label>
 					<div class="col-sm-10">
-					  <input pattern=".{19,19}" type="datetime" name="start" class="form-control" id="start">
+					  <input pattern=".{19,19}" type="datetime-local" name="start" class="form-control" id="start">
 					</div>
 				  </div>
 				  <div class="form-group">
 					<label for="end" class="col-sm-2 control-label">End Date:</label>
 					<div class="col-sm-10">
 
-					  <input pattern=".{19,19}" type="datetime" name="end" class="form-control" id="end">
+					  <input pattern=".{19,19}" type="datetime-local" name="end" class="form-control" id="end">
 
 					</div>
 				  </div>

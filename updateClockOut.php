@@ -47,7 +47,7 @@ error_reporting(E_ALL);
     			</div>
     			<div class="form-group">
     			  <div class="col-sm-12">
-      				<input type="date" id="date" class="form-control" value="" name="date" required="required" placeholder="Correct Clock Out Time" />
+      				<input type="datetime-local" id="date" class="form-control" value="" name="date" required="required" placeholder="Correct Clock Out Time" />
       			</div>
     			</div>
     			<div class="form-group">
