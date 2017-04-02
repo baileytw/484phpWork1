@@ -50,7 +50,7 @@ if ($email == null){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="profile2.php"><img src="../streamlined/images/logo_short.png" alt="Wildlife Small Logo"></a>
+                      <a class="navbar-brand" href="profile2.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     </div>
     
                   
@@ -178,12 +178,6 @@ if ($email == null){
             <label class="col-lg-3 control-label">Additional Notes (Seen by Team Leads only)</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" value="">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Username:</label>
-            <div class="col-md-8">
-              <input class="form-control" type="text" value="johndoe">
             </div>
           </div>
           <div class="form-group">

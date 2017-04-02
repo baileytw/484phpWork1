@@ -55,7 +55,7 @@ if ($email == null){
                       </button>
                     </div>
     
-                  <a class="navbar-brand" href="profile2.php"><img src="../streamlined/images/logo_short.png" alt="Wildlife Small Logo"></a>
+                  <a class="navbar-brand" href="profile2.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul id="main-nav" class="nav navbar-nav">
                             <li class="action">
@@ -168,7 +168,10 @@ if ($email == null){
                                        
     <h4>Weekly Availability</h4>  </ul>
     <img src="images/joecalendar.png" alt="calendar" class="img-responsive">
-         </div>
+	<div class="col-sm-2 col-sm-offset-4">
+		<button name="btnAccept" class="btn btn-default" type="submit">Accept Applicant</button>
+	</div>
+	  </div>
                                     
 
 
