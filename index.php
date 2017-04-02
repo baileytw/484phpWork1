@@ -433,7 +433,7 @@ if(isset($_POST['apply']))
 {
         $server = "localhost";
         $user = "root";
-        $password = "password";
+        $password = "Twspike1994?";
         $database = "wildlife";
         $conn = mysqli_connect($server, $user, $password, $database);
         if (mysqli_connect_errno()) 

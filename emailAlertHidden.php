@@ -1,4 +1,65 @@
 <!DOCTYPE html>
+<?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+?>
+
+<?php
+
+$server = "localhost";
+$user = "root";
+$password = "Twspike1994?";
+$database = "wildlife";
+$conn = mysqli_connect($server, $user, $password, $database);
+if (mysqli_connect_errno()) 
+{
+echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+if(!mysqli_select_db($conn, 'wildlife'))
+{
+   echo "Database Not Selected";
+}
+
+$emailAddress = 'seilermr@dukes.jmu.edu';			//CHANGE TO GET FROM DATABASE
+
+require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
+
+$mail = new PHPMailer;
+
+//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+$mail->isSMTP();                                      // Set mailer to use SMTP
+$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+$mail->SMTPAuth = true;                               // Enable SMTP authentication
+$mail->Username = 'wcvtestemail@gmail.com';                 // SMTP username
+$mail->Password = '1wildcva';                           // SMTP password
+$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+$mail->Port = 587;                                    // TCP port to connect to
+
+$mail->setFrom('wcvtestemail@gmail', 'Wildlife Center of Virginia');
+$mail->addAddress($emailAddress, 'Applicant');     // recipient
+//$mail->addAddress('ellen@example.com');               //Add team lead
+$mail->isHTML(true);                                  // Set email format to HTML
+
+$mail->Subject = 'Here is the subject';
+$mail->Body    = 'This is the HTML '. $emailAddress . ' message body <b>in bold!</b>';
+$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+if(!$mail->send()) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message has been sent';
+}
+
+
+?>
+
+
+
+
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
