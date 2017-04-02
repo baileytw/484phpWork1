@@ -1,6 +1,20 @@
 
 <!DOCTYPE html>
 <?php
+
+/* 
+PERSON, APPLICATION, AND OUTREACH SUBMITS TO DATABASE.
+
+THE FILL IN FIELDS FOR THE FIRST TWO SHORT ANSWERS DO NOT GO IN THE DATABASE. NOT SURE IF WE NEED THEM.
+
+DOCUMENTS IS HARDCODED FOR NOW AS A DEFAULT VALUE OF '1'. 
+	WE NEED TO FIGURE OUT HOW TO GET THIS WORKING
+
+*/
+
+
+
+
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 ?>
@@ -133,13 +147,65 @@ error_reporting(E_ALL);
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">City *</label>
-                                                    <div class="col-sm-3">
+                                                    <div class="col-sm-2">
                                                       <input class="form-control" type="text" id="city" name="city" value="<?php if (isset($_POST['upload'])) echo ($_POST['city']);?>" placeholder="City" name="city" />
                                                     </div>
 
                                                     <label class="col-sm-1">State *</label>
-                                                    <div class="col-sm-1">
-                                                      <input class="form-control" type="text" id="state" name="state" value="<?php if (isset($_POST['upload'])) echo ($_POST['state']);?>"placeholder="State" name="state" />
+                                                    <div class="col-sm-3">
+													
+													<select name="state">
+													<option value="AL">Alabama</option>
+<option value="AK">Alaska</option>
+<option value="AZ">Arizona</option>
+<option value="AR">Arkansas</option>
+<option value="CA">California</option>
+<option value="CO">Colorado</option>
+<option value="CT">Connecticut</option>
+<option value="DE">Delaware</option>
+<option value="FL">Florida</option>
+<option value="GA">Georgia</option>
+<option value="HI">Hawaii</option>
+<option value="ID">Idaho</option>
+<option value="IL">Illinois</option>
+<option value="IN">Indiana</option>
+<option value="IA">Iowa</option>
+<option value="KS">Kansas</option>
+<option value="KY">Kentucky</option>
+<option value="LA">Louisiana</option>
+<option value="ME">Maine</option>
+<option value="MD">Maryland</option>
+<option value="MA">Massachusetts</option>
+<option value="MI">Michigan</option>
+<option value="MN">Minnesota</option>
+<option value="MS">Mississippi</option>
+<option value="MO">Missouri</option>
+<option value="MT">Montana</option>
+<option value="NE">Nebraska</option>
+<option value="NV">Nevada</option>
+<option value="NH">New Hampshire</option>
+<option value="NJ">New Jersey</option>
+<option value="NM">New Mexico</option>
+<option value="NY">New York</option>
+<option value="NC">North Carolina</option>
+<option value="ND">North Dakota</option>
+<option value="OH">Ohio</option>
+<option value="OK">Oklahoma</option>
+<option value="OR">Oregon</option>
+<option value="PA">Pennsylvania</option>
+<option value="RI">Rhode Island</option>
+<option value="SC">South Carolina</option>
+<option value="SD">South Dakota</option>
+<option value="TN">Tennessee</option>
+<option value="TX">Texas</option>
+<option value="UT">Utah</option>
+<option value="VT">Vermont</option>
+<option value="VA">Virginia</option>
+<option value="WA">Washington</option>
+<option value="WV">West Virginia</option>
+<option value="WI">Wisconsin</option>
+<option value="WY">Wyoming</option>
+</select> 
                                                     </div>
                                             
                                                     <label class="col-sm-2">Zip Code *</label>
@@ -287,7 +353,7 @@ if(isset($_POST['upload']))
 
 		$server = "localhost";
         $user = "root";
-        $password = "Twspike1994?";
+        $password = "starwars97";
         $database = "wildlife";
         $conn = mysqli_connect($server, $user, $password, $database);
         if (mysqli_connect_errno()) 
@@ -338,6 +404,7 @@ if(isset($_POST['upload']))
 		$whyInterested = $_POST['whyInterested'];
 		$wildlifeIssue = $_POST['wildlifeIssue'];
 		$priorExperience = $_POST['priorExperience'];
+		$belongToGroup = '';
 		$valueAdded = $_POST['valueAdded'];
 
 
@@ -354,14 +421,61 @@ if(isset($_POST['upload']))
 					'$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
 
 					 mysqli_query($conn, $query) or die(mysqli_error($conn));
+			
 					
-/*
-					$outreachQuery = "INSERT INTO outreachApp (OutreachApp_WhyInterested, OutreachApp_PassionateWildlifeIssue, OutreachApp_ExperiencePublicSpeaking, OutreachApp_BringToTeam)
-					VALUES ('$whyInterested', '$wildlifeIssue', '$priorExperience', '$valueAdded')";
+
+			if(!mysqli_query($conn,$query))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
+
+			else
+			{
+				echo "Application Sent! {person table}";
+			}
+			
+			
+			
+			// PersonApplication
+			
+			
+			
+			$sql = "SELECT MAX(Person_ID) FROM Person";
+			$result = $conn->query($sql);
+			$personID = null;
+			if($result->num_rows > 0) {
+				//output data of each row
+				while($row = $result->fetch_assoc()) {
+					$personID = $row['MAX(Person_ID)'];
+				}
+			}
+			
+			$applicationQuery = "INSERT INTO PersonApplication (PersonApplication_PersonID, PersonApplication_DateApplied, PersonApplication_Documents, PersonApplication_DepartmentApplied)
+			  VALUES ('$personID', NOW(), '1', '1')";
+			
+			 mysqli_query($conn, $applicationQuery) or die(mysqli_error($conn));
+			
+			
+			// outReach specific
+			
+			
+			$sql = "SELECT MAX(PersonApplication_ID) FROM PersonApplication";
+			$result = $conn->query($sql);
+			$applicationID = null;
+			if($result->num_rows > 0) {
+				//output data of each row
+				while($row = $result->fetch_assoc()) {
+					$applicationID = $row['MAX(PersonApplication_ID)'];
+				}
+			}
+			
+		$outreachQuery = "INSERT INTO outreachApp (OutreachApp_ApplicationID, OutreachApp_WhyInterested, OutreachApp_PassionateWildlifeIssue, OutreachApp_ExperiencePublicSpeaking, OutreachApp_BelongToAnimalRightsGroup, OutreachApp_BringToTeam)
+		VALUES ('$applicationID', '$whyInterested', '$wildlifeIssue', '$priorExperience', '$belongToGroup', '$valueAdded')";
 
 
 					mysqli_query($conn, $outreachQuery) or die(mysqli_error($conn)); 
-*/
+
 
 	}
 	else{
