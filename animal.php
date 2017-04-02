@@ -434,11 +434,11 @@ error_reporting(E_ALL);
 			$totalHours = 10;
 			$workOutsideLimitations = '';
 			$lift40 = '';
-			$permitRehab = $_POST['permit'];
+			$permitRehab = '';
 
-				  $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+				  $query = "INSERT INTO person (Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 		  Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city', '$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitRehab', '$allergies', '$specialNeeds', '$workOutside', '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
+			  VALUES ('$passwordHash', '$userType', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city', '$county', '$state', '$zip', NOW(), '$status', NOW(), '$permitRehab', '$allergies', '$specialNeeds', '$workOutside', '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
 
 
 
@@ -463,11 +463,11 @@ error_reporting(E_ALL);
 			$accomplish = $_POST['accomplish'];
 			$issue = $_POST['issue'];
 			$additionalInfo = $_POST['additionalInfo'];
-			
+			$depNum = 2;
 			$sql = "SELECT MAX(Person_ID) FROM Person";
 			$result = $conn->query($sql);
 			$personID = null;
-			if($result->num_rows > 0, {
+			if($result->num_rows > 0) {
 				//output data of each row
 				while($row = $result->fetch_assoc()) {
 					$personID = $row['MAX(Person_ID)'];
@@ -475,12 +475,13 @@ error_reporting(E_ALL);
 			}
 			
 			
-			$applicationQuery = "INSERT INTO Application (Person_ID, AnimalCareApp_HandleDeadAnimals, AnimalCareApp_OpinionLivePrey, AnimalCareApp_WorkOutside, AnimalCareApp_BelongToAnimalRightsGroup, AnimalCareApp_HopeToLearnAccomplish, AnimalCareApp_PassionateWildlifeIssue, AnimalCareApp_MoreAboutExperience)
-			  VALUES ('$experience', '$deadAnimals', '$livePrey', '$seasons', '$groups', '$accomplish', '$issue', '$additionalInfo')";
+			
+			$applicationQuery = "INSERT INTO Application (Application_PersonID, Application_DepartmentApplied, Application_DateApplied)
+			  VALUES ('$personID', '$depNum', NOW())";
 
 
 
-			  if(!mysqli_query($conn,$animalQuery))
+			  if(!mysqli_query($conn,$applicationQuery))
 
 			{
 				echo("Error description: " . mysqli_error($conn));
@@ -488,13 +489,23 @@ error_reporting(E_ALL);
 
 			else
 			{
-				echo "Application Sent! {animalCareApp table}";
+				echo "Application Sent! {Application table}";
+			}
+			
+			$sql = "SELECT MAX(Application_ID) FROM Application";
+			$result = $conn->query($sql);
+			$applicationID = null;
+			if($result->num_rows > 0) {
+				//output data of each row
+				while($row = $result->fetch_assoc()) {
+					$applicationID = $row['MAX(Application_ID)'];
+				}
 			}
 
 			
 
-			$animalQuery = "INSERT INTO AnimalCareApp (AnimalCareApp_HandsOnExperience, AnimalCareApp_HandleDeadAnimals, AnimalCareApp_OpinionLivePrey, AnimalCareApp_WorkOutside, AnimalCareApp_BelongToAnimalRightsGroup, AnimalCareApp_HopeToLearnAccomplish, AnimalCareApp_PassionateWildlifeIssue, AnimalCareApp_MoreAboutExperience)
-			  VALUES ('$experience', '$deadAnimals', '$livePrey', '$seasons', '$groups', '$accomplish', '$issue', '$additionalInfo')";
+			$animalQuery = "INSERT INTO AnimalCareApp (AnimalCareApp_ApplicationID, AnimalCareApp_HandsOnExperience, AnimalCareApp_HandleDeadAnimals, AnimalCareApp_OpinionLivePrey, AnimalCareApp_WorkOutside, AnimalCareApp_BelongToAnimalRightsGroup, AnimalCareApp_HopeToLearnAccomplish, AnimalCareApp_PassionateWildlifeIssue, AnimalCareApp_MoreAboutExperience)
+			  VALUES ('$applicationID', '$experience', '$deadAnimals', '$livePrey', '$seasons', '$groups', '$accomplish', '$issue', '$additionalInfo')";
 
 
 
