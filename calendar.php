@@ -10,7 +10,7 @@ $userTypeSession = $_SESSION['userType'];
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
 /*
 //If Session is empty, redirect user to restricted access notification
-if ($userTypeSession != "Team Lead"){											//IS THIS RIGHT? WAIT FOR DREW TO FINISH HIS CALENDARS***************
+if ($userTypeSession != "Volunteer"){											//IS THIS RIGHT? WAIT FOR DREW TO FINISH HIS CALENDARS***************
 	header("Location: restrictedAccess.php");
 	exit();
 }
