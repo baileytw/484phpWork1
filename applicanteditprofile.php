@@ -49,7 +49,7 @@ if ($email == null){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="profile.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
+                      <a class="navbar-brand" href="applicantprofile.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     </div>
     
                   
