@@ -1,7 +1,7 @@
 <?php
 try
 {
-	$bdd = new PDO('mysql:host=localhost;dbname=calendar;charset=utf8', 'root', 'Twspike1994?');
+	$bdd = new PDO('mysql:host=localhost;dbname=wildlife;charset=utf8', 'root', 'Twspike1994?');
 }
 catch(Exception $e)
 {
