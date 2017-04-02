@@ -2,20 +2,25 @@
 
 
 <?php
-//Session variable: KEEP AT TOP
+//Session variables: KEEP AT TOP
 session_start();
-$email = $_SESSION['emailSession']; 
+$email = $_SESSION['emailSession'];
+$userTypeSession = $_SESSION['userType']; 
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
 /*
 //If Session is empty, redirect user to restricted access notification
-if ($email == null){
+if ($userTypeSession != "Team Lead"){
 	header("Location: restrictedAccess.php");
 	exit();
 }
 
 */
+
+
+
+//Determine the "userType" of the persons profile in order to determine if "Accept Application" button should be shown
 ?>
 
 
@@ -169,7 +174,7 @@ if ($email == null){
     <h4>Weekly Availability</h4>  </ul>
     <img src="images/joecalendar.png" alt="calendar" class="img-responsive">
 	<div class="col-sm-2 col-sm-offset-4">
-		<button name="btnAccept" class="btn btn-default" type="submit">Accept Applicant</button>
+		<button name="btnAccept" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Accept Applicant</button>
 	</div>
 	  </div>
                                     

@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 
 <?php
-//Session variable: KEEP AT TOP
+//Session variables: KEEP AT TOP
 session_start();
-$email = $_SESSION['emailSession']; 
+$email = $_SESSION['emailSession'];
+$userType = $_SESSION['userType']; 
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
 /*
 //If Session is empty, redirect user to restricted access notification
-if ($email == null){
+if ($ == null){
 	header("Location: restrictedAccess.php");
 	exit();
 }
