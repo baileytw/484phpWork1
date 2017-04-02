@@ -9,14 +9,10 @@ $email = $_SESSION['emailSession'];
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
 
 //If Session is empty, redirect user to restricted access notification
-/*if ($email == null){
-	header("Location: restrictedAccess.php");
-	exit();
-}
-
-*/
-
-
+//if ($email == null){
+//	header("Location: restrictedAccess.php");
+//	exit();
+//}
 
 
 
@@ -24,14 +20,12 @@ $email = $_SESSION['emailSession'];
 require_once('bdd.php');
 
 
-$sql = "SELECT id, title, start, end, color FROM events UNION SELECT id, title, start, end, color FROM events2";
+$sql = "SELECT id, title, start, end, color FROM events UNION SELECT id, title, start, end, color FROM events2 ";
 
 $req = $bdd->prepare($sql);
 $req->execute();
 
 $events = $req->fetchAll();
-
-
 
 
 
@@ -75,8 +69,6 @@ $events = $req->fetchAll();
     </style>
 </head>
 <body>
-		
-
     <div id="wrapper">
         <header>
             <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -97,7 +89,7 @@ $events = $req->fetchAll();
                             <li class="action">
 
                             <li><a href="profile.php">Profile</a></li>
-                            <li class="active"><a href="calendar.php">Calendar</a></li>
+                            <li class="active"><a href="calendar2.php">Calendar</a></li>
                             <li><a href="index.php">Sign Out</a></li>
                                 </ul>
                             </li>
@@ -145,7 +137,7 @@ $events = $req->fetchAll();
 		<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
-			<form class="form-horizontal" method="POST" action="addEvent2.php">
+			<form class="form-horizontal" method="POST" action="addEvent.php">
 			
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -154,16 +146,19 @@ $events = $req->fetchAll();
 			  <div class="modal-body">
 				
 				  <div class="form-group">
-					<label for="title" class="col-sm-2 control-label">Name:</label>
+					<label for="title" class="col-sm-2 control-label">Title</label>
 					<div class="col-sm-10">
-					  <input type="text" name="title" class="form-control" id="title" placeholder="Full Name" required>
+					  <input type="text" name="title" class="form-control" id="title" placeholder="Title" required>
 					</div>
 				  </div>
 				  <div class="form-group">
-					<label for="color" class="col-sm-2 control-label">Program:</label>
+					<label for="color" class="col-sm-2 control-label">Color</label>
 					<div class="col-sm-10">
 					  <select name="color" class="form-control" id="color" required>
-						  <option value="">Choose</option>						  
+						  <option value="">Choose</option>
+						  <option style="color:#0033cc;" value="#0033cc">&#9724; Outreach Team Event</option>
+						  <option style="color:#006600;" value="#006600">&#9724; Vet Team Event</option>
+						  <option style="color: #cc0000;" value="#cc0000">&#9724; Animal Care Event</option>						  
 						  <option style="color: #0099cc;" value="#0099cc">&#9724; Outreach Volunteer</option>
 						  <option style="color:#009966;" value="#009966">&#9724; Vet Team Volunteer</option>
 						  <option style="color:#cc6600;" value="#cc6600">&#9724; Animal Care Volunteer</option>
@@ -171,20 +166,21 @@ $events = $req->fetchAll();
 						</select>
 					</div>
 				  </div>
+				  
+				  
 				  <div class="form-group">
-					<label for="start" class="col-sm-2 control-label">Start Date:</label>
+					<label for="start" class="col-sm-2 control-label">Start date</label>
 					<div class="col-sm-10">
-					  <input pattern=".{19,19}" type="datetime" name="start" class="form-control" id="start">
+					  <input pattern=".{19,19}" type="text" name="start" class="form-control" id="start" required placeholder="YYYY-MM-DD HH:MM:SS">
 					</div>
 				  </div>
 				  <div class="form-group">
-					<label for="end" class="col-sm-2 control-label">End Date:</label>
+					<label for="end" class="col-sm-2 control-label">End date</label>
 					<div class="col-sm-10">
-
-					  <input pattern=".{19,19}" type="datetime" name="end" class="form-control" id="end">
-
+					  <input pattern=".{19,19}"type="text" name="end" class="form-control" id="end" required>
 					</div>
 				  </div>
+				  
 				
 			  </div>
 			  <div class="modal-footer">
@@ -199,11 +195,10 @@ $events = $req->fetchAll();
 		
 		
 		<!-- Modal -->
-
 		<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
-			<form class="form-horizontal" method="POST" action="editEventTitle2.php">
+			<form class="form-horizontal" method="POST" action="editEventTitle.php">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Edit Event</h4>
@@ -211,16 +206,19 @@ $events = $req->fetchAll();
 			  <div class="modal-body">
 				
 				  <div class="form-group">
-					<label for="title" class="col-sm-2 control-label">Name:</label>
+					<label for="title" class="col-sm-2 control-label">Title</label>
 					<div class="col-sm-10">
-					  <input type="text" name="title" class="form-control" id="title" placeholder="Full Name">
+					  <input type="text" name="title" class="form-control" id="title" placeholder="Title" required>
 					</div>
 				  </div>
 				  <div class="form-group">
-					<label for="color" class="col-sm-2 control-label">Program:</label>
+					<label for="color" class="col-sm-2 control-label">Color</label>
 					<div class="col-sm-10">
-					  <select name="color" class="form-control" id="color">
-						  <option value="">Choose</option>						  
+					  <select name="color" class="form-control" id="color" required>
+						  <option value="">Choose</option>
+						  <option style="color:#0033cc;" value="#0033cc">&#9724; Outreach Team Event</option>
+						  <option style="color:#006600;" value="#006600">&#9724; Vet Team Event</option>
+						  <option style="color: #cc0000;" value="#cc0000">&#9724; Animal Care Event</option>						  
 						  <option style="color: #0099cc;" value="#0099cc">&#9724; Outreach Volunteer</option>
 						  <option style="color:#009966;" value="#009966">&#9724; Vet Team Volunteer</option>
 						  <option style="color:#cc6600;" value="#cc6600">&#9724; Animal Care Volunteer</option>
@@ -232,9 +230,24 @@ $events = $req->fetchAll();
 						<div class="col-sm-offset-2 col-sm-10">
 						  <div class="checkbox">
 							<label class="text-danger"><input type="checkbox"  name="delete"> Delete event</label>
+							</div>
+						  <div class="checkbox">
+						  <label class="text-danger"><input type="checkbox"  name="approveEvent"> Approve Shift</label>
 						  </div>
 						</div>
+						
 					</div>
+				  
+
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
 				  
 				  <input type="hidden" name="id" class="form-control" id="id">
 				
@@ -248,7 +261,6 @@ $events = $req->fetchAll();
 			</div>
 		  </div>
 		</div>
-
 		
 		
     </div>
@@ -268,7 +280,6 @@ $events = $req->fetchAll();
 	<script>
 
 	$(document).ready(function() {
-
 		
 		$('#calendar').fullCalendar({
 			header: {
@@ -281,15 +292,13 @@ $events = $req->fetchAll();
 			eventLimit: true, // allow "more" link when too many events
 			selectable: true,
 			selectHelper: true,
-			
 			select: function(start, end) {
 				
-				$('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD' + ' HH:mm:ss'));
+				$('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
 				$('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
 				$('#ModalAdd').modal('show');
 			},
 			eventRender: function(event, element) {
-
 				element.bind('dblclick', function() {
 					$('#ModalEdit #id').val(event.id);
 					$('#ModalEdit #title').val(event.title);
@@ -297,19 +306,6 @@ $events = $req->fetchAll();
 					$('#ModalEdit').modal('show');
 				});
 			},
-			 editable: function (event) {   
-    if (event.createdby == "Root") {
-        return true 
-		url: 'editEventDate2.php'
-		alert(event.createdby);
-    }
-    else {
-        return false 
-		url: 'editEventDate2.php'
-		alert(event.createdby);
-    }
-	
-},
 			eventDrop: function(event, delta, revertFunc) { // si changement de position
 
 				edit(event);
@@ -363,7 +359,7 @@ $events = $req->fetchAll();
 			Event[2] = end;
 			
 			$.ajax({
-			 url: 'editEventDate2.php',
+			 url: 'editEventDate.php',
 			 type: "POST",
 			 data: {Event:Event},
 			 success: function(rep) {
@@ -372,6 +368,15 @@ $events = $req->fetchAll();
 					}else{
 						alert('Could not be saved. Try again.'); 
 					}
+				}
+			});
+			
+			$.ajax({
+			 url: 'editEventDate2.php',
+			 type: "POST",
+			 data: {Event:Event},
+			 success: function(rep) {
+
 				}
 			});
 		}
