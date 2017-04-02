@@ -8,7 +8,45 @@ error_reporting(E_ALL);
 //*************
 //THIS PAGE IS NOT MEANT TO BE USED BY USERS...IT IS FOR EMAILING USERS THAT FORGOT TO CLOCKOUT
 //*************
+require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
+			$emailAddress = 'seilermr@dukes.jmu.edu';
+			$id = '22134';
+			$clockIn = '4/2/2017 3:00 PM';
+			$hyperlink = "<a href=\"52.43.142.237/484phpWork1/updateClockOutLogIn.php\">Click Here</a><p>";
+			$mail = new PHPMailer;
+			
 
+			//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+			$mail->isSMTP();                                      // Set mailer to use SMTP
+			$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = 'wcvtestemail@gmail.com';                 // SMTP username
+			$mail->Password = '1wildcva';                           // SMTP password
+			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 587;                                    // TCP port to connect to
+
+			$mail->setFrom('wcvtestemail@gmail', 'Wildlife Center of Virginia');
+			$mail->addAddress($emailAddress, 'Applicant');     // recipient
+			//$mail->addAddress('ellen@example.com');               //Add team lead
+
+			$mail->Subject = 'Wildlife Center of VA Clock Out Update';
+			$mail->Body    = 'It seems you forgot to Clock Out from the Wildlife Center of Virginia on the following date and time:<b> '. $clockIn 
+			. ' </b>. Please go to the link below and enter the Unique ID '. $id . ' and enter the correct Clock Out date and time. Thank you! <br>
+			' . $hyperlink; //CHANGE IP ADDRESS TO THE CORRECT AWS INSTACE
+			
+			$mail->AltBody = 'It seems you forgot to Clock Out from the Wildlife Center of Virginia on the following date and time:<b> '. $clockIn 
+			. ' </b>. Please go to the link below and enter the Unique ID '. $id . ' and enter the correct Clock Out date and time. Thank you!'; //CHANGE IP ADDRESS TO THE CORRECT AWS INSTACE
+
+			
+			$mail->isHTML(true);                                  // Set email format to HTML
+			
+			if(!$mail->send()) {
+				echo 'Message could not be sent.';
+				echo 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+				echo 'Message has been sent';
+			}
 
 $server = "localhost";
 $user = "root";
@@ -25,7 +63,7 @@ if(!mysqli_select_db($conn, 'wildlife'))
 }
 
 //SQL Statement to gather Email, Clock In datetime and ID for people who forgot to clockout
-	$sql = "SELECT Person_Email";//WRITE JOIN STATEMENT TO GET EMAIL, CLOCKIN TIME, AND LOGHOURS ID WHERE LOGHOURS_FORGOT = "Yes"
+	$sql = "SELECT Person_Email";//WRITE JOIN STATEMENT TO GET EMAIL, CLOCKIN TIME, AND LOGHOURS ID WHERE LOGHOURS_FORGOT = "Y"
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0){
 		// output data of each row
@@ -33,45 +71,44 @@ if(!mysqli_select_db($conn, 'wildlife'))
 			$emailAddress = $row['Person_Email'];
 			$clockIn = $row['LogHours_BeginTime'];
 			$id = $row['LogHours_ID'];
+			// Send email to each person that forgot to Clock Out with link to edit the time. Send them unique id and the date
+			
+			require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
+
+			$mail = new PHPMailer;
+
+			//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+			$mail->isSMTP();                                      // Set mailer to use SMTP
+			$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = 'wcvtestemail@gmail.com';                 // SMTP username
+			$mail->Password = '1wildcva';                           // SMTP password
+			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 587;                                    // TCP port to connect to
+
+			$mail->setFrom('wcvtestemail@gmail', 'Wildlife Center of Virginia');
+			$mail->addAddress($emailAddress, 'Applicant');     // recipient
+			//$mail->addAddress('ellen@example.com');               //Add team lead
+			$mail->isHTML(true);                                  // Set email format to HTML
+
+			$mail->Subject = 'Here is the subject';
+			$mail->Body    = 'It seems you forgot to Clock Out from the Wildlife Center of Virginia on the following date and time:<b> '. $clockIn 
+			. ' </b>. Please go to the link below and enter the Unique ID '. $id . ' and enter the correct Clock Out date and time. Thank you! <br>
+			52.43.142.237/484phpWork1/updateClockOutLogIn.php'; //CHANGE IP ADDRESS TO THE CORRECT AWS INSTACE
+			
+			$mail->AltBody = 'It seems you forgot to Clock Out from the Wildlife Center of Virginia on the following date and time:<b> '. $clockIn 
+			. ' </b>. Please go to the link below and enter the Unique ID '. $id . ' and enter the correct Clock Out date and time. Thank you!'; //CHANGE IP ADDRESS TO THE CORRECT AWS INSTACE
+
+			if(!$mail->send()) {
+				echo 'Message could not be sent.';
+				echo 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+				echo 'Message has been sent';
+			}
 		}
 		
 	}
-
-
-
-
-
-require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
-
-$mail = new PHPMailer;
-
-//$mail->SMTPDebug = 3;                               // Enable verbose debug output
-
-$mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'wcvtestemail@gmail.com';                 // SMTP username
-$mail->Password = '1wildcva';                           // SMTP password
-$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587;                                    // TCP port to connect to
-
-$mail->setFrom('wcvtestemail@gmail', 'Wildlife Center of Virginia');
-$mail->addAddress($emailAddress, 'Applicant');     // recipient
-//$mail->addAddress('ellen@example.com');               //Add team lead
-$mail->isHTML(true);                                  // Set email format to HTML
-
-$mail->Subject = 'Here is the subject';
-$mail->Body    = 'It seems you forgot to Clock Out from the Wildlife Center of Virginia on the following date and time:<b> '. $clockIn 
-. ' </b>. Please go to the link below and enter the Unique ID '. $id . ' and enter the correct Clock Out date and time. Thank you!';
-$mail->AltBody = 'It seems you forgot to Clock Out from the Wildlife Center of Virginia on the following date and time:<b> '. $clockIn 
-. ' </b>. Please go to the link below and enter the Unique ID '. $id . ' and enter the correct Clock Out date and time. Thank you!';
-
-if(!$mail->send()) {
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-} else {
-    echo 'Message has been sent';
-}
 
 
 ?>

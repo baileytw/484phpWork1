@@ -5,8 +5,25 @@ error_reporting(E_ALL);
 ?>
 
 <?php
+//Update Clockout time based on the Id entered and new time entered
+$server = "localhost";
+$user = "root";
+$password = "Twspike1994?";
+$database = "wildlife";
+$conn = mysqli_connect($server, $user, $password, $database);
+if (mysqli_connect_errno()) 
+{
+echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+if(!mysqli_select_db($conn, 'wildlife'))
+{
+   echo "Database Not Selected";
+}
 
+//SQL Statement to update Clock Out time
+$query = "UPDATE LogHours SET LogHours_EndTime = '" . @newTime ."' WHERE LogHours_ID = " . @idEntered;
 
+					 mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 
 ?>
