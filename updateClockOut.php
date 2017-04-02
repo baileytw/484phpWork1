@@ -41,6 +41,7 @@ error_reporting(E_ALL);
     	  <form id="form" method="post" class="form-horizontal">
     			<div class="form-group">
     			  <div class="col-sm-12">
+				  <p>Please enter the correct Clock Out time for "~DATE WILL GO HERE"
       				<input type="text" id="usernameLogIn"  class="form-control" value="" name="usernameLogIn" required="required" placeholder="Unique ID" />
     				</div>
     			</div>
