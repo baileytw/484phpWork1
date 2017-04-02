@@ -4,13 +4,13 @@
 //Session variables: KEEP AT TOP
 session_start();
 $email = $_SESSION['emailSession'];
-$userType = $_SESSION['userType']; 
+$userTypeSession = $_SESSION['userType']; 
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
 /*
 //If Session is empty, redirect user to restricted access notification
-if ($ == null){
+if ($userTypeSession != "Applicant"){
 	header("Location: restrictedAccess.php");
 	exit();
 }
