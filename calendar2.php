@@ -148,13 +148,13 @@ $events = $req->fetchAll();
 			  <div class="modal-body">
 				
 				  <div class="form-group">
-					<label for="title" class="col-sm-2 control-label">Title</label>
+					<label for="title" class="col-sm-2 control-label">Title:</label>
 					<div class="col-sm-10">
 					  <input type="text" name="title" class="form-control" id="title" placeholder="Title" required>
 					</div>
 				  </div>
 				  <div class="form-group">
-					<label for="color" class="col-sm-2 control-label">Color</label>
+					<label for="color" class="col-sm-2 control-label">Program:</label>
 					<div class="col-sm-10">
 					  <select name="color" class="form-control" id="color" required>
 						  <option value="">Choose</option>
@@ -171,13 +171,13 @@ $events = $req->fetchAll();
 				  
 				  
 				  <div class="form-group">
-					<label for="start" class="col-sm-2 control-label">Start date</label>
+					<label for="start" class="col-sm-2 control-label">Start date:</label>
 					<div class="col-sm-10">
 					  <input pattern=".{19,19}" type="text" name="start" class="form-control" id="start" required placeholder="YYYY-MM-DD HH:MM:SS">
 					</div>
 				  </div>
 				  <div class="form-group">
-					<label for="end" class="col-sm-2 control-label">End date</label>
+					<label for="end" class="col-sm-2 control-label">End date:</label>
 					<div class="col-sm-10">
 					  <input pattern=".{19,19}"type="text" name="end" class="form-control" id="end" required>
 					</div>
