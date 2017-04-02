@@ -5,6 +5,10 @@ error_reporting(E_ALL);
 ?>
 
 <?php
+//*************
+//THIS PAGE IS NOT MEANT TO BE USED BY USERS...IT IS FOR EMAILING USERS THAT FORGOT TO CLOCKOUT
+//*************
+
 
 $server = "localhost";
 $user = "root";
@@ -15,13 +19,27 @@ if (mysqli_connect_errno())
 {
 echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
-
 if(!mysqli_select_db($conn, 'wildlife'))
 {
    echo "Database Not Selected";
 }
 
-$emailAddress = 'seilermr@dukes.jmu.edu';			//CHANGE TO GET FROM DATABASE
+//SQL Statement to gather Email, Clock In datetime and ID for people who forgot to clockout
+	$sql = "SELECT Person_Email";//WRITE JOIN STATEMENT TO GET EMAIL, CLOCKIN TIME, AND LOGHOURS ID WHERE LOGHOURS_FORGOT = "Yes"
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0){
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$emailAddress = $row['Person_Email'];
+			$clockIn = $row['LogHours_BeginTime'];
+			$id = $row['LogHours_ID'];
+		}
+		
+	}
+
+
+
+
 
 require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
 
@@ -43,8 +61,10 @@ $mail->addAddress($emailAddress, 'Applicant');     // recipient
 $mail->isHTML(true);                                  // Set email format to HTML
 
 $mail->Subject = 'Here is the subject';
-$mail->Body    = 'This is the HTML '. $emailAddress . ' message body <b>in bold!</b>';
-$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+$mail->Body    = 'It seems you forgot to Clock Out from the Wildlife Center of Virginia on the following date and time:<b> '. $clockIn 
+. ' </b>. Please go to the link below and enter the Unique ID '. $id . ' and enter the correct Clock Out date and time. Thank you!';
+$mail->AltBody = 'It seems you forgot to Clock Out from the Wildlife Center of Virginia on the following date and time:<b> '. $clockIn 
+. ' </b>. Please go to the link below and enter the Unique ID '. $id . ' and enter the correct Clock Out date and time. Thank you!';
 
 if(!$mail->send()) {
     echo 'Message could not be sent.';

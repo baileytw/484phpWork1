@@ -47,10 +47,8 @@ error_reporting(E_ALL);
     			</div>
     			<div class="form-group">
     			  <div class="col-sm-12">
-<<<<<<< HEAD
-=======
 				  <p> *Enter as 01/01/2000 09:00 AM
->>>>>>> origin/master
+
       				<input type="datetime-local" id="date" class="form-control" value="" name="date" required="required" placeholder="Correct Clock Out Time" />
       			</div>
     			</div>
