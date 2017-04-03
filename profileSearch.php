@@ -1,4 +1,21 @@
 <!DOCTYPE html>
+<?php
+//Session variables: KEEP AT TOP
+session_start();
+$userID = $_SESSION['userID'];
+$userTypeSession = $_SESSION['userType']; 
+
+
+//UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
+/*
+//If Session is empty, redirect user to restricted access notification
+if ($userTypeSession != "Team Lead"){
+	header("Location: restrictedAccess.php");
+	exit();
+}
+
+*/
+?>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">

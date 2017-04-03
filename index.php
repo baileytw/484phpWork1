@@ -248,7 +248,7 @@ if(isset($_POST['btnLogIn'])){
 			exit();
 			}
 			if ($userType == "Team Lead"){
-				header("Location: profile2.php");
+				header("Location: calendar2.php");
 			exit();
 			}
 			if ($userType == "Staff"){
