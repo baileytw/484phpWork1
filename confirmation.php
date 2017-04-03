@@ -40,7 +40,6 @@
                             <li class="action">
 
                             <li class="active"><a href="forms.php">Application</a></li>
-                            <li><a href="#">Sign Out</a></li>
                                 </ul>
                             </li>
                         </ul>

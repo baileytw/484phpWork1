@@ -19,163 +19,23 @@
 <link rel="stylesheet" media="screen" href="css/style.css" />
 
 </head>
-<body>
-    <div id="wrapper">
-        <header>
-            <nav class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                      </button>
-                     <a class="navbar-brand" href=""><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
-                    </div>
-    
-                  
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul id="main-nav" class="nav navbar-nav">
-                            <li class="action">
+<body class="login">
+    <div class="login-box main-content panel panel-default">
+      <header class="panel-heading"><img src="../484phpWork1/images/logo_small.png" alt="Wildlife Logo"></header>
+    	<section class="panel-body">
+<ul><li>&nbsp;Thank you for updating your Clock Out time!</li></ul>
 
-                            <li class="active"><a href="forms.php">Application</a></li>
-                            <li><a href="#">Sign Out</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                      
-                    </div>
-                </div>
-            </nav>
-        </header>
-        
-        
-        <section>
-            <div class="container">
-                <div class="row">
+<!--clock out form-->
+<form id="form" action="index.php" method="post" class="form-horizontal">
 
-    
-    
-                    <!-- Main Section -->
-    
-                    <section class="col-md-12">
-                        <div class="main-section">
-
-                            <div class="main-content panel panel-default">
-                                <header class="panel-heading clearfix">
-                                    
-                                    <h2 class="panel-title">
-                                        Clock Out Update
-                                    </h2>
-                                </header>
-                                <section class="panel-body container-fluid">
-                                    <div class="col-sm-12">
-                                    
-<p style="text-align:center">Thank you for updating your Clock Out time!</p>
-                                            </fieldset>
-            
-                                           
-                                        </form>
-                                    </div>
-                </div>
-    
-                    <!-- Main Section End -->
-
-                
+          <div class="form-group">
+            <div class="col-sm-2 col-sm-offset-3">
+              <button class="btn btn-default" type="submit">Return to Login Screen</button>
             </div>
-            <div id="push"></div>
-        </section>
+          </div>
+</form>
+    		
+    	</section>
     </div>
-    
-    <footer>
-        <div id="footer-inner" class="container">
-            <div>
-                <span class="pull-right" class="footer" > &copy; 2017. All rights reserved. Owl Team
-            </div>
-        </div>
-    </footer>
-
-
-    <!-- simple dialog -->
-    <div class="modal fade" id="simpledialog" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Modal title</h4>
-          </div>
-          <div class="modal-body">
-            <p>One fine body&hellip;</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
-    <!-- yes/no dialog -->
-    <div class="modal fade" id="yesno" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Modal title</h4>
-          </div>
-          <div class="modal-body">
-            <p>One fine body&hellip;</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
-    <!-- user input dialog -->
-    <div class="modal fade" id="prompt" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">This is a modal dialog</h4>
-          </div>
-          <div class="modal-body">
-              <p>
-                  You can only interact with elements that are inside this dialog.
-                  To close it click a button or use the ESC key.
-              </p>
-              <form>
-                <div class="form-group">
-                  <label for="recipient-name" class="control-label">Recipient:</label>
-                  <input type="text" class="form-control" id="recipient-name">
-                </div>
-                <div class="form-group">
-                  <label for="message-text" class="control-label">Message:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
-                </div>
-              </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
-
-    <!-- render blocking scripts -->
-
-    <!-- jQuery JS -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-    <!-- Main Script -->
-    <script src="js/global.js"></script>
 </body>
 </html>

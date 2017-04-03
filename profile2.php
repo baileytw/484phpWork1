@@ -19,20 +19,87 @@ if ($userTypeSession != "Team Lead"){
 */
 
 
-
+//THIS IS THE TEAM LEAD VIEW, SO MAKE SURE YOU ARE GETTING THE VOLUNTEER'S INFO AND NOT TEAM LEAD. DO NOT USE THE $userID variable
 //Determine the "userType" of the persons profile in order to determine if "Accept Application" button should be shown
 
 
 
+/*
+$profileID = whoever the profile is about that the team lead is looking at
 
+if(isset($_POST['btnAccept'])){
+	$server = "localhost";
+	$user = "root";
+	$password = "Twspike1994?";
+	$database = "wildlife";
+	$conn = mysqli_connect($server, $user, $password, $database);
+	if (mysqli_connect_errno()) 
+	{
+	echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+	if(!mysqli_select_db($conn, 'wildlife'))
+	{
+	   echo "Database Not Selected";
+	}
 
+	//SQL Statement to update applicant to Volunteer
+	$query = "UPDATE Person SET Person_UserType = 'Volunteer' WHERE Person_ID = " . $profileID;
 
-//THIS IS THE TEAM LEAD VIEW, SO MAKE SURE YOU ARE GETTING THE VOLUNTEER'S INFO AND NOT TEAM LEAD. DO NOT USE THE $userID variable
+	if(!mysqli_query($conn,$query))
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
+	$conn->close();
+}
+//Gather information to populate profile
+$servername = "localhost";
+$username = "root";
+$dbpassword = "Twspike1994?";
+$dbname = "wildlife";
 
-
-
-
-
+// Create connection
+$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+// Check connection
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
+//SQL Statement to get applicant/volunteers profile info
+$sql = "SELECT * FROM Person WHERE Person_ID = " $profileID;
+$result = $conn->query($sql);
+if ($result->num_rows > 0){
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$user = $row['Person_Email'];
+		$userType = $row['Person_UserType'];
+	}
+	
+	if($userType == "Volunteer" ){									//***************NEED TO MAKE A WAY TO DISTINGUISH BETWEEN REGULAR VOLUNTEERS AND TRANSPORTERS
+		
+		
+		//////INSERT THE transporter INFO HERE INTO THE DATABASE
+		
+		
+		$conn->close();
+		header("Location: transporter.php");
+		exit();
+	}
+	else {
+	// Not a volunteer, show an error
+	$message = 'Error. For Transporter use only.';
+	echo "<SCRIPT>
+	alert('$message');
+	</SCRIPT>";
+	}
+}
+else {
+ // passwords didn't match, show an error
+	$message = 'Username incorrect. Please use your email address for your Username.';
+	echo "<SCRIPT>
+	alert('$message');
+	</SCRIPT>";
+}
+$conn->close();
+*/
 
 
 
