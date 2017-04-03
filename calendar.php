@@ -126,7 +126,7 @@ $events = $req->fetchAll();
                                     <h2 class="panel-title col-sm-3">
                                         Calendar
                                     </h2>
-                                                                                     <a href="#" class="btn btn-default pull-right col-sm-3" rel="#overlay">Available Shifts<i class="fa fa-question-circle"></i></a>
+                                                                                     <button id="btnPress" class="btn btn-default pull-right col-sm-3" rel="#overlay">Reserve Shift<i class="fa fa-question-circle"></i></button>
                                 </header>
                                 <section class="panel-body">
                                    <div id="calendar" class="col-centered"></div> 
@@ -298,19 +298,7 @@ $events = $req->fetchAll();
 					$('#ModalEdit').modal('show');
 				});
 			},
-			 editable: function (event) {   
-    if (event.createdby == "Root") {
-        return true 
-		url: 'editEventDate2.php'
-		alert(event.createdby);
-    }
-    else {
-        return false 
-		url: 'editEventDate2.php'
-		alert(event.createdby);
-    }
-	
-},
+
 			eventDrop: function(event, delta, revertFunc) { // si changement de position
 
 				edit(event);
@@ -378,6 +366,23 @@ $events = $req->fetchAll();
 		}
 		
 	});
+
+</script>
+
+
+<script>
+// Get the modal
+var modal = document.getElementById('ModalAdd');
+
+// Get the button that opens the modal
+var btn = document.getElementById("btnPress");
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    $('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
+				$('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
+				$('#ModalAdd').modal('show');
+}
 
 </script>
 </section>
