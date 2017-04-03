@@ -157,10 +157,19 @@ session_start();
 			$userType = $row['Person_UserType'];
 		}
 		
-		if($userType == "Volunteer" ){									//***************NEED TO MAKE A WAY TO DISTINGUISH BETWEEN REGULAR VOLUNTEERS AND TRANSPORTERS
+		if($userType == "Volunteer" ){									
 			
 			
-			//////INSERT THE transporter INFO HERE INTO THE DATABASE
+			$query = "INSERT INTO LogTransport(LogTransport_TransportID,LogTransport_TypeOfAnimal,LogTransport_Date,LogTransport_Species,
+			LogTransport_Address,LogTransport_Hours,LogTransport_Miles) VALUES (1,'" . $_POST['date'] . "','" . $_POST['address'] . "'," 
+			. $_POST['hours'] . "," . $_POST['mileage'] . ")";
+			LogTransport_TransportID	INTEGER NOT NULL,
+LogTransport_TypeOfAnimal	INTEGER	NOT NULL,
+LogTransport_Date	        DATE,
+LogTransport_Species	    VARCHAR(70),
+LogTransport_Address        VARCHAR(300),
+LogTransport_Hours			INTEGER,
+LogTransport_Miles			INTEGER,
 			
 			
 			$conn->close();
@@ -341,6 +350,11 @@ if(isset($_POST['btnLogIn'])){
           <div class="form-group">
             <div class="col-sm-12">
               <input type="text" id="usernameTransporter"  class="form-control" value="" name="usernameTransporter" required="required" placeholder="Username" />
+            </div>
+          </div>
+		  <div class="form-group">
+            <div class="col-sm-12">
+              <input type="date" id="date"  class="form-control" value="" name="date" required="required" placeholder="Date of Pickup" />
             </div>
           </div>
 		  <div class="form-group">
