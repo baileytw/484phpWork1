@@ -80,7 +80,7 @@ $events = $req->fetchAll();
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="profile2.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
+                      <a class="navbar-brand" href="profile.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     </div>
     
                   
@@ -88,7 +88,7 @@ $events = $req->fetchAll();
                         <ul id="main-nav" class="nav navbar-nav">
                             <li class="action">
 
-                            <li><a href="profile2.php">Profile</a></li>
+                            <li><a href="profile.php">Profile</a></li>
                             <li class="active"><a href="calendar2.php">Calendar</a></li>
                             <li><a href="index.php">Sign Out</a></li>
                                 </ul>
@@ -274,8 +274,11 @@ $events = $req->fetchAll();
     <script src="js/bootstrap.min.js"></script>
 	
 	<!-- FullCalendar -->
-	<script src='js/moment.min.js'></script>
-	<script src='js/fullcalendar.min.js'></script>
+	<link href='fullcalendar.min.css' rel='stylesheet' />
+<link href='fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<script src='lib/moment.min.js'></script>
+<script src='fullcalendar.min.js'></script>
+<script src='gcal.min.js'></script>
 	
 	<script>
 
@@ -292,6 +295,9 @@ $events = $req->fetchAll();
 			eventLimit: true, // allow "more" link when too many events
 			selectable: false,
 			selectHelper: true,
+			
+			
+			googleCalendarApiKey: 'AIzaSyCOO_AYRid39dFTyP82uqIsbDvQjn571ks',
 			select: function(start, end) {
 				
 				$('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
@@ -316,6 +322,23 @@ $events = $req->fetchAll();
 				edit(event);
 
 			},
+			
+			
+			
+			
+			
+			loading: function(bool) {
+				$('#loading').toggle(bool);
+			},
+			eventSources: [
+        'wcvtest@gmail.com'
+    ],
+	eventClick: function(event) {
+    if (event.url) {
+        window.open(event.url, 'gcalevent', 'width=600, height=500');
+        return false;
+    }
+	},
 			events: [
 			<?php foreach($events as $event): 
 			

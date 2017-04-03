@@ -58,11 +58,11 @@ $events = $req->fetchAll();
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-	<!-- FullCalendar -->
-	<link href='css/fullcalendar.css' rel='stylesheet' />
+
 
 <link rel="stylesheet" media="screen" href="css/style.css" />
-<script type='text/javascript' src='fullcalendar/gcal.js'></script>
+
+
 
 
 <style>
@@ -264,8 +264,27 @@ $events = $req->fetchAll();
     <script src="js/bootstrap.min.js"></script>
 	
 	<!-- FullCalendar -->
-	<script src='js/moment.min.js'></script>
-	<script src='js/fullcalendar.min.js'></script>
+	<link href='fullcalendar.min.css' rel='stylesheet' />
+<link href='fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<script src='lib/moment.min.js'></script>
+<script src='fullcalendar.min.js'></script>
+<script src='gcal.min.js'></script>
+
+<script>
+// Get the modal
+var modal = document.getElementById('ModalAdd');
+
+// Get the button that opens the modal
+var btn = document.getElementById("btnPress");
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    $('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
+				$('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
+				$('#ModalAdd').modal('show');
+}
+
+</script>
 	
 	<script>
 
@@ -284,6 +303,13 @@ $events = $req->fetchAll();
 			selectable: false,
 			selectHelper: true,
 			
+			googleCalendarApiKey: 'AIzaSyCOO_AYRid39dFTyP82uqIsbDvQjn571ks',
+		
+			// US Holidays
+			
+
+
+			
 			select: function(start, end) {
 				
 				$('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD' + ' HH:mm:ss'));
@@ -300,17 +326,38 @@ $events = $req->fetchAll();
 				});
 			},
 
-			eventDrop: function(event, delta, revertFunc) { // si changement de position
+			eventDrop: function(event, delta, revertFunc) { 
 
 				edit(event);
 
 			},
-			eventResize: function(event,dayDelta,minuteDelta,revertFunc) { // si changement de longueur
+			eventResize: function(event,dayDelta,minuteDelta,revertFunc) { 
 
 				edit(event);
 
 			},
+			
+			
+			
+			
+			
+			loading: function(bool) {
+				$('#loading').toggle(bool);
+			},
+			eventSources: [
+        'wcvtest@gmail.com'
+    ],
+	eventClick: function(event) {
+    if (event.url) {
+        window.open(event.url, 'gcalevent', 'width=600, height=500');
+        return false;
+    }
+	},
+			
+			
+			
 			events: [
+			
 			<?php foreach($events as $event): 
 			
 				$start = explode(" ", $event['start']);
@@ -335,7 +382,9 @@ $events = $req->fetchAll();
 				},
 			<?php endforeach; ?>
 			]
+			
 		});
+		
 		
 		function edit(event){
 			start = event.start.format('YYYY-MM-DD HH:mm:ss');
@@ -366,29 +415,14 @@ $events = $req->fetchAll();
 			});
 		}
 		
+		
 	});
 
 </script>
 
-
-
 		
 
-<script>
 // Get the modal
-var modal = document.getElementById('ModalAdd');
-
-// Get the button that opens the modal
-var btn = document.getElementById("btnPress");
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    $('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
-				$('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
-				$('#ModalAdd').modal('show');
-}
-
-</script>
 </section>
 
     <footer>
