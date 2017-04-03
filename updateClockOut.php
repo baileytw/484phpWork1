@@ -5,7 +5,22 @@ error_reporting(E_ALL);
 ?>
 
 <?php
-/* //Update Clockout time based on the Id entered and new time entered
+//UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
+/*
+//If Session is empty, redirect user to restricted access notification
+if ($userTypeSession != "Volunteer"){
+	header("Location: restrictedAccess.php");
+	exit();
+}
+
+*/
+
+
+
+
+
+/* 
+//Update Clockout time based on the Id entered and new time entered
 $server = "localhost";
 $user = "root";
 $password = "Twspike1994?";

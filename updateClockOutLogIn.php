@@ -5,6 +5,13 @@ error_reporting(E_ALL);
 ?>
 
 <?php
+//DO NOT MOVE. KEEP AT TOP
+// destroy the session
+session_start(); 
+session_destroy();
+//start new session
+session_start();
+
 if(isset($_POST['btnLogIn'])){
 	// Help with password hashing from https://sunnysingh.io/blog/secure-passwords
 		//Get PasswordHash file
