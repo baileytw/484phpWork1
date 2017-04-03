@@ -98,7 +98,7 @@ if(isset($_POST['downloadResume']))
                             <li class="action">
 
                             <li class="active"><a href="profile2.php">Profile</a></li>
-                            <li><a href="calendar.php">Calendar</a></li>
+                            <li><a href="calendar2.php">Calendar</a></li>
                             <li><a href="index.php">Sign Out</a></li>
                                 </ul>
                             </li>
