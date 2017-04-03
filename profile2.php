@@ -69,8 +69,9 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
 	while($row = $result->fetch_assoc()) {
-		$user = $row['Person_Email'];
-		$userType = $row['Person_UserType'];
+		$profileFirstName = $row['Person_FirstName'];
+		$profileLastName = $row['Person_LastName'];
+		$profileLastName = $row['Person_LastName'];
 	}
 	
 	if($userType == "Volunteer" ){									//***************NEED TO MAKE A WAY TO DISTINGUISH BETWEEN REGULAR VOLUNTEERS AND TRANSPORTERS
