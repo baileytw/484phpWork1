@@ -37,12 +37,13 @@ if(isset($_POST['btnLogIn'])){
 			die("Connection failed: " . $conn->connect_error);
 		} 
 		//SQL Statement to gather hash
-		$sql = "SELECT Person_PasswordHash, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameLogIn'] . "'";
+		$sql = "SELECT PersonID, Person_PasswordHash, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameLogIn'] . "'";
 		
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
+				$userID = $row['Person_ID'];
 				$stored_hash = $row['Person_PasswordHash'];
 				$userType = $row['Person_UserType'];
 			}
@@ -55,7 +56,7 @@ if(isset($_POST['btnLogIn'])){
 		if ($check) {
 			
 			//Save session variable to be used on the next page
-			$_SESSION['emailSession'] = $_POST['usernameLogIn'];
+			$_SESSION['userID'] = $userID;
 			$_SESSION['userType'] = $userType;
 		
 		  // passwords matched! Go to the User Type specific page (Depends if they are applicant, volunteer, team leads, staff)

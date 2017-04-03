@@ -4,7 +4,7 @@
 <?php
 //Session variables: KEEP AT TOP
 session_start();
-$email = $_SESSION['emailSession'];
+$userID = $_SESSION['userID'];
 $userTypeSession = $_SESSION['userType']; 
 
 

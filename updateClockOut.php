@@ -5,6 +5,11 @@ error_reporting(E_ALL);
 ?>
 
 <?php
+//Session variables: KEEP AT TOP
+session_start();
+$userID = $_SESSION['userID'];
+$userTypeSession = $_SESSION['userType']; 
+
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
 /*
 //If Session is empty, redirect user to restricted access notification

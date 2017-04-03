@@ -3,7 +3,7 @@
 <?php
 //Session variables: KEEP AT TOP
 session_start();
-$email = $_SESSION['emailSession'];
+$userID = $_SESSION['userID'];
 $userTypeSession = $_SESSION['userType']; 
 
 
@@ -33,7 +33,7 @@ if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 } 
 //SQL Statement to gather hash
-$sql = "SELECT Person_FirstName, Person_LastName FROM Person WHERE Person_Email = '" . $email . "'";
+$sql = "SELECT Person_FirstName, Person_LastName FROM Person WHERE Person_ID = '" . $userID . "'";
 echo sql;
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {

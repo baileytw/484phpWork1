@@ -34,11 +34,12 @@ session_start();
 	if ($result->num_rows > 0){
 		// output data of each row
 		while($row = $result->fetch_assoc()) {
+			
 			$user = $row['Person_Email'];
 			$userType = $row['Person_UserType'];
 		}
 		
-		if($userType == "Volunteer" ){														//***************NEED TO MAKE A WAY TO DISTINGUISH BETWEEN REGULAR VOLUNTEERS AND TRANSPORTERS
+		if($userType == "Volunteer" ){														
 			
 			
 			//////INSERT THE clock in TIME HERE INTO THE DATABASE
@@ -50,7 +51,7 @@ session_start();
 		}
 		else {
 		// Not a volunteer, show an error
-		$message = 'Error. If you are a transporter, please use the Transporter form.';
+		$message = 'Error. Please try again.';
 		echo "<SCRIPT>
 		alert('$message');
 		</SCRIPT>";
@@ -207,7 +208,7 @@ if(isset($_POST['btnLogIn'])){
 			die("Connection failed: " . $conn->connect_error);
 		} 
 		//SQL Statement to gather hash
-		$sql = "SELECT Person_PasswordHash, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameLogIn'] . "'";
+		$sql = "SELECT Person_ID, Person_PasswordHash, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameLogIn'] . "'";
 		
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0) {
@@ -225,7 +226,7 @@ if(isset($_POST['btnLogIn'])){
 		if ($check) {
 			
 			//Save session variable to be used on the next page
-			$_SESSION['emailSession'] = $_POST['usernameLogIn'];
+			$_SESSION['userID'] = $userID;
 			$_SESSION['userType'] = $userType;
 		
 		  // passwords matched! Go to the User Type specific page (Depends if they are applicant, volunteer, team leads, staff)
