@@ -18,29 +18,32 @@ if ($userTypeSession != "Volunteer"){
 
 
 
+if(isset($_POST['btnUpdate'])){
+	
+	$newTime = $_POST["clockout"];
+	$idEnterd = $_POST["uniqueid"];
+	
+	//Update Clockout time based on the Id entered and new time entered
+	$server = "localhost";
+	$user = "root";
+	$password = "Twspike1994?";
+	$database = "wildlife";
+	$conn = mysqli_connect($server, $user, $password, $database);
+	if (mysqli_connect_errno()) 
+	{
+	echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+	if(!mysqli_select_db($conn, 'wildlife'))
+	{
+	   echo "Database Not Selected";
+	}
 
-/* 
-//Update Clockout time based on the Id entered and new time entered
-$server = "localhost";
-$user = "root";
-$password = "Twspike1994?";
-$database = "wildlife";
-$conn = mysqli_connect($server, $user, $password, $database);
-if (mysqli_connect_errno()) 
-{
-echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	//SQL Statement to update Clock Out time
+	$query = "UPDATE LogHours SET LogHours_EndTime = '" . @newTime ."' WHERE LogHours_ID = " . @idEntered;
+
+						 mysqli_query($conn, $query) or die(mysqli_error($conn));
 }
-if(!mysqli_select_db($conn, 'wildlife'))
-{
-   echo "Database Not Selected";
-}
-
-//SQL Statement to update Clock Out time
-$query = "UPDATE LogHours SET LogHours_EndTime = '" . @newTime ."' WHERE LogHours_ID = " . @idEntered;
-
-					 mysqli_query($conn, $query) or die(mysqli_error($conn));
-
- */
+ 
 ?>
 
 
@@ -73,20 +76,20 @@ $query = "UPDATE LogHours SET LogHours_EndTime = '" . @newTime ."' WHERE LogHour
     	  <form id="form" method="post" class="form-horizontal">
     			<div class="form-group">
     			  <div class="col-sm-12">
-				  <p>Please enter the correct Clock Out time for "~DATE WILL GO HERE"
+				  <p>Enter the Unique ID
       				<input type="text" id="uniqueid"  class="form-control" value="" name="uniqueid" required="required" placeholder="Unique ID" />
     				</div>
     			</div>
     			<div class="form-group">
     			  <div class="col-sm-12">
-				  <p> *Enter as 01/01/2000 09:00 AM
+				  <p> Enter correct date &amp time
 
-      				<input type="datetime-local" id="date" class="form-control" value="" name="date" required="required" placeholder="Correct Clock Out Time" />
+      				<input type="datetime-local" id="date" class="form-control" value="" name="clockout" required="required" placeholder="Correct Clock Out Time" />
       			</div>
     			</div>
     			<div class="form-group">
     			  <div class="col-sm-2 col-sm-offset-4">
-      				<button ID="btnLogIn" name="btnLogIn" class="btn btn-default" type="submit">Update</button>
+      				<button ID="btnLogIn" name="btnUpdate" class="btn btn-default" type="submit">Update</button>
       			</div>
       		</div>
 </form>
