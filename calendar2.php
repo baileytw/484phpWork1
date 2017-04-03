@@ -80,20 +80,19 @@ $events = $req->fetchAll();
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                      <a class="navbar-brand" href="profile.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
+                      <a class="navbar-brand" href="calendar2.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     </div>
     
                   
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul id="main-nav" class="nav navbar-nav">
                             <li class="action">
-
-                            <li><a href="profile.php">Profile</a></li>
-                            <li class="active"><a href="calendar2.php">Calendar</a></li>
-                            <li><a href="index.php">Sign Out</a></li>
-                                </ul>
+							<li class="active"><a href="calendar2.php">Calendar</a></li>
+							<li><a href="profilesearch.php">Search</a></li>							
+                            <li><a href="accountProfile.php">Account</a></li>                          
+                            <li><a href="index.php">Sign Out</a></li>                     
                             </li>
-                        </ul>
+							</ul>
                       
                     </div>
                 </div>
