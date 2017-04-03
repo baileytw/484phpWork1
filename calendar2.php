@@ -334,7 +334,7 @@ $events = $req->fetchAll();
     ],
 	eventClick: function(event) {
     if (event.url) {
-        window.open(event.url, 'gcalevent', 'width=600, height=500');
+        window.open(event.url, 'gcalevent', 'width=1000, height=600');
         return false;
     }
 	},
