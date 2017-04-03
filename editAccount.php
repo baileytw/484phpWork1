@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<?php
+//Session variable: KEEP AT TOP
+session_start();
+$email = $_SESSION['emailSession']; 
+
+
+//UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
+/*
+//If Session is empty, redirect user to restricted access notification
+if ($email == null){
+	header("Location: restrictedAccess.php");
+	exit();
+}
+
+*/
+?>
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Wildlife Center of Virginia Volunteers</title>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" media="screen" href="css/style.css" />
+
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="calendar2.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
+                    </div>
+    
+                  
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul id="main-nav" class="nav navbar-nav">
+                            <li class="action">
+							<li><a href="calendar2.php">Calendar</a></li>
+							<li><a href="profilesearch.php">Search</a></li>							
+                            <li class="active"><a href="accountProfile.php">Account</a></li>                          
+                            <li><a href="index.php">Sign Out</a></li>                     
+                            </li>
+							</ul>
+                      
+                    
+                      
+                    </div>
+                </div>
+            </nav>
+        </header>
+        
+        <section>
+            <div class="container">
+                <div class="row">
+
+    
+    
+                    <!-- Main Section -->
+
+
+
+                    <section class="col-md-9 no-padding">
+                        <div class="main-section">
+                        
+                            <div class="container-fluid no-padding">
+                                <div class="col-md-12 no-padding">
+                                    <div class="main-content panel panel-default no-margin">
+                                        <header class="panel-heading clearfix">
+
+                                             
+
+                                            
+                                        </header>
+<div class="content">
+                                        <h3 class="col-md-6">Edit Account Information</h3>
+                                             
+<div class="container">
+  	<hr>
+	<div class="row">
+      <!-- left column -->
+
+      
+      <!-- edit form column -->
+      <div class="col-md-7 col-md-offset-1 personal-info">
+        
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">First name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="John">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="Doe">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="johndoe@gmail.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Phone:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="540-555-7836">
+            </div>
+          </div>
+         
+	
+
+          <div class="form-group">
+            <label class="col-md-3 control-label">Password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" value="11111122333">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Confirm password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" value="11111122333">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="button" class="btn btn-primary" value="Save Changes">
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel">
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+<hr>
+
+                                    </div>
+                               </div></div>
+
+  
+                                    </div>
+                                    <div class="preview">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <!-- Main Section End -->
+                </div>
+            </div>
+            <div id="push"></div>
+        </section>
+    </div>
+    
+    <footer>
+        <div id="footer-inner" class="container">
+            <div>
+                <span class="pull-right" class="footer" > &copy; 2017. All rights reserved. Owl Team</span>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- render blocking scripts -->
+
+    <!-- jQuery JS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <!-- markitup! -->
+    <script type="text/javascript" src="markitup/jquery.markitup.js"></script>
+    <!-- markItUp! toolbar settings -->
+    <script type="text/javascript" src="markitup/sets/default/set.js"></script>
+
+    <!-- Main Script -->
+    <script src="js/global.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        // Add markItUp! to your textarea in one line
+        $('.markItUpTextarea').markItUp(mySettings, { root:'markitup/skins/simple/' });
+    });
+    </script>
+</body>
+</html>
