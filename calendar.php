@@ -62,6 +62,7 @@ $events = $req->fetchAll();
 	<link href='css/fullcalendar.css' rel='stylesheet' />
 
 <link rel="stylesheet" media="screen" href="css/style.css" />
+<script type='text/javascript' src='fullcalendar/gcal.js'></script>
 
 
 <style>
@@ -175,14 +176,14 @@ $events = $req->fetchAll();
 				  <div class="form-group">
 					<label for="start" class="col-sm-2 control-label">Start Date:</label>
 					<div class="col-sm-10">
-					  <input pattern=".{19,19}" type="datetime-local" name="start" class="form-control" id="start">
+					  <input pattern=".{19,19}" min="2017-02-01T00:00:00" type="datetime-local" name="start" class="form-control" id="start" required>
 					</div>
 				  </div>
 				  <div class="form-group">
 					<label for="end" class="col-sm-2 control-label">End Date:</label>
 					<div class="col-sm-10">
 
-					  <input pattern=".{19,19}" type="datetime-local" name="end" class="form-control" id="end">
+					  <input pattern=".{19,19}" min="2017-02-01T00:00:00" type="datetime-local" name="end" class="form-control" id="end" required>
 
 					</div>
 				  </div>
@@ -369,6 +370,9 @@ $events = $req->fetchAll();
 
 </script>
 
+
+
+		
 
 <script>
 // Get the modal
