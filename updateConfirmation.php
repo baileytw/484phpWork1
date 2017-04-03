@@ -66,15 +66,13 @@
                                 <header class="panel-heading clearfix">
                                     
                                     <h2 class="panel-title">
-                                        Wildlife Center of Virginia - Application
+                                        Clock Out Update
                                     </h2>
                                 </header>
                                 <section class="panel-body container-fluid">
                                     <div class="col-sm-12">
                                     
-<p style="text-align:center">Thank you for submitting your application!
-
-Our team will be in touch.</p>
+<p style="text-align:center">Thank you for updating your Clock Out time!</p>
                                             </fieldset>
             
                                            

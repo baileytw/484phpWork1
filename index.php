@@ -28,30 +28,27 @@ session_start();
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
-	//SQL Statement to gather hash
-	$sql = "SELECT Person_Email, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameClockIn'] . "'";
+	//SQL Statement to gather info
+	$sql = "SELECT Person_ID, Person_Email, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameClockIn'] . "'";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0){
 		// output data of each row
 		while($row = $result->fetch_assoc()) {
-			
+			$personID = $row['Person_ID'];
 			$user = $row['Person_Email'];
 			$userType = $row['Person_UserType'];
 		}
 		
 		if($userType == "Volunteer" ){														
+			$query = "INSERT INTO LogHours(LogHours_PersonID,LogHours_Department,LogHours_BeginTime) VALUES(" . $personID . ",1,NOW())";
+			mysqli_query($conn, $query) or die(mysqli_error($conn));
 			
-			
-			//////INSERT THE clock in TIME HERE INTO THE DATABASE
-			
-			
-			$conn->close();
 			header("Location: clockin.php");
 			exit();
 		}
 		else {
 		// Not a volunteer, show an error
-		$message = 'Error. Please try again.';
+		$message = 'Error. Please try again. Volunteer use only';
 		echo "<SCRIPT>
 		alert('$message');
 		</SCRIPT>";
@@ -64,6 +61,7 @@ session_start();
 		alert('$message');
 		</SCRIPT>";
 	}
+	$conn->close();
  }
  /****************************************
 	END ClockIn CODE 
@@ -85,24 +83,33 @@ session_start();
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
-	//SQL Statement to gather hash
-	$sql = "SELECT Person_Email, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameClockIn'] . "'";
+	//SQL Statement to gather info
+	$sql = "SELECT Person_ID, Person_Email, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameClockIn'] . "'";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0){
 		// output data of each row
 		while($row = $result->fetch_assoc()) {
+			$personID = $row['Person_ID'];
 			$user = $row['Person_Email'];
 			$userType = $row['Person_UserType'];
 		}
-		$conn->close();
-		if($userType == "Volunteer" ){											//***************NEED TO MAKE A WAY TO DISTINGUISH BETWEEN REGULAR VOLUNTEERS AND TRANSPORTERS
+		
+		if($userType == "Volunteer" ){											
 			
 			
-			//////INSERT THE clock out TIME HERE INTO THE DATABASE
-			
-			
-			header("Location: clockin.php");
-			exit();
+			$sql = "SELECT MAX(LogHours_ID) FROM LogHours WHERE LogHours_PersonID = " . $personID;
+			$result = $conn->query($sql);
+			if ($result->num_rows > 0){
+				// output data of each row
+				while($row = $result->fetch_assoc()) {
+					$logID = $row['MAX(LogHours_ID)'];
+				}
+				$query = "UPDATE LogHours SET LogHours_EndTime = NOW() WHERE LogHours_ID =" . $logID;
+				mysqli_query($conn, $query) or die(mysqli_error($conn));
+				
+				header("Location: clockin.php");
+				exit();
+			}
 		}
 		else {
 		// Not a volunteer, show an error
@@ -119,6 +126,7 @@ session_start();
 		alert('$message');
 		</SCRIPT>";
 	}
+	$conn->close();
  }
  /****************************************
 	END ClockOut CODE 
@@ -174,6 +182,7 @@ session_start();
 		alert('$message');
 		</SCRIPT>";
 	}
+	$conn->close();
  }
 
  /****************************************
@@ -252,11 +261,11 @@ if(isset($_POST['btnLogIn'])){
 
 		 // passwords didn't match, show an error
 			
-$message = 'Username and/or Password is incorrect. Please use your email address for your Username.';
+		$message = 'Username and/or Password is incorrect. Please use your email address for your Username.';
 
-echo "<SCRIPT>
-alert('$message');
-</SCRIPT>";
+		echo "<SCRIPT>
+		alert('$message');
+		</SCRIPT>";
 		}
 	} 
 /****************************************

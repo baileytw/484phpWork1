@@ -37,13 +37,12 @@ if(isset($_POST['btnLogIn'])){
 			die("Connection failed: " . $conn->connect_error);
 		} 
 		//SQL Statement to gather hash
-		$sql = "SELECT PersonID, Person_PasswordHash, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameLogIn'] . "'";
+		$sql = "SELECT Person_ID, Person_PasswordHash, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameLogIn'] . "'";
 		
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
-				$userID = $row['Person_ID'];
 				$stored_hash = $row['Person_PasswordHash'];
 				$userType = $row['Person_UserType'];
 			}
@@ -61,18 +60,17 @@ if(isset($_POST['btnLogIn'])){
 		
 		  // passwords matched! Go to the User Type specific page (Depends if they are applicant, volunteer, team leads, staff)
 			if ($userType == "Applicant"){
-				$message = 'Applicants cannot use this feature';
-			exit();
+				
 			}
 			if ($userType == "Volunteer"){
 				header("Location: updateClockOut.php");
+				exit();
 			}
 			if ($userType == "Team Lead"){
-				header("Location: updateClockOut.php");
-			exit();
+				
 			}
 			if ($userType == "Staff"){
-				$message = 'Staff cannot use this feature';
+				
 			}
 			
 			
@@ -80,11 +78,11 @@ if(isset($_POST['btnLogIn'])){
 
 		 // passwords didn't match, show an error
 			
-$message = 'Username and/or Password is incorrect. Please use your email address for your Username.';
+		$message = 'Username and/or Password is incorrect. Please use your email address for your Username.';
 
-echo "<SCRIPT>
-alert('$message');
-</SCRIPT>";
+		echo "<SCRIPT>
+		alert('$message');
+		</SCRIPT>";
 		}
 	} 
 ?>

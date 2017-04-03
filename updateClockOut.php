@@ -26,7 +26,7 @@ if ($userTypeSession != "Volunteer"){
 if(isset($_POST['btnUpdate'])){
 	
 	$newTime = $_POST["clockout"];
-	$idEnterd = $_POST["uniqueid"];
+	$idEntered = $_POST["uniqueid"];
 	
 	//Update Clockout time based on the Id entered and new time entered
 	$server = "localhost";
@@ -44,9 +44,20 @@ if(isset($_POST['btnUpdate'])){
 	}
 
 	//SQL Statement to update Clock Out time
-	$query = "UPDATE LogHours SET LogHours_EndTime = '" . @newTime ."' WHERE LogHours_ID = " . @idEntered;
+	$query = "UPDATE LogHours SET LogHours_EndTime = '" . $newTime ."' WHERE LogHours_ID = " . $idEntered;
 
-						 mysqli_query($conn, $query) or die(mysqli_error($conn));
+	if(!mysqli_query($conn,$query))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
+
+			else
+			{
+				header("Location: updateConfirmation.php");
+				exit();
+			}
+	
 }
  
 ?>
