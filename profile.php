@@ -16,6 +16,34 @@ if ($userTypeSession != "Volunteer"){
 }
 
 */
+//Populate fields code
+$servername = "localhost";
+$username = "root";
+$dbpassword = "Twspike1994?";
+$dbname = "wildlife";
+
+// Create connection
+$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+// Check connection
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
+//SQL Statement to gather info
+$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email FROM Person WHERE Person_ID = " .$userID;
+$result = $conn->query($sql);
+if ($result->num_rows > 0){
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$first = $row['Person_FirstName'];
+		$last = $row['Person_LastName'];
+		$phone = $row['Person_PhonePrimary'];
+		$email = $row['Person_Email'];
+	}
+}
+else {
+ 
+}
+$conn->close();
 ?>
 
 
@@ -93,7 +121,7 @@ if ($userTypeSession != "Volunteer"){
                                              <hgroup>
                                                  <a href="editprofile.php" class="btn btn-default pull-right" rel="#overlay">Edit Profile<i class="fa fa-question-circle"></i></a>
                                                  <h2>
-                                                     John Doe
+                                                     <?php echo $first . " " . $last?>
                                                  </h2>
                                                  <h4>Volunteer</h4>
                                              </hgroup>
@@ -103,12 +131,12 @@ if ($userTypeSession != "Volunteer"){
                                         <h3>Contact Information</h3>
 <div class="panel panel-default">
   <div class="panel-body">
-    <strong>Email - </strong> johndoe@gmail.com
+    <strong>Email - </strong> <?php echo $email ?>
   </div>
 </div>                                        
 <div class="panel panel-default">
   <div class="panel-body">
-    <strong>Phone - </strong> (540) 555-7836
+    <strong>Phone - </strong> <?php echo $phone ?>
   </div>
 </div>    
 <div class="panel panel-default">
