@@ -376,11 +376,11 @@ if(isset($_POST['upload']))
 		$userType = "Applicant";
 		$passwordHash = $passwordHashPassed;
         $email = $_POST['email'];
-        $middleInitial = '';
+        $middleInitial = NULL;
         $primaryPhone = $_POST['phone'];
         $secondaryPhone = NULL;
         $city = $_POST['city'];
-        $county = '';
+        $county = NULL;
         $state = $_POST['state'];
         $zip = $_POST['zipcode'];
         $dob1 = $_POST['dob'];
@@ -411,14 +411,14 @@ if(isset($_POST['upload']))
 		
 		$status = 'Applicant';
 		$rabiesVac = NULL;
-		$permitrehab = NULL;
+		$permitrehab = $_POST['permit'];
 		$lastVolunteered = NULL;
 		$allergies = $_POST['allergies'];
-		$specialNeeds = '';
-		$workOutside = '';
-		$totalHours = 10;
-		$workOutsideLimitations = '';
-		$lift40 = '';
+		$specialNeeds = NULL;
+		$workOutside = NULL;
+		$totalHours = NULL;
+		$workOutsideLimitations = NULL;
+		$lift40 = NULL;
 
 		$whyInterested = $_POST['whyInterested'];
 		$wildlifeIssue = $_POST['wildlifeIssue'];
@@ -433,11 +433,11 @@ if(isset($_POST['upload']))
 
 		
 		$query = "INSERT INTO person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
-			Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+			Person_HomeState, Person_Zipcode, Person_DateOfBirth, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-					VALUES ('$userName', '$passwordHash', '$userType', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
-					'$county', '$state', '$zip', $dob, '$status', NULL, NULL, '$allergies', '$specialNeeds', '$workOutside',
-					'$workOutsideLimitations', '$lift40', '$totalHours', NULL)";
+					VALUES ('$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
+					NULL, '$state', '$zip', $dob, '$status', NULL, '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
+					'$workOutsideLimitations', NULL, NULL, NULL)";
 
 					 mysqli_query($conn, $query) or die(mysqli_error($conn));
 			
@@ -470,14 +470,13 @@ if(isset($_POST['upload']))
 				}
 			}
 			
-			$applicationQuery = "INSERT INTO PersonApplication (	PersonApplication_PersonID,
+			$applicationQuery = "INSERT INTO Application (	PersonApplication_PersonID,
 																	PersonApplication_DateApplied,
 																	PersonApplication_Documents,
 																	PersonApplication_DepartmentApplied)
 														VALUES (	'$personID',
-																	NOW(),
 																	'1',
-																	'1')";
+																	NOW())";
 			
 			 mysqli_query($conn, $applicationQuery) or die(mysqli_error($conn));
 			
@@ -485,13 +484,13 @@ if(isset($_POST['upload']))
 			// outReach specific
 			
 			
-			$sql = "SELECT MAX(PersonApplication_ID) FROM PersonApplication";
+			$sql = "SELECT MAX(Application_ID) FROM Application";
 			$result = $conn->query($sql);
 			$applicationID = null;
 			if($result->num_rows > 0) {
 				//output data of each row
 				while($row = $result->fetch_assoc()) {
-					$applicationID = $row['MAX(PersonApplication_ID)'];
+					$applicationID = $row['MAX(Application_ID)'];
 				}
 			}
 			

@@ -405,6 +405,7 @@ error_reporting(E_ALL);
 			$primaryPhone = $_POST['phone'];
 			$secondaryPhone = NULL;
 			$city = $_POST['city'];
+			$county = NULL;
 			$state = $_POST['state'];;
 			$zip = $_POST['zipcode'];
 			$dob1 = $_POST['dob'];
