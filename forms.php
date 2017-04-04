@@ -69,11 +69,12 @@
                                     </h2>
                                 </header>
                                 <section class="panel-body container-fluid">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                     
-<a class="btn btn-default btn-lg" href="outreach.php" role="button">Outreach Application</a></div><div class="col-sm-4">
-<a class="btn btn-default btn-lg" href="animal.php" role="button">Animal Care Application</a></div><div class="col-sm-4">
-<a class="btn btn-default btn-lg" href="vet.php" role="button">Vet Team Application</a>                
+<a class="btn btn-default btn-md" href="outreach.php" role="button">Outreach Application</a></div><div class="col-sm-3">
+<a class="btn btn-default btn-md" href="animal.php" role="button">Animal Care Application</a></div><div class="col-sm-3">
+<a class="btn btn-default btn-md" href="vet.php" role="button">Vet Team Application</a></div><div class="col-sm-3">
+<a class="btn btn-default btn-md" href="transporterapp.php" role="button">Transporter Application</a>                 
 </div>
                 
 
