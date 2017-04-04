@@ -268,7 +268,12 @@ error_reporting(E_ALL);
                 <textarea class="form-control" id = 'priorExperience' name ='priorExperience' value="<?php if (isset($_POST['upload'])) echo ($_POST['priorExperience']);?>" rows="5" cols="90"></textarea>
                             </div>
                         
-                           
+         <label class="col-sm-3">Do you belong to any animal rights groups (PETA, The Humane Society, etc.)? If so, which ones? </label>
+                <div class="col-sm-9">
+                <textarea class="form-control" id = 'animalRightsGroup' name ='animalRightsGroup' value="<?php if (isset($_POST['upload'])) echo ($_POST['animalRightsGroup']);?>" rows="5" cols="90"></textarea>
+                            </div>                  
+						   
+						   
          <label class="col-sm-3">What do you think you’d bring to the outreach volunteer team?</label>
                 <div class="col-sm-9">
                 <textarea class="form-control" id = 'valueAdded' name = 'valueAdded' value="<?php if (isset($_POST['upload'])) echo ($_POST['valueAdded']);?>" rows="5" cols="90"></textarea>
