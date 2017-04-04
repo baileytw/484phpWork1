@@ -199,7 +199,7 @@ error_reporting(E_ALL);
                                                                                                   <div class="form-group">
                                                     <label class="col-sm-2">Date of Birth *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="YYYY-MM-DD" name="street" />
+                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{1,2}-\d{1,2}" name="street" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

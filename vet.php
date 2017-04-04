@@ -202,7 +202,7 @@ error_reporting(E_ALL);
                                                                                                   <div class="form-group">
                                                     <label class="col-sm-2">Date of Birth *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="YYYY-MM-DD" name="street" />
+                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{1,2}-\d{1,2}" name="street" />
                                                     </div>
                                                 </div>
 <div class="form-group">
@@ -310,7 +310,7 @@ if(isset($_POST['upload']))
 		
     $server = "localhost";
         $user = "root";
-        $dbpassword = "password";
+        $dbpassword = "Twspike1994?";
         $database = "wildlife";
         $conn = mysqli_connect($server, $user, $dbpassword, $database);
         if (mysqli_connect_errno()) 
@@ -375,15 +375,15 @@ if(isset($_POST['upload']))
 	
 	$previousTraining = $_POST['training'];
 	$workEnvironment = $_POST['workEnvironment'];
-	$euthanasia = $_POST['euthanasia'];
+	$euthanasia = $_POST['trauma'];
 	$messy = $_POST['messy'];
 
-      $query = "INSERT INTO person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
+      $query = "INSERT INTO person (Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
 			Person_HomeState, Person_Zipcode, Person_DateOfBirth, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
 					VALUES ('$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
-					NULL, '$state', '$zip', $dob, '$status', NULL, '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
-					'$workOutsideLimitations', NULL, NULL, NULL)";
+					NULL, '$state', '$zip', '$dob', '$status', NULL, '$permitrehab', '$allergies', NULL, NULL,
+					NULL, NULL, NULL, NULL)";
 
                  mysqli_query($conn, $query) or die(mysqli_error($conn));
 				 
@@ -409,13 +409,12 @@ if(isset($_POST['upload']))
 				}
 			}
 			
-			$applicationQuery = "INSERT INTO Application (	PersonApplication_PersonID,
-																	PersonApplication_DateApplied,
-																	PersonApplication_Documents,
-																	PersonApplication_DepartmentApplied)
+			$applicationQuery = "INSERT INTO Application (	Application_PersonID,
+																	Application_DateApplied,
+																	Application_DepartmentApplied)
 														VALUES (	'$personID',
-																	'3',
-																	NOW())";
+																	NOW(),
+																	'3')";
 			
 			 mysqli_query($conn, $applicationQuery) or die(mysqli_error($conn));
 			 
@@ -444,9 +443,9 @@ if(isset($_POST['upload']))
 				}
 			}
 			
-		$vetQuery = "INSERT INTO outreachApp (	VetTeamApp_ApplicationID,
+		$vetQuery = "INSERT INTO vetteamapp (	VetTeamApp_ApplicationID,
 													VetTeamApp_PreviousTraining,
-													VetTeamApp_WorkEnviornment,
+													VetTeamApp_WorkEnvironment,
 													VetTeamApp_Euthansia,
 													VetTeamApp_Messy)
 										VALUES (	'$applicationID',

@@ -432,11 +432,11 @@ if(isset($_POST['upload']))
 
 
 		
-		$query = "INSERT INTO person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
+		$query = "INSERT INTO person (Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
 			Person_HomeState, Person_Zipcode, Person_DateOfBirth, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
 					VALUES ('$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
-					NULL, '$state', '$zip', $dob, '$status', NULL, '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
+					NULL, '$state', '$zip', '$dob', '$status', NULL, '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
 					'$workOutsideLimitations', NULL, NULL, NULL)";
 
 					 mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -470,13 +470,12 @@ if(isset($_POST['upload']))
 				}
 			}
 			
-			$applicationQuery = "INSERT INTO Application (	PersonApplication_PersonID,
-																	PersonApplication_DateApplied,
-																	PersonApplication_Documents,
-																	PersonApplication_DepartmentApplied)
+			$applicationQuery = "INSERT INTO Application (	Application_PersonID,
+																	Application_DateApplied,
+																	Application_DepartmentApplied)
 														VALUES (	'$personID',
-																	'1',
-																	NOW())";
+																	NOW(),
+																	'1')";
 			
 			 mysqli_query($conn, $applicationQuery) or die(mysqli_error($conn));
 			 
@@ -515,7 +514,7 @@ if(isset($_POST['upload']))
 													'$whyInterested',
 													'$wildlifeIssue',
 													'$priorExperience',
-													'$belongToGroup',
+													'$animalRightsGroup',
 													'$valueAdded')";
 													
 													/*
