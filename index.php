@@ -148,33 +148,34 @@ session_start();
 		die("Connection failed: " . $conn->connect_error);
 	}
 	//SQL Statement to gather hash
-	$sql = "SELECT Person_Email, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameTransporter'] . "'";
+	$sql = "SELECT Person_ID, Person_Email, Person_UserType FROM Person WHERE Person_Email = '" . $_POST['usernameTransporter'] . "'";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0){
 		// output data of each row
 		while($row = $result->fetch_assoc()) {
+			$personID = $row['Person_ID'];
 			$user = $row['Person_Email'];
 			$userType = $row['Person_UserType'];
 		}
-		
-		if($userType == "Volunteer" ){									
-			
-			
-			$query = "INSERT INTO LogTransport(LogTransport_TransportID,LogTransport_TypeOfAnimal,LogTransport_Date,LogTransport_Species,
-			LogTransport_Address,LogTransport_Hours,LogTransport_Miles) VALUES (1,'" . $_POST['date'] . "','" . $_POST['address'] . "'," 
-			. $_POST['hours'] . "," . $_POST['mileage'] . ")";
-			LogTransport_TransportID	INTEGER NOT NULL,
-LogTransport_TypeOfAnimal	INTEGER	NOT NULL,
-LogTransport_Date	        DATE,
-LogTransport_Species	    VARCHAR(70),
-LogTransport_Address        VARCHAR(300),
-LogTransport_Hours			INTEGER,
-LogTransport_Miles			INTEGER,
-			
-			
-			$conn->close();
-			header("Location: transporter.php");
-			exit();
+		$sql = "SELECT Transporter_ID FROM Transporter WHERE Transporter_PersonID = " . $personID;
+		$result = $conn->query($sql);
+		if ($result->num_rows > 0){
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				$transporterID = $row['Transporter_ID'];
+			}
+			if($userType == "Volunteer" ){									
+				
+				
+				$query = "INSERT INTO LogTransport(LogTransport_TransportID,LogTransport_TypeOfAnimal,LogTransport_Date,LogTransport_Species,
+				LogTransport_Address,LogTransport_Hours,LogTransport_Miles) VALUES (" . $transporterID . ",1,'" . $_POST['date'] . "','" 
+				. $_POST['address'] . "','" . $_POST['species'] . "'," . $_POST['hours'] . "," . $_POST['mileage'] . ")";
+
+				mysqli_query($conn, $query) or die(mysqli_error($conn));
+				$conn->close();
+				header("Location: transporter.php");
+				exit();
+			}
 		}
 		else {
 		// Not a volunteer, show an error
