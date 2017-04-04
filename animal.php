@@ -70,7 +70,7 @@ error_reporting(E_ALL);
                                 <header class="panel-heading clearfix">
                                     
                                     <h2 class="panel-title">
-                                        Wildlife Center of Virginia - Application
+                                        Wildlife Center of Virginia - Animal Care Application
                                     </h2>
                                 </header>
                                 <section class="panel-body container-fluid">
