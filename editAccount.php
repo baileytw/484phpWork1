@@ -11,16 +11,13 @@ $userTypeSession = $_SESSION['userType'];
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
-
+/*
 //If Session is empty, redirect user to restricted access notification
 if ($userTypeSession != "Team Lead"){
 	header("Location: restrictedAccess.php");
 	exit();
 }
-if ($userID != 7){
-	header("Location: restrictedAccess.php");
-	exit();
-}
+*/
 
 
 if(isset($_POST['btnSave']))
