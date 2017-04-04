@@ -479,6 +479,17 @@ if(isset($_POST['upload']))
 																	NOW())";
 			
 			 mysqli_query($conn, $applicationQuery) or die(mysqli_error($conn));
+			 
+			  if(!mysqli_query($conn,$applicationQuery))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
+
+			else
+			{
+				echo "Application Sent! {Application table}";
+			}
 			
 			
 			// outReach specific
@@ -517,6 +528,16 @@ if(isset($_POST['upload']))
 
 					mysqli_query($conn, $outreachQuery) or die(mysqli_error($conn)); 
 
+					if(!mysqli_query($conn,$outreachQuery))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
+
+			else
+			{
+				echo "Application Sent! {outreach table}";
+			}
 
 	}
 	else{

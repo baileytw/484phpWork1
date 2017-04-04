@@ -73,7 +73,7 @@ error_reporting(E_ALL);
                                     
                                     <h2 class="panel-title">
                                         Wildlife Center of Virginia - Application
-                                    </h2>
+              </h2>
                                 </header>
                                 <section class="panel-body container-fluid">
 
@@ -132,13 +132,65 @@ error_reporting(E_ALL);
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">City *</label>
-                                                    <div class="col-sm-3">
+                                                    <div class="col-sm-2">
                                                       <input class="form-control" type="text" id="city" name="city" value="<?php if (isset($_POST['upload'])) echo ($_POST['city']);?>" placeholder="City" name="city" />
                                                     </div>
 
                                                     <label class="col-sm-1">State *</label>
-                                                    <div class="col-sm-1">
-                                                      <input class="form-control" type="text" id="state" name="state" value="<?php if (isset($_POST['upload'])) echo ($_POST['state']);?>"placeholder="State" name="state" />
+                                                    <div class="col-sm-3">
+													
+													<select name="state">
+													<option value="VA">Virginia</option>
+<option value="AL">Alabama</option>
+<option value="AK">Alaska</option>
+<option value="AZ">Arizona</option>
+<option value="AR">Arkansas</option>
+<option value="CA">California</option>
+<option value="CO">Colorado</option>
+<option value="CT">Connecticut</option>
+<option value="DE">Delaware</option>
+<option value="FL">Florida</option>
+<option value="GA">Georgia</option>
+<option value="HI">Hawaii</option>
+<option value="ID">Idaho</option>
+<option value="IL">Illinois</option>
+<option value="IN">Indiana</option>
+<option value="IA">Iowa</option>
+<option value="KS">Kansas</option>
+<option value="KY">Kentucky</option>
+<option value="LA">Louisiana</option>
+<option value="ME">Maine</option>
+<option value="MD">Maryland</option>
+<option value="MA">Massachusetts</option>
+<option value="MI">Michigan</option>
+<option value="MN">Minnesota</option>
+<option value="MS">Mississippi</option>
+<option value="MO">Missouri</option>
+<option value="MT">Montana</option>
+<option value="NE">Nebraska</option>
+<option value="NV">Nevada</option>
+<option value="NH">New Hampshire</option>
+<option value="NJ">New Jersey</option>
+<option value="NM">New Mexico</option>
+<option value="NY">New York</option>
+<option value="NC">North Carolina</option>
+<option value="ND">North Dakota</option>
+<option value="OH">Ohio</option>
+<option value="OK">Oklahoma</option>
+<option value="OR">Oregon</option>
+<option value="PA">Pennsylvania</option>
+<option value="RI">Rhode Island</option>
+<option value="SC">South Carolina</option>
+<option value="SD">South Dakota</option>
+<option value="TN">Tennessee</option>
+<option value="TX">Texas</option>
+<option value="UT">Utah</option>
+<option value="VT">Vermont</option>
+<option value="WA">Washington</option>
+<option value="WV">West Virginia</option>
+<option value="WI">Wisconsin</option>
+<option value="WY">Wyoming</option>
+</select> 
                                                     </div>
                                             
                                                     <label class="col-sm-2">Zip Code *</label>
@@ -150,7 +202,7 @@ error_reporting(E_ALL);
                                                                                                   <div class="form-group">
                                                     <label class="col-sm-2">Date of Birth *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="12/01/95" name="street" />
+                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="YYYY-MM-DD" name="street" />
                                                     </div>
                                                 </div>
 <div class="form-group">
@@ -274,44 +326,148 @@ if(isset($_POST['upload']))
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
         $userName = $_POST['email'];
-		$passwordHash = $passwordHashPassed;
 		$userType = "Applicant";
+		$passwordHash = $passwordHashPassed;
         $email = $_POST['email'];
-        $middleInitial = '';
+        $middleInitial = NULL;
         $primaryPhone = $_POST['phone'];
-        $secondaryPhone = 5555;
-        $city = '';
-        $county = '';
-        $state = 'VA';
-        $zip = 0;
-        $dob = 10/10/1999;
+        $secondaryPhone = NULL;
+        $city = $_POST['city'];
+        $county = NULL;
+        $state = $_POST['state'];
+        $zip = $_POST['zipcode'];
+        $dob1 = $_POST['dob'];
+		$dob2 = DateTime::createFromFormat('Y-m-d' , $dob1);
+		$dob = $dob2->format('Y-m-d');
         $street = $_POST['address'];
-        $tmpName  = $_FILES['userfile']['tmp_name'];
-    $fileSize = $_FILES['userfile']['size'];
+      
+		/* $tmpName  = $_FILES['resume']['tmp_name'];
+		$fileSize = $_FILES['resume']['size'];
+		$fp      = fopen($tmpName, 'r');
+		$resume = fread($fp, filesize($tmpName));
+		$resume = addslashes($resume);
+		fclose($fp);
+		
+		$tmpName  = $_FILES['recommend1']['tmp_name'];
+		$fileSize = $_FILES['recommend1']['size'];
+		$fp      = fopen($tmpName, 'r');
+		$recommend1 = fread($fp, filesize($tmpName));
+		$recommend1 = addslashes($recommend1);
+		fclose($fp);
+		
+		$tmpName  = $_FILES['recommend2']['tmp_name'];
+		$fileSize = $_FILES['recommend2']['size'];
+		$fp      = fopen($tmpName, 'r');
+		$recommend2 = fread($fp, filesize($tmpName));
+		$recommend2 = addslashes($recommend2);
+		fclose($fp); */
+		
+		$status = 'Applicant';
+		$rabiesVac = NULL;
+		$permitrehab = $_POST['permit'];
+		$lastVolunteered = NULL;
+		$allergies = $_POST['allergies'];
+		$specialNeeds = NULL;
+		$workOutside = NULL;
+		$totalHours = NULL;
+		$workOutsideLimitations = NULL;
+		$lift40 = NULL;
+	
+	$previousTraining = $_POST['training'];
+	$workEnvironment = $_POST['workEnvironment'];
+	$euthanasia = $_POST['euthanasia'];
+	$messy = $_POST['messy'];
 
-    $fp      = fopen($tmpName, 'r');
-    $picture = fread($fp, filesize($tmpName));
-    $picture = addslashes($picture);
-    fclose($fp);
-    $status = '';
-    $rabiesVac = 10/10/2010;
-    $permitrehab ='';
-    $lastVolunteered = 10/10/2011;
-    $allergies = $_POST['allergies'];
-    $specialNeeds = '';
-    $workOutside = '';
-    $totalHours = 10;
-    $workOutsideLimitations = '';
-    $lift40 = '';
-
-      $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
-            Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Picture, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
-            Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-                VALUES ('$userName', '$passwordHash', '$userType', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
-                '$county', '$state', '$zip', NOW(), '$picture', '$status', NOW(), '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
-                '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
+      $query = "INSERT INTO person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
+			Person_HomeState, Person_Zipcode, Person_DateOfBirth, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
+					VALUES ('$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
+					NULL, '$state', '$zip', $dob, '$status', NULL, '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
+					'$workOutsideLimitations', NULL, NULL, NULL)";
 
                  mysqli_query($conn, $query) or die(mysqli_error($conn));
+				 
+				 if(!mysqli_query($conn,$query))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
+
+			else
+			{
+				echo "Application Sent! {person table}";
+			}
+			
+				 
+				 $sql = "SELECT MAX(Person_ID) FROM Person";
+			$result = $conn->query($sql);
+			$personID = null;
+			if($result->num_rows > 0) {
+				//output data of each row
+				while($row = $result->fetch_assoc()) {
+					$personID = $row['MAX(Person_ID)'];
+				}
+			}
+			
+			$applicationQuery = "INSERT INTO Application (	PersonApplication_PersonID,
+																	PersonApplication_DateApplied,
+																	PersonApplication_Documents,
+																	PersonApplication_DepartmentApplied)
+														VALUES (	'$personID',
+																	'3',
+																	NOW())";
+			
+			 mysqli_query($conn, $applicationQuery) or die(mysqli_error($conn));
+			 
+			  if(!mysqli_query($conn,$applicationQuery))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
+
+			else
+			{
+				echo "Application Sent! {Application table}";
+			}
+			
+			
+			// vet specific
+			
+			
+			$sql = "SELECT MAX(Application_ID) FROM Application";
+			$result = $conn->query($sql);
+			$applicationID = null;
+			if($result->num_rows > 0) {
+				//output data of each row
+				while($row = $result->fetch_assoc()) {
+					$applicationID = $row['MAX(Application_ID)'];
+				}
+			}
+			
+		$vetQuery = "INSERT INTO outreachApp (	VetTeamApp_ApplicationID,
+													VetTeamApp_PreviousTraining,
+													VetTeamApp_WorkEnviornment,
+													VetTeamApp_Euthansia,
+													VetTeamApp_Messy)
+										VALUES (	'$applicationID',
+													'$previousTraining',
+													'$workEnvironment',
+													'$euthanasia',
+													'$messy')";
+													
+
+					mysqli_query($conn, $vetQuery) or die(mysqli_error($conn)); 
+					
+					if(!mysqli_query($conn,$vetQuery))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
+
+			else
+			{
+				echo "Application Sent! {Vet table}";
+			}
 	}
 	else{
 		$message = 'Password values do not match. Please try again.';
