@@ -474,8 +474,18 @@ if(isset($_POST['upload']))
 				}
 			}
 			
-		$outreachQuery = "INSERT INTO outreachApp (OutreachApp_ApplicationID, OutreachApp_WhyInterested, OutreachApp_PassionateWildlifeIssue, OutreachApp_ExperiencePublicSpeaking, OutreachApp_BelongToAnimalRightsGroup, OutreachApp_BringToTeam)
-		VALUES ('$applicationID', '$whyInterested', '$wildlifeIssue', '$priorExperience', '$belongToGroup', '$valueAdded')";
+		$outreachQuery = "INSERT INTO outreachApp (	OutreachApp_ApplicationID,
+													OutreachApp_WhyInterested,
+													OutreachApp_PassionateWildlifeIssue,
+													OutreachApp_ExperiencePublicSpeaking,
+													OutreachApp_BelongToAnimalRightsGroup,
+													OutreachApp_BringToTeam)
+										VALUES (	'$applicationID',
+													'$whyInterested',
+													'$wildlifeIssue',
+													'$priorExperience',
+													'$belongToGroup',
+													'$valueAdded')";
 
 
 					mysqli_query($conn, $outreachQuery) or die(mysqli_error($conn)); 
