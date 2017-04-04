@@ -79,25 +79,25 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2">First Name *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" required="required" />
+                                                      <input class="form-control" id = 'firstName' name = 'firstName' value="<?php if (isset($_POST['upload'])) echo ($_POST['firstName']);?>" type="text" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Last Name *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" required="required" />
+                                                      <input class="form-control" id = 'lastName' name = 'lastName' value="<?php if (isset($_POST['upload'])) echo ($_POST['lastName']);?>" type="text" required="required" />
                                                     </div>
                                                 </div>
                                                   <div class="form-group">
                                                     <label class="col-sm-2">Create Username *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" name="username" required="required"/>
+                                                      <input class="form-control" type="text" name="username" value="<?php if (isset($_POST['upload'])) echo ($_POST['username']);?>" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Create Password *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="password" name="password" required="required"/>
+                                                      <input class="form-control" id = 'password'type="password" name="password" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -109,53 +109,103 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Email *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="email" required="required" />
+                                                      <input class="form-control" id = 'email' name = 'email' value="<?php if (isset($_POST['upload'])) echo ($_POST['email']);?>" type="email" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Phone *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="number" name="phone" required="required" />
+                                                      <input class="form-control" id = 'phone' type="number" name="phone" value="<?php if (isset($_POST['upload'])) echo ($_POST['phone']);?>" required="required" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-sm-2">Age *</label>
+                                                    <label class="col-sm-2">Date of Birth *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="number" name="age" required="required" value="" />
+                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{1,2}-\d{1,2}" name="street" />
                                                     </div>
                                                 </div>
                                                  <div class="form-group">
                                                     <label class="col-sm-2">Address *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" placeholder="street" name="street" />
+                                                      <input class="form-control" id= 'address' name="address" type="text" value="<?php if (isset($_POST['upload'])) echo ($_POST['address']);?>" placeholder="street" name="street" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">City *</label>
                                                     <div class="col-sm-3">
-                                                      <input class="form-control" type="text" placeholder="City" name="street" />
+                                                      <input class="form-control" type="text" id="city" name="city" value="<?php if (isset($_POST['upload'])) echo ($_POST['city']);?>" placeholder="City" name="city" />
                                                     </div>
 
                                                     <label class="col-sm-1">State *</label>
                                                     <div class="col-sm-1">
-                                                      <input class="form-control" type="text" name="street" />
+                                                      <select class="form-control" name="state">
+<option value="AL">Alabama</option>
+<option value="AK">Alaska</option>
+<option value="AZ">Arizona</option>
+<option value="AR">Arkansas</option>
+<option value="CA">California</option>
+<option value="CO">Colorado</option>
+<option value="CT">Connecticut</option>
+<option value="DE">Delaware</option>
+<option value="FL">Florida</option>
+<option value="GA">Georgia</option>
+<option value="HI">Hawaii</option>
+<option value="ID">Idaho</option>
+<option value="IL">Illinois</option>
+<option value="IN">Indiana</option>
+<option value="IA">Iowa</option>
+<option value="KS">Kansas</option>
+<option value="KY">Kentucky</option>
+<option value="LA">Louisiana</option>
+<option value="ME">Maine</option>
+<option value="MD">Maryland</option>
+<option value="MA">Massachusetts</option>
+<option value="MI">Michigan</option>
+<option value="MN">Minnesota</option>
+<option value="MS">Mississippi</option>
+<option value="MO">Missouri</option>
+<option value="MT">Montana</option>
+<option value="NE">Nebraska</option>
+<option value="NV">Nevada</option>
+<option value="NH">New Hampshire</option>
+<option value="NJ">New Jersey</option>
+<option value="NM">New Mexico</option>
+<option value="NY">New York</option>
+<option value="NC">North Carolina</option>
+<option value="ND">North Dakota</option>
+<option value="OH">Ohio</option>
+<option value="OK">Oklahoma</option>
+<option value="OR">Oregon</option>
+<option value="PA">Pennsylvania</option>
+<option value="RI">Rhode Island</option>
+<option value="SC">South Carolina</option>
+<option value="SD">South Dakota</option>
+<option value="TN">Tennessee</option>
+<option value="TX">Texas</option>
+<option value="UT">Utah</option>
+<option value="VT">Vermont</option>
+<option value="VA">Virginia</option>
+<option value="WA">Washington</option>
+<option value="WV">West Virginia</option>
+<option value="WI">Wisconsin</option>
+<option value="WY">Wyoming</option>
+</select> 
                                                     </div>
                                             
                                                     <label class="col-sm-2">Zip Code *</label>
                                                     <div class="col-sm-2">
-                                                      <input class="form-control" type="text" placeholder="Zip" name="street" />
+                                                      <input class="form-control" type="text" id="zipcode" name="zipcode" value="<?php if (isset($_POST['upload'])) echo ($_POST['zipcode']);?>" placeholder="Zip" name="zip" />
                                                     </div>
                                                     
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Emergency Contact*</label>
                                                     <div class="col-sm-5">
-                                                      <input class="form-control" type="text" placeholder="name" name="name" />
-                                                    
+                                                      <input class="form-control" type="text" id="ec" name="ec" value="<?php if (isset($_POST['upload'])) echo ($_POST['ec']);?>" placeholder="Name" name="ecName" />
                                                 </div>
-                                                    <label class="col-sm-2">Phone*</label>
+                                                    <label class="col-sm-2">EC Phone*</label>
                                                     <div class="col-sm-3">
-                                                      <input class="form-control" type="text" placeholder="phone" name="name" />
+                                                      <input class="form-control" id="ecPhone" name="ecPhone" value="<?php if (isset($_POST['upload'])) echo ($_POST['ecPhone']);?>"type="text" placeholder="EC Phone" name="ecPhone" />
  
                                                 </div></div>
                                                 <div class="form-group">

@@ -136,7 +136,7 @@ error_reporting(E_ALL);
 
                                                     <label class="col-sm-1">State *</label>
                                                     <div class="col-sm-3">
-                                                      <select name="state">
+                                                      <select class="form-control" name="state">
 <option value="AL">Alabama</option>
 <option value="AK">Alaska</option>
 <option value="AZ">Arizona</option>
