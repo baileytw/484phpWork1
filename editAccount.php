@@ -11,21 +11,24 @@ $userTypeSession = $_SESSION['userType'];
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
-/*
+
 //If Session is empty, redirect user to restricted access notification
 if ($userTypeSession != "Team Lead"){
 	header("Location: restrictedAccess.php");
 	exit();
 }
+if ($userID != 7){
+	header("Location: restrictedAccess.php");
+	exit();
+}
 
-*/
+
 if(isset($_POST['btnSave']))
 {
 	if($_POST['password'] == $_POST['check']){
 		/****************************************
 			START PASWWORD CODE 
 		****************************************/
-
 		require("PasswordHash.php");
 		$hasher = new PasswordHash(8, false);
 		// Retrieve password
@@ -45,10 +48,34 @@ if(isset($_POST['btnSave']))
 		/****************************************
 			END PASWWORD CODE 
 		****************************************/
-	
-	
+		$servername = "localhost";
+		$username = "root";
+		$dbpassword = "Twspike1994?";
+		$dbname = "wildlife";
+
+		// Create connection
+		$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+		$query = "UPDATE Person SET Person_PasswordHash = '" . $passwordHashPassed . "', Person_FirstName = '" . $_POST['firstName'] . "', Person_LastName ='" 
+		. $_POST['lastName'] . "', Person_PhonePrimary =" . $_POST['phone'] . ", Person_Email ='" . $_POST['email'] . "' WHERE Person_ID = " .$userID; 
+		
+		if(!mysqli_query($conn,$query))
+
+		{
+			echo("Error description: " . mysqli_error($conn));
+		}
+
+		else
+		{
+			$conn->close();
+			header("Location: updateConfirmation2.php");
+			exit();
+		}
 	}
 }
+//Populate fields code
 $servername = "localhost";
 $username = "root";
 $dbpassword = "Twspike1994?";
@@ -71,20 +98,12 @@ if ($result->num_rows > 0){
 		$phone = $row['Person_PhonePrimary'];
 		$email = $row['Person_Email'];
 	}
-	
-	if($userType == "Volunteer" ){														
-		$query = "INSERT INTO LogHours(LogHours_PersonID,LogHours_Department,LogHours_BeginTime) VALUES(" . $personID . ",1,NOW())";
-		mysqli_query($conn, $query) or die(mysqli_error($conn));
-		
-	}
-	else {
-	
-	}
 }
 else {
  
 }
 $conn->close();
+
 ?>
 
 <html>
@@ -175,29 +194,29 @@ $conn->close();
       <!-- edit form column -->
       <div class="col-md-7 col-md-offset-1 personal-info">
         
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" method="post" role="form">
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="firstName" value="<?php if (isset($_POST['upload'])) echo ($_POST['firstName']);?>" type="text" value="John">
+              <input class="form-control" name="firstName" value="<?php if (isset($_POST['btnSave'])) echo ($_POST['firstName']);?>" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Last name:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="lastName" value="<?php if (isset($_POST['upload'])) echo ($_POST['lastName']);?>" type="text" value="Doe">
+              <input class="form-control" name="lastName" value="<?php if (isset($_POST['btnSave'])) echo ($_POST['lastName']);?>" type="text" required="required" >
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="email" value="<?php if (isset($_POST['upload'])) echo ($_POST['email']);?>" type="text" value="johndoe@gmail.com">
+              <input class="form-control" name="email" value="<?php if (isset($_POST['btnSave'])) echo ($_POST['email']);?>" type="text" required="required" >
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Phone:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="phone" value="<?php if (isset($_POST['upload'])) echo ($_POST['phone']);?>" type="text" value="540-555-7836">
+              <input class="form-control" name="phone" value="<?php if (isset($_POST['btnSave'])) echo ($_POST['phone']);?>" type="number" required="required">
             </div>
           </div>
          
@@ -206,13 +225,13 @@ $conn->close();
           <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input class="form-control" name="password" type="password" value="11111122333">
+              <input class="form-control" name="password" type="password" required="required" >
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input class="form-control" name="check" type="password" value="11111122333">
+              <input class="form-control" name="check" type="password" required="required" >
             </div>
           </div>
           <div class="form-group">

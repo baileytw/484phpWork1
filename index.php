@@ -233,6 +233,7 @@ if(isset($_POST['btnLogIn'])){
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
+				$userID = $row['Person_ID'];
 				$stored_hash = $row['Person_PasswordHash'];
 				$userType = $row['Person_UserType'];
 			}

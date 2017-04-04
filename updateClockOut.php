@@ -48,15 +48,15 @@ if(isset($_POST['btnUpdate'])){
 
 	if(!mysqli_query($conn,$query))
 
-			{
-				echo("Error description: " . mysqli_error($conn));
-			}
+	{
+		echo("Error description: " . mysqli_error($conn));
+	}
 
-			else
-			{
-				header("Location: updateConfirmation.php");
-				exit();
-			}
+	else
+	{
+		header("Location: updateConfirmation.php");
+		exit();
+	}
 	
 }
  
