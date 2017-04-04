@@ -74,30 +74,9 @@ if ($result->num_rows > 0){
 		$profileLastName = $row['Person_LastName'];
 	}
 	
-	if($userType == "Volunteer" ){									//***************NEED TO MAKE A WAY TO DISTINGUISH BETWEEN REGULAR VOLUNTEERS AND TRANSPORTERS
-		
-		
-		//////INSERT THE transporter INFO HERE INTO THE DATABASE
-		
-		
-		$conn->close();
-		header("Location: transporter.php");
-		exit();
-	}
-	else {
-	// Not a volunteer, show an error
-	$message = 'Error. For Transporter use only.';
-	echo "<SCRIPT>
-	alert('$message');
-	</SCRIPT>";
-	}
 }
 else {
- // passwords didn't match, show an error
-	$message = 'Username incorrect. Please use your email address for your Username.';
-	echo "<SCRIPT>
-	alert('$message');
-	</SCRIPT>";
+ 
 }
 $conn->close();
 */
