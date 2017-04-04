@@ -412,7 +412,7 @@ if(isset($_POST['btnLogIn'])){
       				<input type="password" id="password" class="form-control" value="" name="password" required="required" placeholder="Password" />
       			</div>
     			</div>
-				<div><a target="_blank" href="createProfile.php">Click here to create an account</a></div>
+				<div><a target="_blank" href="createProfileCode.php">Click here to create an account</a></div>
 				<br>
     			<div class="form-group">
     			  <div class="col-sm-2 col-sm-offset-4">
