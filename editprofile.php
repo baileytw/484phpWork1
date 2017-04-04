@@ -113,7 +113,7 @@ if ($userTypeSession != "Volunteer"){
 
         <h3>Personal info</h3>
         
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" method="post" role="form">
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
