@@ -154,7 +154,8 @@ error_reporting(E_ALL);
                                                     <div class="col-sm-3">
 													
 													<select name="state">
-													<option value="AL">Alabama</option>
+													<option value="VA">Virginia</option>
+<option value="AL">Alabama</option>
 <option value="AK">Alaska</option>
 <option value="AZ">Arizona</option>
 <option value="AR">Arkansas</option>
@@ -199,7 +200,6 @@ error_reporting(E_ALL);
 <option value="TX">Texas</option>
 <option value="UT">Utah</option>
 <option value="VT">Vermont</option>
-<option value="VA">Virginia</option>
 <option value="WA">Washington</option>
 <option value="WV">West Virginia</option>
 <option value="WI">Wisconsin</option>
