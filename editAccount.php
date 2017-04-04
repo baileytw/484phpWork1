@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-
+<?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+?>
 <?php
 //Session variables: KEEP AT TOP
 session_start();
@@ -16,6 +19,72 @@ if ($userTypeSession != "Team Lead"){
 }
 
 */
+if(isset($_POST['btnSave']))
+{
+	if($_POST['password'] == $_POST['check']){
+		/****************************************
+			START PASWWORD CODE 
+		****************************************/
+
+		require("PasswordHash.php");
+		$hasher = new PasswordHash(8, false);
+		// Retrieve password
+		$password = $_POST["password"];
+		// Limit passwords to 72 characters to help prevent DoS attacks
+		if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
+		// The $hash variable will contain the hash of the password
+		$hash = $hasher->HashPassword($password);
+		if (strlen($hash) >= 20) {
+			$passwordHashPassed = $hash;
+				
+		} else {
+			
+		 // something went wrong
+
+		}
+		/****************************************
+			END PASWWORD CODE 
+		****************************************/
+	
+	
+	}
+}
+$servername = "localhost";
+$username = "root";
+$dbpassword = "Twspike1994?";
+$dbname = "wildlife";
+
+// Create connection
+$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+// Check connection
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
+//SQL Statement to gather info
+$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email FROM Person WHERE Person_ID = " .$userID;
+$result = $conn->query($sql);
+if ($result->num_rows > 0){
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$first = $row['Person_FirstName'];
+		$last = $row['Person_LastName'];
+		$phone = $row['Person_PhonePrimary'];
+		$email = $row['Person_Email'];
+	}
+	
+	if($userType == "Volunteer" ){														
+		$query = "INSERT INTO LogHours(LogHours_PersonID,LogHours_Department,LogHours_BeginTime) VALUES(" . $personID . ",1,NOW())";
+		mysqli_query($conn, $query) or die(mysqli_error($conn));
+		
+	}
+	else {
+	
+	}
+}
+else {
+ 
+}
+$conn->close();
 ?>
 
 <html>
@@ -110,25 +179,25 @@ if ($userTypeSession != "Team Lead"){
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="John">
+              <input class="form-control" name="firstName" value="<?php if (isset($_POST['upload'])) echo ($_POST['firstName']);?>" type="text" value="John">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Last name:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="Doe">
+              <input class="form-control" name="lastName" value="<?php if (isset($_POST['upload'])) echo ($_POST['lastName']);?>" type="text" value="Doe">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="johndoe@gmail.com">
+              <input class="form-control" name="email" value="<?php if (isset($_POST['upload'])) echo ($_POST['email']);?>" type="text" value="johndoe@gmail.com">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Phone:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="540-555-7836">
+              <input class="form-control" name="phone" value="<?php if (isset($_POST['upload'])) echo ($_POST['phone']);?>" type="text" value="540-555-7836">
             </div>
           </div>
          
@@ -137,13 +206,13 @@ if ($userTypeSession != "Team Lead"){
           <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
+              <input class="form-control" name="password" type="password" value="11111122333">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
+              <input class="form-control" name="check" type="password" value="11111122333">
             </div>
           </div>
           <div class="form-group">
