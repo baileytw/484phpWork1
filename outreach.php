@@ -216,7 +216,7 @@ error_reporting(E_ALL);
                                                                                                   <div class="form-group">
                                                     <label class="col-sm-2">Date of Birth *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="12/01/95" name="street" />
+                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="YYYY-MM-DD" name="street" />
                                                     </div>
                                                 </div>
 <div class="form-group">
@@ -282,14 +282,14 @@ error_reporting(E_ALL);
 <div class="fileinput fileinput-new col-sm-3 col-sm-offset-3 btn-lg" data-provides="fileinput">
     <span class="btn btn-default btn-file">
 
-    	<input type="file" multiple /></span>
+    	<input name="resume" id = "resume" type="file" multiple /></span>
     <span class="fileinput-filename col-sm-3"></span>
     <span class="fileinput-new"></span>
 </div>
 <div class="col-sm-12 col-sm-offset-3">Recommendation Letter 1</div>
 <div class="fileinput fileinput-new col-sm-3 col-sm-offset-3 btn-lg" data-provides="fileinput">
     <span class="btn btn-default btn-file">
-	    	<input type="file" multiple /></span>
+	    	<input name="recommend1" id = "recommend1" type="file" multiple /></span>
     <span class="fileinput-filename col-sm-3"></span>
     <span class="fileinput-new"></span>
 </div>
@@ -297,7 +297,7 @@ error_reporting(E_ALL);
 <div class="fileinput fileinput-new col-sm-3 col-sm-offset-3 btn-lg" data-provides="fileinput">
     <span class="btn btn-default btn-file">
 
-    	<input name="userfile" id = "userfile" type="file" multiple /></span>
+    	<input name="recommend2" id = "recommend2" type="file" multiple /></span>
     <span class="fileinput-filename col-sm-3"></span>
     <span class="fileinput-new"></span>
 </div>
@@ -357,7 +357,7 @@ if(isset($_POST['upload']))
 
 		$server = "localhost";
         $user = "root";
-        $password = "starwars97";
+        $password = "Twspike1994?";
         $database = "wildlife";
         $conn = mysqli_connect($server, $user, $password, $database);
         if (mysqli_connect_errno()) 
@@ -378,26 +378,41 @@ if(isset($_POST['upload']))
         $email = $_POST['email'];
         $middleInitial = '';
         $primaryPhone = $_POST['phone'];
-        $secondaryPhone = 5555;
-        $city = '';
+        $secondaryPhone = NULL;
+        $city = $_POST['city'];
         $county = '';
-        $state = 'VA';
-        $zip = 0;
-        $dob = 10/10/1999;
+        $state = $_POST['state'];
+        $zip = $_POST['zipcode'];
+        $dob1 = $_POST['dob'];
+		$dob2 = DateTime::createFromFormat('Y-m-d' , $dob1);
+		$dob = $dob2->format('Y-m-d');
         $street = $_POST['address'];
-        $tmpName  = $_FILES['userfile']['tmp_name'];
-		$fileSize = $_FILES['userfile']['size'];
-/*
-		$fp      = fopen($tmpName, 'r');					//ZACH MOVED PICTURE TO THE DOCUMENTS TABLE
-		$picture = fread($fp, filesize($tmpName));
-		$picture = addslashes($picture);
+      
+		$tmpName  = $_FILES['resume']['tmp_name'];
+		$fileSize = $_FILES['resume']['size'];
+		$fp      = fopen($tmpName, 'r');
+		$resume = fread($fp, filesize($tmpName));
+		$resume = addslashes($resume);
 		fclose($fp);
-		*/
 		
-		$status = '';
-		//$rabiesVac = 10/10/2010;
-		$permitrehab ='';
-		$lastVolunteered = 10/10/2011;
+		$tmpName  = $_FILES['recommend1']['tmp_name'];
+		$fileSize = $_FILES['recommend1']['size'];
+		$fp      = fopen($tmpName, 'r');
+		$recommend1 = fread($fp, filesize($tmpName));
+		$recommend1 = addslashes($recommend1);
+		fclose($fp);
+		
+		$tmpName  = $_FILES['recommend2']['tmp_name'];
+		$fileSize = $_FILES['recommend2']['size'];
+		$fp      = fopen($tmpName, 'r');
+		$recommend2 = fread($fp, filesize($tmpName));
+		$recommend2 = addslashes($recommend2);
+		fclose($fp);
+		
+		$status = 'Applicant';
+		$rabiesVac = NULL;
+		$permitrehab = NULL;
+		$lastVolunteered = NULL;
 		$allergies = $_POST['allergies'];
 		$specialNeeds = '';
 		$workOutside = '';
@@ -420,9 +435,9 @@ if(isset($_POST['upload']))
 		$query = "INSERT INTO person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
 			Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-					VALUES ('$userName', '$passwordHash', '$userType', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city',
-					'$county', '$state', '$zip', NOW(), '$status', '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
-					'$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
+					VALUES ('$userName', '$passwordHash', '$userType', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
+					'$county', '$state', '$zip', $dob, '$status', NULL, NULL, '$allergies', '$specialNeeds', '$workOutside',
+					'$workOutsideLimitations', '$lift40', '$totalHours', NULL)";
 
 					 mysqli_query($conn, $query) or die(mysqli_error($conn));
 			

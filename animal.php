@@ -199,7 +199,7 @@ error_reporting(E_ALL);
                                                                                                   <div class="form-group">
                                                     <label class="col-sm-2">Date of Birth *</label>
                                                     <div class="col-sm-10">
-                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="12/01/95" name="street" />
+                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="YYYY-MM-DD" name="street" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -401,36 +401,37 @@ error_reporting(E_ALL);
 			$passwordHash = $passwordHashPassed;
 			$userType = "Applicant";
 			$email = $_POST['email'];
-			$middleInitial = 'I';
+			$middleInitial = NULL;
 			$primaryPhone = $_POST['phone'];
-			$secondaryPhone = 1;
-			$city = 'Sterling';
-			$county = 'Loudoun';
-			$state = 'MA';
-			$zip = 22525;
-			$dob = 10/10/1999;
+			$secondaryPhone = NULL;
+			$city = $_POST['city'];
+			$state = $_POST['state'];;
+			$zip = $_POST['zipcode'];
+			$dob1 = $_POST['dob'];
+			$dob2 = DateTime::createFromFormat('Y-m-d' , $dob1);
+			$dob = $dob2->format('Y-m-d');
 			$street = $_POST['address'];
 			$tmpName  = $_FILES['userfile']['tmp_name'];
 			$fileSize = $_FILES['userfile']['size'];
-			$rabies = $_POST['rabies'];
 			$fp      = fopen($tmpName, 'r');
 			$picture = fread($fp, filesize($tmpName));
 			$picture = addslashes($picture);
 			fclose($fp);
+			$rabies = $_POST['rabies'];
 			$status = 'Applicant';
-			$rabiesVac = 10/10/2010;
-			$lastVolunteered = 10/10/2011;
+			$rabiesVac = NULL;
+			$lastVolunteered = NULL;
 			$allergies = $_POST['allergies'];
-			$specialNeeds = '';
-			$workOutside = '';
-			$totalHours = 10;
-			$workOutsideLimitations = '';
-			$lift40 = '';
-			$permitRehab = '';
+			$specialNeeds = NULL;
+			$workOutside = NULL;
+			$totalHours = NULL;
+			$workOutsideLimitations = $_POST['seasons'];
+			$lift40 = $_POST['lift'];
+			$permitRehab = NULL;
 
 				  $query = "INSERT INTO person (Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 		  Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-			  VALUES ('$passwordHash', '$userType', '$firstName', '$middleInitial', '$lastName', '$email', '$primaryPhone', '$secondaryPhone', '$street', '$city', '$county', '$state', '$zip', NOW(), '$status', NOW(), '$permitRehab', '$allergies', '$specialNeeds', '$workOutside', '$workOutsideLimitations', '$lift40', '$totalHours', NOW())";
+			  VALUES ('$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', '$county', '$state', '$zip', '$dob', '$status', NULL, NULL, '$allergies', NULL, NULL, '$workOutsideLimitations', '$lift40', NULL, NULL)";
 
 
 
@@ -500,7 +501,7 @@ error_reporting(E_ALL);
 
 			else
 			{
-				echo "Application Sent! {Application table}";
+				echo "Application Sent! {ICE table}";
 			}
 			
 			$sql = "SELECT MAX(Application_ID) FROM Application";
