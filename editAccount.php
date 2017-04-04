@@ -19,9 +19,40 @@ if ($userTypeSession != "Team Lead"){
 }
 */
 
+//Populate fields code
+$servername = "localhost";
+$username = "root";
+$dbpassword = "Twspike1994?";
+$dbname = "wildlife";
 
+// Create connection
+$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+// Check connection
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
+//SQL Statement to gather info
+$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email FROM Person WHERE Person_ID = " .$userID;
+$result = $conn->query($sql);
+if ($result->num_rows > 0){
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$first = $row['Person_FirstName'];
+		$last = $row['Person_LastName'];
+		$phone = $row['Person_PhonePrimary'];
+		$email = $row['Person_Email'];
+	}
+}
+else {
+ 
+}
+$conn->close();
 if(isset($_POST['btnSave']))
 {
+	$first = $_POST['firstName'];
+	$last = $_POST['lastName'];
+	$phone = $_POST['phone'];
+	$email = $_POST['email'];
 	if($_POST['password'] == $_POST['check']){
 		/****************************************
 			START PASWWORD CODE 
@@ -55,8 +86,8 @@ if(isset($_POST['btnSave']))
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
-		$query = "UPDATE Person SET Person_PasswordHash = '" . $passwordHashPassed . "', Person_FirstName = '" . $_POST['firstName'] . "', Person_LastName ='" 
-		. $_POST['lastName'] . "', Person_PhonePrimary =" . $_POST['phone'] . ", Person_Email ='" . $_POST['email'] . "' WHERE Person_ID = " .$userID; 
+		$query = "UPDATE Person SET Person_PasswordHash = '" . $passwordHashPassed . "', Person_FirstName = '" . $first . "', Person_LastName ='" 
+		. $last . "', Person_PhonePrimary =" . $phone . ", Person_Email ='" . $email . "' WHERE Person_ID = " .$userID; 
 		
 		if(!mysqli_query($conn,$query))
 
@@ -72,34 +103,7 @@ if(isset($_POST['btnSave']))
 		}
 	}
 }
-//Populate fields code
-$servername = "localhost";
-$username = "root";
-$dbpassword = "Twspike1994?";
-$dbname = "wildlife";
 
-// Create connection
-$conn = new mysqli($servername, $username, $dbpassword, $dbname);
-// Check connection
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-}
-//SQL Statement to gather info
-$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email FROM Person WHERE Person_ID = " .$userID;
-$result = $conn->query($sql);
-if ($result->num_rows > 0){
-	// output data of each row
-	while($row = $result->fetch_assoc()) {
-		$first = $row['Person_FirstName'];
-		$last = $row['Person_LastName'];
-		$phone = $row['Person_PhonePrimary'];
-		$email = $row['Person_Email'];
-	}
-}
-else {
- 
-}
-$conn->close();
 
 ?>
 
@@ -195,25 +199,25 @@ $conn->close();
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="firstName" value="<?php if (isset($_POST['btnSave'])) echo ($_POST['firstName']);?>" type="text" required="required">
+              <input class="form-control" name="firstName" value="<?php echo ($first);?>" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Last name:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="lastName" value="<?php if (isset($_POST['btnSave'])) echo ($_POST['lastName']);?>" type="text" required="required" >
+              <input class="form-control" name="lastName" value="<?php echo ($last);?>" type="text" required="required" >
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="email" value="<?php if (isset($_POST['btnSave'])) echo ($_POST['email']);?>" type="text" required="required" >
+              <input class="form-control" name="email" value="<?php echo ($email);?>" type="text" required="required" >
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Phone:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="phone" value="<?php if (isset($_POST['btnSave'])) echo ($_POST['phone']);?>" type="number" required="required">
+              <input class="form-control" name="phone" value="<?php echo ($phone);?>" type="number" required="required">
             </div>
           </div>
          
