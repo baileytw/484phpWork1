@@ -217,7 +217,7 @@ if(isset($_POST['btnSave']))
           <div class="form-group">
             <label class="col-lg-3 control-label">Phone:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="phone" value="<?php echo ($phone);?>" type="number" required="required">
+			  <input class="form-control" name="phone" value="<?php echo ($phone);?>" type='tel' pattern='\d{1}[\(]\d{3}[\)]\d{3}[\-]\d{4}' title='Phone Number Format: 1(555)555-5555' required="required"> 
             </div>
           </div>
          

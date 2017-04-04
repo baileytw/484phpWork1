@@ -146,7 +146,7 @@ if ($userTypeSession != "Team Lead"){
           <div class="form-group">
             <label class="col-lg-3 control-label">Phone:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="540-555-7836">
+              <input class="form-control" type="text" value="540-555-7836" type='tel' pattern='\d{1}[\(]\d{3}[\)]\d{3}[\-]\d{4}' title='Phone Number Format: 1(555)555-5555'>
             </div>
           </div>
           <div class="form-group">
