@@ -408,7 +408,7 @@ if(isset($_POST['upload']))
 		$whyInterested = $_POST['whyInterested'];
 		$wildlifeIssue = $_POST['wildlifeIssue'];
 		$priorExperience = $_POST['priorExperience'];
-		$belongToGroup = '';
+		$animalRightsGroup = $_POST['animalRightsGroup'];
 		$valueAdded = $_POST['valueAdded'];
 
 
@@ -455,8 +455,14 @@ if(isset($_POST['upload']))
 				}
 			}
 			
-			$applicationQuery = "INSERT INTO PersonApplication (PersonApplication_PersonID, PersonApplication_DateApplied, PersonApplication_Documents, PersonApplication_DepartmentApplied)
-			  VALUES ('$personID', NOW(), '1', '1')";
+			$applicationQuery = "INSERT INTO PersonApplication (	PersonApplication_PersonID,
+																	PersonApplication_DateApplied,
+																	PersonApplication_Documents,
+																	PersonApplication_DepartmentApplied)
+														VALUES (	'$personID',
+																	NOW(),
+																	'1',
+																	'1')";
 			
 			 mysqli_query($conn, $applicationQuery) or die(mysqli_error($conn));
 			
@@ -486,7 +492,14 @@ if(isset($_POST['upload']))
 													'$priorExperience',
 													'$belongToGroup',
 													'$valueAdded')";
-
+													
+													/*
+													$whyInterested = $_POST['whyInterested'];
+													$wildlifeIssue = $_POST['wildlifeIssue'];
+													$priorExperience = $_POST['priorExperience'];
+													$animalRightsGroup = $_POST['animalRightsGroup'];
+													$valueAdded = $_POST['valueAdded'];
+*/
 
 					mysqli_query($conn, $outreachQuery) or die(mysqli_error($conn)); 
 
