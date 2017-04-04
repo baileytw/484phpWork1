@@ -413,14 +413,6 @@ error_reporting(E_ALL);
 			$tmpName  = $_FILES['userfile']['tmp_name'];
 			$fileSize = $_FILES['userfile']['size'];
 			$rabies = $_POST['rabies'];
-			//$experience = $_POST['experience'];
-			//$deadAnimals = $_POST['deadAnimals'];
-			//$livePrey = $_POST['livePrey'];
-			//$seasons = $_POST['seasons'];
-			//$groups = $_POST['groups'];
-			//$accomplish = $_POST['accomplish'];
-			//$issue = $_POST['issue'];
-			//$additionalInfo = $_POST['additionalInfo'];
 			$fp      = fopen($tmpName, 'r');
 			$picture = fread($fp, filesize($tmpName));
 			$picture = addslashes($picture);
@@ -463,6 +455,9 @@ error_reporting(E_ALL);
 			$accomplish = $_POST['accomplish'];
 			$issue = $_POST['issue'];
 			$additionalInfo = $_POST['additionalInfo'];
+			$ecName = $_POST['ec'];
+			$ecPhone = $_POST['ecPhone'];
+			$ecRelationship = $_POST['ecRelationship'];
 			$depNum = 2;
 			$sql = "SELECT MAX(Person_ID) FROM Person";
 			$result = $conn->query($sql);
@@ -482,6 +477,22 @@ error_reporting(E_ALL);
 
 
 			  if(!mysqli_query($conn,$applicationQuery))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
+
+			else
+			{
+				echo "Application Sent! {Application table}";
+			}
+			
+			$iceQuery = "INSERT INTO Ice (ICE_PersonID, ICE_Name, ICE_Phone, ICE_Relationship)
+			  VALUES ('$personID', '$ecName', '$ecPhone', '$ecRelationship')";
+
+
+
+			  if(!mysqli_query($conn,$iceQuery))
 
 			{
 				echo("Error description: " . mysqli_error($conn));
