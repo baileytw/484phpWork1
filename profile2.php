@@ -6,6 +6,7 @@
 session_start();
 $userID = $_SESSION['userID'];
 $userTypeSession = $_SESSION['userType']; 
+$profileID = $_GET['profileID']; 
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
@@ -51,6 +52,7 @@ if(isset($_POST['btnAccept'])){
 			}
 	$conn->close();
 }
+*/
 //Gather information to populate profile
 $servername = "localhost";
 $username = "root";
@@ -63,23 +65,28 @@ $conn = new mysqli($servername, $username, $dbpassword, $dbname);
 if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
-//SQL Statement to get applicant/volunteers profile info
-$sql = "SELECT * FROM Person WHERE Person_ID = " $profileID;
+//SQL Statement to gather info
+$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
+Person_HomeState, Person_Zipcode FROM Person WHERE Person_ID =" .$profileID;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
 	while($row = $result->fetch_assoc()) {
-		$profileFirstName = $row['Person_FirstName'];
-		$profileLastName = $row['Person_LastName'];
-		$profileLastName = $row['Person_LastName'];
+		$first = $row['Person_FirstName'];
+		$last = $row['Person_LastName'];
+		$phone = $row['Person_PhonePrimary'];
+		$email = $row['Person_Email'];
+		$street = $row['Person_StreetAddress'];
+		$city = $row['Person_City'];
+		$state = $row['Person_HomeState'];
+		$zipcode = $row['Person_Zipcode'];
 	}
-	
 }
 else {
  
 }
 $conn->close();
-*/
+
 
 
 
@@ -148,18 +155,18 @@ if(isset($_POST['downloadResume']))
                     </div>
     
                   <a class="navbar-brand" href="profile2.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul id="main-nav" class="nav navbar-nav">
                             <li class="action">
-
-                            <li class="active"><a href="profile2.php">Profile</a></li>
-                            <li><a href="calendar2.php">Calendar</a></li>
-                            <li><a href="index.php">Sign Out</a></li>
-                                </ul>
+							<li><a href="calendar2.php">Calendar</a></li>
+							<li class="active"><a href="profilesearch.php">Search</a></li>							
+                            <li><a href="accountProfile.php">Account</a></li>                          
+                            <li><a href="index.php">Sign Out</a></li>                     
                             </li>
-                        </ul>
+							</ul>
                       
                     </div>
+
                 </div>
             </nav>
         </header>
@@ -182,11 +189,11 @@ if(isset($_POST['downloadResume']))
                                     <div class="main-content panel panel-default no-margin">
                                         <header class="panel-heading clearfix">
 
-                                             <img src="images/johndoe.png" class="img-responsive col-sm-4"></span>
+                                             <img src="images/johndoe.png" class="img-responsive col-sm-4"></span> <!-- add image php /////////////////////////////////////////////////////// -->
                                              <hgroup>
                                                  <a href="editprofile2.php" class="btn btn-default pull-right" rel="#overlay">Edit Profile<i class="fa fa-question-circle"></i></a>
                                                  <h2>
-                                                     John Doe
+                                                     <?php echo $first . " " . $last?>
                                                  </h2>
                                                  <h4>Team Leader</h4>
                                              </hgroup>
@@ -196,17 +203,17 @@ if(isset($_POST['downloadResume']))
                                         <h3>Contact Information</h3>
 <div class="panel panel-default">
   <div class="panel-body">
-    <strong>Email - </strong> johndoe@gmail.com
+    <strong>Email - </strong> <?php echo $email ?>
   </div>
 </div>                                        
 <div class="panel panel-default">
   <div class="panel-body">
-    <strong>Phone - </strong> (540) 555-7836
+    <strong>Phone - </strong> <?php echo $phone ?>
   </div>
 </div>    
 <div class="panel panel-default">
   <div class="panel-body">
-    <strong>Address - </strong> 125 Mulberry Lane, Harrisonburg, VA 22801
+    <strong>Address - </strong> <?php echo $address ?>
   </div>
 </div>    
 
