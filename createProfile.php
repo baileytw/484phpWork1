@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-
+<?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+?>
 <?php
 //Session variables: KEEP AT TOP
 session_start();
@@ -16,12 +19,18 @@ if ($codeCorrect != "Yes"){
 
 */
 
-if(isset($_POST['btnSave']))
+if(isset($_POST['upload']))
 {
-	$first = $_POST['firstName'];
-	$last = $_POST['lastName'];
-	$phone = $_POST['phone'];
+	$userType = "Volunteer";
+	$firstName = $_POST['firstName'];
+	$lastName = $_POST['lastName'];
+	$primaryPhone = $_POST['phone'];
 	$email = $_POST['email'];
+	$street= $_POST['street'];
+	$city = $_POST['city'];
+	$state = $_POST['state'];
+	$zip = $_POST['zipcode'];
+	//Make certain passwords match
 	if($_POST['password'] == $_POST['check']){
 		/****************************************
 			START PASWWORD CODE 
@@ -55,8 +64,10 @@ if(isset($_POST['btnSave']))
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
-		$query = "UPDATE Person SET Person_PasswordHash = '" . $passwordHashPassed . "', Person_FirstName = '" . $first . "', Person_LastName ='" 
-		. $last . "', Person_PhonePrimary =" . $phone . ", Person_Email ='" . $email . "' WHERE Person_ID = " .$userID; 
+		$query = "INSERT INTO Person (Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
+			Person_HomeState, Person_Zipcode)
+					VALUES ('$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
+					NULL, '$state', '$zip')"; 
 		
 		if(!mysqli_query($conn,$query))
 
@@ -303,19 +314,19 @@ if(isset($_POST['btnSave']))
           <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
+              <input class="form-control" name="password" type="password" required="required">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
+              <input class="form-control" name="check" type="password" required="required">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <input type="submit" name="btnSave" class="btn btn-primary" value="Submit Profile">
+              <input type="submit" name="upload" class="btn btn-primary" value="Submit Profile">
               <span></span>
               <input type="reset" class="btn btn-default" value="Cancel">
             </div>

@@ -40,7 +40,7 @@ session_start();
 		}
 		
 		if($userType == "Volunteer" ){														
-			$query = "INSERT INTO LogHours(LogHours_PersonID,LogHours_Department,LogHours_BeginTime) VALUES(" . $personID . ",1,NOW())";
+			$query = "INSERT INTO LogHours(LogHours_PersonID,LogHours_BeginTime) VALUES(" . $personID . ",NOW())";
 			mysqli_query($conn, $query) or die(mysqli_error($conn));
 			
 			header("Location: clockin.php");
@@ -167,8 +167,8 @@ session_start();
 			if($userType == "Volunteer" ){									
 				
 				
-				$query = "INSERT INTO LogTransport(LogTransport_TransportID,LogTransport_TypeOfAnimal,LogTransport_Date,LogTransport_Species,
-				LogTransport_Address,LogTransport_Hours,LogTransport_Miles) VALUES (" . $transporterID . ",1,'" . $_POST['date'] . "','" 
+				$query = "INSERT INTO LogTransport(LogTransport_TransportID,LogTransport_Date,LogTransport_Species,
+				LogTransport_Address,LogTransport_Hours,LogTransport_Miles) VALUES (" . $transporterID . ",'" . $_POST['date'] . "','" 
 				. $_POST['address'] . "','" . $_POST['species'] . "'," . $_POST['hours'] . "," . $_POST['mileage'] . ")";
 
 				mysqli_query($conn, $query) or die(mysqli_error($conn));
