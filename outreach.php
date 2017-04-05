@@ -286,13 +286,24 @@ error_reporting(E_ALL);
 													
 												</div>
 												<div class="form-group">
-													<label class="col-sm-5">If so, please upload a copy of your permit.</label>
+													<label class="col-sm-5">If so, what category? Please upload a copy of your permit.</label>
+														<div>
+															<select name="permitCategory">
+																<option value="">--</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="4">4</option>
+															</select>
+														</div>
 														<div class="fileinput fileinput-new" data-provides="fileinput">
 															<span class="btn btn-default btn-file">
 																<input name="recommend2" id = "recommend2" type="file" multiple /></span>
 															<span class="fileinput-filename"></span>
 															<span class="fileinput-new"></span>
 														</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-5">What </label>
 												</div>
 												
 												<div class="form-group">
