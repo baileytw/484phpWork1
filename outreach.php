@@ -70,10 +70,10 @@ error_reporting(E_ALL);
         
         <section>
             <div class="container">
+			
+				<!-- Main Section -->
+			
                 <div class="row">
-				
-                    <!-- Main Section -->
-    
                     <section class="col-md-12">
                         <div class="main-section">
                             <div class="main-content panel panel-default">
@@ -121,7 +121,7 @@ error_reporting(E_ALL);
 												<div class="form-group">
 													<label class="col-sm-2">Phone *</label>
 													<div class="col-sm-10">
-													  <input class="form-control" id = 'phone' type="number" name="phone" value="<?php if (isset($_POST['upload'])) echo ($_POST['phone']);?>" required="required" />
+													  <input class="form-control" id = 'phone' type="text" name="phone" value="<?php if (isset($_POST['upload'])) echo ($_POST['phone']);?>" required="required" />
 													</div>
 												</div>
 												<div class="form-group">
@@ -206,6 +206,76 @@ error_reporting(E_ALL);
 													</div>
 												</div>
 												<div class="form-group">
+													<label class="col-sm-2">Availability *</label>
+													<table style="width:80%">
+														<tr>
+															<th></th>
+															<th><label>Morning</label></th>
+															<th><label>Early Afternoon</label></th>
+															<th><label>Late Afternoon</label></th>
+															<th><label>Evening</label></th>
+														</tr>
+														<tr>
+															<td>Sundays</td>
+															<td><label><input type="checkbox" name="text1" value="val1" />Text 1</label></td>
+															<td><label><input type="checkbox" name="text2" value="val2" />Text 2</label></td>
+															<td><label><input type="checkbox" name="text3" value="val3" />Text 3</label></td>
+															<td><label><input type="checkbox" name="text4" value="val4" />Text 4</label></td>
+														</tr>
+														<tr>
+															<td>Mondays</td>
+															<td><label><input type="checkbox" name="text5" value="val5" />Text 5</label></td>
+															<td><label><input type="checkbox" name="text6" value="val6" />Text 6</label></td>
+															<td><label><input type="checkbox" name="text7" value="val7" />Text 7</label></td>
+															<td><label><input type="checkbox" name="text8" value="val8" />Text 8</label></td>
+														</tr>
+														<tr>
+															<td>Tuesdays</td>
+															<td><label><input type="checkbox" name="text1" value="val1" />Text 1</label></td>
+															<td><label><input type="checkbox" name="text2" value="val2" />Text 2</label></td>
+															<td><label><input type="checkbox" name="text3" value="val3" />Text 3</label></td>
+															<td><label><input type="checkbox" name="text4" value="val4" />Text 4</label></td>
+														</tr>
+														<tr>
+															<td>Wednesdays</td>
+															<td><label><input type="checkbox" name="text5" value="val5" />Text 5</label></td>
+															<td><label><input type="checkbox" name="text6" value="val6" />Text 6</label></td>
+															<td><label><input type="checkbox" name="text7" value="val7" />Text 7</label></td>
+															<td><label><input type="checkbox" name="text8" value="val8" />Text 8</label></td>
+														</tr>
+														<tr>
+															<td>Thursdays</td>
+															<td><label><input type="checkbox" name="text1" value="val1" />Text 1</label></td>
+															<td><label><input type="checkbox" name="text2" value="val2" />Text 2</label></td>
+															<td><label><input type="checkbox" name="text3" value="val3" />Text 3</label></td>
+															<td><label><input type="checkbox" name="text4" value="val4" />Text 4</label></td>
+														</tr>
+														<tr>
+															<td>Fridays</td>
+															<td><label><input type="checkbox" name="text5" value="val5" />Text 5</label></td>
+															<td><label><input type="checkbox" name="text6" value="val6" />Text 6</label></td>
+															<td><label><input type="checkbox" name="text7" value="val7" />Text 7</label></td>
+															<td><label><input type="checkbox" name="text8" value="val8" />Text 8</label></td>
+														</tr>
+														<tr>
+															<td>Saturdays</td>
+															<td><label><input type="checkbox" name="text1" value="val1" />Text 1</label></td>
+															<td><label><input type="checkbox" name="text2" value="val2" />Text 2</label></td>
+															<td><label><input type="checkbox" name="text3" value="val3" />Text 3</label></td>
+															<td><label><input type="checkbox" name="text4" value="val4" />Text 4</label></td>
+														</tr>
+													</table>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-5">Are you able to work All Year or Seasonal?</label>
+													<div class="col-sm-7">
+														<div class="checkbox" >
+															<input type="radio" name="work" value="Y" <?php if (isset($_POST['work']) && $_POST['work'] == 'Y') echo ' checked="checked"';?>> All Year
+															<input type="radio" name="work" value="S" <?php if (isset($_POST['work']) && $_POST['work'] == 'S') echo ' checked="checked"';?>> Seasonal
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
 													<label class="col-sm-5">Do you have a permit to rehabilitate wildlife?</label>
 													<div class="col-sm-7">
 														<div class="checkbox" >
@@ -213,7 +283,18 @@ error_reporting(E_ALL);
 															<input type="radio" name="permit" value="No" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'No') echo ' checked="checked"';?>> No
 														</div>
 													</div>
+													
 												</div>
+												<div class="form-group">
+													<label class="col-sm-5">If so, please upload a copy of your permit.</label>
+														<div class="fileinput fileinput-new" data-provides="fileinput">
+															<span class="btn btn-default btn-file">
+																<input name="recommend2" id = "recommend2" type="file" multiple /></span>
+															<span class="fileinput-filename"></span>
+															<span class="fileinput-new"></span>
+														</div>
+												</div>
+												
 												<div class="form-group">
 													<label class="col-sm-5">Are you rabies vaccinated?</label>
 													<div class="col-sm-7">
@@ -269,13 +350,7 @@ error_reporting(E_ALL);
 														<span class="fileinput-filename col-sm-3"></span>
 														<span class="fileinput-new"></span>
 													</div>
-													<div class="col-sm-12 col-sm-offset-3">Recommendation Letter 2</div>
-													<div class="fileinput fileinput-new col-sm-3 col-sm-offset-3 btn-lg" data-provides="fileinput">
-														<span class="btn btn-default btn-file">
-															<input name="recommend2" id = "recommend2" type="file" multiple /></span>
-														<span class="fileinput-filename col-sm-3"></span>
-														<span class="fileinput-new"></span>
-													</div>
+													
 												</div>
 											</fieldset>
 											<footer class="panel-footer">
@@ -520,9 +595,8 @@ alert('$message');
 ****************************************/					
 ?>
 				</div>
-                
     
-                    <!-- Main Section End -->
+				<!-- Main Section End -->
 
 			</div>
 		</section>
