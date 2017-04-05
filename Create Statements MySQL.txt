@@ -1,6 +1,8 @@
 DROP TABLE Events2;
 DROP TABLE Events;
 DROP EVENT clock_out;
+DROP TABLE AvailabilityTransporter;
+DROP TABLE AvailabilityTransporter;
 DROP TABLE VolAvailabilityTime;
 DROP TABLE AppAvailabilityTime;
 DROP TABLE VolTimeOfDay;
@@ -134,6 +136,7 @@ TransporterApp_ID	                    INTEGER NOT NULL AUTO_INCREMENT,
 TransporterApp_ApplicationID	        INTEGER NOT NULL,
 TransporterApp_DistanceWillingToTravel	VARCHAR(2000),
 TransporterApp_CaptureAnimals	        VARCHAR(2000),
+TransporterApp_Acknowledgement			CHAR(1),
 CONSTRAINT PK_TransporterApp PRIMARY KEY (TransporterApp_ID),
 CONSTRAINT FK_TransporterApp_ApplicationID FOREIGN KEY (TransporterApp_ApplicationID) REFERENCES PersonApplication(PersonApplication_ID));
 
