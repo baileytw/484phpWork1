@@ -380,6 +380,13 @@ VolAvailabilityTime_TimeOfDay	    INTEGER,
 CONSTRAINT PK_VolAvailabilityTime PRIMARY KEY (VolAvailabilityTime_ID),
 CONSTRAINT FK_VolAvailabililyTime_AvailabilityDay FOREIGN KEY (VolAvailabililyTime_AvailabilityDay) REFERENCES AvailabilityDay(AvailabilityDay_ID));
 
+CREATE TABLE AvailabilityTransporter (
+AvailabilityTransporter_ID						INTEGER NOT NULL AUTO_INCREMENT,
+AvailabilityTransporter_AvailabilityPersonID	INTEGER NOT NULL,
+AvailabilityTransporter_TimeOfWeek				VARCHAR(30),
+CONSTRAINT PK_AvailabilityTransporter PRIMARY KEY (AvailabilityTransporter_ID),
+CONSTRAINT FK_AvailabilityTransporter_AvailabilityPersonID FOREIGN KEY (AvailabilityTransporter_AvailabilityPersonID) REFERENCES AvailabilityDay(AvailabilityTransporter_AvailabilityPersonID));
+
 
 
 
