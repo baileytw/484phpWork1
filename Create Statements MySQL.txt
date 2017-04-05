@@ -67,8 +67,7 @@ Documentation_FileType			VARCHAR(40),
 Documentation_FileContent		LONGBLOB,
 Documentation_DocumentNotes		VARCHAR(2000),
 CONSTRAINT PK_Documentation PRIMARY KEY (Documentation_ID),
-CONSTRAINT FK_Documentation_PersonID FOREIGN KEY (Documentation_PersonID) REFERENCES Person(Person_ID),
-CONSTRAINT FK_Documentation_TypeOfDocument FOREIGN KEY (Documentation_TypeOfDocument) REFERENCES TypeOfDocument(TypeOfDocument_ID));
+CONSTRAINT FK_Documentation_PersonID FOREIGN KEY (Documentation_PersonID) REFERENCES Person(Person_ID));
 
 CREATE TABLE Department (
 Department_ID	    INTEGER	NOT NULL,
