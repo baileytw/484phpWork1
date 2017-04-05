@@ -57,11 +57,18 @@ else {
 $conn->close();
 if(isset($_POST['btnSave']))
 {
+	//Set run query to false
+	$runQuery= false;
+	//Set variable values
 	$first = $_POST['firstName'];
 	$last = $_POST['lastName'];
 	$phone = $_POST['phone'];
 	$email = $_POST['email'];
-	if($_POST['password'] == $_POST['check']){
+	if(($_POST['password'] == null) || ($_POST['check'] == null)){
+		$runQuery = true;
+		$passwordQuery = " ";
+	}
+	else if($_POST['password'] == $_POST['check']){
 		/****************************************
 			START PASWWORD CODE 
 		****************************************/
@@ -74,8 +81,8 @@ if(isset($_POST['btnSave']))
 		// The $hash variable will contain the hash of the password
 		$hash = $hasher->HashPassword($password);
 		if (strlen($hash) >= 20) {
-			$passwordHashPassed = $hash;
-				
+			$runQuery = true;
+			$passwordQuery = " Person_PasswordHash = '" . $hash . "',";
 		} else {
 			
 		 // something went wrong
@@ -84,6 +91,8 @@ if(isset($_POST['btnSave']))
 		/****************************************
 			END PASWWORD CODE 
 		****************************************/
+	}
+	if ($runQuery == true){
 		$servername = "localhost";
 		$username = "root";
 		$dbpassword = "Twspike1994?";
@@ -94,7 +103,7 @@ if(isset($_POST['btnSave']))
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
-		$query = "UPDATE Person SET Person_PasswordHash = '" . $passwordHashPassed . "', Person_FirstName = '" . $first . "', Person_LastName ='" 
+		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '" . $first . "', Person_LastName ='" 
 		. $last . "', Person_PhonePrimary =" . $phone . ", Person_Email ='" . $email . "' WHERE Person_ID = " .$userID; 
 		
 		if(!mysqli_query($conn,$query))
@@ -227,19 +236,21 @@ if(isset($_POST['btnSave']))
 			  <input class="form-control" name="phone" value="<?php echo ($phone);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555' required="required"> 
             </div>
           </div>
-         
-	
-
+		<div class="form-group">
+            <label class="col-md-3 control-label">Change Password?</label>
+            <div class="col-md-8">
+            </div>
+          </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input class="form-control" name="password" type="password" required="required" >
+              <input class="form-control" name="password" type="password">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input class="form-control" name="check" type="password" required="required" >
+              <input class="form-control" name="check" type="password">
             </div>
           </div>
           <div class="form-group">

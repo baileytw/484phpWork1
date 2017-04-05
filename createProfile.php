@@ -64,9 +64,9 @@ if(isset($_POST['upload']))
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
-		$query = "INSERT INTO Person (Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
-			Person_HomeState, Person_Zipcode)
-					VALUES ('$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
+		$query = "INSERT INTO Person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
+			Person_State, Person_Zipcode)
+					VALUES ('$email', '$passwordHashPassed', '$userType', '$firstName', '$lastName', '$email', NULL, NULL, '$street', '$city',
 					NULL, '$state', '$zip')"; 
 		
 		if(!mysqli_query($conn,$query))
@@ -78,7 +78,7 @@ if(isset($_POST['upload']))
 		else
 		{
 			$conn->close();
-			header("Location: updateConfirmation2.php");
+			header("Location: createConfirmation.php");
 			exit();
 		}
 	}
