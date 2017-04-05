@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 
 <?php
+//Session variables: KEEP AT TOP
+session_start();
+$codeCorrect = $_SESSION['codeCorrect']; 
+
+
+//UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
+/*
+//If Session is empty, redirect user to restricted access notification
+if ($codeCorrect != "Yes"){
+	header("Location: restrictedAccess.php");
+	exit();
+}
+
+*/
 
 if(isset($_POST['btnSave']))
 {
@@ -134,11 +148,11 @@ if(isset($_POST['btnSave']))
                                             
                                         </header>
 <div class="content">
-                                        <h3 class="col-md-6">Create Profile Information</h3>
+                                        <h3 class="col-md-6">Enter Profile Information</h3>
                                               <div class="col-md-3">
         <div class="text-center">
           <img src="images/johndoe.png" class="avatar img-circle img-responsive" alt="avatar">
-          <h6>Upload a different photo...</h6>
+          <h6>Upload a photo...</h6>
           
           <input type="file" class="form-control">
         </div>
@@ -152,17 +166,17 @@ if(isset($_POST['btnSave']))
       <!-- edit form column -->
       <div class="col-md-7 col-md-offset-1 personal-info">
 
-        <h3>Personal info</h3>
+        <h3>Personal Info</h3>
         
         <form class="form-horizontal" method="post" role="form">
           <div class="form-group">
-            <label class="col-lg-3 control-label">First name:</label>
+            <label class="col-lg-3 control-label">First Name:</label>
             <div class="col-lg-8">
               <input class="form-control" name="firstName" value="<?php echo ($first);?>" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Last name:</label>
+            <label class="col-lg-3 control-label">Last Name:</label>
             <div class="col-lg-8">
               <input class="form-control" name="lastName" value="<?php echo ($last);?>" type="text" required="required">
             </div>

@@ -110,17 +110,17 @@ if ($userTypeSession != "Applicant"){
       <!-- edit form column -->
       <div class="col-md-7 col-md-offset-1 personal-info">
 
-        <h3>Personal info</h3>
+        <h3>Personal Info</h3>
         
         <form class="form-horizontal" role="form">
           <div class="form-group">
-            <label class="col-lg-3 control-label">First name:</label>
+            <label class="col-lg-3 control-label">First Name:</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" value="John">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Last name:</label>
+            <label class="col-lg-3 control-label">Last Name:</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" value="Doe">
             </div>
