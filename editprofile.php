@@ -16,6 +16,13 @@ if ($userTypeSession != "Volunteer"){
 }
 
 */
+
+//If Cancel button clicked, go back to profile
+if(isset($_POST['btnCancel']))
+{
+	header("Location: profile.php");
+	exit();
+}
 //Populate fields code
 $servername = "localhost";
 $username = "root";
@@ -46,11 +53,20 @@ else {
 $conn->close();
 if(isset($_POST['btnSave']))
 {
+	//Set run query to false
+	$runQuery= false;
+	//Set variables
 	$first = $_POST['firstName'];
 	$last = $_POST['lastName'];
 	$phone = $_POST['phone'];
 	$email = $_POST['email'];
-	if($_POST['password'] == $_POST['check']){
+	//If passwords null, don't uppdate password
+	if(($_POST['password'] == null) || ($_POST['check'] == null)){
+		$runQuery = true;
+		$passwordQuery = " ";
+	}
+	//Else, update passwords if password and check match
+	else if($_POST['password'] == $_POST['check']){
 		/****************************************
 			START PASWWORD CODE 
 		****************************************/
@@ -63,7 +79,8 @@ if(isset($_POST['btnSave']))
 		// The $hash variable will contain the hash of the password
 		$hash = $hasher->HashPassword($password);
 		if (strlen($hash) >= 20) {
-			$passwordHashPassed = $hash;
+			$runQuery = true;
+			$passwordQuery = " Person_PasswordHash = '" . $hash . "',";
 				
 		} else {
 			
@@ -73,6 +90,8 @@ if(isset($_POST['btnSave']))
 		/****************************************
 			END PASWWORD CODE 
 		****************************************/
+	}
+	if ($runQuery == true){
 		$servername = "localhost";
 		$username = "root";
 		$dbpassword = "Twspike1994?";
@@ -83,7 +102,7 @@ if(isset($_POST['btnSave']))
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
-		$query = "UPDATE Person SET Person_PasswordHash = '" . $passwordHashPassed . "', Person_FirstName = '" . $first . "', Person_LastName ='" 
+		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '" . $first . "', Person_LastName ='" 
 		. $last . "', Person_PhonePrimary =" . $phone . ", Person_Email ='" . $email . "' WHERE Person_ID = " .$userID; 
 		
 		if(!mysqli_query($conn,$query))
@@ -95,7 +114,7 @@ if(isset($_POST['btnSave']))
 		else
 		{
 			$conn->close();
-			header("Location: updateConfirmation2.php");
+			header("Location: updateConfirmation3.php");
 			exit();
 		}
 	}
@@ -329,16 +348,19 @@ if(isset($_POST['btnSave']))
               <input class="form-control" type="text" value="">
             </div>
           </div>
+		  <div class="form-group">
+            <label class="col-md-3 control-label">Change Password?</label>
+          </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
+              <input class="form-control" name="password" type="password">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
+              <input class="form-control" name="check" type="password">
             </div>
           </div>
           <div class="form-group">
@@ -346,7 +368,7 @@ if(isset($_POST['btnSave']))
             <div class="col-md-8">
               <input type="submit" name="btnSave" class="btn btn-primary" value="Save Changes">
               <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
+              <input type="submit" name="btnCancel" class="btn btn-default" value="Cancel">
             </div>
           </div>
         </form>

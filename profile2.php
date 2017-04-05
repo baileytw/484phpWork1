@@ -7,8 +7,8 @@ session_start();
 $userID = $_SESSION['userID'];
 $userTypeSession = $_SESSION['userType']; 
 $profileID = $_GET['profileID']; 
-$profileDI = $_SESSION['profileDI'];
-$_SESSION['profileDI'] = $profileID;
+$profileEdit = $_SESSION['profileEdit'];
+$_SESSION['profileEdit'] = $profileID;
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
@@ -27,34 +27,8 @@ if ($userTypeSession != "Team Lead"){
 
 
 
-/*
-$profileID = whoever the profile is about that the team lead is looking at
 
-if(isset($_POST['btnAccept'])){
-	$server = "localhost";
-	$user = "root";
-	$password = "Twspike1994?";
-	$database = "wildlife";
-	$conn = mysqli_connect($server, $user, $password, $database);
-	if (mysqli_connect_errno()) 
-	{
-	echo "Failed to connect to MySQL: " . mysqli_connect_error();
-	}
-	if(!mysqli_select_db($conn, 'wildlife'))
-	{
-	   echo "Database Not Selected";
-	}
-
-	//SQL Statement to update applicant to Volunteer
-	$query = "UPDATE Person SET Person_UserType = 'Volunteer' WHERE Person_ID = " . $profileID;
-
-	if(!mysqli_query($conn,$query))
-			{
-				echo("Error description: " . mysqli_error($conn));
-			}
-	$conn->close();
-}
-*/
+//$profileID = whoever the profile is about that the team lead is looking at
 //Gather information to populate profile
 $servername = "localhost";
 $username = "root";
@@ -68,12 +42,13 @@ if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
 //SQL Statement to gather info
-$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
+$sql = "SELECT Person_UserType, Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
 Person_HomeState, Person_Zipcode FROM Person WHERE Person_ID =" .$profileID;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
 	while($row = $result->fetch_assoc()) {
+		$userType = $row['Person_UserType'];
 		$first = $row['Person_FirstName'];
 		$last = $row['Person_LastName'];
 		$phone = $row['Person_PhonePrimary'];
@@ -280,8 +255,6 @@ if(isset($_POST['downloadResume']))
 	</div>
 	  </div>
                                     
-
-
                                     </div>
                                     <div class="preview">
                                     </div>

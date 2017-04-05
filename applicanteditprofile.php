@@ -16,6 +16,14 @@ if ($userTypeSession != "Applicant"){
 }
 
 */
+
+//If Cancel button clicked, go back to profile
+if(isset($_POST['btnCancel']))
+{
+	header("Location: accountProfile.php");
+	exit();
+}
+
 ?>
 
 <html>
@@ -174,15 +182,18 @@ if ($userTypeSession != "Applicant"){
             </div>
           </div>
           <div class="form-group">
+            <label class="col-md-3 control-label">Change Password?</label>
+          </div>
+          <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
+              <input class="form-control" name="password" type="password">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
+              <input class="form-control" name="check" type="password">
             </div>
           </div>
           <div class="form-group">
@@ -190,7 +201,7 @@ if ($userTypeSession != "Applicant"){
             <div class="col-md-8">
               <input type="submit" name="btnSave" class="btn btn-primary" value="Save Changes">
               <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
+              <input type="submit" name="btnCancel" class="btn btn-default" value="Cancel">
             </div>
           </div>
         </form>

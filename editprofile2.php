@@ -6,7 +6,7 @@ session_start();
 $userID = $_SESSION['userID'];
 $userTypeSession = $_SESSION['userType']; 
 $profileID = $_GET['profileID'];
-$profileDI = $_SESSION['profileDI'];
+$profileEdit = $_SESSION['profileEdit'];
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
@@ -19,6 +19,12 @@ if ($userTypeSession != "Team Lead"){
 
 */
 
+//If Cancel button clicked, go back to profile
+if(isset($_POST['btnCancel']))
+{
+	header("Location: profile2.php");
+	exit();
+}
 
 
 
@@ -56,29 +62,76 @@ else {
 }
 $conn->close();
 
-/*
+
 if(isset($_POST['btnSave']))
 {
+	//Set run query to false
+	$runQuery= false;
+	//Set variables
+	//$personID = 
 	$first = $_POST['firstName'];
 	$last = $_POST['lastName'];
 	$phone = $_POST['phone'];
 	$email = $_POST['email'];
-*/
+	//If passwords null, don't uppdate password
+	if(($_POST['password'] == null) || ($_POST['check'] == null)){
+		$runQuery = true;
+		$passwordQuery = " ";
+	}
+	//Else, update passwords if password and check match
+	else if($_POST['password'] == $_POST['check']){
+		/****************************************
+			START PASWWORD CODE 
+		****************************************/
+		require("PasswordHash.php");
+		$hasher = new PasswordHash(8, false);
+		// Retrieve password
+		$password = $_POST["password"];
+		// Limit passwords to 72 characters to help prevent DoS attacks
+		if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
+		// The $hash variable will contain the hash of the password
+		$hash = $hasher->HashPassword($password);
+		if (strlen($hash) >= 20) {
+			$runQuery = true;
+			$passwordQuery = " Person_PasswordHash = '" . $hash . "',";
+				
+		} else {
+			
+		 // something went wrong
 
+		}
+		/****************************************
+			END PASWWORD CODE 
+		****************************************/
+	}
+	if ($runQuery == true){
+		$servername = "localhost";
+		$username = "root";
+		$dbpassword = "Twspike1994?";
+		$dbname = "wildlife";
 
+		// Create connection
+		$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '" . $first . "', Person_LastName ='" 
+		. $last . "', Person_PhonePrimary =" . $phone . ", Person_Email ='" . $email . "' WHERE Person_ID = " .$userID; 
+		
+		if(!mysqli_query($conn,$query))
 
+		{
+			echo("Error description: " . mysqli_error($conn));
+		}
 
-
-
-
-
-
-
-
-
-
-
-
+		else
+		{
+			$conn->close();
+			header("Location: updateConfirmation3.php");
+			exit();
+		}
+	}
+}
 
 ?>
 
@@ -316,15 +369,18 @@ if(isset($_POST['btnSave']))
             </div>
           </div>
           <div class="form-group">
+            <label class="col-md-3 control-label">Change Password?</label>
+          </div>
+          <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
+              <input class="form-control" name="password" type="password">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
+              <input class="form-control" name="check" type="password">
             </div>
           </div>
           <div class="form-group">
@@ -332,7 +388,7 @@ if(isset($_POST['btnSave']))
             <div class="col-md-8">
               <input type="submit" name="btnSave" class="btn btn-primary" value="Save Changes">
               <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
+              <input type="submit" name="btnCancel" class="btn btn-default" value="Cancel">
             </div>
           </div>
         </form>

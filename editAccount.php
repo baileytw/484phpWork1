@@ -27,6 +27,13 @@ if ($userTypeSession != "Team Lead"){
 }
 */
 
+//If Cancel button clicked, go back to profile
+if(isset($_POST['btnCancel']))
+{
+	header("Location: accountProfile.php");
+	exit();
+}
+
 //Populate fields code
 $servername = "localhost";
 $username = "root";
@@ -64,10 +71,12 @@ if(isset($_POST['btnSave']))
 	$last = $_POST['lastName'];
 	$phone = $_POST['phone'];
 	$email = $_POST['email'];
+	//If passwords null, don't uppdate password
 	if(($_POST['password'] == null) || ($_POST['check'] == null)){
 		$runQuery = true;
 		$passwordQuery = " ";
 	}
+	//Else, update passwords if password and check match
 	else if($_POST['password'] == $_POST['check']){
 		/****************************************
 			START PASWWORD CODE 
@@ -104,7 +113,7 @@ if(isset($_POST['btnSave']))
 			die("Connection failed: " . $conn->connect_error);
 		}
 		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '" . $first . "', Person_LastName ='" 
-		. $last . "', Person_PhonePrimary =" . $phone . ", Person_Email ='" . $email . "' WHERE Person_ID = " .$userID; 
+		. $last . "', Person_PhonePrimary = '" . $phone . "', Person_Email ='" . $email . "' WHERE Person_ID = " .$userID; 
 		
 		if(!mysqli_query($conn,$query))
 
@@ -258,7 +267,7 @@ if(isset($_POST['btnSave']))
             <div class="col-md-8">
               <input type="submit" name="btnSave" class="btn btn-primary" value="Save Changes">
               <span></span>
-              <input type="reset" class="btn btn-default" value="Cancel">
+              <input type="submit" name="btnCancel" class="btn btn-default" value="Cancel">
             </div>
           </div>
         </form>
