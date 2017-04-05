@@ -116,7 +116,7 @@ if(isset($_POST['btnSave']))
 			die("Connection failed: " . $conn->connect_error);
 		}
 		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '" . $first . "', Person_LastName ='" 
-		. $last . "', Person_PhonePrimary =" . $phone . ", Person_Email ='" . $email . "' WHERE Person_ID = " .$profileEdit; 
+		. $last . "', Person_PhonePrimary = '" . $phone . "', Person_Email ='" . $email . "' WHERE Person_ID = " .$profileEdit; 
 		
 		if(!mysqli_query($conn,$query))
 
@@ -234,19 +234,19 @@ if(isset($_POST['btnSave']))
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="firstName" value="<?php echo ($first);?>" type="text" required="required">
+              <input class="form-control" maxlength="20" name="firstName" value="<?php echo ($first);?>" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Last name:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="lastName" value="<?php echo ($last);?>" type="text" required="required">
+              <input class="form-control" maxlength="20" name="lastName" value="<?php echo ($last);?>" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="email" value="<?php echo ($email);?>" type="email" required="required">
+              <input class="form-control" maxlength="254" name="email" value="<?php echo ($email);?>" type="email" required="required">
             </div>
           </div>
           <div class="form-group">
@@ -258,13 +258,13 @@ if(isset($_POST['btnSave']))
           <div class="form-group">
             <label class="col-lg-3 control-label">Address:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="street" value="<?php echo ($street);?>" type="text" required="required">
+              <input class="form-control" maxlength="50" name="street" value="<?php echo ($street);?>" type="text" required="required">
             </div>
           </div>
 		  <div class="form-group">
 			<label class="col-lg-3 control-label">City:</label>
 			<div class="col-lg-8">
-			  <input class="form-control" name="city" value="<?php echo ($city);?>" type="text" required="required" />
+			  <input class="form-control" maxlength="40" name="city" value="<?php echo ($city);?>" type="text" required="required" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -328,7 +328,7 @@ if(isset($_POST['btnSave']))
 		<div class="form-group">
 			<label class="col-lg-3 control-label">Zip Code:</label>
 			<div class="col-lg-8">
-			  <input class="form-control" name="zipcode" value="<?php echo ($zipcode);?>" type="text" required="required" />
+			  <input class="form-control" pattern=".{5}" title="Enter 5 digit zipcode" name="zipcode" value="<?php echo ($zipcode);?>" type="text" required="required" />
 			</div>
 			
 		</div>

@@ -224,19 +224,19 @@ if(isset($_POST['btnSave']))
           <div class="form-group">
             <label class="col-lg-3 control-label">First Name:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="firstName" value="<?php echo ($first);?>" type="text" required="required">
+              <input class="form-control" name="firstName" value="<?php echo ($first);?>" maxlength="20" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Last Name:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="lastName" value="<?php echo ($last);?>" type="text" required="required" >
+              <input class="form-control" name="lastName" value="<?php echo ($last);?>" maxlength="20" type="text" required="required" >
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="email" value="<?php echo ($email);?>" type="email" required="required" >
+              <input class="form-control" name="email" value="<?php echo ($email);?>" maxlength="254" type="email" required="required" >
             </div>
           </div>
           <div class="form-group">

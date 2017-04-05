@@ -169,25 +169,25 @@ if(isset($_POST['upload']))
 														<div class="form-group">
 															<label class="col-lg-3 control-label">First Name:</label>
 															<div class="col-lg-8">
-															  <input class="form-control" name="firstName" value="<?php if (isset($_POST['upload'])) echo ($_POST['firstName']);?>" name="first" required="required">
+															  <input class="form-control" maxlength="20" name="firstName" value="<?php if (isset($_POST['upload'])) echo ($_POST['firstName']);?>" name="first" required="required">
 															</div>
 														</div>
 														<div class="form-group">
 															<label class="col-lg-3 control-label">Last Name:</label>
 															<div class="col-lg-8">
-															  <input class="form-control" name="lastName" value="<?php if (isset($_POST['upload'])) echo ($_POST['lastName']);?>" type="text" required="required">
+															  <input class="form-control" maxlength="20" name="lastName" value="<?php if (isset($_POST['upload'])) echo ($_POST['lastName']);?>" type="text" required="required">
 															</div>
 														</div>
 														<div class="form-group">
 															<label class="col-lg-3 control-label">Email:</label>
 															<div class="col-lg-8">
-																<input class="form-control" name="email" value="<?php if (isset($_POST['upload'])) echo ($_POST['email']);?>" type="text" required="required">
+																<input class="form-control" maxlength="254" name="email" value="<?php if (isset($_POST['upload'])) echo ($_POST['email']);?>" type="text" required="required">
 															</div>
 														</div>
 														<div class="form-group">
 															<label class="col-lg-3 control-label">Phone:</label>
 															<div class="col-lg-8">
-																<input class="form-control" name="phone" value="<?php if (isset($_POST['upload'])) echo ($_POST['phone']);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555'>
+																<input class="form-control" name="phone" value="<?php if (isset($_POST['upload'])) echo ($_POST['phone']);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555' required="required">
 															</div>
 														</div>
 														<div class="form-group">
@@ -199,13 +199,13 @@ if(isset($_POST['upload']))
 														<div class="form-group">
 															<label class="col-lg-3 control-label">Address:</label>
 															<div class="col-lg-8">
-																<input class="form-control" name="street" value="<?php if (isset($_POST['upload'])) echo ($_POST['street']);?>" type="text" required="required">
+																<input class="form-control" maxlength="50" name="street" value="<?php if (isset($_POST['upload'])) echo ($_POST['street']);?>" type="text" required="required">
 															</div>
 														</div>
 														<div class="form-group">
 															<label class="col-lg-3 control-label">City:</label>
 															<div class="col-lg-8">
-																<input class="form-control" name="city" value="<?php if (isset($_POST['upload'])) echo ($_POST['city']);?>" type="text" required="required" />
+																<input class="form-control" maxlength="40" name="city" value="<?php if (isset($_POST['upload'])) echo ($_POST['city']);?>" type="text" required="required" />
 															</div>
 														</div>
 														<div class="form-group">
@@ -271,7 +271,7 @@ if(isset($_POST['upload']))
 														<div class="form-group">
 															<label class="col-lg-3 control-label">Zip Code:</label>
 															<div class="col-lg-8">
-																<input class="form-control" name="zipcode" value="<?php if (isset($_POST['upload'])) echo ($_POST['zipcode']);?>" type="text" required="required" />
+																<input class="form-control" pattern=".{5}" title="Enter 5 digit zipcode" name="zipcode" value="<?php if (isset($_POST['upload'])) echo ($_POST['zipcode']);?>" type="text" required="required" />
 															</div>
 																
 														</div>
