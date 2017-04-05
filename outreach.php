@@ -135,7 +135,6 @@ error_reporting(E_ALL);
 													<div class="col-sm-2">
 													  <input class="form-control" type="text" id="city" name="city" value="<?php if (isset($_POST['upload'])) echo ($_POST['city']);?>" placeholder="City" name="city" />
 													</div>
-
 													<label class="col-sm-1">State *</label>
 													<div class="col-sm-3">
 													
@@ -191,13 +190,12 @@ error_reporting(E_ALL);
 															<option value="Wisconsin">Wisconsin</option>
 															<option value="Wyoming">Wyoming</option>
 														</select> 
+														
 													</div>
-											
 													<label class="col-sm-2">Zip Code *</label>
 													<div class="col-sm-2">
 													  <input class="form-control" type="text" id="zipcode" name="zipcode" value="<?php if (isset($_POST['upload'])) echo ($_POST['zipcode']);?>" placeholder="Zip" name="zip" />
 													</div>
-													
 												</div>
 												<div class="form-group">
 													<label class="col-sm-2">Date of Birth *</label>
@@ -310,6 +308,15 @@ error_reporting(E_ALL);
 													</div>								
 												</div>
 												<div class="form-group">
+													<label class="col-sm-3">Are you able to work All Year or Seasonal?</label>
+													<div class="col-sm-7">
+														<div class="checkbox" >
+															<input type="radio" name="work" value="Y" <?php if (isset($_POST['work']) && $_POST['work'] == 'Y') echo ' checked="checked"';?>> All Year
+															<input type="radio" name="work" value="S" <?php if (isset($_POST['work']) && $_POST['work'] == 'S') echo ' checked="checked"';?>> Seasonal
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
 													<label class="col-sm-2">Availability *</label>
 													<table style="width:80%">
 														<tr>
@@ -370,17 +377,11 @@ error_reporting(E_ALL);
 														</tr>
 													</table>
 												</div>
+												
+												<h4>Please answer the following questions.</h4>
+												
 												<div class="form-group">
-													<label class="col-sm-5">Are you able to work All Year or Seasonal?</label>
-													<div class="col-sm-7">
-														<div class="checkbox" >
-															<input type="radio" name="work" value="Y" <?php if (isset($_POST['work']) && $_POST['work'] == 'Y') echo ' checked="checked"';?>> All Year
-															<input type="radio" name="work" value="S" <?php if (isset($_POST['work']) && $_POST['work'] == 'S') echo ' checked="checked"';?>> Seasonal
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-sm-5">Do you have a permit to rehabilitate wildlife in the state of Virginia?</label>
+													<label class="col-sm-3">Do you have a permit to rehabilitate wildlife in the state of Virginia?</label>
 													<div class="col-sm-7">
 														<div class="checkbox" >
 															<input type="radio" name="permit" value="Yes" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'Yes') echo ' checked="checked"';?>> Yes
@@ -390,7 +391,7 @@ error_reporting(E_ALL);
 													
 												</div>
 												<div class="form-group">
-													<label class="col-sm-5">If so, what category? Please upload a copy of your permit.</label>
+													<label class="col-sm-3">If so, what category? Please upload a copy of your permit.</label>
 														<div>
 															<select name="permitCategory">
 																<option value="">--</option>
@@ -407,7 +408,7 @@ error_reporting(E_ALL);
 														</div>
 												</div>
 												<div class="form-group">
-													<label class="col-sm-5">Are you rabies vaccinated?</label>
+													<label class="col-sm-3">Are you rabies vaccinated?</label>
 													<div class="col-sm-7">
 														<div class="checkbox">
 															<input type="radio" name="rabies" value="Yes" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'Yes') echo ' checked="checked"';?>> Yes
@@ -416,7 +417,7 @@ error_reporting(E_ALL);
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-sm-5">If so, how recently? Please provide proof of vaccination. Upload an attachment.</label>
+													<label class="col-sm-3">If so, how recently? Please provide proof of vaccination. Upload an attachment.</label>
 														<div>
 															<select name="DOBMonth">
 																<option>- Month -</option>
@@ -505,16 +506,35 @@ error_reporting(E_ALL);
 															<span class="fileinput-new"></span>
 														</div>
 												</div>
-
-												<h4>Please answer the following questions.</h4>
-																						
+												<div class="form-group">
+													<label class="col-sm-3">Are you able to lift 40 lbs?</label>
+													<div class="col-sm-7">
+														<div class="checkbox">
+															<input type="radio" name="fortyLBS" value="Yes" <?php if (isset($_POST['fortyLBS']) && $_POST['fortyLBS'] == 'Yes') echo ' checked="checked"';?>> Yes
+															<input type="radio" name="fortyLBS" value="No" <?php if (isset($_POST['fortyLBS']) && $_POST['fortyLBS'] == 'No') echo ' checked="checked"';?>> No
+														</div>
+													</div>
+												</div>
 												<div class="form-group">
 													<label class="col-sm-3">Do you have any allergies or physical limitations? If so, please explain.</label>
 													<div class="col-sm-9">
-														<input type="radio" name="limitations" value="Yes" <?php if (isset($_POST['limitations']) && $_POST['limitations'] == 'Yes') echo ' checked="checked"';?>> Yes
-														<input type="radio" name="limitations" value="No" <?php if (isset($_POST['limitations']) && $_POST['limitations'] == 'No') echo ' checked="checked"';?>> No
+														<input type="radio" name="limitationsASN" value="Yes" <?php if (isset($_POST['limitationsASN']) && $_POST['limitationsASN'] == 'Yes') echo ' checked="checked"';?>> Yes
+														<input type="radio" name="limitationsASN" value="No" <?php if (isset($_POST['limitationsASN']) && $_POST['limitationsASN'] == 'No') echo ' checked="checked"';?>> No
 														<textarea class="form-control" id = 'allergies' name = 'allergies' value="<?php if (isset($_POST['upload'])) echo ($_POST['allergies']);?>" rows="5" cols="90"></textarea>
 													</div>
+													<label class="col-sm-3">A volunteer may be required to perform outdoor work -- year-round and regardless of weather conditions. Are you able to work outside during all seasons? If not, what are your limitations?</label>
+													<div class="col-sm-9">
+														<input type="radio" name="limitationsWO" value="Yes" <?php if (isset($_POST['limitationsWO']) && $_POST['limitationsWO'] == 'Yes') echo ' checked="checked"';?>> Yes
+														<input type="radio" name="limitationsWO" value="No" <?php if (isset($_POST['limitationsWO']) && $_POST['limitationsWO'] == 'No') echo ' checked="checked"';?>> No
+														<textarea class="form-control" id = 'allergies' name = 'allergies' value="<?php if (isset($_POST['upload'])) echo ($_POST['allergies']);?>" rows="5" cols="90"></textarea>
+													</div>
+													
+													
+													
+													
+													
+													
+													
 													<label class="col-sm-3">Why are you interested in volunteering as an outreach docent?</label>
 													<div class="col-sm-9">
 														<textarea class="form-control" id = 'whyInterested' name = 'whyInterested' value="<?php if (isset($_POST['upload'])) echo ($_POST['whyInterested']);?>" rows="5" cols="90"></textarea>
@@ -542,14 +562,6 @@ error_reporting(E_ALL);
 														<span class="fileinput-filename col-sm-3"></span>
 														<span class="fileinput-new"></span>
 													</div>
-													<div class="col-sm-12 col-sm-offset-3">Recommendation Letter 1</div>
-													<div class="fileinput fileinput-new col-sm-3 col-sm-offset-3 btn-lg" data-provides="fileinput">
-														<span class="btn btn-default btn-file">
-																<input name="recommend1" id = "recommend1" type="file" multiple /></span>
-														<span class="fileinput-filename col-sm-3"></span>
-														<span class="fileinput-new"></span>
-													</div>
-													
 												</div>
 											</fieldset>
 											<footer class="panel-footer">
@@ -809,7 +821,15 @@ alert('$message');
         </div>
     </footer>
 
-    <!-- simple dialog -->
+	<!-- IS ANY OF THIS NEEDED??
+	
+	
+	
+	
+	
+	
+	
+    <!-- simple dialog --
     <div class="modal fade" id="simpledialog" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -823,11 +843,11 @@ alert('$message');
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div><!-- /.modal-content --
+      </div><!-- /.modal-dialog --
+    </div><!-- /.modal --
 
-    <!-- yes/no dialog -->
+    <!-- yes/no dialog --
     <div class="modal fade" id="yesno" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -842,11 +862,11 @@ alert('$message');
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
           </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div><!-- /.modal-content --
+      </div><!-- /.modal-dialog --
+    </div><!-- /.modal --
 
-    <!-- user input dialog -->
+    <!-- user input dialog --
     <div class="modal fade" id="prompt" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -874,20 +894,31 @@ alert('$message');
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
           </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div><!-- /.modal-content --
+      </div><!-- /.modal-dialog --
+    </div><!-- /.modal --
 
 
-    <!-- render blocking scripts -->
+    <!-- render blocking scripts --
 
-    <!-- jQuery JS -->
+    <!-- jQuery JS --
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-    <!-- Bootstrap JS -->
+    <!-- Bootstrap JS --
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
-    <!-- Main Script -->
+    <!-- Main Script --
     <script src="js/global.js"></script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	IS ANY OF THIS NEEDED??
+-->	
 </body>
 </html>
