@@ -7,6 +7,8 @@ session_start();
 $userID = $_SESSION['userID'];
 $userTypeSession = $_SESSION['userType']; 
 $profileID = $_GET['profileID']; 
+$profileDI = $_SESSION['profileDI'];
+$_SESSION['profileDI'] = $profileID;
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
