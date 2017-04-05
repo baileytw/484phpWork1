@@ -232,7 +232,7 @@ if(isset($_POST['btnSave']))
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="email" value="<?php echo ($email);?>" type="text" required="required">
+              <input class="form-control" name="email" value="<?php echo ($email);?>" type="email" required="required">
             </div>
           </div>
           <div class="form-group">
