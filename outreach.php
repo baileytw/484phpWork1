@@ -528,13 +528,6 @@ error_reporting(E_ALL);
 														<input type="radio" name="limitationsWO" value="No" <?php if (isset($_POST['limitationsWO']) && $_POST['limitationsWO'] == 'No') echo ' checked="checked"';?>> No
 														<textarea class="form-control" id = 'allergies' name = 'allergies' value="<?php if (isset($_POST['upload'])) echo ($_POST['allergies']);?>" rows="5" cols="90"></textarea>
 													</div>
-													
-													
-													
-													
-													
-													
-													
 													<label class="col-sm-3">Why are you interested in volunteering as an outreach docent?</label>
 													<div class="col-sm-9">
 														<textarea class="form-control" id = 'whyInterested' name = 'whyInterested' value="<?php if (isset($_POST['upload'])) echo ($_POST['whyInterested']);?>" rows="5" cols="90"></textarea>
