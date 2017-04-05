@@ -2,11 +2,8 @@ DROP TABLE Events2;
 DROP TABLE Events;
 DROP EVENT clock_out;
 DROP TABLE AvailabilityTransporter;
-DROP TABLE AvailabilityTransporter;
 DROP TABLE VolAvailabilityTime;
 DROP TABLE AppAvailabilityTime;
-DROP TABLE VolTimeOfDay;
-DROP TABLE AppTimeOfDay;
 DROP TABLE AvailabilityDay;
 DROP TABLE AvailabilityPerson;
 DROP TABLE VolShift;
@@ -28,7 +25,6 @@ DROP TABLE TransporterApp;
 DROP TABLE VetTeamApp;
 DROP TABLE AnimalCareApp;
 DROP TABLE OutreachApp;
-DROP TABLE PersonApplication;
 DROP TABLE Department;
 DROP TABLE Documentation;
 DROP TABLE Person;
@@ -85,31 +81,20 @@ INSERT INTO Department VALUES ('3','VetTeam');
 INSERT INTO Department VALUES ('4','Transporter');
 INSERT INTO Department VALUES ('5','Other');
 
-CREATE TABLE PersonApplication (
-PersonApplication_ID					INTEGER	NOT NULL AUTO_INCREMENT,
-PersonApplication_PersonID			    INTEGER	NOT NULL,
-PersonApplication_DepartmentApplied	    INTEGER NOT NULL,
-PersonApplication_Documents         	INTEGER	NOT NULL,
-PersonApplication_DateApplied			DATE,
-CONSTRAINT PK_PersonApplication PRIMARY KEY (PersonApplication_ID),
-CONSTRAINT FK_PersonApplication_PersonID FOREIGN KEY (PersonApplication_PersonID) REFERENCES Person(Person_ID),
-CONSTRAINT FK_PersonApplication_DepartmentApplied FOREIGN KEY (PersonApplication_DepartmentApplied) REFERENCES Department(Department_ID),
-CONSTRAINT FK_PersonApplication_Documents FOREIGN KEY (PersonApplication_Documents) REFERENCES Documentation(Documentation_ID));
-
 CREATE TABLE OutreachApp (
 OutreachApp_ID							INTEGER NOT NULL AUTO_INCREMENT,
-OutreachApp_ApplicationID				INTEGER NOT NULL,
+OutreachApp_PersonID					INTEGER NOT NULL,
 OutreachApp_WhyInterested				VARCHAR(2000),
 OutreachApp_PassionateWildlifeIssue		VARCHAR(2000),
 OutreachApp_ExperiencePublicSpeaking	VARCHAR(2000),
 OutreachApp_BelongToAnimalRightsGroup	VARCHAR(2000),
 OutreachApp_BringToTeam					VARCHAR(2000),
 CONSTRAINT PK_OutreachApp PRIMARY KEY (OutreachApp_ID),
-CONSTRAINT FK_OutreachApp_ApplicationID FOREIGN KEY (OutreachApp_ApplicationID) REFERENCES PersonApplication(PersonApplication_ID));
+CONSTRAINT FK_OutreachApp_PersonID FOREIGN KEY (OutreachApp_PersonID) REFERENCES Person(Person_ID));
 
 CREATE TABLE AnimalCareApp (
 AnimalCareApp_ID						INTEGER NOT NULL AUTO_INCREMENT,
-AnimalCareApp_ApplicationID				INTEGER NOT NULL,
+AnimalCareApp_PersonID					INTEGER NOT NULL,
 AnimalCareApp_HandsOnExperience			VARCHAR(2000),
 AnimalCareApp_HandleDeadAnimals			VARCHAR(2000),
 AnimalCareApp_OpinionLivePrey			VARCHAR(2000),
@@ -119,26 +104,26 @@ AnimalCareApp_HopeToLearnAccomplish		VARCHAR(2000),
 AnimalCareApp_PassionateWildlifeIssue	VARCHAR(2000),
 AnimalCareApp_MoreAboutExperience		VARCHAR(2000),
 CONSTRAINT PK_AnimalCareApp PRIMARY KEY (AnimalCareApp_ID),
-CONSTRAINT FK_AnimalCareApp_ApplicationID FOREIGN KEY (AnimalCareApp_ApplicationID) REFERENCES PersonApplication(PersonApplication_ID));
+CONSTRAINT FK_AnimalCareApp_PersonID FOREIGN KEY (AnimalCareApp_PersonID) REFERENCES Person(Person_ID));
 
 CREATE TABLE VetTeamApp (
 VetTeamApp_ID				INTEGER NOT NULL AUTO_INCREMENT,
-VetTeamApp_ApplicationID	INTEGER NOT NULL,
+VetTeamApp_PersonID			INTEGER NOT NULL,
 VetTeamApp_PreviousTraining	VARCHAR(2000),
 VetTeamApp_WorkEnvironment	VARCHAR(2000),
 VetTeamApp_Euthansia		VARCHAR(2000),
 VetTeamApp_Messy			VARCHAR(2000),
 CONSTRAINT PK_VetTeamApp PRIMARY KEY (VetTeamApp_ID),
-CONSTRAINT FK_VetTeamApp_ApplicationID FOREIGN KEY (VetTeamApp_ApplicationID) REFERENCES PersonApplication(PersonApplication_ID));
+CONSTRAINT FK_VetTeamApp_PersonID FOREIGN KEY (VetTeamApp_PersonID) REFERENCES Person(Person_ID));
 
 CREATE TABLE TransporterApp (
 TransporterApp_ID	                    INTEGER NOT NULL AUTO_INCREMENT,
-TransporterApp_ApplicationID	        INTEGER NOT NULL,
+TransporterApp_PersonID			        INTEGER NOT NULL,
 TransporterApp_DistanceWillingToTravel	VARCHAR(2000),
 TransporterApp_CaptureAnimals	        VARCHAR(2000),
 TransporterApp_Acknowledgement			CHAR(1),
 CONSTRAINT PK_TransporterApp PRIMARY KEY (TransporterApp_ID),
-CONSTRAINT FK_TransporterApp_ApplicationID FOREIGN KEY (TransporterApp_ApplicationID) REFERENCES PersonApplication(PersonApplication_ID));
+CONSTRAINT FK_TransporterApp_PersonID FOREIGN KEY (TransporterApp_PersonID) REFERENCES Person(Person_ID));
 
 CREATE TABLE ICE (
 ICE_ID	            INTEGER NOT NULL AUTO_INCREMENT,
@@ -388,7 +373,7 @@ AvailabilityTransporter_ID						INTEGER NOT NULL AUTO_INCREMENT,
 AvailabilityTransporter_AvailabilityPersonID	INTEGER NOT NULL,
 AvailabilityTransporter_TimeOfWeek				VARCHAR(30),
 CONSTRAINT PK_AvailabilityTransporter PRIMARY KEY (AvailabilityTransporter_ID),
-CONSTRAINT FK_AvailabilityTransporter_AvailabilityPersonID FOREIGN KEY (AvailabilityTransporter_AvailabilityPersonID) REFERENCES AvailabilityDay(AvailabilityTransporter_AvailabilityPersonID));
+CONSTRAINT FK_AvailabilityTransporter_AvailabilityPersonID FOREIGN KEY (AvailabilityTransporter_AvailabilityPersonID) REFERENCES AvailabilityPerson(AvailabilityPerson_ID));
 
 
 
