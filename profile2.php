@@ -43,7 +43,7 @@ if ($conn->connect_error) {
 }
 //SQL Statement to gather info
 $sql = "SELECT Person_UserType, Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
-Person_HomeState, Person_Zipcode FROM Person WHERE Person_ID =" .$profileID;
+Person_State, Person_Zipcode FROM Person WHERE Person_ID =" .$profileID;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -77,7 +77,7 @@ if(isset($_POST['downloadResume']))
 
           $id = 1; // Change to whatever necessary Person_ID
 		  $whichDoc = ""; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
-          $query = "SELECT * " ."FROM *****TABLE NAME HERE****** WHERE Person_ID = '$id' AND WhichDoc = '$whichDoc'"; //query here to put in document and type of document. IDK how to write the join for that
+          $query = "SELECT * " ."FROM *****TABLE NAME HERE****** WHERE Person_ID = '$profileID' AND WhichDoc = '$whichDoc'"; //query here to put in document and type of document. IDK how to write the join for that
           $result = mysqli_query($connection,$query) 
                      or die('Error, query failed');
          list($id, $file, $type, $size,$content) =   mysqli_fetch_array($result);
@@ -172,7 +172,7 @@ if(isset($_POST['downloadResume']))
                                                  <h2>
                                                      <?php echo $first . " " . $last?>
                                                  </h2>
-                                                 <h4>Team Leader</h4>
+                                                 <h4><?php echo $userType ?> </h4>
                                              </hgroup>
                                             
                                         </header>

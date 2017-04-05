@@ -17,18 +17,6 @@ if ($userTypeSession != "Team Lead"){
 
 */
 
-/*
-require_Once('Database.php');
-$db = new Database('wildlife', 'root', 'Twspike1994?','localhost' ); // $host is optional and defaults to 'localhost'
-
-
-
-$table = 'Person';
-$where =$_POST["pref-search"];
-
-//$db->select('Person','$where');
-
-*/
 
 
 

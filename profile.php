@@ -30,7 +30,7 @@ if ($conn->connect_error) {
 }
 //SQL Statement to gather info
 $sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
-Person_HomeState, Person_Zipcode FROM Person WHERE Person_ID = " .$userID;
+Person_State, Person_Zipcode FROM Person WHERE Person_ID = " .$userID;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -41,7 +41,7 @@ if ($result->num_rows > 0){
 		$email = $row['Person_Email'];
 		$street = $row['Person_StreetAddress'];
 		$city = $row['Person_City'];
-		$state = $row['Person_HomeState'];
+		$state = $row['Person_State'];
 		$zipcode = $row['Person_Zipcode'];
 	}
 }

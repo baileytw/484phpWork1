@@ -46,7 +46,7 @@ if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
 //SQL Statement to gather info
-$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email FROM Person WHERE Person_ID = " .$profileDI;
+$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email FROM Person WHERE Person_ID = " .$profileEdit;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -116,7 +116,7 @@ if(isset($_POST['btnSave']))
 			die("Connection failed: " . $conn->connect_error);
 		}
 		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '" . $first . "', Person_LastName ='" 
-		. $last . "', Person_PhonePrimary =" . $phone . ", Person_Email ='" . $email . "' WHERE Person_ID = " .$userID; 
+		. $last . "', Person_PhonePrimary =" . $phone . ", Person_Email ='" . $email . "' WHERE Person_ID = " .$profileEdit; 
 		
 		if(!mysqli_query($conn,$query))
 

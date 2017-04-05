@@ -66,7 +66,7 @@ if(isset($_POST['upload']))
 		}
 		$query = "INSERT INTO Person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
 			Person_State, Person_Zipcode)
-					VALUES ('$email', '$passwordHashPassed', '$userType', '$firstName', '$lastName', '$email', NULL, NULL, '$street', '$city',
+					VALUES ('$email', '$passwordHashPassed', '$userType', '$firstName', '$lastName', '$email', '$phone', NULL, '$street', '$city',
 					NULL, '$state', '$zip')"; 
 		
 		if(!mysqli_query($conn,$query))
