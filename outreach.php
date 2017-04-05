@@ -207,23 +207,22 @@ error_reporting(E_ALL);
                                                     </div>
                                                     
                                                 </div>
-                                                                                                  <div class="form-group">
-                                                    <label class="col-sm-2">Date of Birth *</label>
-                                                    <div class="col-sm-10">
-                                                      <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="YYYY-MM-DD" name="street" />
-                                                    </div>
-                                                </div>
-<div class="form-group">
+													<div class="form-group">
+														<label class="col-sm-2">Date of Birth *</label>
+														<div class="col-sm-10">
+														  <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="YYYY-MM-DD" name="street" />
+														</div>
+													</div>
+												<div class="form-group">
                                                     <label class="col-sm-5">Do you have a permit to rehabilitate wildlife?</label>
                                                     <div class="col-sm-7">
                                                         <div class="checkbox" >
-														<input type="radio" name="permit" value="Yes" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'Yes') echo ' checked="checked"';?>> Yes
-														<input type="radio" name="permit" value="No" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'No') echo ' checked="checked"';?>> No
-
-                                                        </div>
+															<input type="radio" name="permit" value="Yes" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'Yes') echo ' checked="checked"';?>> Yes
+															<input type="radio" name="permit" value="No" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'No') echo ' checked="checked"';?>> No
+														</div>
                                                     </div>
                                                 </div>
-<div class="form-group">
+												<div class="form-group">
                                                     <label class="col-sm-5">Are you rabies vaccinated?</label>
                                                     <div class="col-sm-7">
                                                         <div class="checkbox">
