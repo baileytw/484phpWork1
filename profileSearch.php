@@ -133,6 +133,7 @@ table, th, td {
                             <select name="pref-namefilter" id="pref-namefilter" class="form-control">
                                 <option value="lastName">Last Name</option>
                                 <option value="firstName">First Name</option>
+								<option value="profileNumber">ID</option>
                             </select> 
 						</div>
 						<div class="form-group">
@@ -201,9 +202,14 @@ table, th, td {
 							$sql = "SELECT * FROM Person ORDER BY Person_LastName ASC";
 						}
 						
-						if($search == null && $sorts != "lastName" && $filter == "null"){
+						if($search == null && $sorts == "firstName" && $filter == "null"){
 							// Select statement for default
 							$sql = "SELECT * FROM Person ORDER BY Person_FirstName ASC";
+						}
+						
+						if($search == null && $sorts == "profileNumber" && $filter == "null"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person ORDER BY Person_ID ASC";
 						}
 							
 						
@@ -223,11 +229,18 @@ table, th, td {
 								|| concat_ws(' ',Person_FirstName,Person_LastName) like '%{$search}%' ORDER BY Person_LastName ASC";	
 						}
 						
-						if($search != null && $sorts != "lastName" && $filter == "null"){
+						if($search != null && $sorts == "firstName" && $filter == "null"){
 						
 						
 						$sql = "SELECT * FROM Person where Person_FirstName like '%{$search}%' || Person_LastName like '%{$search}%' 
 								|| concat_ws(' ',Person_FirstName,Person_LastName) like '%{$search}%' ORDER BY Person_FirstName ASC";	
+						}
+						
+						if($search != null && $sorts == "profileNumber" && $filter == "null"){
+						
+						
+						$sql = "SELECT * FROM Person where Person_FirstName like '%{$search}%' || Person_LastName like '%{$search}%' 
+								|| concat_ws(' ',Person_FirstName,Person_LastName) like '%{$search}%' ORDER BY Person_ID ASC";	
 						}
 															
 		
