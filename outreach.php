@@ -140,56 +140,56 @@ error_reporting(E_ALL);
 													<div class="col-sm-3">
 													
 														<select name="state">
-															<option value="VA">Virginia</option>
-															<option value="AL">Alabama</option>
-															<option value="AK">Alaska</option>
-															<option value="AZ">Arizona</option>
-															<option value="AR">Arkansas</option>
-															<option value="CA">California</option>
-															<option value="CO">Colorado</option>
-															<option value="CT">Connecticut</option>
-															<option value="DE">Delaware</option>
-															<option value="FL">Florida</option>
-															<option value="GA">Georgia</option>
-															<option value="HI">Hawaii</option>
-															<option value="ID">Idaho</option>
-															<option value="IL">Illinois</option>
-															<option value="IN">Indiana</option>
-															<option value="IA">Iowa</option>
-															<option value="KS">Kansas</option>
-															<option value="KY">Kentucky</option>
-															<option value="LA">Louisiana</option>
-															<option value="ME">Maine</option>
-															<option value="MD">Maryland</option>
-															<option value="MA">Massachusetts</option>
-															<option value="MI">Michigan</option>
-															<option value="MN">Minnesota</option>
-															<option value="MS">Mississippi</option>
-															<option value="MO">Missouri</option>
-															<option value="MT">Montana</option>
-															<option value="NE">Nebraska</option>
-															<option value="NV">Nevada</option>
-															<option value="NH">New Hampshire</option>
-															<option value="NJ">New Jersey</option>
-															<option value="NM">New Mexico</option>
-															<option value="NY">New York</option>
-															<option value="NC">North Carolina</option>
-															<option value="ND">North Dakota</option>
-															<option value="OH">Ohio</option>
-															<option value="OK">Oklahoma</option>
-															<option value="OR">Oregon</option>
-															<option value="PA">Pennsylvania</option>
-															<option value="RI">Rhode Island</option>
-															<option value="SC">South Carolina</option>
-															<option value="SD">South Dakota</option>
-															<option value="TN">Tennessee</option>
-															<option value="TX">Texas</option>
-															<option value="UT">Utah</option>
-															<option value="VT">Vermont</option>
-															<option value="WA">Washington</option>
-															<option value="WV">West Virginia</option>
-															<option value="WI">Wisconsin</option>
-															<option value="WY">Wyoming</option>
+															<option value="Virginia">Virginia</option>
+															<option value="Alabama">Alabama</option>
+															<option value="Alaska">Alaska</option>
+															<option value="Arizona">Arizona</option>
+															<option value="Arkansas">Arkansas</option>
+															<option value="California">California</option>
+															<option value="Colorado">Colorado</option>
+															<option value="Connecticut">Connecticut</option>
+															<option value="Delaware">Delaware</option>
+															<option value="Florida">Florida</option>
+															<option value="Georgia">Georgia</option>
+															<option value="Hawaii">Hawaii</option>
+															<option value="Idaho">Idaho</option>
+															<option value="Illinois">Illinois</option>
+															<option value="Indiana">Indiana</option>
+															<option value="Iowa">Iowa</option>
+															<option value="Kansas">Kansas</option>
+															<option value="Kentucky">Kentucky</option>
+															<option value="Louisiana">Louisiana</option>
+															<option value="Maine">Maine</option>
+															<option value="Maryland">Maryland</option>
+															<option value="Massachusetts">Massachusetts</option>
+															<option value="Michigan">Michigan</option>
+															<option value="Minnesota">Minnesota</option>
+															<option value="Mississippi">Mississippi</option>
+															<option value="Missouri">Missouri</option>
+															<option value="Montana">Montana</option>
+															<option value="Nebraska">Nebraska</option>
+															<option value="Nevada">Nevada</option>
+															<option value="New Hampshire">New Hampshire</option>
+															<option value="New Jersey">New Jersey</option>
+															<option value="New Mexico">New Mexico</option>
+															<option value="New York">New York</option>
+															<option value="North Carolina">North Carolina</option>
+															<option value="North Dakota">North Dakota</option>
+															<option value="Ohio">Ohio</option>
+															<option value="Oklahoma">Oklahoma</option>
+															<option value="Oregon">Oregon</option>
+															<option value="Pennsylvania">Pennsylvania</option>
+															<option value="Rhode Island">Rhode Island</option>
+															<option value="South Carolina">South Carolina</option>
+															<option value="South Dakota">South Dakota</option>
+															<option value="Tennessee">Tennessee</option>
+															<option value="Texas">Texas</option>
+															<option value="Utah">Utah</option>
+															<option value="Vermont">Vermont</option>
+															<option value="Washington">Washington</option>
+															<option value="West Virginia">West Virginia</option>
+															<option value="Wisconsin">Wisconsin</option>
+															<option value="Wyoming">Wyoming</option>
 														</select> 
 													</div>
 											
@@ -202,8 +202,112 @@ error_reporting(E_ALL);
 												<div class="form-group">
 													<label class="col-sm-2">Date of Birth *</label>
 													<div class="col-sm-10">
-													  <input class="form-control" type="text" id="dob" name="dob" value="<?php if (isset($_POST['upload'])) echo ($_POST['dob']);?>" placeholder="YYYY-MM-DD" name="street" />
-													</div>
+														<select name="DOBMonth">
+															<option>- Month -</option> 				<!-- Make required -->
+															<option value="01">January</option>
+															<option value="02">February</option>
+															<option value="03">March</option>
+															<option value="04">April</option>
+															<option value="05">May</option>
+															<option value="06">June</option>
+															<option value="07">July</option>
+															<option value="08">August</option>
+															<option value="09">September</option>
+															<option value="10">October</option>
+															<option value="11">November</option>
+															<option value="12">December</option>
+														</select>
+														<select name="DOBDay">
+															<option>- Day -</option> 				<!-- Make required -->
+															<option value="01">1</option>
+															<option value="02">2</option>
+															<option value="03">3</option>
+															<option value="04">4</option>
+															<option value="05">5</option>
+															<option value="06">6</option>
+															<option value="07">7</option>
+															<option value="08">8</option>
+															<option value="09">9</option>
+															<option value="10">10</option>
+															<option value="11">11</option>
+															<option value="12">12</option>
+															<option value="13">13</option>
+															<option value="14">14</option>
+															<option value="15">15</option>
+															<option value="16">16</option>
+															<option value="17">17</option>
+															<option value="18">18</option>
+															<option value="19">19</option>
+															<option value="20">20</option>
+															<option value="21">21</option>
+															<option value="22">22</option>
+															<option value="23">23</option>
+															<option value="24">24</option>
+															<option value="25">25</option>
+															<option value="26">26</option>
+															<option value="27">27</option>
+															<option value="28">28</option>
+															<option value="29">29</option>
+															<option value="30">30</option>
+															<option value="31">31</option>
+														</select>
+														<select name="DOBYear">
+															<option> - Year - </option>										<!-- Make required -->
+															<option value="1999">1999</option>
+															<option value="1998">1998</option>
+															<option value="1997">1997</option>
+															<option value="1996">1996</option>
+															<option value="1995">1995</option>
+															<option value="1994">1994</option>
+															<option value="1993">1993</option>
+															<option value="1992">1992</option>
+															<option value="1991">1991</option>
+															<option value="1990">1990</option>
+															<option value="1989">1989</option>
+															<option value="1988">1988</option>
+															<option value="1987">1987</option>
+															<option value="1986">1986</option>
+															<option value="1985">1985</option>
+															<option value="1984">1984</option>
+															<option value="1983">1983</option>
+															<option value="1982">1982</option>
+															<option value="1981">1981</option>
+															<option value="1980">1980</option>
+															<option value="1979">1979</option>
+															<option value="1978">1978</option>
+															<option value="1977">1977</option>
+															<option value="1976">1976</option>
+															<option value="1975">1975</option>
+															<option value="1974">1974</option>
+															<option value="1973">1973</option>
+															<option value="1972">1972</option>
+															<option value="1971">1971</option>
+															<option value="1970">1970</option>
+															<option value="1969">1969</option>
+															<option value="1968">1968</option>
+															<option value="1967">1967</option>
+															<option value="1966">1966</option>
+															<option value="1965">1965</option>
+															<option value="1964">1964</option>
+															<option value="1963">1963</option>
+															<option value="1962">1962</option>
+															<option value="1961">1961</option>
+															<option value="1960">1960</option>
+															<option value="1959">1959</option>
+															<option value="1958">1958</option>
+															<option value="1957">1957</option>
+															<option value="1956">1956</option>
+															<option value="1955">1955</option>
+															<option value="1954">1954</option>
+															<option value="1953">1953</option>
+															<option value="1952">1952</option>
+															<option value="1951">1951</option>
+															<option value="1950">1950</option>
+															<option value="1949">1949</option>
+															<option value="1948">1948</option>
+															<option value="1947">1947</option>
+														</select>								<!-- Wanna have a date picker instead? or have it populate the drop downs? -->
+													</div>								
 												</div>
 												<div class="form-group">
 													<label class="col-sm-2">Availability *</label>
@@ -217,52 +321,52 @@ error_reporting(E_ALL);
 														</tr>
 														<tr>
 															<td>Sundays</td>
-															<td><label><input type="checkbox" name="text1" value="val1" />Text 1</label></td>
-															<td><label><input type="checkbox" name="text2" value="val2" />Text 2</label></td>
-															<td><label><input type="checkbox" name="text3" value="val3" />Text 3</label></td>
-															<td><label><input type="checkbox" name="text4" value="val4" />Text 4</label></td>
+															<td><label><input type="checkbox" name="text1" value="sun1" /></label></td>
+															<td><label><input type="checkbox" name="text2" value="sun2" /></label></td>
+															<td><label><input type="checkbox" name="text3" value="sun3" /></label></td>
+															<td><label><input type="checkbox" name="text4" value="sun4" /></label></td>
 														</tr>
 														<tr>
 															<td>Mondays</td>
-															<td><label><input type="checkbox" name="text5" value="val5" />Text 5</label></td>
-															<td><label><input type="checkbox" name="text6" value="val6" />Text 6</label></td>
-															<td><label><input type="checkbox" name="text7" value="val7" />Text 7</label></td>
-															<td><label><input type="checkbox" name="text8" value="val8" />Text 8</label></td>
+															<td><label><input type="checkbox" name="text5" value="mon1" /></label></td>
+															<td><label><input type="checkbox" name="text6" value="mon2" /></label></td>
+															<td><label><input type="checkbox" name="text7" value="mon3" /></label></td>
+															<td><label><input type="checkbox" name="text8" value="mon4" /></label></td>
 														</tr>
 														<tr>
 															<td>Tuesdays</td>
-															<td><label><input type="checkbox" name="text1" value="val1" />Text 1</label></td>
-															<td><label><input type="checkbox" name="text2" value="val2" />Text 2</label></td>
-															<td><label><input type="checkbox" name="text3" value="val3" />Text 3</label></td>
-															<td><label><input type="checkbox" name="text4" value="val4" />Text 4</label></td>
+															<td><label><input type="checkbox" name="text9" value="tue1" /></label></td>
+															<td><label><input type="checkbox" name="text10" value="tue2" /></label></td>
+															<td><label><input type="checkbox" name="text11" value="tue3" /></label></td>
+															<td><label><input type="checkbox" name="text12" value="tue4" /></label></td>
 														</tr>
 														<tr>
 															<td>Wednesdays</td>
-															<td><label><input type="checkbox" name="text5" value="val5" />Text 5</label></td>
-															<td><label><input type="checkbox" name="text6" value="val6" />Text 6</label></td>
-															<td><label><input type="checkbox" name="text7" value="val7" />Text 7</label></td>
-															<td><label><input type="checkbox" name="text8" value="val8" />Text 8</label></td>
+															<td><label><input type="checkbox" name="text13" value="wed1" /></label></td>
+															<td><label><input type="checkbox" name="text14" value="wed2" /></label></td>
+															<td><label><input type="checkbox" name="text15" value="wed3" /></label></td>
+															<td><label><input type="checkbox" name="text16" value="wed4" /></label></td>
 														</tr>
 														<tr>
 															<td>Thursdays</td>
-															<td><label><input type="checkbox" name="text1" value="val1" />Text 1</label></td>
-															<td><label><input type="checkbox" name="text2" value="val2" />Text 2</label></td>
-															<td><label><input type="checkbox" name="text3" value="val3" />Text 3</label></td>
-															<td><label><input type="checkbox" name="text4" value="val4" />Text 4</label></td>
+															<td><label><input type="checkbox" name="text17" value="thu1" /></label></td>
+															<td><label><input type="checkbox" name="text18" value="thu2" /></label></td>
+															<td><label><input type="checkbox" name="text19" value="thu3" /></label></td>
+															<td><label><input type="checkbox" name="text20" value="thu4" /></label></td>
 														</tr>
 														<tr>
 															<td>Fridays</td>
-															<td><label><input type="checkbox" name="text5" value="val5" />Text 5</label></td>
-															<td><label><input type="checkbox" name="text6" value="val6" />Text 6</label></td>
-															<td><label><input type="checkbox" name="text7" value="val7" />Text 7</label></td>
-															<td><label><input type="checkbox" name="text8" value="val8" />Text 8</label></td>
+															<td><label><input type="checkbox" name="text21" value="fri1" /></label></td>
+															<td><label><input type="checkbox" name="text22" value="fri2" /></label></td>
+															<td><label><input type="checkbox" name="text23" value="fri3" /></label></td>
+															<td><label><input type="checkbox" name="text24" value="fri4" /></label></td>
 														</tr>
 														<tr>
 															<td>Saturdays</td>
-															<td><label><input type="checkbox" name="text1" value="val1" />Text 1</label></td>
-															<td><label><input type="checkbox" name="text2" value="val2" />Text 2</label></td>
-															<td><label><input type="checkbox" name="text3" value="val3" />Text 3</label></td>
-															<td><label><input type="checkbox" name="text4" value="val4" />Text 4</label></td>
+															<td><label><input type="checkbox" name="text25" value="sat1" /></label></td>
+															<td><label><input type="checkbox" name="text26" value="sat2" /></label></td>
+															<td><label><input type="checkbox" name="text27" value="sat3" /></label></td>
+															<td><label><input type="checkbox" name="text28" value="sat4" /></label></td>
 														</tr>
 													</table>
 												</div>
@@ -276,7 +380,7 @@ error_reporting(E_ALL);
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-sm-5">Do you have a permit to rehabilitate wildlife?</label>
+													<label class="col-sm-5">Do you have a permit to rehabilitate wildlife in the state of Virginia?</label>
 													<div class="col-sm-7">
 														<div class="checkbox" >
 															<input type="radio" name="permit" value="Yes" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'Yes') echo ' checked="checked"';?>> Yes
@@ -297,15 +401,11 @@ error_reporting(E_ALL);
 														</div>
 														<div class="fileinput fileinput-new" data-provides="fileinput">
 															<span class="btn btn-default btn-file">
-																<input name="recommend2" id = "recommend2" type="file" multiple /></span>
+																<input name="permitRehabVA" id = "permitRehabVA" type="file" multiple /></span>
 															<span class="fileinput-filename"></span>
 															<span class="fileinput-new"></span>
 														</div>
 												</div>
-												<div class="form-group">
-													<label class="col-sm-5">What </label>
-												</div>
-												
 												<div class="form-group">
 													<label class="col-sm-5">Are you rabies vaccinated?</label>
 													<div class="col-sm-7">
@@ -315,18 +415,106 @@ error_reporting(E_ALL);
 														</div>
 													</div>
 												</div>
+												<div class="form-group">
+													<label class="col-sm-5">If so, how recently? Please provide proof of vaccination. Upload an attachment.</label>
+														<div>
+															<select name="DOBMonth">
+																<option>- Month -</option>
+																<option value="01">January</option>
+																<option value="02">February</option>
+																<option value="03">March</option>
+																<option value="04">April</option>
+																<option value="05">May</option>
+																<option value="06">June</option>
+																<option value="07">July</option>
+																<option value="08">August</option>
+																<option value="09">September</option>
+																<option value="10">October</option>
+																<option value="11">November</option>
+																<option value="12">December</option>
+															</select>
+															<select name="DOBDay">
+																<option>- Day -</option>
+																<option value="01">1</option>
+																<option value="02">2</option>
+																<option value="03">3</option>
+																<option value="04">4</option>
+																<option value="05">5</option>
+																<option value="06">6</option>
+																<option value="07">7</option>
+																<option value="08">8</option>
+																<option value="09">9</option>
+																<option value="10">10</option>
+																<option value="11">11</option>
+																<option value="12">12</option>
+																<option value="13">13</option>
+																<option value="14">14</option>
+																<option value="15">15</option>
+																<option value="16">16</option>
+																<option value="17">17</option>
+																<option value="18">18</option>
+																<option value="19">19</option>
+																<option value="20">20</option>
+																<option value="21">21</option>
+																<option value="22">22</option>
+																<option value="23">23</option>
+																<option value="24">24</option>
+																<option value="25">25</option>
+																<option value="26">26</option>
+																<option value="27">27</option>
+																<option value="28">28</option>
+																<option value="29">29</option>
+																<option value="30">30</option>
+																<option value="31">31</option>
+															</select>
+															<select name="DOBYear">
+																<option> - Year - </option>
+																<option value="2017">2017</option>
+																<option value="2016">2016</option>
+																<option value="2015">2015</option>
+																<option value="2014">2014</option>
+																<option value="2013">2013</option>
+																<option value="2012">2012</option>
+																<option value="2011">2011</option>
+																<option value="2010">2010</option>
+																<option value="2009">2009</option>
+																<option value="2008">2008</option>
+																<option value="2007">2007</option>
+																<option value="2006">2006</option>
+																<option value="2005">2005</option>
+																<option value="2004">2004</option>
+																<option value="2003">2003</option>
+																<option value="2002">2002</option>
+																<option value="2001">2001</option>
+																<option value="2000">2000</option>
+																<option value="1999">1999</option>
+																<option value="1998">1998</option>
+																<option value="1997">1997</option>
+																<option value="1996">1996</option>
+																<option value="1995">1995</option>
+																<option value="1994">1994</option>
+																<option value="1993">1993</option>
+																<option value="1992">1992</option>
+																<option value="1991">1991</option>
+															</select>								<!-- Wanna have a date picker instead? or have it populate the drop downs? -->
+														</div>
+														<div class="fileinput fileinput-new" data-provides="fileinput">
+															<span class="btn btn-default btn-file">
+																<input name="rabbiesDocumentation" id = "rabbiesDocumentation" type="file" multiple /></span>
+															<span class="fileinput-filename"></span>
+															<span class="fileinput-new"></span>
+														</div>
+												</div>
 
 												<h4>Please answer the following questions.</h4>
 																						
 												<div class="form-group">
-													<label class="col-sm-3">Do you have any allergies or physical limitations?</label>
+													<label class="col-sm-3">Do you have any allergies or physical limitations? If so, please explain.</label>
 													<div class="col-sm-9">
+														<input type="radio" name="limitations" value="Yes" <?php if (isset($_POST['limitations']) && $_POST['limitations'] == 'Yes') echo ' checked="checked"';?>> Yes
+														<input type="radio" name="limitations" value="No" <?php if (isset($_POST['limitations']) && $_POST['limitations'] == 'No') echo ' checked="checked"';?>> No
 														<textarea class="form-control" id = 'allergies' name = 'allergies' value="<?php if (isset($_POST['upload'])) echo ($_POST['allergies']);?>" rows="5" cols="90"></textarea>
 													</div>
-													<label class="col-sm-3">Please describe your availability weekly and seasonally. WCVV needs consistency in scheduling, and is open on weekends.</label>
-													<div class="col-sm-9">
-														<textarea class="form-control" id = 'availability' name = 'availability' value="<?php if (isset($_POST['upload'])) echo ($_POST['availability']);?>"rows="5" cols="90"></textarea>
-													</div>                            
 													<label class="col-sm-3">Why are you interested in volunteering as an outreach docent?</label>
 													<div class="col-sm-9">
 														<textarea class="form-control" id = 'whyInterested' name = 'whyInterested' value="<?php if (isset($_POST['upload'])) echo ($_POST['whyInterested']);?>" rows="5" cols="90"></textarea>
