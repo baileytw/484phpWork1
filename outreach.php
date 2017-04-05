@@ -549,10 +549,11 @@ error_reporting(E_ALL);
 														<textarea class="form-control" id = 'valueAdded' name = 'valueAdded' value="<?php if (isset($_POST['upload'])) echo ($_POST['valueAdded']);?>" rows="5" cols="90"></textarea>
 													</div>
 													<div class="col-sm-12 col-sm-offset-3">Please upload a current resume.</div>
-													<div class="fileinput fileinput-new col-sm-3 col-sm-offset-3 btn-lg" data-provides="fileinput">
+													<div class="fileinput fileinput-new btn-lg" data-provides="fileinput">
 														<span class="btn btn-default btn-file">
-															<input name="resume" id = "resume" type="file" multiple /></span>
-														<span class="fileinput-filename col-sm-3"></span>
+															<input name="userfile" id = "userfile" type="file" multiple />
+														</span>
+														<span class="fileinput-filename"></span>
 														<span class="fileinput-new"></span>
 													</div>
 												</div>
