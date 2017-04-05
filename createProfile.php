@@ -298,7 +298,8 @@ if(isset($_POST['upload']))
 																	<input type="radio" name="rabies" value="Yes" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'Yes') echo ' checked="checked"';?>> Yes
 																	<input type="radio" name="rabies" value="No" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'No') echo ' checked="checked"';?>> No
 																</div>
-																<div class="form-group">
+															</div>
+															<div class="form-group">
 																<label class="col-sm-3">If so, how recently? Please provide proof of vaccination. Upload an attachment.</label>
 																<div>
 																	<select name="DOBMonth">
@@ -383,11 +384,10 @@ if(isset($_POST['upload']))
 																</div>
 																<div class="fileinput fileinput-new" data-provides="fileinput">
 																	<span class="btn btn-default btn-file">
-																		<input name="rabbiesDocumentation" id = "rabbiesDocumentation" type="file" multiple /></span>
+																	<input name="rabbiesDocumentation" id = "rabbiesDocumentation" type="file" multiple /></span>
 																	<span class="fileinput-filename"></span>
 																	<span class="fileinput-new"></span>
 																</div>
-															</div>
 															</div>
 														</div>
 														<div class="form-group">
