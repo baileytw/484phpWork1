@@ -366,133 +366,20 @@ CONSTRAINT PK_AvailabilityDay PRIMARY KEY (AvailabilityDay_ID),
 CONSTRAINT FK_AvailabilityDay_Availability FOREIGN KEY (AvailabilityDay_Availability) REFERENCES AvailabilityPerson(AvailabilityPerson_ID),
 CONSTRAINT FK_AvailabilityDay_DayOfWeek FOREIGN KEY (AvailabilityDay_DayOfWeek) REFERENCES DayOfTheWeek(DayOfTheWeek_ID));
 
-CREATE TABLE AppTimeOfDay (
-AppTimeOfDay_ID	                INTEGER NOT NULL,
-AppTimeOfDay_Time	            VARCHAR(15),
-CONSTRAINT PK_AppTimeOfDay PRIMARY KEY (AppTimeOfDay_ID));
-
-INSERT INTO AppTimeOfDay VALUES ('1','Morning');
-INSERT INTO AppTimeOfDay VALUES ('2','Early Afternoon');
-INSERT INTO AppTimeOfDay VALUES ('3','Late Afternoon');
-INSERT INTO AppTimeOfDay VALUES ('4','Night');
-
-CREATE TABLE VolTimeOfDay (
-VolTimeOfDay_ID	                INTEGER NOT NULL,
-VolTimeOfDay_Time	            TIME,
-CONSTRAINT PK_VolTimeOfDay PRIMARY KEY (VolTimeOfDay_ID));
-
-INSERT INTO VolTimeOfDay VALUES ('1','00:00');
-INSERT INTO VolTimeOfDay VALUES ('2','00:15');
-INSERT INTO VolTimeOfDay VALUES ('3','00:30');
-INSERT INTO VolTimeOfDay VALUES ('4','00:45');
-INSERT INTO VolTimeOfDay VALUES ('5','01:00');
-INSERT INTO VolTimeOfDay VALUES ('6','01:15');
-INSERT INTO VolTimeOfDay VALUES ('7','01:30');
-INSERT INTO VolTimeOfDay VALUES ('8','01:45');
-INSERT INTO VolTimeOfDay VALUES ('9','02:00');
-INSERT INTO VolTimeOfDay VALUES ('10','02:15');
-INSERT INTO VolTimeOfDay VALUES ('11','02:30');
-INSERT INTO VolTimeOfDay VALUES ('12','02:45');
-INSERT INTO VolTimeOfDay VALUES ('13','03:00');
-INSERT INTO VolTimeOfDay VALUES ('14','03:15');
-INSERT INTO VolTimeOfDay VALUES ('15','03:30');
-INSERT INTO VolTimeOfDay VALUES ('16','03:45');
-INSERT INTO VolTimeOfDay VALUES ('17','04:00');
-INSERT INTO VolTimeOfDay VALUES ('18','04:15');
-INSERT INTO VolTimeOfDay VALUES ('19','04:30');
-INSERT INTO VolTimeOfDay VALUES ('20','04:45');
-INSERT INTO VolTimeOfDay VALUES ('21','05:00');
-INSERT INTO VolTimeOfDay VALUES ('22','05:00');
-INSERT INTO VolTimeOfDay VALUES ('23','05:15');
-INSERT INTO VolTimeOfDay VALUES ('24','05:30');
-INSERT INTO VolTimeOfDay VALUES ('25','06:45');
-INSERT INTO VolTimeOfDay VALUES ('26','06:00');
-INSERT INTO VolTimeOfDay VALUES ('27','06:15');
-INSERT INTO VolTimeOfDay VALUES ('28','06:30');
-INSERT INTO VolTimeOfDay VALUES ('29','07:45');
-INSERT INTO VolTimeOfDay VALUES ('30','07:00');
-INSERT INTO VolTimeOfDay VALUES ('31','07:15');
-INSERT INTO VolTimeOfDay VALUES ('32','07:30');
-INSERT INTO VolTimeOfDay VALUES ('33','08:45');
-INSERT INTO VolTimeOfDay VALUES ('34','08:00');
-INSERT INTO VolTimeOfDay VALUES ('35','08:15');
-INSERT INTO VolTimeOfDay VALUES ('36','08:30');
-INSERT INTO VolTimeOfDay VALUES ('37','09:45');
-INSERT INTO VolTimeOfDay VALUES ('38','09:00');
-INSERT INTO VolTimeOfDay VALUES ('39','09:15');
-INSERT INTO VolTimeOfDay VALUES ('40','09:30');
-INSERT INTO VolTimeOfDay VALUES ('41','10:45');
-INSERT INTO VolTimeOfDay VALUES ('42','10:00');
-INSERT INTO VolTimeOfDay VALUES ('43','10:00');
-INSERT INTO VolTimeOfDay VALUES ('44','10:15');
-INSERT INTO VolTimeOfDay VALUES ('45','11:30');
-INSERT INTO VolTimeOfDay VALUES ('46','11:45');
-INSERT INTO VolTimeOfDay VALUES ('47','11:00');
-INSERT INTO VolTimeOfDay VALUES ('48','11:15');
-INSERT INTO VolTimeOfDay VALUES ('49','12:30');
-INSERT INTO VolTimeOfDay VALUES ('50','12:45');
-INSERT INTO VolTimeOfDay VALUES ('51','12:00');
-INSERT INTO VolTimeOfDay VALUES ('52','12:15');
-INSERT INTO VolTimeOfDay VALUES ('53','13:30');
-INSERT INTO VolTimeOfDay VALUES ('54','13:45');
-INSERT INTO VolTimeOfDay VALUES ('55','13:00');
-INSERT INTO VolTimeOfDay VALUES ('56','13:15');
-INSERT INTO VolTimeOfDay VALUES ('57','14:30');
-INSERT INTO VolTimeOfDay VALUES ('58','14:45');
-INSERT INTO VolTimeOfDay VALUES ('59','14:00');
-INSERT INTO VolTimeOfDay VALUES ('60','14:15');
-INSERT INTO VolTimeOfDay VALUES ('61','15:30');
-INSERT INTO VolTimeOfDay VALUES ('62','15:45');
-INSERT INTO VolTimeOfDay VALUES ('63','15:00');
-INSERT INTO VolTimeOfDay VALUES ('64','15:00');
-INSERT INTO VolTimeOfDay VALUES ('65','16:15');
-INSERT INTO VolTimeOfDay VALUES ('66','16:30');
-INSERT INTO VolTimeOfDay VALUES ('67','16:45');
-INSERT INTO VolTimeOfDay VALUES ('68','16:00');
-INSERT INTO VolTimeOfDay VALUES ('69','17:15');
-INSERT INTO VolTimeOfDay VALUES ('70','17:30');
-INSERT INTO VolTimeOfDay VALUES ('71','17:45');
-INSERT INTO VolTimeOfDay VALUES ('72','17:00');
-INSERT INTO VolTimeOfDay VALUES ('73','18:15');
-INSERT INTO VolTimeOfDay VALUES ('74','18:30');
-INSERT INTO VolTimeOfDay VALUES ('75','18:45');
-INSERT INTO VolTimeOfDay VALUES ('76','18:00');
-INSERT INTO VolTimeOfDay VALUES ('77','19:15');
-INSERT INTO VolTimeOfDay VALUES ('78','19:30');
-INSERT INTO VolTimeOfDay VALUES ('79','19:45');
-INSERT INTO VolTimeOfDay VALUES ('80','19:00');
-INSERT INTO VolTimeOfDay VALUES ('81','20:15');
-INSERT INTO VolTimeOfDay VALUES ('82','20:30');
-INSERT INTO VolTimeOfDay VALUES ('83','20:45');
-INSERT INTO VolTimeOfDay VALUES ('84','20:00');
-INSERT INTO VolTimeOfDay VALUES ('85','21:00');
-INSERT INTO VolTimeOfDay VALUES ('86','21:15');
-INSERT INTO VolTimeOfDay VALUES ('87','21:30');
-INSERT INTO VolTimeOfDay VALUES ('88','21:45');
-INSERT INTO VolTimeOfDay VALUES ('89','22:00');
-INSERT INTO VolTimeOfDay VALUES ('90','22:15');
-INSERT INTO VolTimeOfDay VALUES ('91','22:30');
-INSERT INTO VolTimeOfDay VALUES ('92','22:45');
-INSERT INTO VolTimeOfDay VALUES ('93','23:00');
-INSERT INTO VolTimeOfDay VALUES ('94','23:15');
-INSERT INTO VolTimeOfDay VALUES ('95','23:30');
-INSERT INTO VolTimeOfDay VALUES ('96','23:45');
-
 CREATE TABLE AppAvailabilityTime (
 AppAvailabilityTime_ID	            INTEGER NOT NULL,
 AppAvailabililyTime_AvailabilityDay INTEGER NOT NULL,
 AppAvailabilityTime_TimeOfDay	    INTEGER,
 CONSTRAINT PK_AppAvailabilityTime PRIMARY KEY (AppAvailabilityTime_ID),
-CONSTRAINT FK_AppAvailabililyTime_AvailabilityDay FOREIGN KEY (AppAvailabililyTime_AvailabilityDay) REFERENCES AvailabilityDay(AvailabilityDay_ID),
-CONSTRAINT FK_AppAvailabilityTime_TimeOfDay FOREIGN KEY (AppAvailabilityTime_TimeOfDay) REFERENCES AppTimeOfDay(AppTimeOfDay_ID));
+CONSTRAINT FK_AppAvailabililyTime_AvailabilityDay FOREIGN KEY (AppAvailabililyTime_AvailabilityDay) REFERENCES AvailabilityDay(AvailabilityDay_ID));
 
 CREATE TABLE VolAvailabilityTime (
 VolAvailabilityTime_ID	            INTEGER NOT NULL,
 VolAvailabililyTime_AvailabilityDay INTEGER NOT NULL,
 VolAvailabilityTime_TimeOfDay	    INTEGER,
 CONSTRAINT PK_VolAvailabilityTime PRIMARY KEY (VolAvailabilityTime_ID),
-CONSTRAINT FK_VolAvailabililyTime_AvailabilityDay FOREIGN KEY (VolAvailabililyTime_AvailabilityDay) REFERENCES AvailabilityDay(AvailabilityDay_ID),
-CONSTRAINT FK_VolAvailabilityTime_TimeOfDay FOREIGN KEY (VolAvailabilityTime_TimeOfDay) REFERENCES VolTimeOfDay(VolTimeOfDay_ID));
+CONSTRAINT FK_VolAvailabililyTime_AvailabilityDay FOREIGN KEY (VolAvailabililyTime_AvailabilityDay) REFERENCES AvailabilityDay(AvailabilityDay_ID));
+
 
 
 
