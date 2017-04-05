@@ -172,37 +172,37 @@ if(isset($_POST['btnSave']))
           <div class="form-group">
             <label class="col-lg-3 control-label">First Name:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="firstName" value="<?php echo ($first);?>" type="text" required="required">
+              <input class="form-control" name="firstName" value="<?php if (isset($_POST['upload'])) echo ($_POST['firstName']);?>" name="first" required="required">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Last Name:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="lastName" value="<?php echo ($last);?>" type="text" required="required">
+              <input class="form-control" name="lastName" value="<?php if (isset($_POST['upload'])) echo ($_POST['lastName']);?>" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="email" value="<?php echo ($email);?>" type="text" required="required">
+              <input class="form-control" name="email" value="<?php if (isset($_POST['upload'])) echo ($_POST['email']);?>" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Phone:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="phone" value="<?php echo ($phone);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555'>
+              <input class="form-control" name="phone" value="<?php if (isset($_POST['upload'])) echo ($_POST['phone']);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555'>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Address:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="street" value="<?php echo ($street);?>" type="text" required="required">
+              <input class="form-control" name="street" value="<?php if (isset($_POST['upload'])) echo ($_POST['street']);?>" type="text" required="required">
             </div>
           </div>
 		  <div class="form-group">
 			<label class="col-lg-3 control-label">City:</label>
 			<div class="col-lg-8">
-			  <input class="form-control" name="city" value="<?php echo ($city);?>" type="text" required="required" />
+			  <input class="form-control" name="city" value="<?php if (isset($_POST['upload'])) echo ($_POST['city']);?>" type="text" required="required" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -210,7 +210,7 @@ if(isset($_POST['btnSave']))
 			<div class="col-lg-8">
 			
 			<select name="state">
-			<option value="<?php echo ($state);?>"</option>
+			<option value="<?php if (isset($_POST['upload'])) echo ($_POST['state']);?>"</option>
 				<option value="AL">Alabama</option>
 				<option value="AK">Alaska</option>
 				<option value="AZ">Arizona</option>
@@ -266,7 +266,7 @@ if(isset($_POST['btnSave']))
 		<div class="form-group">
 			<label class="col-lg-3 control-label">Zip Code:</label>
 			<div class="col-lg-8">
-			  <input class="form-control" name="zipcode" value="<?php echo ($zipcode);?>" type="text" required="required" />
+			  <input class="form-control" name="zipcode" value="<?php if (isset($_POST['upload'])) echo ($_POST['zipcode']);?>" type="text" required="required" />
 			</div>
 			
 		</div>
@@ -315,7 +315,7 @@ if(isset($_POST['btnSave']))
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <input type="submit" name="btnSave" class="btn btn-primary" value="Save Changes">
+              <input type="submit" name="btnSave" class="btn btn-primary" value="Submit Profile">
               <span></span>
               <input type="reset" class="btn btn-default" value="Cancel">
             </div>
