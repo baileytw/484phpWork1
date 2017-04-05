@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <?php
+
+
+
+
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 ?>
 <?php
+
+
+
+
 //Session variables: KEEP AT TOP
 session_start();
 $userID = $_SESSION['userID'];
@@ -49,11 +57,18 @@ else {
 $conn->close();
 if(isset($_POST['btnSave']))
 {
+	//Set run query to false
+	$runQuery= false;
+	//Set variable values
 	$first = $_POST['firstName'];
 	$last = $_POST['lastName'];
 	$phone = $_POST['phone'];
 	$email = $_POST['email'];
-	if($_POST['password'] == $_POST['check']){
+	if(($_POST['password'] == null) || ($_POST['check'] == null)){
+		$runQuery = true;
+		$passwordQuery = " ";
+	}
+	else if($_POST['password'] == $_POST['check']){
 		/****************************************
 			START PASWWORD CODE 
 		****************************************/
@@ -66,8 +81,8 @@ if(isset($_POST['btnSave']))
 		// The $hash variable will contain the hash of the password
 		$hash = $hasher->HashPassword($password);
 		if (strlen($hash) >= 20) {
-			$passwordHashPassed = $hash;
-				
+			$runQuery = true;
+			$passwordQuery = " Person_PasswordHash = '" . $hash . "',";
 		} else {
 			
 		 // something went wrong
@@ -76,6 +91,8 @@ if(isset($_POST['btnSave']))
 		/****************************************
 			END PASWWORD CODE 
 		****************************************/
+	}
+	if ($runQuery == true){
 		$servername = "localhost";
 		$username = "root";
 		$dbpassword = "Twspike1994?";
@@ -86,7 +103,7 @@ if(isset($_POST['btnSave']))
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
-		$query = "UPDATE Person SET Person_PasswordHash = '" . $passwordHashPassed . "', Person_FirstName = '" . $first . "', Person_LastName ='" 
+		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '" . $first . "', Person_LastName ='" 
 		. $last . "', Person_PhonePrimary =" . $phone . ", Person_Email ='" . $email . "' WHERE Person_ID = " .$userID; 
 		
 		if(!mysqli_query($conn,$query))
@@ -114,17 +131,17 @@ if(isset($_POST['btnSave']))
 
 <title>Wildlife Center of Virginia Volunteers</title>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" media="screen" href="css/style.css" />
+	<link rel="stylesheet" media="screen" href="css/style.css" />
 
 </head>
 <body>
@@ -141,7 +158,6 @@ if(isset($_POST['btnSave']))
                       </button>
                       <a class="navbar-brand" href="calendar2.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     </div>
-    
                   
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -197,13 +213,13 @@ if(isset($_POST['btnSave']))
         
         <form class="form-horizontal" method="post" role="form">
           <div class="form-group">
-            <label class="col-lg-3 control-label">First name:</label>
+            <label class="col-lg-3 control-label">First Name:</label>
             <div class="col-lg-8">
               <input class="form-control" name="firstName" value="<?php echo ($first);?>" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Last name:</label>
+            <label class="col-lg-3 control-label">Last Name:</label>
             <div class="col-lg-8">
               <input class="form-control" name="lastName" value="<?php echo ($last);?>" type="text" required="required" >
             </div>
@@ -217,22 +233,24 @@ if(isset($_POST['btnSave']))
           <div class="form-group">
             <label class="col-lg-3 control-label">Phone:</label>
             <div class="col-lg-8">
-			  <input class="form-control" name="phone" value="<?php echo ($phone);?>" type='tel' pattern='\d{1}[\(]\d{3}[\)]\d{3}[\-]\d{4}' title='Phone Number Format: 1(555)555-5555' required="required"> 
+			  <input class="form-control" name="phone" value="<?php echo ($phone);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555' required="required"> 
             </div>
           </div>
-         
-	
-
+		<div class="form-group">
+            <label class="col-md-3 control-label">Change Password?</label>
+            <div class="col-md-8">
+            </div>
+          </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input class="form-control" name="password" type="password" required="required" >
+              <input class="form-control" name="password" type="password">
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input class="form-control" name="check" type="password" required="required" >
+              <input class="form-control" name="check" type="password">
             </div>
           </div>
           <div class="form-group">

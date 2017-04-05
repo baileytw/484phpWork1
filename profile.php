@@ -29,7 +29,8 @@ if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
 //SQL Statement to gather info
-$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email FROM Person WHERE Person_ID = " .$userID;
+$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
+Person_HomeState, Person_Zipcode FROM Person WHERE Person_ID = " .$userID;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -38,6 +39,10 @@ if ($result->num_rows > 0){
 		$last = $row['Person_LastName'];
 		$phone = $row['Person_PhonePrimary'];
 		$email = $row['Person_Email'];
+		$street = $row['Person_StreetAddress'];
+		$city = $row['Person_City'];
+		$state = $row['Person_HomeState'];
+		$zipcode = $row['Person_Zipcode'];
 	}
 }
 else {
@@ -141,7 +146,7 @@ $conn->close();
 </div>    
 <div class="panel panel-default">
   <div class="panel-body">
-    <strong>Address - </strong> 125 Mulberry Lane, Harrisonburg, VA 22801
+    <strong>Address - </strong> <?php echo $street . ", " . $city . ", " . $state . " " . $zipcode ?>
   </div>
 </div>    
 

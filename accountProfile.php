@@ -118,7 +118,7 @@ $conn->close();
 
                                            
                                              <hgroup>
-                                                 <a href="editAccount.php" class="btn btn-default pull-right" rel="#overlay">Edit Profile<i class="fa fa-question-circle"></i></a>
+                                                 <a href="editAccount.php" class="btn btn-default pull-right" rel="#overlay">Edit Account<i class="fa fa-question-circle"></i></a>
                                                  <h2>
                                                      <?php echo $first . " " . $last?>
                                                  </h2>

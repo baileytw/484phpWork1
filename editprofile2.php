@@ -5,6 +5,8 @@
 session_start();
 $userID = $_SESSION['userID'];
 $userTypeSession = $_SESSION['userType']; 
+$profileID = $_GET['profileID'];
+$profileDI = $_SESSION['profileDI'];
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
@@ -21,6 +23,58 @@ if ($userTypeSession != "Team Lead"){
 
 
 //THIS IS THE TEAM LEAD VIEW, SO MAKE SURE YOU ARE GETTING THE VOLUNTEER'S INFO AND NOT TEAM LEAD. DO NOT USE THE $userID variable
+
+
+
+
+//Populate fields code
+$servername = "localhost";
+$username = "root";
+$dbpassword = "Twspike1994?";
+$dbname = "wildlife";
+
+// Create connection
+$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+// Check connection
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
+//SQL Statement to gather info
+$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email FROM Person WHERE Person_ID = " .$profileDI;
+$result = $conn->query($sql);
+if ($result->num_rows > 0){
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$first = $row['Person_FirstName'];
+		$last = $row['Person_LastName'];
+		$phone = $row['Person_PhonePrimary'];
+		$email = $row['Person_Email'];
+	}
+}
+else {
+ 
+}
+$conn->close();
+
+/*
+if(isset($_POST['btnSave']))
+{
+	$first = $_POST['firstName'];
+	$last = $_POST['lastName'];
+	$phone = $_POST['phone'];
+	$email = $_POST['email'];
+*/
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -68,13 +122,12 @@ if ($userTypeSession != "Team Lead"){
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul id="main-nav" class="nav navbar-nav">
                             <li class="action">
-
-                            <li class="active"><a href="profile2.php">Profile</a></li>
-                            <li><a href="calendar.php">Calendar</a></li>
-                            <li><a href="index.php">Sign Out</a></li>
-                                </ul>
+							<li><a href="calendar2.php">Calendar</a></li>
+							<li class="active"><a href="profilesearch.php">Search</a></li>							
+                            <li><a href="accountProfile.php">Account</a></li>                          
+                            <li><a href="index.php">Sign Out</a></li>                     
                             </li>
-                        </ul>
+							</ul>
                       
                     </div>
                 </div>
@@ -128,33 +181,104 @@ if ($userTypeSession != "Team Lead"){
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="John">
+              <input class="form-control" name="firstName" value="<?php echo ($first);?>" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Last name:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="Doe">
+              <input class="form-control" name="lastName" value="<?php echo ($last);?>" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="johndoe@gmail.com">
+              <input class="form-control" name="email" value="<?php echo ($email);?>" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Phone:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="540-555-7836" type='tel' pattern='\d{1}[\(]\d{3}[\)]\d{3}[\-]\d{4}' title='Phone Number Format: 1(555)555-5555'>
+              <input class="form-control" name="phone" value="<?php echo ($phone);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555'>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Address:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="125 Mulberry Lane, Harrisonburg, VA 22801">
+              <input class="form-control" name="street" value="<?php echo ($street);?>" type="text" required="required">
             </div>
           </div>
+		  <div class="form-group">
+			<label class="col-lg-3 control-label">City:</label>
+			<div class="col-lg-8">
+			  <input class="form-control" name="city" value="<?php echo ($city);?>" type="text" required="required" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">State:</label>
+			<div class="col-lg-8">
+			
+			<select name="state">
+			<option value="<?php echo ($state);?>"</option>
+				<option value="AL">Alabama</option>
+				<option value="AK">Alaska</option>
+				<option value="AZ">Arizona</option>
+				<option value="AR">Arkansas</option>
+				<option value="CA">California</option>
+				<option value="CO">Colorado</option>
+				<option value="CT">Connecticut</option>
+				<option value="DE">Delaware</option>
+				<option value="FL">Florida</option>
+				<option value="GA">Georgia</option>
+				<option value="HI">Hawaii</option>
+				<option value="ID">Idaho</option>
+				<option value="IL">Illinois</option>
+				<option value="IN">Indiana</option>
+				<option value="IA">Iowa</option>
+				<option value="KS">Kansas</option>
+				<option value="KY">Kentucky</option>
+				<option value="LA">Louisiana</option>
+				<option value="ME">Maine</option>
+				<option value="MD">Maryland</option>
+				<option value="MA">Massachusetts</option>
+				<option value="MI">Michigan</option>
+				<option value="MN">Minnesota</option>
+				<option value="MS">Mississippi</option>
+				<option value="MO">Missouri</option>
+				<option value="MT">Montana</option>
+				<option value="NE">Nebraska</option>
+				<option value="NV">Nevada</option>
+				<option value="NH">New Hampshire</option>
+				<option value="NJ">New Jersey</option>
+				<option value="NM">New Mexico</option>
+				<option value="NY">New York</option>
+				<option value="NC">North Carolina</option>
+				<option value="ND">North Dakota</option>
+				<option value="OH">Ohio</option>
+				<option value="OK">Oklahoma</option>
+				<option value="OR">Oregon</option>
+				<option value="PA">Pennsylvania</option>
+				<option value="RI">Rhode Island</option>
+				<option value="SC">South Carolina</option>
+				<option value="SD">South Dakota</option>
+				<option value="TN">Tennessee</option>
+				<option value="TX">Texas</option>
+				<option value="UT">Utah</option>
+				<option value="VT">Vermont</option>
+				<option value="WA">Washington</option>
+				<option value="WV">West Virginia</option>
+				<option value="WI">Wisconsin</option>
+				<option value="WY">Wyoming</option>
+				</select> 
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">Zip Code:</label>
+			<div class="col-lg-8">
+			  <input class="form-control" name="zipcode" value="<?php echo ($zipcode);?>" type="text" required="required" />
+			</div>
+			
+		</div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Allergies</label>
             <div class="col-lg-8">

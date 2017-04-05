@@ -195,17 +195,17 @@ if(isset($_POST['btnSave']))
       <!-- edit form column -->
       <div class="col-md-7 col-md-offset-1 personal-info">
 
-        <h3>Personal info</h3>
+        <h3>Personal Info</h3>
         
         <form class="form-horizontal" method="post" role="form">
           <div class="form-group">
-            <label class="col-lg-3 control-label">First name:</label>
+            <label class="col-lg-3 control-label">First Name:</label>
             <div class="col-lg-8">
               <input class="form-control" name="firstName" value="<?php echo ($first);?>" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Last name:</label>
+            <label class="col-lg-3 control-label">Last Name:</label>
             <div class="col-lg-8">
               <input class="form-control" name="lastName" value="<?php echo ($last);?>" type="text" required="required">
             </div>
@@ -219,23 +219,94 @@ if(isset($_POST['btnSave']))
           <div class="form-group">
             <label class="col-lg-3 control-label">Phone:</label>
             <div class="col-lg-8">
-              <input class="form-control" name="phone" value="<?php echo ($phone);?>" type='tel' pattern='\d{1}[\(]\d{3}[\)]\d{3}[\-]\d{4}' title='Phone Number Format: 1(555)555-5555'>
+              <input class="form-control" name="phone" value="<?php echo ($phone);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555'>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Address:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="125 Mulberry Lane, Harrisonburg, VA 22801">
+              <input class="form-control" name="street" value="<?php echo ($street);?>" type="text" required="required">
             </div>
           </div>
+		  <div class="form-group">
+			<label class="col-lg-3 control-label">City:</label>
+			<div class="col-lg-8">
+			  <input class="form-control" name="city" value="<?php echo ($city);?>" type="text" required="required" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">State:</label>
+			<div class="col-lg-8">
+			
+			<select name="state">
+			<option value="<?php echo ($state);?>"</option>
+				<option value="AL">Alabama</option>
+				<option value="AK">Alaska</option>
+				<option value="AZ">Arizona</option>
+				<option value="AR">Arkansas</option>
+				<option value="CA">California</option>
+				<option value="CO">Colorado</option>
+				<option value="CT">Connecticut</option>
+				<option value="DE">Delaware</option>
+				<option value="FL">Florida</option>
+				<option value="GA">Georgia</option>
+				<option value="HI">Hawaii</option>
+				<option value="ID">Idaho</option>
+				<option value="IL">Illinois</option>
+				<option value="IN">Indiana</option>
+				<option value="IA">Iowa</option>
+				<option value="KS">Kansas</option>
+				<option value="KY">Kentucky</option>
+				<option value="LA">Louisiana</option>
+				<option value="ME">Maine</option>
+				<option value="MD">Maryland</option>
+				<option value="MA">Massachusetts</option>
+				<option value="MI">Michigan</option>
+				<option value="MN">Minnesota</option>
+				<option value="MS">Mississippi</option>
+				<option value="MO">Missouri</option>
+				<option value="MT">Montana</option>
+				<option value="NE">Nebraska</option>
+				<option value="NV">Nevada</option>
+				<option value="NH">New Hampshire</option>
+				<option value="NJ">New Jersey</option>
+				<option value="NM">New Mexico</option>
+				<option value="NY">New York</option>
+				<option value="NC">North Carolina</option>
+				<option value="ND">North Dakota</option>
+				<option value="OH">Ohio</option>
+				<option value="OK">Oklahoma</option>
+				<option value="OR">Oregon</option>
+				<option value="PA">Pennsylvania</option>
+				<option value="RI">Rhode Island</option>
+				<option value="SC">South Carolina</option>
+				<option value="SD">South Dakota</option>
+				<option value="TN">Tennessee</option>
+				<option value="TX">Texas</option>
+				<option value="UT">Utah</option>
+				<option value="VT">Vermont</option>
+				<option value="WA">Washington</option>
+				<option value="WV">West Virginia</option>
+				<option value="WI">Wisconsin</option>
+				<option value="WY">Wyoming</option>
+				</select> 
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">Zip Code:</label>
+			<div class="col-lg-8">
+			  <input class="form-control" name="zipcode" value="<?php echo ($zipcode);?>" type="text" required="required" />
+			</div>
+			
+		</div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Allergies</label>
+            <label class="col-lg-3 control-label">Allergies:</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" value="None">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Physical Limitations</label>
+            <label class="col-lg-3 control-label">Physical Limitations:</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" value="None">
             </div>
@@ -253,7 +324,7 @@ if(isset($_POST['btnSave']))
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Additional Notes</label>
+            <label class="col-lg-3 control-label">Additional Notes:</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" value="">
             </div>

@@ -3,7 +3,8 @@
 //Session variables: KEEP AT TOP
 session_start();
 $userID = $_SESSION['userID'];
-$userTypeSession = $_SESSION['userType']; 
+$userTypeSession = $_SESSION['userType'];
+$profileID = $_SESSION['profileID']; 
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
@@ -15,6 +16,24 @@ if ($userTypeSession != "Team Lead"){
 }
 
 */
+
+/*
+require_Once('Database.php');
+$db = new Database('wildlife', 'root', 'Twspike1994?','localhost' ); // $host is optional and defaults to 'localhost'
+
+
+
+$table = 'Person';
+$where =$_POST["pref-search"];
+
+//$db->select('Person','$where');
+
+*/
+
+
+
+
+
 ?>
 <html>
 <head>
@@ -54,7 +73,13 @@ if ($userTypeSession != "Team Lead"){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <link rel="stylesheet" media="screen" href="css/style.css" />
+<style>
+table, th, td {
+    border: 1px solid black;
+	padding: .8em;
+}
 
+</style>
 </head>
 <body>
     <div id="wrapper">
@@ -96,70 +121,153 @@ if ($userTypeSession != "Team Lead"){
         <div id="filter-panel">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form class="form-inline" role="form">
+                    <form class="form-inline" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" role="form"> <!-- action="Datebase.php" -->
                         <div class="form-group">
                             <div class="form-group">
-                            <label class="filter-col" style="margin-right:0;" for="pref-search" placeholder="search profile">Search:</label>
-                            <input type="text" class="form-control input-sm" id="pref-search">
+                            <label class="filter-col" style="margin-right:0;" for="pref-search">Search:</label>
+                            <input type="text" class="form-control input-sm" name="pref-search" placeholder="First or Last Name" id="pref-search">
                         </div><!-- form group [search] -->                               
                         </div> <!-- form group [rows] -->
                         
                         <div class="form-group">
-                            <label class="filter-col" style="margin-right:0;" for="pref-selectteam">Filter Team:</label>
-                            <select id="pref-selectteam" class="form-control">
-                                <option>Select Team</option>
-                                <option>Animal Care</option>
-                                <option>Front Desk</option>
-                                <option>Outreach</option>
-                                <option>Transporter</option>
-                                <option>Vet Team</option>
+                            <label class="filter-col" style="margin-right:0;"  for="pref-selectteam">Filter Team:</label>
+                            <select name="pref-selectteam" id="pref-selectteam" class="form-control">
+                                <option value="null">Select Team</option>
+                                <option value="Animal Care">Animal Care</option>
+                                <option value="Front Desk">Front Desk</option>
+                                <option value="Outreach">Outreach</option>
+                                <option value="Transporter">Transporter</option>
+                                <option value="Vet Team">Vet Team</option>
                             </select>                                
                         </div> <!-- form group [Select Team] --> 
                         <div class="form-group">
                             <label class="filter-col" style="margin-right:0;" for="pref-namefilter">Sort By:</label>
-                            <select id="pref-namefilter" class="form-control">
-                                <option>Last Name</option>
-                                <option>First Name</option>
-                            </select>  
+                            <select name="pref-namefilter" id="pref-namefilter" class="form-control">
+                                <option value="lastName">Last Name</option>
+                                <option value="firstName">First Name</option>
+                            </select> 
+						</div>
+						<div class="form-group">
                              <select id="pref-days" class="form-control">
-                                <option>Days Available</option>
-                                <option>Monday</option>
-                                <option>Tuesday</option>
-                                <option>Wednesday</option>
-                                <option>Thursday</option>
-                                <option>Friday</option>
-                                <option>Saturday</option>
-                                <option>Sunday</option>
+                                <option value="daysA">Days Available</option>
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
                             </select>                               
                         </div> <!-- form group [Select Team] -->    
-                        <div class="form-group">
-                            <label class="filter-col" style="margin-right:0;" for="pref-perpage">Rows per page:</label>
-                            <select id="pref-perpage" class="form-control">
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option selected="selected" value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                                <option value="200">200</option>
-                                <option value="300">300</option>
-                                <option value="400">400</option>
-                                <option value="500">500</option>
-                                <option value="1000">1000</option>
-                            </select>                                
-                        </div> <!-- form group [rows] -->
-                            <button type="submit" class="btn btn-default filter-col">
+                        
+						
+						
+						
+						
+                            <button type="submit" name="submit" value="Search" class="btn btn-default filter-col">
                                 Submit
                             </button>  
+							
+							<section id="displayInfo">
+			<fieldset id="displayField">
+				<table>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>First Name</th> 
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Phone</th>
+						</tr>
+					</thead>
+					<tbody> 
+						<!--Use a while loop to make a table row for every Database row-->
+						<?php 
+						if (isset($_POST['submit'])){
+								$servername = "localhost";
+								$username = "root";
+								$dbpassword = "Twspike1994?";
+								$dbname = "wildlife";
+
+								// Create connection
+								$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+								// Check connection
+								if ($conn->connect_error) {
+									die("Connection failed: " . $conn->connect_error);
+								}
+						// Variables
+						$search = $_POST['pref-search'];
+						$filter = $_POST['pref-selectteam'];
+						$sorts = $_POST['pref-namefilter'];
+						$days = $_POST['pref-days'];
+						
+						
+					
+					
+					
+					
+					// Default Statments
+				
+						if($search == null && $sorts == "lastName" && $filter == "null"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person ORDER BY Person_LastName ASC";
+						}
+						
+						if($search == null && $sorts != "lastName" && $filter == "null"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person ORDER BY Person_FirstName ASC";
+						}
+							
+						
+						// Statements for filter
+						
+											
+						
+						
+						
+						
+						
+						// Statements for sorts
+						if($search != null && $sorts == "lastName" && $filter == "null"){
+						
+						
+						$sql = "SELECT * FROM Person where Person_FirstName like '%{$search}%' || Person_LastName like '%{$search}%' 
+								|| concat_ws(' ',Person_FirstName,Person_LastName) like '%{$search}%' ORDER BY Person_LastName ASC";	
+						}
+						
+						if($search != null && $sorts != "lastName" && $filter == "null"){
+						
+						
+						$sql = "SELECT * FROM Person where Person_FirstName like '%{$search}%' || Person_LastName like '%{$search}%' 
+								|| concat_ws(' ',Person_FirstName,Person_LastName) like '%{$search}%' ORDER BY Person_FirstName ASC";	
+						}
+															
+		
+		
+		
+							$result = $conn->query($sql);
+							if ($result->num_rows > 0) {
+								// output data of each row
+								while($row = $result->fetch_assoc()) {?>
+								<tr>
+									<!--Each table column is echoed in to a td cell-->
+									<td><?php echo '<a href="profile2.php?profileID='.$row['Person_ID'].'">'.$row['Person_ID'].'</a>'; ?></td>
+									<td><?php echo $row['Person_FirstName']; ?></td>
+									<td><?php echo $row['Person_LastName']; ?></td>
+									<td><?php echo $row['Person_Email']; ?></td>
+									<td><?php echo $row['Person_PhonePrimary']; ?></td>
+									
+									
+								</tr>
+							<?php }
+								}
+								$conn->close();
+							}?>
+					</tbody> 
+				</table>
+			
+				</fieldset>
+		</section>
                         </div>
                     </form>
                 </div>
