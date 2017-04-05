@@ -1,3 +1,6 @@
+DROP TABLE Events2;
+DROP TABLE Events;
+DROP EVENT clock_out;
 DROP TABLE VolAvailabilityTime;
 DROP TABLE AppAvailabilityTime;
 DROP TABLE VolTimeOfDay;
@@ -492,7 +495,7 @@ CONSTRAINT FK_VolAvailabililyTime_AvailabilityDay FOREIGN KEY (VolAvailabililyTi
 CONSTRAINT FK_VolAvailabilityTime_TimeOfDay FOREIGN KEY (VolAvailabilityTime_TimeOfDay) REFERENCES VolTimeOfDay(VolTimeOfDay_ID));
 
 
-DROP EVENT clock_out;
+
 SET GLOBAL event_scheduler = ON;
 DELIMITER $$
 
