@@ -191,6 +191,12 @@ if(isset($_POST['upload']))
 															</div>
 														</div>
 														<div class="form-group">
+															<label class="col-lg-3 control-label">Alternate Phone:</label>
+															<div class="col-lg-8">
+																<input class="form-control" name="phoneAlt" value="<?php if (isset($_POST['upload'])) echo ($_POST['phoneAlt']);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555'>
+															</div>
+														</div>
+														<div class="form-group">
 															<label class="col-lg-3 control-label">Address:</label>
 															<div class="col-lg-8">
 																<input class="form-control" name="street" value="<?php if (isset($_POST['upload'])) echo ($_POST['street']);?>" type="text" required="required">
