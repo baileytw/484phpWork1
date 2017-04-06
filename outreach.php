@@ -400,10 +400,10 @@ error_reporting(E_ALL);
 													<label class="col-sm-3">If so, what category? Please upload a copy of your permit.</label>
 														<div>
 															<select name="permitCategory">
-																<option value="">--</option>
-																<option value="1">1</option>
-																<option value="2">2</option>
-																<option value="4">4</option>
+																<option name="permitCategory" value="">--</option>
+																<option name="permitCategory" value="1">1</option>
+																<option name="permitCategory" value="2">2</option>
+																<option name="permitCategory" value="4">4</option>
 															</select>
 														</div>
 														<div class="fileinput fileinput-new" data-provides="fileinput">
@@ -610,7 +610,7 @@ if(isset($_POST['upload']))
 
 		$server = "localhost";
         $user = "root";
-        $password = "hussa123";
+        $password = "";
         $database = "wildlife";
         $conn = mysqli_connect($server, $user, $password, $database);
         if (mysqli_connect_errno()) 
@@ -647,7 +647,7 @@ if(isset($_POST['upload']))
       
 		
 		$status = 'Applicant';
-		$permitrehab = $_POST['permit'];
+		$permitrehabCategory = $_POST['permitCategory'];
 		$lastVolunteered = NULL;
 		$allergies = $_POST['allergies'];
 		$specialNeeds = NULL;
@@ -669,7 +669,7 @@ if(isset($_POST['upload']))
 			Person_State, Person_Country, Person_Zipcode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
 					VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
-					NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
+					NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitrehabCategory', '$allergies', '$specialNeeds', '$workOutside',
 					'$workOutsideLimitations', NULL, NULL, NULL)";
 
 					 mysqli_query($conn, $query) or die(mysqli_error($conn));
