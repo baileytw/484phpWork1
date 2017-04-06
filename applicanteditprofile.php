@@ -207,6 +207,7 @@ if(isset($_POST['btnCancel']))
 				<option value="TN">Tennessee</option>
 				<option value="TX">Texas</option>
 				<option value="UT">Utah</option>
+				<option value="VT">Virginia</option>
 				<option value="VT">Vermont</option>
 				<option value="WA">Washington</option>
 				<option value="WV">West Virginia</option>

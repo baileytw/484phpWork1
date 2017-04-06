@@ -62,7 +62,7 @@ CONSTRAINT PK_Person PRIMARY KEY (Person_ID));
 CREATE TABLE Documentation (
 Documentation_ID				INTEGER	NOT NULL AUTO_INCREMENT,
 Documentation_PersonID			INTEGER	NOT NULL,
-Documentation_TypeOfDocument	VARCHAR(20),
+Documentation_TypeOfDocument	VARCHAR(40),
 Documentation_FileName			VARCHAR(40),
 Documentation_FileType			VARCHAR(40),
 Documentation_FileContent		LONGBLOB,

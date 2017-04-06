@@ -4,8 +4,7 @@
 //Session variables: KEEP AT TOP
 session_start();
 $userID = $_SESSION['userID'];
-$userTypeSession = $_SESSION['userType']; 
-$profileID = $_GET['profileID'];
+$userTypeSession = $_SESSION['userType'];
 $profileEdit = $_SESSION['profileEdit'];
 
 
@@ -317,6 +316,7 @@ if(isset($_POST['btnSave']))
 				<option value="TN">Tennessee</option>
 				<option value="TX">Texas</option>
 				<option value="UT">Utah</option>
+				<option value="VA">Virginia</option>
 				<option value="VT">Vermont</option>
 				<option value="WA">Washington</option>
 				<option value="WV">West Virginia</option>

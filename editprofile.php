@@ -314,6 +314,7 @@ if(isset($_POST['btnSave']))
 				<option value="TN">Tennessee</option>
 				<option value="TX">Texas</option>
 				<option value="UT">Utah</option>
+				<option value="VA">Virginia</option>
 				<option value="VT">Vermont</option>
 				<option value="WA">Washington</option>
 				<option value="WV">West Virginia</option>

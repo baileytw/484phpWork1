@@ -6,8 +6,11 @@
 session_start();
 $userID = $_SESSION['userID'];
 $userTypeSession = $_SESSION['userType']; 
-$profileID = $_GET['profileID']; 
-$profileEdit = $_SESSION['profileEdit'];
+$profileID = $_GET['profileID'];
+//If null it's from returning from confirmation page 
+if ($profileID == null) {
+	$profileID = $_SESSION['profileEdit'];
+}
 $_SESSION['profileEdit'] = $profileID;
 
 

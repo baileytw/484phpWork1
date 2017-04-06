@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php//Session variables: KEEP AT TOP
+session_start();
+$profileEdit = $_SESSION['profileEdit'];
+?>
+
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -26,7 +32,7 @@
 <ul><li>&nbsp;Thank you for updating your account!</li></ul>
 
 <!--clock out form-->
-<form id="form" action="profile.php" method="post" class="form-horizontal">
+<form id="form" action="profile2.php" method="post" class="form-horizontal">
 
           <div class="form-group">
             <div class="col-sm-2 col-sm-offset-3">
