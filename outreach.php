@@ -610,7 +610,7 @@ if(isset($_POST['upload']))
 
 		$server = "localhost";
         $user = "root";
-        $password = "";
+        $password = "Twspike1994?";
         $database = "wildlife";
         $conn = mysqli_connect($server, $user, $password, $database);
         if (mysqli_connect_errno()) 
@@ -672,7 +672,7 @@ if(isset($_POST['upload']))
 					NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitrehabCategory', '$allergies', '$specialNeeds', '$workOutside',
 					'$workOutsideLimitations', NULL, NULL, NULL)";
 
-					 mysqli_query($conn, $query) or die(mysqli_error($conn));
+					
 			
 					
 
@@ -732,7 +732,7 @@ if(isset($_POST['upload']))
 													$valueAdded = $_POST['valueAdded'];
 */
 
-					mysqli_query($conn, $outreachQuery) or die(mysqli_error($conn)); 
+					
 
 					if(!mysqli_query($conn,$outreachQuery))
 
