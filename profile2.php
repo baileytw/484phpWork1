@@ -250,8 +250,9 @@ if(isset($_POST['downloadResume']))
                                        
     <h4>Weekly Availability</h4>  </ul>
     <img src="images/joecalendar.png" alt="calendar" class="img-responsive">
-	<div class="col-sm-2 col-sm-offset-4">
+	<div class="form-group">
 		<button name="btnAccept" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Accept Applicant</button>
+		<button name="btnReject" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Reject Applicant</button>
 	</div>
 	  </div>
                                     
