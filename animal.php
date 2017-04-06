@@ -386,7 +386,7 @@ error_reporting(E_ALL);
 													<label class="col-sm-3">If so, what category? Please upload a copy of your permit.</label>
 														<div>
 															<select name="permitCategory">
-																<option value="">--</option>
+																<option value="0">--</option>
 																<option value="1">1</option>
 																<option value="2">2</option>
 																<option value="4">4</option>
@@ -411,7 +411,7 @@ error_reporting(E_ALL);
 												<div class="form-group">
 													<label class="col-sm-3">If so, how recently? Please provide proof of vaccination. Upload an attachment.</label>
 														<div>
-															<select name="DOBMonth">
+															<select name="VACMonth">
 																<option>- Month -</option>
 																<option value="01">January</option>
 																<option value="02">February</option>
@@ -426,7 +426,7 @@ error_reporting(E_ALL);
 																<option value="11">November</option>
 																<option value="12">December</option>
 															</select>
-															<select name="DOBDay">
+															<select name="VACDay">
 																<option>- Day -</option>
 																<option value="01">1</option>
 																<option value="02">2</option>
@@ -460,7 +460,7 @@ error_reporting(E_ALL);
 																<option value="30">30</option>
 																<option value="31">31</option>
 															</select>
-															<select name="DOBYear">
+															<select name="VACYear">
 																<option> - Year - </option>
 																<option value="2017">2017</option>
 																<option value="2016">2016</option>
@@ -518,7 +518,7 @@ error_reporting(E_ALL);
 													<div class="col-sm-9">
 														<input type="radio" name="limitationsWO" value="Yes" <?php if (isset($_POST['limitationsWO']) && $_POST['limitationsWO'] == 'Yes') echo ' checked="checked"';?>> Yes
 														<input type="radio" name="limitationsWO" value="No" <?php if (isset($_POST['limitationsWO']) && $_POST['limitationsWO'] == 'No') echo ' checked="checked"';?>> No
-														<textarea class="form-control" id = 'allergies' name = 'allergies' value="<?php if (isset($_POST['upload'])) echo ($_POST['allergies']);?>" rows="5" cols="90"></textarea>
+														<textarea class="form-control" name = 'workOut' value="<?php if (isset($_POST['upload'])) echo ($_POST['workOut']);?>" rows="5" cols="90"></textarea>
 													</div>       
 													<label class="col-sm-6">Please briefly describe your relevant hands-on experience with animals, if any. What did you enjoy about the experience? What did you dislike?</label>
 													<div class="col-sm-6">
@@ -631,31 +631,33 @@ error_reporting(E_ALL);
 			$county = NULL;
 			$state = $_POST['state'];;
 			$zip = $_POST['zipcode'];
-			$dob1 = $_POST['dob'];
+			$dob1 = $_POST['DOBYear'] . '-' . $_POST['DOBMonth'] . '-' . $_POST['DOBDay'];
 			$dob2 = DateTime::createFromFormat('Y-m-d' , $dob1);
 			$dob = $dob2->format('Y-m-d');
 			$street = $_POST['address'];
-			$tmpName  = $_FILES['userfile']['tmp_name'];
-			$fileSize = $_FILES['userfile']['size'];
-			$fp      = fopen($tmpName, 'r');
-			$picture = fread($fp, filesize($tmpName));
-			$picture = addslashes($picture);
-			fclose($fp);
+			
+			
 			$rabies = $_POST['rabies'];
 			$status = 'Applicant';
-			$rabiesVac = NULL;
+			/* $rabiesVac1 = $_POST['VACYear'] . '-' . $_POST['VACMonth'] . '-' . $_POST['VACDay'];
+			$rabiesVac2 = DateTime::createFromFormat('Y-m-d' , $rabiesVac1);
+			$rabiesVac = $rabiesVac2->format('Y-m-d'); */
 			$lastVolunteered = NULL;
 			$allergies = $_POST['allergies'];
 			$specialNeeds = NULL;
-			$workOutside = NULL;
+			$workOutside = $_POST['limitationsWO'];
 			$totalHours = NULL;
-			$workOutsideLimitations = $_POST['seasons'];
-			$lift40 = $_POST['lift'];
-			$permitRehab = NULL;
+			$workOutsideLimitations = $_POST['workOut'];
+			$lift40 = $_POST['fortyLBS'];
+			$permitRehab = $_POST['permitCategory'];
+			if ($permitRehab < 1)
+			{
+				$permitRehab = NULL;
+			}
 
-				  $query = "INSERT INTO person (Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_HomeState, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+				  $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 		  Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-			  VALUES ('$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', '$county', '$state', '$zip', '$dob', '$status', NULL, NULL, '$allergies', NULL, NULL, '$workOutsideLimitations', '$lift40', NULL, NULL)";
+			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', '$county', '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitRehab', '$allergies', NULL, NULL, '$workOutsideLimitations', '$lift40', NULL, NULL)";
 
 
 
@@ -675,14 +677,14 @@ error_reporting(E_ALL);
 			$experience = $_POST['experience'];
 			$deadAnimals = $_POST['deadAnimals'];
 			$livePrey = $_POST['livePrey'];
-			$seasons = $_POST['seasons'];
+			$seasons = $_POST['workOut'];
 			$groups = $_POST['groups'];
 			$accomplish = $_POST['accomplish'];
 			$issue = $_POST['issue'];
 			$additionalInfo = $_POST['additionalInfo'];
-			$ecName = $_POST['ec'];
+			/* $ecName = $_POST['ec'];
 			$ecPhone = $_POST['ecPhone'];
-			$ecRelationship = $_POST['ecRelationship'];
+			$ecRelationship = $_POST['ecRelationship']; */
 			$depNum = 2;
 			$sql = "SELECT MAX(Person_ID) FROM Person";
 			$result = $conn->query($sql);
@@ -696,23 +698,8 @@ error_reporting(E_ALL);
 			
 			
 			
-			$applicationQuery = "INSERT INTO Application (Application_PersonID, Application_DepartmentApplied, Application_DateApplied)
-			  VALUES ('$personID', '$depNum', NOW())";
-
-
-
-			  if(!mysqli_query($conn,$applicationQuery))
-
-			{
-				echo("Error description: " . mysqli_error($conn));
-			}
-
-			else
-			{
-				echo "Application Sent! {Application table}";
-			}
 			
-			$iceQuery = "INSERT INTO Ice (ICE_PersonID, ICE_Name, ICE_Phone, ICE_Relationship)
+			/* $iceQuery = "INSERT INTO Ice (ICE_PersonID, ICE_Name, ICE_Phone, ICE_Relationship)
 			  VALUES ('$personID', '$ecName', '$ecPhone', '$ecRelationship')";
 
 
@@ -726,22 +713,12 @@ error_reporting(E_ALL);
 			else
 			{
 				echo "Application Sent! {ICE table}";
-			}
-			
-			$sql = "SELECT MAX(Application_ID) FROM Application";
-			$result = $conn->query($sql);
-			$applicationID = null;
-			if($result->num_rows > 0) {
-				//output data of each row
-				while($row = $result->fetch_assoc()) {
-					$applicationID = $row['MAX(Application_ID)'];
-				}
-			}
+			} */
 
 			
 
-			$animalQuery = "INSERT INTO AnimalCareApp (AnimalCareApp_ApplicationID, AnimalCareApp_HandsOnExperience, AnimalCareApp_HandleDeadAnimals, AnimalCareApp_OpinionLivePrey, AnimalCareApp_WorkOutside, AnimalCareApp_BelongToAnimalRightsGroup, AnimalCareApp_HopeToLearnAccomplish, AnimalCareApp_PassionateWildlifeIssue, AnimalCareApp_MoreAboutExperience)
-			  VALUES ('$applicationID', '$experience', '$deadAnimals', '$livePrey', '$seasons', '$groups', '$accomplish', '$issue', '$additionalInfo')";
+			$animalQuery = "INSERT INTO AnimalCareApp (AnimalCareApp_PersonID, AnimalCareApp_HandsOnExperience, AnimalCareApp_HandleDeadAnimals, AnimalCareApp_OpinionLivePrey, AnimalCareApp_WorkOutside, AnimalCareApp_BelongToAnimalRightsGroup, AnimalCareApp_HopeToLearnAccomplish, AnimalCareApp_PassionateWildlifeIssue, AnimalCareApp_MoreAboutExperience)
+			  VALUES ('$personID', '$experience', '$deadAnimals', '$livePrey', '$seasons', '$groups', '$accomplish', '$issue', '$additionalInfo')";
 
 
 
@@ -754,6 +731,81 @@ error_reporting(E_ALL);
 			else
 			{
 				echo "Application Sent! {animalCareApp table}";
+			}
+			
+			$fileName = $_FILES['permitRehabVA']['name'];
+			$tmpName  = $_FILES['permitRehabVA']['tmp_name'];
+			$fileSize = $_FILES['permitRehabVA']['size'];
+			$fileType = $_FILES['permitRehabVA']['type'];
+			$fp      = fopen($tmpName, 'r');
+			$content = fread($fp, filesize($tmpName));
+			$content = addslashes($content);
+			fclose($fp); 
+			
+			$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
+			  VALUES ('$personID', 'Rehabilitation Permit', '$fileName', '$fileType', '$content', NULL)";
+
+
+
+			  if(!mysqli_query($conn,$documentQuery))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
+
+			else
+			{
+				echo "Document1 Sent!";
+			}
+			
+			$fileName = $_FILES['rabbiesDocumentation']['name'];
+			$tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
+			$fileSize = $_FILES['rabbiesDocumentation']['size'];
+			$fileType = $_FILES['rabbiesDocumentation']['type'];
+			$fp      = fopen($tmpName, 'r');
+			$content = fread($fp, filesize($tmpName));
+			$content = addslashes($content);
+			fclose($fp);
+			
+		  $documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
+			  VALUES ('$personID', 'Proof of Vaccination', '$fileName', '$fileType', '$content', NULL)";
+
+
+
+			  if(!mysqli_query($conn,$documentQuery))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
+
+			else
+			{
+				echo "Document2 Sent!";
+			}
+			
+			$fileName = $_FILES['userfile']['name'];
+			$tmpName  = $_FILES['userfile']['tmp_name'];
+			$fileSize = $_FILES['userfile']['size'];
+			$fileType = $_FILES['userfile']['type'];
+			$fp      = fopen($tmpName, 'r');
+			$content = fread($fp, filesize($tmpName));
+			$content = addslashes($content);
+			fclose($fp);
+			
+			$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
+			  VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$content', NULL)";
+
+
+
+			  if(!mysqli_query($conn,$documentQuery))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+			}
+
+			else
+			{
+				echo "Document3 Sent!";
 			}
 		  
 			
