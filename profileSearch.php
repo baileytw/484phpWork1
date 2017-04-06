@@ -23,6 +23,27 @@ if ($userTypeSession != "Team Lead"){
 
 
 ?>
+<!-- Select all checkboxes -->
+<script type="text/javascript">
+
+    function do_this(){
+
+        var checkboxes = document.getElementsByName('check[]');
+        var button = document.getElementById('toggle');
+
+        if(button.value == 'Select All'){
+            for (var i in checkboxes){
+                checkboxes[i].checked = 'FALSE';
+            }
+            button.value = 'Deselect All'
+        }else{
+            for (var i in checkboxes){
+                checkboxes[i].checked = '';
+            }
+            button.value = 'Select All';
+        }
+    }
+</script>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -133,7 +154,6 @@ table, th, td {
                             <select name="pref-namefilter" id="pref-namefilter" class="form-control">
                                 <option value="lastName">Last Name</option>
                                 <option value="firstName">First Name</option>
-								<option value="profileNumber">ID</option>
                             </select> 
 						</div>
 						<div class="form-group">
@@ -158,11 +178,13 @@ table, th, td {
                             </button>  
 							
 							<section id="displayInfo">
+
 			<fieldset id="displayField">
 				<table>
 					<thead>
 						<tr>
-							<th>ID</th>
+							<th><input type="button" id="toggle" value="Select All" onClick="do_this()" /></th>
+							<th>Profile</th>
 							<th>First Name</th> 
 							<th>Last Name</th>
 							<th>Email</th>
@@ -252,7 +274,8 @@ table, th, td {
 								while($row = $result->fetch_assoc()) {?>
 								<tr>
 									<!--Each table column is echoed in to a td cell-->
-									<td><?php echo '<a href="profile2.php?profileID='.$row['Person_ID'].'">'.$row['Person_ID'].'</a>'; ?></td>
+									<td><input type="checkbox" name="check[]"></td>
+									<td><?php echo '<a href="profile2.php?profileID='.$row['Person_ID'].'">View</a>'; ?></td>
 									<td><?php echo $row['Person_FirstName']; ?></td>
 									<td><?php echo $row['Person_LastName']; ?></td>
 									<td><?php echo $row['Person_Email']; ?></td>
@@ -269,13 +292,20 @@ table, th, td {
 			
 				</fieldset>
 		</section>
+		<div class="form-group">
+<label>Send email to selected: </label>
+	<button type="submit" name="emailSelected"  class="btn btn-default filter-col">Send Email </button> 
+</div>	
                         </div>
                     </form>
                 </div>
             </div>
-        </div>      
+        </div> 
+	
     </div>
+
 </div><!--end container search bar-->
+
 
 <div class="container">
     <div class="row">

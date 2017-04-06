@@ -32,7 +32,7 @@ $profileEdit = $_SESSION['profileEdit'];
 <ul><li>&nbsp;Thank you for updating your account!</li></ul>
 
 <!--clock out form-->
-<form id="form" action="profile2.php" method="post" class="form-horizontal">
+<form id="form" action="profile.php" method="post" class="form-horizontal">
 
           <div class="form-group">
             <div class="col-sm-2 col-sm-offset-3">
