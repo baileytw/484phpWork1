@@ -654,7 +654,7 @@ if(isset($_POST['upload']))
 		$workOutside = NULL;
 		$totalHours = NULL;
 		$workOutsideLimitations = NULL;
-		$lift40 = $_POST['fortyLBS'];
+		$lift40 = NULL;
 
 		$whyInterested = $_POST['whyInterested'];
 		$wildlifeIssue = $_POST['wildlifeIssue'];
@@ -760,7 +760,7 @@ if(isset($_POST['upload']))
 
 
         $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-            VALUES ('$personID', 'resume', '$fileName', '$fileType', '$permitRehabVA', NULL)";
+            VALUES ('$personID', 'rehabilitatePermit', '$fileName', '$fileType', '$permitRehabVA', NULL)";
         
 
             if(!mysqli_query($conn,$documentQuery))
@@ -787,7 +787,7 @@ if(isset($_POST['upload']))
 
 
         $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-            VALUES ('$personID', 'resume', '$fileName', '$fileType', '$rabbiesDocumentation', NULL)";
+            VALUES ('$personID', 'rabiesDocumentation', '$fileName', '$fileType', '$rabbiesDocumentation', NULL)";
         
 
             if(!mysqli_query($conn,$documentQuery))

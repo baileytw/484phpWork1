@@ -539,12 +539,13 @@ error_reporting(E_ALL);
 													</div>
 												</div>
 											</fieldset>																				</fieldset>
+											<button class="btn btn-primary" id="upload" name = "upload" type="submit"> Submit form</button>
+									<button class="btn btn-default" type="reset">Reset</button>
 										</form>										
 									</div>
 								</section>
 								<footer class="panel-footer">
-									<button class="btn btn-primary" name = "upload" type="submit"> Submit form</button>
-									<button class="btn btn-default" type="reset">Reset</button>
+									
 								</footer>
 							</div>
 <?php
@@ -580,7 +581,7 @@ if(isset($_POST['upload']))
 		
     $server = "localhost";
         $user = "root";
-        $dbpassword = "Twspike1994?";
+        $dbpassword = "hussa123";
         $database = "wildlife";
         $conn = mysqli_connect($server, $user, $dbpassword, $database);
         if (mysqli_connect_errno()) 
@@ -593,6 +594,7 @@ if(isset($_POST['upload']))
             echo "Database Not Selected";
         }
 
+   		$userName = $_POST['email'];
         $firstName = $_POST['firstName'];
         $lastName = $_POST['lastName'];
         $userName = $_POST['email'];
@@ -606,32 +608,11 @@ if(isset($_POST['upload']))
         $county = NULL;
         $state = $_POST['state'];
         $zip = $_POST['zipcode'];
-        $dob1 = $_POST['dob'];
+        $dob1 = $_POST['DOBYear'] . '-' . $_POST['DOBMonth'] . '-' . $_POST['DOBDay'];
 		$dob2 = DateTime::createFromFormat('Y-m-d' , $dob1);
 		$dob = $dob2->format('Y-m-d');
         $street = $_POST['address'];
       
-		/* $tmpName  = $_FILES['resume']['tmp_name'];
-		$fileSize = $_FILES['resume']['size'];
-		$fp      = fopen($tmpName, 'r');
-		$resume = fread($fp, filesize($tmpName));
-		$resume = addslashes($resume);
-		fclose($fp);
-		
-		$tmpName  = $_FILES['recommend1']['tmp_name'];
-		$fileSize = $_FILES['recommend1']['size'];
-		$fp      = fopen($tmpName, 'r');
-		$recommend1 = fread($fp, filesize($tmpName));
-		$recommend1 = addslashes($recommend1);
-		fclose($fp);
-		
-		$tmpName  = $_FILES['recommend2']['tmp_name'];
-		$fileSize = $_FILES['recommend2']['size'];
-		$fp      = fopen($tmpName, 'r');
-		$recommend2 = fread($fp, filesize($tmpName));
-		$recommend2 = addslashes($recommend2);
-		fclose($fp); */
-		
 		$status = 'Applicant';
 		$rabiesVac = NULL;
 		$permitrehab = $_POST['permit'];
@@ -648,12 +629,12 @@ if(isset($_POST['upload']))
 	$euthanasia = $_POST['trauma'];
 	$messy = $_POST['messy'];
 
-      $query = "INSERT INTO person (Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleInitial, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
-			Person_HomeState, Person_Zipcode, Person_DateOfBirth, Person_Status, Person_RabiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+      $query = "INSERT INTO person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
+			Person_State, Person_Country, Person_Zipcode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-					VALUES ('$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
-					NULL, '$state', '$zip', '$dob', '$status', NULL, '$permitrehab', '$allergies', NULL, NULL,
-					NULL, NULL, NULL, NULL)";
+					VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
+					NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
+					'$workOutsideLimitations', '$lift40', NULL, NULL)";
 
                  mysqli_query($conn, $query) or die(mysqli_error($conn));
 				 
@@ -679,46 +660,18 @@ if(isset($_POST['upload']))
 				}
 			}
 			
-			$applicationQuery = "INSERT INTO Application (	Application_PersonID,
-																	Application_DateApplied,
-																	Application_DepartmentApplied)
-														VALUES (	'$personID',
-																	NOW(),
-																	'3')";
-			
-			 mysqli_query($conn, $applicationQuery) or die(mysqli_error($conn));
-			 
-			  if(!mysqli_query($conn,$applicationQuery))
-
-			{
-				echo("Error description: " . mysqli_error($conn));
-			}
-
-			else
-			{
-				echo "Application Sent! {Application table}";
-			}
 			
 			
 			// vet specific
 			
+
 			
-			$sql = "SELECT MAX(Application_ID) FROM Application";
-			$result = $conn->query($sql);
-			$applicationID = null;
-			if($result->num_rows > 0) {
-				//output data of each row
-				while($row = $result->fetch_assoc()) {
-					$applicationID = $row['MAX(Application_ID)'];
-				}
-			}
-			
-		$vetQuery = "INSERT INTO vetteamapp (	VetTeamApp_ApplicationID,
+		$vetQuery = "INSERT INTO vetteamapp (	VetTeamApp_PersonID,
 													VetTeamApp_PreviousTraining,
 													VetTeamApp_WorkEnvironment,
 													VetTeamApp_Euthansia,
 													VetTeamApp_Messy)
-										VALUES (	'$applicationID',
+										VALUES (	'$personID',
 													'$previousTraining',
 													'$workEnvironment',
 													'$euthanasia',
@@ -737,6 +690,90 @@ if(isset($_POST['upload']))
 			{
 				echo "Application Sent! {Vet table}";
 			}
+			//Document Query
+       
+        $fileName  = $_FILES['permitRehabVA']['name'];
+        $tmpName  = $_FILES['permitRehabVA']['tmp_name'];
+        $fileType = $_FILES['permitRehabVA']['type'];
+        $fileSize = $_FILES['permitRehabVA']['size'];
+        $fp      = fopen($tmpName, 'r');
+        $permitRehabVA = fread($fp, filesize($tmpName));
+        $permitRehabVA = addslashes($permitRehabVA);
+        fclose($fp);
+
+
+
+        $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
+            VALUES ('$personID', 'rehabilitatePermit', '$fileName', '$fileType', '$permitRehabVA', NULL)";
+        
+
+            if(!mysqli_query($conn,$documentQuery))
+
+            {
+                echo("Error description: " . mysqli_error($conn));
+            }
+
+            else
+            {
+                echo "Document Sent";
+            }
+
+
+        $fileName  = $_FILES['rabbiesDocumentation']['name'];
+        $tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
+        $fileType = $_FILES['rabbiesDocumentation']['type'];
+        $fileSize = $_FILES['rabbiesDocumentation']['size'];
+        $fp      = fopen($tmpName, 'r');
+        $rabbiesDocumentation = fread($fp, filesize($tmpName));
+        $rabbiesDocumentation = addslashes($rabbiesDocumentation);
+        fclose($fp);
+
+
+
+        $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
+            VALUES ('$personID', 'rabiesDocumentation', '$fileName', '$fileType', '$rabbiesDocumentation', NULL)";
+        
+
+            if(!mysqli_query($conn,$documentQuery))
+
+            {
+                echo("Error description: " . mysqli_error($conn));
+            }
+
+            else
+            {
+                echo "Document Sent";
+            }
+            
+            
+            //Document Query
+        $fileName  = $_FILES['userfile']['name'];
+        $tmpName  = $_FILES['userfile']['tmp_name'];
+        $fileType = $_FILES['userfile']['type'];
+        $fileSize = $_FILES['userfile']['size'];
+        $fp      = fopen($tmpName, 'r');
+        $userfile = fread($fp, filesize($tmpName));
+        $userfile = addslashes($userfile);
+        fclose($fp);
+
+
+
+        $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
+            VALUES ('$personID', 'resume', '$fileName', '$fileType', '$userfile', NULL)";
+        
+
+            if(!mysqli_query($conn,$documentQuery))
+
+            {
+                echo("Error description: " . mysqli_error($conn));
+            }
+
+            else
+            {
+                echo "Document Sent";
+            }
+
+
 	}
 	else{
 		$message = 'Password values do not match. Please try again.';
