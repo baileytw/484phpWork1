@@ -46,6 +46,7 @@ error_reporting(E_ALL);
                         <ul id="main-nav" class="nav navbar-nav">
                             <li class="action">
                             <li class="active"><a href="forms.php">Application</a></li>
+							<li><a href="forms.php">Back</a></li>
                                 </ul>
                             </li>
                         </ul>

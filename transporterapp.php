@@ -31,7 +31,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                       <a class="navbar-brand" href=""><img src="../streamlined/images/logo_short.png" alt="Wildlife Small Logo"></a>
+                       <a class="navbar-brand" href=""><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     </div>
                   
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -39,7 +39,7 @@
                             <li class="action">
 
                             <li class="active"><a href="forms.php">Application</a></li>
-                            <li><a href="index.php">Sign Out</a></li>
+							<li><a href="forms.php">Back</a></li>
                                 </ul>
                             </li>
                         </ul>
