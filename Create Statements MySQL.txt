@@ -57,6 +57,7 @@ Person_OutsideLimitations			VARCHAR(2000),
 Person_Lift40Lbs					VARCHAR(3),
 Person_TotalVolunteeredHours		DOUBLE,
 Person_LastVolunteered				DATE,
+Person_TeamLeadNotes				VARCHAR (2000),
 CONSTRAINT PK_Person PRIMARY KEY (Person_ID));
 
 CREATE TABLE Documentation (
