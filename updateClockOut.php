@@ -100,7 +100,7 @@ if(isset($_POST['btnUpdate'])){
     			  <div class="col-sm-12">
 				  <p> Enter correct date &amp time
 
-      				<input type="datetime-local" id="date" class="form-control" value="" name="clockout" required="required" placeholder="Correct Clock Out Time" />
+      				<input type="datetime-local" id="date" class="form-control" value="" name="clockout" required="required" />
       			</div>
     			</div>
     			<div class="form-group">
