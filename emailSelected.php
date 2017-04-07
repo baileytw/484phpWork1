@@ -4,7 +4,8 @@
 session_start();
 $userID = $_SESSION['userID'];
 $userTypeSession = $_SESSION['userType'];
-$profileID = $_SESSION['profileID']; 
+//Array of emails that were selected
+$profileEmail = $_SESSION['profileEmail']; 
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
@@ -20,8 +21,7 @@ if ($userTypeSession != "Team Lead"){
 if(isset($_POST['btnLogIn'])){
 	require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
 	
-	//DO A LOOP TO POPULATE EMAIL ADDRESS AND SEND EMAIL FOR EACH ITERATION
-	$emailAddress = 'seilermr@dukes.jmu.edu';
+	
 	$mail = new PHPMailer;
 	
 
@@ -36,8 +36,12 @@ if(isset($_POST['btnLogIn'])){
 	$mail->Port = 587;                                    // TCP port to connect to
 
 	$mail->setFrom('wcvtestemail@gmail', 'Wildlife Center of Virginia');
-	$mail->addAddress($emailAddress);     // recipient
-	//$mail->addAddress('ellen@example.com');               //Add team lead
+	//DO A LOOP TO POPULATE EMAIL ADDRESS AND SEND EMAIL FOR EACH ITERATION
+	foreach($_SESSION['profileEmail'] as $key=>$value)
+    {
+		$mail->addAddress($value);     // recipient(s)
+    }
+		
 
 	$mail->Subject = '';
 	$mail->Body    = ' '; 
@@ -55,7 +59,10 @@ if(isset($_POST['btnLogIn'])){
 	}
 }
 
-
+if(isset($_POST['btnCancel'])){
+	header("Location: emailSelected.php");
+	exit();
+}
 ?>
 <!-- Select all checkboxes -->
 <script type="text/javascript">
@@ -154,7 +161,7 @@ if(isset($_POST['btnLogIn'])){
 			<div class="form-group">
 					<label class="col-lg-3 control-label">Sending To: </label>
 					<div class="col-lg-8">
-						<input class="form-control" id="emailTo" name="emailTo" type="text" required="required" />
+						<input class="form-control" id="emailTo" name="emailTo" value="<?php foreach($_SESSION['profileEmail'] as $key=>$value){ echo $value . ';';}?>" type="text" required="required"  " />
 					</div>
 				</div>
 				<div class="form-group">

@@ -17,9 +17,31 @@ if ($userTypeSession != "Team Lead"){
 
 */
 
-
-
-
+if(isset($_POST['emailSelected']))
+{
+	
+	//Create email array
+	$emailArray = array();
+	//Add values to array
+	foreach($_POST['check'] as $value) 
+	{
+		$emailArray[] = $value;
+	}
+	
+	//Put the array in a session variable
+	$_SESSION['profileEmail']= $emailArray;
+		
+	if( count($emailArray) > 0 ){
+		header("Location: emailSelected.php");
+		exit();
+	}
+	else{
+		$message = 'Please select at least one checkbox to send email';
+		echo "<SCRIPT>
+		alert('$message');
+		</SCRIPT>";
+	}
+}
 
 
 ?>
@@ -274,7 +296,7 @@ table, th, td {
 								while($row = $result->fetch_assoc()) {?>
 								<tr>
 									<!--Each table column is echoed in to a td cell-->
-									<td><input type="checkbox" name="check[]"></td>
+									<td><input type="checkbox" name="check[]" value="<?php echo $row['Person_Email'] ?>"></td>
 									<td><?php echo '<a href="profile2.php?profileID='.$row['Person_ID'].'">View</a>'; ?></td>
 									<td><?php echo $row['Person_FirstName']; ?></td>
 									<td><?php echo $row['Person_LastName']; ?></td>
