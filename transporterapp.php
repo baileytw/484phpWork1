@@ -434,7 +434,7 @@
 														<label class="col-sm-5">Transporter Guidelines</label>
 														<div class="col-sm-7">
 															<div class="checkbox">
-																<input type="radio" name="acknowledge" value=""> I am acknowledging that I have read the transporter guidelines and I promise to abide by these guidelines when I transport for the Wildlife Center of Virginia.
+																<input type="radio" name="acknowledge" required = "required"value="x"> I am acknowledging that I have read the transporter guidelines and I promise to abide by these guidelines when I transport for the Wildlife Center of Virginia.
 															</div>
 														</div>
 													</div>
@@ -468,6 +468,24 @@
 			</div>
 		</section>
 		<?php
+
+	  $server = "localhost";
+	  $user = "root";
+	  $password = "password";
+	  $database = "wildlife";
+
+	  $conn = mysqli_connect($server, $user, $password, $database);
+
+			if (mysqli_connect_errno()) 
+			{
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			}
+
+		  if(!mysqli_select_db($conn, 'wildlife'))
+			{
+				echo "Database Not Selected";
+			}
+
 		
 	  if(isset($_POST['upload']))
 	{
@@ -483,7 +501,8 @@
 		// Retrieve password
 		$password = $_POST["password"];
 		// Limit passwords to 72 characters to help prevent DoS attacks
-		if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
+		if (strlen($password) > 72)
+		{ die("Password must be 72 characters or less"); }
 		// The $hash variable will contain the hash of the password
 		$hash = $hasher->HashPassword($password);
 		if (strlen($hash) >= 20) {
@@ -499,23 +518,7 @@
 			END PASWWORD CODE 
 		****************************************/
 		
-	  $server = "localhost";
-	  $user = "root";
-	  $password = "Twspike1994?";
-	  $database = "wildlife";
-
-	  $conn = mysqli_connect($server, $user, $password, $database);
-			if (mysqli_connect_errno()) 
-			{
-		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-			}
-
-		  if(!mysqli_select_db($conn, 'wildlife'))
-			{
-				echo "Database Not Selected";
-			}
-
-		 
+ 
 
 			$firstName = $_POST['firstName'];
 			$lastName = $_POST['lastName'];
@@ -581,7 +584,7 @@ $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserT
 				}
 			}
 			
-			$transporterQuery = "INSERT INTO Transporterapp (TransporterApp_PersonID, TransporterApp_HandsOnExperience, TransporterApp_HandleDeadAnimals, TransporterApp_OpinionLivePrey)
+			$transporterQuery = "INSERT INTO Transporterapp (TransporterApp_PersonID, TransporterApp_DistanceWillingToTravel, TransporterApp_CaptureAnimals, TransporterApp_Acknowledgement)
 			  VALUES ('$personID', '$travel', '$capture', '$acknowledge')";
 
 
@@ -622,6 +625,13 @@ $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserT
 				echo "Document Sent!";
 			}
 		}
+		else{
+		$message = 'Password values do not match. Please try again.';
+
+echo "<SCRIPT>
+alert('$message');
+</SCRIPT>";
+	}
 	}
 			?>
 
