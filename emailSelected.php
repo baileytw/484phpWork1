@@ -174,7 +174,7 @@ if(isset($_POST['btnLogIn'])){
             <div class="col-md-8">
               <input type="submit" name="btnSend" class="btn btn-primary" value="Send Email">
               <span></span>
-              <input type="submit" name="btnCancel" class="btn btn-default" value="Cancel">
+              <input type="submit" name="btnCancel" class="btn btn-default" formnovalidate value="Cancel">
             </div>
           </div>
         </form>
