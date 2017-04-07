@@ -282,6 +282,7 @@ if(isset($_POST['btnSave']))
 			<div class="col-lg-8">
 			
 			<select name="state" required="required">
+				<option value=""> Select </option>
 			
 				<option <?php if ($state == 'AL' ) echo 'selected' ; ?> value="AL">Alabama</option>
 				<option <?php if ($state == 'AK' ) echo 'selected' ; ?> value="AK">Alaska</option>
@@ -393,7 +394,7 @@ if(isset($_POST['btnSave']))
             <div class="col-md-8">
               <input type="submit" name="btnSave" class="btn btn-primary" value="Save Changes">
               <span></span>
-              <input type="submit" name="btnCancel" class="btn btn-default" value="Cancel">
+              <input type="submit" name="btnCancel" class="btn btn-default" value="Cancel" formnovalidate>
             </div>
           </div>
         </form>
