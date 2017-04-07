@@ -236,7 +236,21 @@ table, th, td {
 						
 						
 					
-					
+					// Statments for team
+						
+						if($search != null && $sorts == "firstName" && $filter == "Animal Care"){
+						
+						
+						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare.AnimalCare_PersonID where Person.Person_FirstName like '%{$search}%' || Person.Person_LastName like '%{$search}%' 
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' ORDER BY Person.Person_FirstName ASC";	
+						}
+						
+						if($search != null && $sorts == "lastName" && $filter == "Animal Care"){
+						
+						
+						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare.AnimalCare_PersonID where Person.Person_FirstName like '%{$search}%' || Person.Person_LastName like '%{$search}%' 
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' ORDER BY Person.Person_LastName ASC";	
+						}
 					
 					
 					// Default Statments
@@ -286,6 +300,9 @@ table, th, td {
 						$sql = "SELECT * FROM Person where Person_FirstName like '%{$search}%' || Person_LastName like '%{$search}%' 
 								|| concat_ws(' ',Person_FirstName,Person_LastName) like '%{$search}%' ORDER BY Person_ID ASC";	
 						}
+						
+						
+						// Statments for team
 															
 		
 		
