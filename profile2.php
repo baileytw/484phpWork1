@@ -58,8 +58,9 @@ if ($result->num_rows > 0){
 		$email = $row['Person_Email'];
 		$street = $row['Person_StreetAddress'];
 		$city = $row['Person_City'];
-		$state = $row['Person_HomeState'];
+		$state = $row['Person_State'];
 		$zipcode = $row['Person_Zipcode'];
+		
 	}
 }
 else {
@@ -193,7 +194,7 @@ if(isset($_POST['downloadResume']))
 </div>    
 <div class="panel panel-default">
   <div class="panel-body">
-    <strong>Address - </strong> <?php echo $address ?>
+    <strong>Address - </strong> <?php echo $street. ', '. $city.', '. $state ?>
   </div>
 </div>    
 
