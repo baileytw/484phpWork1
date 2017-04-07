@@ -22,8 +22,7 @@ if(isset($_POST['btnSend'])){
 	require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
 	
 	//DO A LOOP TO POPULATE EMAIL ADDRESS AND SEND EMAIL FOR EACH ITERATION
-	foreach($_SESSION['profileEmail'] as $key=>$value)
-    {
+	
 	$mail = new PHPMailer;
 	
 
@@ -39,8 +38,10 @@ if(isset($_POST['btnSend'])){
 
 	$mail->setFrom('wcvtestemail@gmail', 'Wildlife Center of Virginia');
 	
-	$mail->addAddress($value);     // recipient
-    
+	foreach($_SESSION['profileEmail'] as $key=>$value)
+    {
+		$mail->addAddress($value);     // recipient
+    }
 		
 
 	$mail->Subject = $_POST['emailSubject'];
@@ -55,10 +56,12 @@ if(isset($_POST['btnSend'])){
 		echo 'Message could not be sent.';
 		echo 'Mailer Error: ' . $mail->ErrorInfo;
 	} else {
-		echo 'Message has been sent';
+		header("Location: emailConfirmation.php");
+		exit();
 		
 	}
-	}
+	
+	
 }
 
 if(isset($_POST['btnCancel'])){
