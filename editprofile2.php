@@ -45,7 +45,8 @@ if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
 //SQL Statement to gather info
-$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email FROM Person WHERE Person_ID = " .$profileEdit;
+$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
+Person_State, Person_Zipcode FROM Person WHERE Person_ID = " .$profileEdit;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -54,6 +55,10 @@ if ($result->num_rows > 0){
 		$last = $row['Person_LastName'];
 		$phone = $row['Person_PhonePrimary'];
 		$email = $row['Person_Email'];
+		$street = $row['Person_StreetAddress'];
+		$city = $row['Person_City'];
+		$state = $row['Person_State'];
+		$zipcode = $row['Person_Zipcode'];
 	}
 }
 else {
@@ -67,11 +72,16 @@ if(isset($_POST['btnSave']))
 	//Set run query to false
 	$runQuery= false;
 	//Set variables
-	//$personID = 
 	$first = $_POST['firstName'];
 	$last = $_POST['lastName'];
 	$phone = $_POST['phone'];
 	$email = $_POST['email'];
+	$street = $_POST['street'];
+	$city = $_POST['city'];
+	$state = $_POST['state'];
+	$zipcode = $_POST['zipcode'];
+	
+	
 	//If passwords null, don't uppdate password
 	if(($_POST['password'] == null) || ($_POST['check'] == null)){
 		$runQuery = true;
@@ -115,7 +125,8 @@ if(isset($_POST['btnSave']))
 			die("Connection failed: " . $conn->connect_error);
 		}
 		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '" . $first . "', Person_LastName ='" 
-		. $last . "', Person_PhonePrimary = '" . $phone . "', Person_Email ='" . $email . "' WHERE Person_ID = " .$profileEdit; 
+		. $last . "', Person_PhonePrimary = '" . $phone . "', Person_Email ='" . $email . "', Person_StreetAddress = '" . $street 
+		. "', Person_City = '" .$city . "', Person_State = '" .$state . "', Person_Zipcode = '" .$zipcode . "' WHERE Person_ID = " .$profileEdit; 
 		
 		if(!mysqli_query($conn,$query))
 
@@ -126,7 +137,7 @@ if(isset($_POST['btnSave']))
 		else
 		{
 			$conn->close();
-			header("Location: updateConfirmation3.php");
+			header("Location: updateConfirmation4.php");
 			exit();
 		}
 	}
@@ -231,13 +242,13 @@ if(isset($_POST['btnSave']))
         
         <form class="form-horizontal" method="post" role="form">
           <div class="form-group">
-            <label class="col-lg-3 control-label">First name:</label>
+            <label class="col-lg-3 control-label">First Name:</label>
             <div class="col-lg-8">
               <input class="form-control" maxlength="20" name="firstName" value="<?php echo ($first);?>" type="text" required="required">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Last name:</label>
+            <label class="col-lg-3 control-label">Last Name:</label>
             <div class="col-lg-8">
               <input class="form-control" maxlength="20" name="lastName" value="<?php echo ($last);?>" type="text" required="required">
             </div>
@@ -333,13 +344,13 @@ if(isset($_POST['btnSave']))
 			
 		</div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Allergies</label>
+            <label class="col-lg-3 control-label">Allergies:</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" value="None">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Physical Limitations</label>
+            <label class="col-lg-3 control-label">Physical Limitations:</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" value="None">
             </div>
@@ -357,18 +368,12 @@ if(isset($_POST['btnSave']))
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Additional Notes</label>
+            <label class="col-lg-3 control-label">Additional Notes:</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" value="">
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Additional Notes (Seen by Team Leads only)</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="">
-            </div>
-          </div>
-          <div class="form-group">
+		  <div class="form-group">
             <label class="col-md-3 control-label">Change Password?</label>
           </div>
           <div class="form-group">
