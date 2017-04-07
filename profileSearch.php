@@ -17,31 +17,9 @@ if ($userTypeSession != "Team Lead"){
 
 */
 
-if(isset($_POST['emailSelected']))
-{
-	
-	//Create email array
-	$emailArray = array();
-	//Add values to array
-	foreach($_POST['check'] as $value) 
-	{
-		$emailArray[] = $value;
-	}
-	
-	//Put the array in a session variable
-	$_SESSION['profileEmail']= $emailArray;
-		
-	if( count($emailArray) > 0 ){
-		header("Location: emailSelected.php");
-		exit();
-	}
-	else{
-		$message = 'Please select at least one checkbox to send email';
-		echo "<SCRIPT>
-		alert('$message');
-		</SCRIPT>";
-	}
-}
+
+
+
 
 
 ?>
@@ -253,7 +231,7 @@ table, th, td {
 						}
 					
 					
-					// Default Statments
+					// Default Statments ///////////////////////////////
 				
 						if($search == null && $sorts == "lastName" && $filter == "null"){
 							// Select statement for default
@@ -265,13 +243,62 @@ table, th, td {
 							$sql = "SELECT * FROM Person ORDER BY Person_FirstName ASC";
 						}
 						
-						if($search == null && $sorts == "profileNumber" && $filter == "null"){
+						
+						// Animal Care
+						if($search == null && $sorts == "firstName" && $filter == "Animal Care"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person ORDER BY Person_ID ASC";
+							$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare_PersonID ORDER BY Person_FirstName ASC";
 						}
+						if($search == null && $sorts == "lastName" && $filter == "Animal Care"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare_PersonID ORDER BY Person_LastName ASC";
+						}
+						
+						// Front Desk
+						if($search == null && $sorts == "firstName" && $filter == "Front Desk"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=OtherVolunteers_PersonID ORDER BY Person_FirstName ASC";
+						}
+						if($search == null && $sorts == "lastName" && $filter == "Front Desk"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=OtherVolunteers_PersonID ORDER BY Person_LastName ASC";
+						}
+						
+						// Outreach
+						if($search == null && $sorts == "firstName" && $filter == "Outreach"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach_PersonID ORDER BY Person_FirstName ASC";
+						}
+						if($search == null && $sorts == "lastName" && $filter == "Outreach"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach_PersonID ORDER BY Person_LastName ASC";
+						}
+						
+						// Transporter
+						if($search == null && $sorts == "firstName" && $filter == "Transporter"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person INNER JOIN Transporter ON Person.Person_ID=Transporter_PersonID ORDER BY Person_FirstName ASC";
+						}
+						if($search == null && $sorts == "lastName" && $filter == "Transporter"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person INNER JOIN Transporter ON Person.Person_ID=Transporter_PersonID ORDER BY Person_LastName ASC";
+						}
+						
+						// Vet Team
+						if($search == null && $sorts == "firstName" && $filter == "Vet Team"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam_PersonID ORDER BY Person_FirstName ASC";
+						}
+						if($search == null && $sorts == "lastName" && $filter == "Vet Team"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam_PersonID ORDER BY Person_LastName ASC";
+						}
+						
+						
+						
 							
 						
-						// Statements for filter
+						// Statements for filter ///////////////////////////////
 						
 											
 						
@@ -279,7 +306,7 @@ table, th, td {
 						
 						
 						
-						// Statements for sorts
+						// Statements for sorts ///////////////////////////////
 						if($search != null && $sorts == "lastName" && $filter == "null"){
 						
 						
@@ -303,7 +330,11 @@ table, th, td {
 						
 						
 						// Statments for team
-															
+						
+				
+
+
+						
 		
 		
 		
@@ -313,7 +344,7 @@ table, th, td {
 								while($row = $result->fetch_assoc()) {?>
 								<tr>
 									<!--Each table column is echoed in to a td cell-->
-									<td><input type="checkbox" name="check[]" value="<?php echo $row['Person_Email'] ?>"></td>
+									<td><input type="checkbox" name="check[]"></td>
 									<td><?php echo '<a href="profile2.php?profileID='.$row['Person_ID'].'">View</a>'; ?></td>
 									<td><?php echo $row['Person_FirstName']; ?></td>
 									<td><?php echo $row['Person_LastName']; ?></td>
