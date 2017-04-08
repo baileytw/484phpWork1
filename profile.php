@@ -43,6 +43,7 @@ if ($result->num_rows > 0){
 		$city = $row['Person_City'];
 		$state = $row['Person_State'];
 		$zipcode = $row['Person_Zipcode'];
+		
 	}
 }
 else {
