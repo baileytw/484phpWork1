@@ -261,6 +261,7 @@ if(isset($_POST['btnCancel']))
 			<div class="col-lg-8">
 			  <input class="form-control" pattern=".{5}" title="Enter 5 digit zipcode" name="zipcode" value="<?php echo ($zipcode);?>" type="text" required="required" />
 			</div>
+		</div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Allergies</label>
             <div class="col-lg-8">

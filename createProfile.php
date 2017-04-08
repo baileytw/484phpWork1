@@ -21,15 +21,27 @@ if ($codeCorrect != "Yes"){
 
 if(isset($_POST['upload']))
 {
+	//Insert Statemnts passed boolean
+	$insertsPassed = "true";
+	
 	$userType = "Volunteer";
 	$firstName = $_POST['firstName'];
 	$lastName = $_POST['lastName'];
-	$primaryPhone = $_POST['phone'];
+	$phone = $_POST['phone'];
+	$phoneAlt = $_POST['phoneAlt'];
 	$email = $_POST['email'];
 	$street= $_POST['street'];
 	$city = $_POST['city'];
+	$county = $_POST['county'];
 	$state = $_POST['state'];
 	$zip = $_POST['zipcode'];
+	$allergies = $_POST['allergies'];
+	$special = null;
+	$outside = $_POST['outside'];
+	$fortyLBS = $_POST['fortyLBS'];
+	$vacDate = $_POST['vacDate'];
+	$permitCategory = $_POST['permitCategory'];
+	 
 	//Make certain passwords match
 	if($_POST['password'] == $_POST['check']){
 		/****************************************
@@ -63,20 +75,48 @@ if(isset($_POST['upload']))
 		$conn = new mysqli($servername, $username, $dbpassword, $dbname);
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
+			
 		}
 		$query = "INSERT INTO Person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
-			Person_State, Person_Zipcode)
-					VALUES ('$email', '$passwordHashPassed', '$userType', '$firstName', '$lastName', '$email', '$phone', NULL, '$street', '$city',
-					NULL, '$state', '$zip')"; 
+			Person_State, Person_Zipcode, Person_Allergies, Person_SpecialNeeds, Person_OutsideLimitations,Person_Lift40Lbs, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory)
+					VALUES ('$email', '$passwordHashPassed', '$userType', '$firstName', '$lastName', '$email', '$phone', $phoneAlt, '$street', '$city',
+					NULL, '$state', '$zip', '$allergies', '$special', '$outside', '$fortyLBS', '$vacDate', '$permitCategory')"; 
 		
 		if(!mysqli_query($conn,$query))
 
 		{
 			echo("Error description: " . mysqli_error($conn));
+			$insertsPassed = "false";
 		}
+		
+		if($_POST['rabbiesDocumentation']['size'] > 0){	
+			$fileName  = $_FILES['rabbiesDocumentation']['name'];
+			$tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
+			$fileType = $_FILES['rabbiesDocumentation']['type'];
+			$fileSize = $_FILES['rabbiesDocumentation']['size'];
+			$fp      = fopen($tmpName, 'r');
+			$rabbiesDocumentation = fread($fp, filesize($tmpName));
+			$rabbiesDocumentation = addslashes($rabbiesDocumentation);
+			fclose($fp);
 
-		else
-		{
+
+
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
+				VALUES ('$personID', 'rabiesDocumentation', '$fileName', '$fileType', '$rabbiesDocumentation', NULL)";
+        
+
+            if(!mysqli_query($conn,$documentQuery))
+
+            {
+                echo("Error description: " . mysqli_error($conn));
+				$insertsPassed = "false";
+            }
+            
+	   }
+		
+		
+		
+		if($insertsPassed == "true"){
 			$conn->close();
 			header("Location: createConfirmation.php");
 			exit();
@@ -213,7 +253,6 @@ if(isset($_POST['upload']))
 															<div class="col-lg-8">
 																
 																<select name="state">
-																	<option value="<?php if (isset($_POST['upload'])) echo ($_POST['state']);?>"</option>
 																	<option value="Virginia">Virginia</option>
 																	<option value="Alabama">Alabama</option>
 																	<option value="Alaska">Alaska</option>
@@ -281,7 +320,7 @@ if(isset($_POST['upload']))
 															<div class="col-lg-8">
 																<input type="radio" name="limitationsASN" value="Yes" <?php if (isset($_POST['limitationsASN']) && $_POST['limitationsASN'] == 'Yes') echo ' checked="checked"';?>> Yes
 																<input type="radio" name="limitationsASN" value="No" <?php if (isset($_POST['limitationsASN']) && $_POST['limitationsASN'] == 'No') echo ' checked="checked"';?>> No
-																<input class="form-control" type="text">
+																<input class="form-control" name="allergies" type="text">
 															</div>
 														</div>
 														<div class="form-group">
@@ -289,7 +328,7 @@ if(isset($_POST['upload']))
 															<div class="col-lg-8">
 																<input type="radio" name="limitationsWO" value="Yes" <?php if (isset($_POST['limitationsWO']) && $_POST['limitationsWO'] == 'Yes') echo ' checked="checked"';?>> Yes
 																<input type="radio" name="limitationsWO" value="No" <?php if (isset($_POST['limitationsWO']) && $_POST['limitationsWO'] == 'No') echo ' checked="checked"';?>> No
-																<input class="form-control" type="text" value="None">
+																<input class="form-control" name="outside" type="text" value="None">
 															</div>
 														</div>
 														<div class="form-group">
@@ -304,11 +343,11 @@ if(isset($_POST['upload']))
 														<div class="form-group">
 															<label class="col-sm-3">If so, how recently? Please provide proof of vaccination. Upload an attachment.</label>
 															<div class="col-lg-8">
-																<input type="datetime-local" id="VacDate" class="form-control" name="VacDate"/>								
+																<input type="date" id="vacDate" name="vacDate" class="form-control" name="VacDate"/>								
 															
 															<div class="fileinput fileinput-new" data-provides="fileinput">
 																<span class="btn btn-default btn-file">
-																<input name="rabbiesDocumentation" id = "rabbiesDocumentation" type="file" multiple /></span>
+																<input name="rabbiesDocumentation" type="file" multiple /></span>
 																<span class="fileinput-filename"></span>
 																<span class="fileinput-new"></span>
 															</div>
