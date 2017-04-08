@@ -46,7 +46,7 @@ if ($conn->connect_error) {
 }
 //SQL Statement to gather info
 $sql = "SELECT Person_UserType, Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
-Person_State, Person_Zipcode FROM Person WHERE Person_ID =" .$profileID;
+Person_State, Person_Zipcode, Person_TeamLeadNotes FROM Person WHERE Person_ID =" .$profileID;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -60,6 +60,7 @@ if ($result->num_rows > 0){
 		$city = $row['Person_City'];
 		$state = $row['Person_State'];
 		$zipcode = $row['Person_Zipcode'];
+		$teamLeadNotes = $row['Person_TeamLeadNotes'];
 		
 	}
 }
@@ -194,7 +195,7 @@ if(isset($_POST['downloadResume']))
 </div>    
 <div class="panel panel-default">
   <div class="panel-body">
-    <strong>Address - </strong> <?php echo $street. ', '. $city.', '. $state ?>
+    <strong>Address - </strong> <?php echo $street. ', '. $city.', '. $state . ' ' .$zipcode ?>
   </div>
 </div>    
 
@@ -241,7 +242,7 @@ if(isset($_POST['downloadResume']))
 							   
                                 <div class="preview-pane col-md-5">
         <div class="panel panel-default"><div class="panel-body"><h4>Team Lead Notes:</h4>  </ul>
-    None
+		<?php echo ($teamLeadNotes);?>
                                     </div></div>
                                          <ul class="additionalinfo" class="fa-ul pull-right">
                                             <h2>Additional info</h2>

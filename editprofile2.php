@@ -46,7 +46,7 @@ if ($conn->connect_error) {
 }
 //SQL Statement to gather info
 $sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
-Person_State, Person_Zipcode FROM Person WHERE Person_ID = " .$profileEdit;
+Person_State, Person_Zipcode, Person_TeamLeadNotes FROM Person WHERE Person_ID = " .$profileEdit;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -59,6 +59,7 @@ if ($result->num_rows > 0){
 		$city = $row['Person_City'];
 		$state = $row['Person_State'];
 		$zipcode = $row['Person_Zipcode'];
+		$teamLeadNotes = $row['Person_TeamLeadNotes'];
 	}
 }
 else {
@@ -80,6 +81,7 @@ if(isset($_POST['btnSave']))
 	$city = $_POST['city'];
 	$state = $_POST['state'];
 	$zipcode = $_POST['zipcode'];
+	$teamLeadNotes = $_POST['teamLeadNotes'];
 	
 	
 	//If passwords null, don't uppdate password
@@ -124,9 +126,9 @@ if(isset($_POST['btnSave']))
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
-		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '" . $first . "', Person_LastName ='" 
-		. $last . "', Person_PhonePrimary = '" . $phone . "', Person_Email ='" . $email . "', Person_StreetAddress = '" . $street 
-		. "', Person_City = '" .$city . "', Person_State = '" .$state . "', Person_Zipcode = '" .$zipcode . "' WHERE Person_ID = " .$profileEdit; 
+		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '$first', Person_LastName ='$last', Person_PhonePrimary = '$phone', 
+		Person_Email ='$email', Person_StreetAddress = '$street', Person_City = '$city', Person_State = '$state', Person_Zipcode = '$zipcode',
+		Person_TeamLeadNotes = '$teamLeadNotes' WHERE Person_ID = " .$profileEdit; 
 		
 		if(!mysqli_query($conn,$query))
 
@@ -371,6 +373,12 @@ if(isset($_POST['btnSave']))
             <label class="col-lg-3 control-label">Additional Notes:</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" value="">
+            </div>
+          </div>
+		  <div class="form-group">
+            <label class="col-lg-3 control-label">Team Lead Notes:</label>
+            <div class="col-lg-8">
+              <textarea class="form-control" name="teamLeadNotes" type="text" rows="2" cols="90" ><?php echo ($teamLeadNotes);?></textarea>
             </div>
           </div>
 		  <div class="form-group">
