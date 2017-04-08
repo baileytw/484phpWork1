@@ -1,4 +1,169 @@
 <!DOCTYPE html>
+
+<?php
+
+	  $server = "localhost";
+	  $user = "root";
+	  $password = "Twspike1994?";
+	  $database = "wildlife";
+
+	  $conn = mysqli_connect($server, $user, $password, $database);
+
+			if (mysqli_connect_errno()) 
+			{
+		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			}
+
+		  if(!mysqli_select_db($conn, 'wildlife'))
+			{
+				echo "Database Not Selected";
+			}
+
+		
+	  if(isset($_POST['upload']))
+	{
+		if($_POST['password'] == $_POST['check']){
+	
+	
+		/****************************************
+			START PASWWORD CODE 
+		****************************************/
+
+		require("PasswordHash.php");
+		$hasher = new PasswordHash(8, false);
+		// Retrieve password
+		$password = $_POST["password"];
+		// Limit passwords to 72 characters to help prevent DoS attacks
+		if (strlen($password) > 72)
+		{ die("Password must be 72 characters or less"); }
+		// The $hash variable will contain the hash of the password
+		$hash = $hasher->HashPassword($password);
+		if (strlen($hash) >= 20) {
+			$passwordHashPassed = $hash;
+				
+		} else {
+			
+		 // something went wrong
+
+		}
+
+		/****************************************
+			END PASWWORD CODE 
+		****************************************/
+			//Insert Statemnts passed boolean
+			$insertsPassed = "true";
+ 
+
+			$firstName = $_POST['firstName'];
+			$lastName = $_POST['lastName'];
+			$userName = $_POST['email'];
+			$passwordHash = $passwordHashPassed;
+			$userType = "Applicant";
+			$email = $_POST['email'];
+			$middleInitial = NULL;
+			$primaryPhone = $_POST['phone'];
+			$secondaryPhone = NULL;
+			$city = $_POST['city'];
+			$county = NULL;
+			$state = $_POST['state'];;
+			$zip = $_POST['zipcode'];
+			$dob1 = $_POST['DOBYear'] . '-' . $_POST['DOBMonth'] . '-' . $_POST['DOBDay'];
+			$dob2 = DateTime::createFromFormat('Y-m-d' , $dob1);
+			$dob = $dob2->format('Y-m-d');
+			$street = $_POST['address'];
+			$status = 'Applicant';
+			/* $rabiesVac1 = $_POST['VACYear'] . '-' . $_POST['VACMonth'] . '-' . $_POST['VACDay'];
+			$rabiesVac2 = DateTime::createFromFormat('Y-m-d' , $rabiesVac1);
+			$rabiesVac = $rabiesVac2->format('Y-m-d'); */
+			$lastVolunteered = NULL;
+			$allergies = NULL;
+			$specialNeeds = NULL;
+			$workOutside = NULL;
+			$totalHours = NULL;
+			$workOutsideLimitations = NULL;
+			$lift40 = NULL;
+			$permitRehab = NULL;
+			$travel = $_POST['travel'];
+			$capture = $_POST['capture'];
+			$acknowledge = $_POST['acknowledge'];
+			if ($permitRehab < 1)
+			{
+				$permitRehab = NULL;
+			}
+$query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+		  Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
+			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+
+
+
+		if(!mysqli_query($conn,$query))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+				$insertsPassed = "false";
+			}
+			
+			$depNum = 4;
+			$sql = "SELECT MAX(Person_ID) FROM Person";
+			$result = $conn->query($sql);
+			$personID = null;
+			if($result->num_rows > 0) {
+				//output data of each row
+				while($row = $result->fetch_assoc()) {
+					$personID = $row['MAX(Person_ID)'];
+				}
+			}
+			
+			$transporterQuery = "INSERT INTO Transporterapp (TransporterApp_PersonID, TransporterApp_DistanceWillingToTravel, TransporterApp_CaptureAnimals, TransporterApp_Acknowledgement)
+			  VALUES ('$personID', '$travel', '$capture', '$acknowledge')";
+
+
+
+			  if(!mysqli_query($conn,$transporterQuery))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+				$insertsPassed = "false";
+			}
+
+			
+			$fileName = $_FILES['rabbiesDocumentation']['name'];
+			$tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
+			$fileSize = $_FILES['rabbiesDocumentation']['size'];
+			$fileType = $_FILES['rabbiesDocumentation']['type'];
+			$fp      = fopen($tmpName, 'r');
+			$content = fread($fp, filesize($tmpName));
+			$content = addslashes($content);
+			fclose($fp); 
+			
+			$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
+			  VALUES ('$personID', 'Proof of Vaccination', '$fileName', '$fileType', '$content', NULL)";
+
+
+
+			  if(!mysqli_query($conn,$documentQuery))
+
+			{
+				echo("Error description: " . mysqli_error($conn));
+				$insertsPassed = "false";
+			}
+
+		}
+		if($insertsPassed == "true"){
+			$conn->close();
+			header("Location: confirmation.php");
+			exit();
+			}
+	else{
+		$message = 'Password values do not match. Please try again.';
+
+		echo "<SCRIPT>
+		alert('$message');
+		</SCRIPT>";
+	}
+	
+	}
+			?>
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -467,175 +632,7 @@
 				</footer>
 			</div>
 		</section>
-		<?php
 
-	  $server = "localhost";
-	  $user = "root";
-	  $password = "Twspike1994?";
-	  $database = "wildlife";
-
-	  $conn = mysqli_connect($server, $user, $password, $database);
-
-			if (mysqli_connect_errno()) 
-			{
-		  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-			}
-
-		  if(!mysqli_select_db($conn, 'wildlife'))
-			{
-				echo "Database Not Selected";
-			}
-
-		
-	  if(isset($_POST['upload']))
-	{
-		if($_POST['password'] == $_POST['check']){
-	
-	
-		/****************************************
-			START PASWWORD CODE 
-		****************************************/
-
-		require("PasswordHash.php");
-		$hasher = new PasswordHash(8, false);
-		// Retrieve password
-		$password = $_POST["password"];
-		// Limit passwords to 72 characters to help prevent DoS attacks
-		if (strlen($password) > 72)
-		{ die("Password must be 72 characters or less"); }
-		// The $hash variable will contain the hash of the password
-		$hash = $hasher->HashPassword($password);
-		if (strlen($hash) >= 20) {
-			$passwordHashPassed = $hash;
-				
-		} else {
-			
-		 // something went wrong
-
-		}
-
-		/****************************************
-			END PASWWORD CODE 
-		****************************************/
-		
- 
-
-			$firstName = $_POST['firstName'];
-			$lastName = $_POST['lastName'];
-			$userName = $_POST['email'];
-			$passwordHash = $passwordHashPassed;
-			$userType = "Applicant";
-			$email = $_POST['email'];
-			$middleInitial = NULL;
-			$primaryPhone = $_POST['phone'];
-			$secondaryPhone = NULL;
-			$city = $_POST['city'];
-			$county = NULL;
-			$state = $_POST['state'];;
-			$zip = $_POST['zipcode'];
-			$dob1 = $_POST['DOBYear'] . '-' . $_POST['DOBMonth'] . '-' . $_POST['DOBDay'];
-			$dob2 = DateTime::createFromFormat('Y-m-d' , $dob1);
-			$dob = $dob2->format('Y-m-d');
-			$street = $_POST['address'];
-			$status = 'Applicant';
-			/* $rabiesVac1 = $_POST['VACYear'] . '-' . $_POST['VACMonth'] . '-' . $_POST['VACDay'];
-			$rabiesVac2 = DateTime::createFromFormat('Y-m-d' , $rabiesVac1);
-			$rabiesVac = $rabiesVac2->format('Y-m-d'); */
-			$lastVolunteered = NULL;
-			$allergies = NULL;
-			$specialNeeds = NULL;
-			$workOutside = NULL;
-			$totalHours = NULL;
-			$workOutsideLimitations = NULL;
-			$lift40 = NULL;
-			$permitRehab = NULL;
-			$travel = $_POST['travel'];
-			$capture = $_POST['capture'];
-			$acknowledge = $_POST['acknowledge'];
-			if ($permitRehab < 1)
-			{
-				$permitRehab = NULL;
-			}
-$query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
-		  Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
-
-
-
-		if(!mysqli_query($conn,$query))
-
-			{
-				echo("Error description: " . mysqli_error($conn));
-			}
-
-			else
-			{
-				echo "Application Sent! {person table}";
-			}
-			
-			$depNum = 4;
-			$sql = "SELECT MAX(Person_ID) FROM Person";
-			$result = $conn->query($sql);
-			$personID = null;
-			if($result->num_rows > 0) {
-				//output data of each row
-				while($row = $result->fetch_assoc()) {
-					$personID = $row['MAX(Person_ID)'];
-				}
-			}
-			
-			$transporterQuery = "INSERT INTO Transporterapp (TransporterApp_PersonID, TransporterApp_DistanceWillingToTravel, TransporterApp_CaptureAnimals, TransporterApp_Acknowledgement)
-			  VALUES ('$personID', '$travel', '$capture', '$acknowledge')";
-
-
-
-			  if(!mysqli_query($conn,$transporterQuery))
-
-			{
-				echo("Error description: " . mysqli_error($conn));
-			}
-
-			else
-			{
-				echo "Application Sent! {TransporterApp table}";
-			}
-			
-			$fileName = $_FILES['rabbiesDocumentation']['name'];
-			$tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
-			$fileSize = $_FILES['rabbiesDocumentation']['size'];
-			$fileType = $_FILES['rabbiesDocumentation']['type'];
-			$fp      = fopen($tmpName, 'r');
-			$content = fread($fp, filesize($tmpName));
-			$content = addslashes($content);
-			fclose($fp); 
-			
-			$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
-			  VALUES ('$personID', 'Proof of Vaccination', '$fileName', '$fileType', '$content', NULL)";
-
-
-
-			  if(!mysqli_query($conn,$documentQuery))
-
-			{
-				echo("Error description: " . mysqli_error($conn));
-			}
-
-			else
-			{
-				echo "Document Sent!";
-			}
-		}
-		else{
-		$message = 'Password values do not match. Please try again.';
-
-echo "<SCRIPT>
-alert('$message');
-</SCRIPT>";
-	}
-	
-	
-	}
-			?>
 
 
 		
