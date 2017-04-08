@@ -189,7 +189,16 @@ table, th, td {
                                 <option value="Saturday">Saturday</option>
                                 <option value="Sunday">Sunday</option>
                             </select>                               
-                        </div> <!-- form group [Select Team] -->    
+                        </div> <!-- form group [Select Team] -->   
+						<div class="form-group">
+                            <label class="filter-col" style="margin-right:0;" for="pref-namefilter">Sort By:</label>
+                            <select name="pref-roleFilter" id="pref-roleFilter" class="form-control">
+                                <option value="volunteer">Volunteer</option>
+                                <option value="applicant">Applicant</option>
+								<option value="volApp">Volunteer & Applicant</option>
+								<option value="rejected">Rejected</option>
+                            </select> 
+						</div>						
                         
 						
 						
@@ -233,36 +242,71 @@ table, th, td {
 						$filter = $_POST['pref-selectteam'];
 						$sorts = $_POST['pref-namefilter'];
 						$days = $_POST['pref-days'];
+						$position = $_POST['pref-roleFilter'];
 						
 						
 					
-					// Statments for team
+					// Statments for team / Position
+					
+						// Animal Care/Volunteer
 						
-						if($search != null && $sorts == "firstName" && $filter == "Animal Care"){
+						if($search != null && $sorts == "firstName" && $filter == "Animal Care" && $position == "volunteer"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare.AnimalCare_PersonID where Person.Person_FirstName like '%{$search}%' || Person.Person_LastName like '%{$search}%' 
-								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' ORDER BY Person.Person_FirstName ASC";	
+						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare.AnimalCare_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
-						if($search != null && $sorts == "lastName" && $filter == "Animal Care"){
+						if($search != null && $sorts == "lastName" && $filter == "Animal Care" && $position == "volunteer"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare.AnimalCare_PersonID where Person.Person_FirstName like '%{$search}%' || Person.Person_LastName like '%{$search}%' 
-								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' ORDER BY Person.Person_LastName ASC";	
+						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare.AnimalCare_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_LastName ASC";	
 						}
+						
+						// Animal Care/ Applicant
+						if($search != null && $sorts == "firstName" && $filter == "Animal Care" && $position == "applicant"){
+						
+						
+						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare.AnimalCare_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'applicant'
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'applicant' ORDER BY Person.Person_FirstName ASC";	
+						}
+						
+						if($search != null && $sorts == "lastName" && $filter == "Animal Care" && $position == "applicant"){
+						
+						
+						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare.AnimalCare_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'applicant'
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'applicant' ORDER BY Person.Person_LastName ASC";	
+						}
+						
+						// Animal Care/ Both
+						if($search != null && $sorts == "firstName" && $filter == "Animal Care" && $position == "volApp"){
+						
+						
+						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare.AnimalCare_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_FirstName ASC";	
+						}
+						
+						if($search != null && $sorts == "lastName" && $filter == "Animal Care" && $position == "volApp"){
+						
+						
+						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare.AnimalCare_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Applicant' ||Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
+								|| Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Applicant'
+								||concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Volunteer' ||concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Applicant' ORDER BY Person.Person_LastName ASC";	
+						}
+						
 					
 					
 					// Default Statments ///////////////////////////////
 				
-						if($search == null && $sorts == "lastName" && $filter == "null"){
+						if($search == null && $sorts == "lastName" && $filter == "null" && $position=="volunteer"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person ORDER BY Person_LastName ASC";
+							$sql = "SELECT * FROM Person where Person_Usertype='volunteer' ORDER BY Person_LastName ASC";
 						}
 						
-						if($search == null && $sorts == "firstName" && $filter == "null"){
+						if($search == null && $sorts == "firstName" && $filter == "null" && $position=="volunteer"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person ORDER BY Person_FirstName ASC";
+							$sql = "SELECT * FROM Person where Person_Usertype='volunteer' ORDER BY Person_FirstName ASC";
 						}
 						
 						
