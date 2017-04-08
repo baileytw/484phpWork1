@@ -259,6 +259,7 @@ if(isset($_POST['upload']))
 																	<option value="Tennessee">Tennessee</option>
 																	<option value="Texas">Texas</option>
 																	<option value="Utah">Utah</option>
+																	<option value="Virginia">Virginia</option>
 																	<option value="Vermont">Vermont</option>
 																	<option value="Washington">Washington</option>
 																	<option value="West Virginia">West Virginia</option>

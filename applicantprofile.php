@@ -33,14 +33,21 @@ if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 } 
 //SQL Statement to gather hash
-$sql = "SELECT Person_FirstName, Person_LastName FROM Person WHERE Person_ID = '" . $userID . "'";
+$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
+Person_State, Person_Zipcode FROM Person WHERE Person_ID = '" . $userID . "'";
 echo sql;
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 	// output data of each row
 	while($row = $result->fetch_assoc()) {
-		$firstName = $row['Person_FirstName'];
-		$lastName = $row['Person_LastName'];
+		$first = $row['Person_FirstName'];
+		$last = $row['Person_LastName'];
+		$phone = $row['Person_PhonePrimary'];
+		$email = $row['Person_Email'];
+		$street = $row['Person_StreetAddress'];
+		$city = $row['Person_City'];
+		$state = $row['Person_State'];
+		$zipcode = $row['Person_Zipcode'];
 	}
 	$conn->close();
 }
@@ -120,7 +127,7 @@ if ($result->num_rows > 0) {
                                              <hgroup>
                                                  <a href="applicanteditprofile.php" class="btn btn-default pull-right" rel="#overlay">Edit Profile<i class="fa fa-question-circle"></i></a>
                                                  <h2>
-                                                     <?php echo $firstName . " " . $lastName ?>
+                                                     <?php echo $first . " " . $last ?>
                                                  </h2>
                                                  <h4>Applicant</h4>
                                              </hgroup>
@@ -130,17 +137,17 @@ if ($result->num_rows > 0) {
                                         <h3>Contact Information</h3>
 <div class="panel panel-default">
   <div class="panel-body">
-    <strong>Email - </strong> johndoe@gmail.com
+    <strong>Email - </strong> <?php echo $email ?>
   </div>
 </div>                                        
 <div class="panel panel-default">
   <div class="panel-body">
-    <strong>Phone - </strong> (540) 555-7836
+    <strong>Phone - </strong> <?php echo $phone ?>
   </div>
 </div>    
 <div class="panel panel-default">
   <div class="panel-body">
-    <strong>Address - </strong> 125 Mulberry Lane, Harrisonburg, VA 22801
+    <strong>Address - </strong> <?php echo $street . ", " . $city . ", " . $state . " " . $zipcode ?>
   </div>
 </div>    
 
