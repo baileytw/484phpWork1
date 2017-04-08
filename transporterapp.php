@@ -103,7 +103,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2">Phone *</label>
                                                     <div class="col-sm-10">
-														<input class="form-control" id = 'phone' type="text" name="phone" value="<?php if (isset($_POST['upload'])) echo ($_POST['phone']);?>" required="required" />
+														<input class="form-control" id = 'phone' name="phone" value="<?php if (isset($_POST['upload'])) echo ($_POST['phone']);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555' required="required" />
                                                     </div>
                                                 </div>
 												<div class="form-group">
@@ -471,7 +471,7 @@
 
 	  $server = "localhost";
 	  $user = "root";
-	  $password = "password";
+	  $password = "Twspike1994?";
 	  $database = "wildlife";
 
 	  $conn = mysqli_connect($server, $user, $password, $database);
@@ -632,6 +632,8 @@ echo "<SCRIPT>
 alert('$message');
 </SCRIPT>";
 	}
+	
+	
 	}
 			?>
 
