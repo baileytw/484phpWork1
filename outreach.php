@@ -179,7 +179,7 @@ if(isset($_POST['upload']))
 
 
     //Document Query
-       
+       if($_POST['permitRehabVA']['size'] > 0){	
         $fileName  = $_FILES['permitRehabVA']['name'];
         $tmpName  = $_FILES['permitRehabVA']['tmp_name'];
         $fileType = $_FILES['permitRehabVA']['type'];
@@ -202,7 +202,8 @@ if(isset($_POST['upload']))
 				$insertsPassed = "false";
             }
 
-
+	   }
+	   if($_POST['rabbiesDocumentation']['size'] > 0){	
         $fileName  = $_FILES['rabbiesDocumentation']['name'];
         $tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
         $fileType = $_FILES['rabbiesDocumentation']['type'];
@@ -225,22 +226,23 @@ if(isset($_POST['upload']))
 				$insertsPassed = "false";
             }
             
-            
+	   }
+		if($_POST['userFile']['size'] > 0){		   
             //Document Query
-        $fileName  = $_FILES['userfile']['name'];
-        $tmpName  = $_FILES['userfile']['tmp_name'];
-        $fileType = $_FILES['userfile']['type'];
-        $fileSize = $_FILES['userfile']['size'];
-        $fp      = fopen($tmpName, 'r');
-        $userfile = fread($fp, filesize($tmpName));
-        $userfile = addslashes($userfile);
-        fclose($fp);
+			$fileName  = $_FILES['userfile']['name'];
+			$tmpName  = $_FILES['userfile']['tmp_name'];
+			$fileType = $_FILES['userfile']['type'];
+			$fileSize = $_FILES['userfile']['size'];
+			$fp      = fopen($tmpName, 'r');
+			$userfile = fread($fp, filesize($tmpName));
+			$userfile = addslashes($userfile);
+			fclose($fp);
 
 
 
-        $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-            VALUES ('$personID', 'resume', '$fileName', '$fileType', '$userfile', NULL)";
-        
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
+				VALUES ('$personID', 'resume', '$fileName', '$fileType', '$userfile', NULL)";
+			
 
             if(!mysqli_query($conn,$documentQuery))
 
@@ -248,7 +250,7 @@ if(isset($_POST['upload']))
                 echo("Error description: " . mysqli_error($conn));
 				$insertsPassed = "false";
             }
-
+		}
 	}
 	if($insertsPassed == "true"){
 			$conn->close();

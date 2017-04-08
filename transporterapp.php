@@ -126,28 +126,28 @@ $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserT
 				$insertsPassed = "false";
 			}
 
-			
-			$fileName = $_FILES['rabbiesDocumentation']['name'];
-			$tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
-			$fileSize = $_FILES['rabbiesDocumentation']['size'];
-			$fileType = $_FILES['rabbiesDocumentation']['type'];
-			$fp      = fopen($tmpName, 'r');
-			$content = fread($fp, filesize($tmpName));
-			$content = addslashes($content);
-			fclose($fp); 
-			
-			$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
-			  VALUES ('$personID', 'Proof of Vaccination', '$fileName', '$fileType', '$content', NULL)";
+			if($_FILES['rabbiesDocumentation']['size'] > 0){	
+				$fileName = $_FILES['rabbiesDocumentation']['name'];
+				$tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
+				$fileSize = $_FILES['rabbiesDocumentation']['size'];
+				$fileType = $_FILES['rabbiesDocumentation']['type'];
+				$fp      = fopen($tmpName, 'r');
+				$content = fread($fp, filesize($tmpName));
+				$content = addslashes($content);
+				fclose($fp); 
+				
+				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
+				  VALUES ('$personID', 'rabbiesDocumentation', '$fileName', '$fileType', '$content', NULL)";
 
 
 
-			  if(!mysqli_query($conn,$documentQuery))
+				if(!mysqli_query($conn,$documentQuery))
 
-			{
-				echo("Error description: " . mysqli_error($conn));
-				$insertsPassed = "false";
+				{
+					echo("Error description: " . mysqli_error($conn));
+					$insertsPassed = "false";
+				}
 			}
-
 		}
 		if($insertsPassed == "true"){
 			$conn->close();

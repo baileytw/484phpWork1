@@ -137,44 +137,46 @@ if(isset($_POST['upload']))
 				echo("Error description: " . mysqli_error($conn));
 				$insertsPassed = "false";
 			}
+			
 			//Document Query
-       
-        $fileName  = $_FILES['permitRehabVA']['name'];
-        $tmpName  = $_FILES['permitRehabVA']['tmp_name'];
-        $fileType = $_FILES['permitRehabVA']['type'];
-        $fileSize = $_FILES['permitRehabVA']['size'];
-        $fp      = fopen($tmpName, 'r');
-        $permitRehabVA = fread($fp, filesize($tmpName));
-        $permitRehabVA = addslashes($permitRehabVA);
-        fclose($fp);
+		if($_POST['permitRehabVA']['size'] > 0){
+			$fileName  = $_FILES['permitRehabVA']['name'];
+			$tmpName  = $_FILES['permitRehabVA']['tmp_name'];
+			$fileType = $_FILES['permitRehabVA']['type'];
+			$fileSize = $_FILES['permitRehabVA']['size'];
+			$fp      = fopen($tmpName, 'r');
+			$permitRehabVA = fread($fp, filesize($tmpName));
+			$permitRehabVA = addslashes($permitRehabVA);
+			fclose($fp);
 
 
 
-        $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-            VALUES ('$personID', 'rehabilitatePermit', '$fileName', '$fileType', '$permitRehabVA', NULL)";
-        
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
+				VALUES ('$personID', 'rehabilitatePermit', '$fileName', '$fileType', '$permitRehabVA', NULL)";
+			
 
-            if(!mysqli_query($conn,$documentQuery))
+			if(!mysqli_query($conn,$documentQuery))
 
-            {
-                echo("Error description: " . mysqli_error($conn));
+			{
+				echo("Error description: " . mysqli_error($conn));
 				$insertsPassed = "false";
-            }
+			}
+		}
+		if($_POST['rabbiesDocumentation']['size'] > 0){
+			$fileName  = $_FILES['rabbiesDocumentation']['name'];
+			$tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
+			$fileType = $_FILES['rabbiesDocumentation']['type'];
+			$fileSize = $_FILES['rabbiesDocumentation']['size'];
+			$fp      = fopen($tmpName, 'r');
+			$rabbiesDocumentation = fread($fp, filesize($tmpName));
+			$rabbiesDocumentation = addslashes($rabbiesDocumentation);
+			fclose($fp);
 
-        $fileName  = $_FILES['rabbiesDocumentation']['name'];
-        $tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
-        $fileType = $_FILES['rabbiesDocumentation']['type'];
-        $fileSize = $_FILES['rabbiesDocumentation']['size'];
-        $fp      = fopen($tmpName, 'r');
-        $rabbiesDocumentation = fread($fp, filesize($tmpName));
-        $rabbiesDocumentation = addslashes($rabbiesDocumentation);
-        fclose($fp);
 
 
-
-        $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-            VALUES ('$personID', 'rabiesDocumentation', '$fileName', '$fileType', '$rabbiesDocumentation', NULL)";
-        
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
+				VALUES ('$personID', 'rabbiesDocumentation', '$fileName', '$fileType', '$rabbiesDocumentation', NULL)";
+			
 
             if(!mysqli_query($conn,$documentQuery))
 
@@ -183,22 +185,23 @@ if(isset($_POST['upload']))
 				$insertsPassed = "false";
             }
             
-            
+		}
+		if($_POST['userFile']['size'] > 0){		
             //Document Query
-        $fileName  = $_FILES['userfile']['name'];
-        $tmpName  = $_FILES['userfile']['tmp_name'];
-        $fileType = $_FILES['userfile']['type'];
-        $fileSize = $_FILES['userfile']['size'];
-        $fp      = fopen($tmpName, 'r');
-        $userfile = fread($fp, filesize($tmpName));
-        $userfile = addslashes($userfile);
-        fclose($fp);
+			$fileName  = $_FILES['userfile']['name'];
+			$tmpName  = $_FILES['userfile']['tmp_name'];
+			$fileType = $_FILES['userfile']['type'];
+			$fileSize = $_FILES['userfile']['size'];
+			$fp      = fopen($tmpName, 'r');
+			$userfile = fread($fp, filesize($tmpName));
+			$userfile = addslashes($userfile);
+			fclose($fp);
 
 
 
-        $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-            VALUES ('$personID', 'resume', '$fileName', '$fileType', '$userfile', NULL)";
-        
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
+				VALUES ('$personID', 'resume', '$fileName', '$fileType', '$userfile', NULL)";
+			
 
             if(!mysqli_query($conn,$documentQuery))
 
@@ -206,6 +209,7 @@ if(isset($_POST['upload']))
                 echo("Error description: " . mysqli_error($conn));
 				$insertsPassed = "false";
             }
+		}
 	}
 	if($insertsPassed == "true"){
 			$conn->close();
