@@ -1,16 +1,6 @@
 <!DOCTYPE html>
+
 <?php
-
-
-
-
-ini_set('display_errors', 'On');
-error_reporting(E_ALL);
-?>
-<?php
-
-
-
 
 //Session variables: KEEP AT TOP
 session_start();
