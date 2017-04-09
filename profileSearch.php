@@ -248,6 +248,75 @@ table, th, td {
 					
 					// Statments for team / Position
 					
+					// null/Volunteer
+						
+						if($search != null && $sorts == "firstName" && $filter == "null" && $position == "volunteer"){
+						
+						
+						$sql = "SELECT * FROM Person where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_FirstName ASC";	
+						}
+						
+						if($search != null && $sorts == "lastName" && $filter == "null" && $position == "volunteer"){
+						
+						
+						$sql = "SELECT * FROM Person where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_LastName ASC";	
+						}
+						
+						// null/ Applicant
+						if($search != null && $sorts == "firstName" && $filter == "null" && $position == "applicant"){
+						
+						
+						$sql = "SELECT * FROM Person where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'applicant'
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'applicant' ORDER BY Person.Person_FirstName ASC";	
+						}
+						
+						if($search != null && $sorts == "lastName" && $filter == "null" && $position == "applicant"){
+						
+						
+						$sql = "SELECT * FROM Person where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'applicant'
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'applicant' ORDER BY Person.Person_LastName ASC";	
+						}
+						
+						// null/ Both
+						if($search != null && $sorts == "firstName" && $filter == "null" && $position == "volApp"){
+						
+						
+						$sql = "SELECT * FROM Person where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_FirstName ASC";	
+						}
+						
+						if($search != null && $sorts == "lastName" && $filter == "null" && $position == "volApp"){
+						
+						
+						$sql = "SELECT * FROM Person where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Applicant' ||Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
+								|| Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Applicant'
+								||concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Volunteer' ||concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Applicant' ORDER BY Person.Person_LastName ASC";	
+						}
+						
+						// null/ Rejected
+						if($search != null && $sorts == "firstName" && $filter == "null" && $position == "rejected"){
+						
+						
+						$sql = "SELECT * FROM Person where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'rejected'
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'rejected' ORDER BY Person.Person_FirstName ASC";	
+						}
+						
+						if($search != null && $sorts == "lastName" && $filter == "null" && $position == "rejected"){
+						
+						
+						$sql = "SELECT * FROM Person where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'rejected'
+								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'rejected' ORDER BY Person.Person_LastName ASC";	
+						}
+						
+						
+						//////
+					
+					
+					
+					
+					
 						// Animal Care/Volunteer
 						
 						if($search != null && $sorts == "firstName" && $filter == "Animal Care" && $position == "volunteer"){
