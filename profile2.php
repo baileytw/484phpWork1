@@ -69,7 +69,7 @@ else {
 }
 
 $conn->close();
-if(isset($_POST['btnresume']))
+if(isset($_POST['btnResume']))
 	{
 		$connection =  mysqli_connect("localhost","root","Twspike1994?","wildlife")
                              or die('Database Connection Failed');
@@ -78,7 +78,8 @@ if(isset($_POST['btnresume']))
           // Change to whatever necessary Person_ID
 		  $id = $profileID;
 		  $whichDoc = "Resume"; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
-          $query = "SELECT * FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'"; 
+          $query = "SELECT Documentation_PersonID, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent
+		  FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'"; 
           $result = mysqli_query($connection,$query) 
                      or die('Error, query failed');
          list($id, $file, $type, $size,$content) =   mysqli_fetch_array($result);
@@ -101,7 +102,8 @@ if(isset($_POST['btnresume']))
           // Change to whatever necessary Person_ID
 		  $id = $profileID;
 		  $whichDoc = "Rehabilitation_Permit"; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
-          $query = "SELECT * FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'"; 
+          $query = "SELECT Documentation_PersonID, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent
+		  FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'"; 
           $result = mysqli_query($connection,$query) 
                      or die('Error, query failed');
          list($id, $file, $type, $size,$content) =   mysqli_fetch_array($result);
@@ -124,7 +126,8 @@ if(isset($_POST['btnresume']))
           // Change to whatever necessary Person_ID
 		  $id = $profileID;
 		  $whichDoc = "Rabies_Documentation"; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
-          $query = "SELECT * FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'"; 
+          $query = "SELECT Documentation_PersonID, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent
+		  FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'";
           $result = mysqli_query($connection,$query) 
                      or die('Error, query failed');
          list($id, $file, $type, $size,$content) =   mysqli_fetch_array($result);
