@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-
-
-
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -26,10 +23,10 @@
     <div class="login-box main-content panel panel-default">
       <header class="panel-heading"><img src="../484phpWork1/images/logo_small.png" alt="Wildlife Logo"></header>
     	<section class="panel-body">
-<ul><li>&nbsp;Thank you for updating your account!</li></ul>
+<ul><li>&nbsp;Thank you for updating your profile!</li></ul>
 
 <!--clock out form-->
-<form id="form" action="profile.php" method="post" class="form-horizontal">
+<form id="form" action="applicantprofile.php" method="post" class="form-horizontal">
 
           <div class="form-group">
             <div class="col-sm-2 col-sm-offset-3">

@@ -45,16 +45,91 @@ if ($result->num_rows > 0) {
 		$city = $row['Person_City'];
 		$state = $row['Person_State'];
 		$zipcode = $row['Person_Zipcode'];
+		$allergies = $row['Person_Allergies'];
+		$outside = $row['Person_OutsideLimitations'];
+		$rabies = $row['Person_RabiesYN'];
+		$permit = $row['Person_RehabilitateYN'];
 	}
 	$conn->close();
 }
 //If Save button clicked, update data
 if(isset($_POST['btnSave']))
 {
-	/*
-	header("Location: accountProfile.php");
-	exit();
-	*/
+	//Set run query to false
+	$runQuery= false;
+	//Set variables
+	$first = $_POST['firstName'];
+	$last = $_POST['lastName'];
+	$phone = $_POST['phone'];
+	$email = $_POST['email'];
+	$street = $_POST['street'];
+	$city = $_POST['city'];
+	$state = $_POST['state'];
+	$zipcode = $_POST['zipcode'];
+	$allergies = $_POST['allergies'];
+	$outside = $_POST['outside'];
+	$rabies = $_POST['rabies'];
+	$permit = $_POST['permit'];
+	
+	//If passwords null, don't uppdate password
+	if(($_POST['password'] == null) || ($_POST['check'] == null)){
+		$runQuery = true;
+		$passwordQuery = " ";
+	}
+	//Else, update passwords if password and check match
+	else if($_POST['password'] == $_POST['check']){
+		/****************************************
+			START PASWWORD CODE 
+		****************************************/
+		require("PasswordHash.php");
+		$hasher = new PasswordHash(8, false);
+		// Retrieve password
+		$password = $_POST["password"];
+		// Limit passwords to 72 characters to help prevent DoS attacks
+		if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
+		// The $hash variable will contain the hash of the password
+		$hash = $hasher->HashPassword($password);
+		if (strlen($hash) >= 20) {
+			$runQuery = true;
+			$passwordQuery = " Person_PasswordHash = '" . $hash . "',";
+				
+		} else {
+			
+		 // something went wrong
+
+		}
+		/****************************************
+			END PASWWORD CODE 
+		****************************************/
+	}
+	if ($runQuery == true){
+		$servername = "localhost";
+		$username = "root";
+		$dbpassword = "Twspike1994?";
+		$dbname = "wildlife";
+
+		// Create connection
+		$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '$first', Person_LastName ='$last', Person_PhonePrimary = '$phone',
+		Person_Email ='$email', Person_StreetAddress = '$street', Person_City = '$city', Person_State ='$state', Person_Zipcode = '$zipcode',
+		Person_Allergies = '$allergies', Person_OutsideLimitations = '$outside', Person_RabiesYN = '$rabies', Person_RehabilitateYN = '$permit' WHERE Person_ID = " .$userID; 
+		
+		if(!mysqli_query($conn,$query))
+
+		{
+			echo("Error description: " . mysqli_error($conn));
+		}
+
+		else
+		{
+			$conn->close();
+			header("Location: updateConfirmation5.php");
+			exit();
+		}
+	}
 }
 
 //If Cancel button clicked, go back to profile
@@ -263,29 +338,35 @@ if(isset($_POST['btnCancel']))
 			</div>
 		</div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Allergies</label>
+            <label class="col-lg-3 control-label">Allergies:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="None">
+              <input class="form-control" type="text" name="allergies" value="<?php echo ($allergies);?>">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Physical Limitations</label>
+            <label class="col-lg-3 control-label">Physical Limitations:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="None">
+              <input class="form-control" type="text" name="outside" value="<?php echo ($outside);?>">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Rabies Vaccinated?</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="Yes">
-            </div>
-          </div>
+				<label class="col-lg-3 control-label">Rabies Vaccinated?</label>
+				<div class="col-lg-8">
+					<div class="checkbox">
+						<input type="radio" name="rabies" value="Yes" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'Yes') echo ' checked="checked"';?>> Yes
+						<input type="radio" name="rabies" value="No" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'No') echo ' checked="checked"';?>> No
+					</div>
+				</div>
+			</div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Permit?</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="No">
-            </div>
-          </div>
+				<label class="col-lg-3 control-label">Permit to rehabilitate wildlife in Virginia?</label>
+				<div class="col-lg-8">
+					<div class="checkbox" >
+						<input type="radio" name="permit" value="Yes" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'Yes') echo ' checked="checked"';?>> Yes
+						<input type="radio" name="permit" value="No" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'No') echo ' checked="checked"';?>> No
+					</div>
+				</div>
+			</div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Additional Notes</label>
             <div class="col-lg-8">

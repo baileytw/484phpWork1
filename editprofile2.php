@@ -46,7 +46,8 @@ if ($conn->connect_error) {
 }
 //SQL Statement to gather info
 $sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
-Person_State, Person_Zipcode, Person_TeamLeadNotes FROM Person WHERE Person_ID = " .$profileEdit;
+Person_State, Person_Zipcode, Person_Allergies, Person_OutsideLimitations, Person_RabiesYN, Person_RehabilitateYN
+ Person_TeamLeadNotes FROM Person WHERE Person_ID = " .$profileEdit;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -59,6 +60,10 @@ if ($result->num_rows > 0){
 		$city = $row['Person_City'];
 		$state = $row['Person_State'];
 		$zipcode = $row['Person_Zipcode'];
+		$allergies = $row['Person_Allergies'];
+		$outside = $row['Person_OutsideLimitations'];
+		$rabies = $row['Person_RabiesYN'];
+		$permit = $row['Person_RehabilitateYN'];
 		$teamLeadNotes = $row['Person_TeamLeadNotes'];
 	}
 }
@@ -81,6 +86,10 @@ if(isset($_POST['btnSave']))
 	$city = $_POST['city'];
 	$state = $_POST['state'];
 	$zipcode = $_POST['zipcode'];
+	$allergies = $_POST['allergies'];
+	$outside = $_POST['outside'];
+	$rabies = $_POST['rabies'];
+	$permit = $_POST['permit'];
 	$teamLeadNotes = $_POST['teamLeadNotes'];
 	
 	
@@ -128,6 +137,7 @@ if(isset($_POST['btnSave']))
 		}
 		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '$first', Person_LastName ='$last', Person_PhonePrimary = '$phone', 
 		Person_Email ='$email', Person_StreetAddress = '$street', Person_City = '$city', Person_State = '$state', Person_Zipcode = '$zipcode',
+		Person_Allergies = '$allergies', Person_OutsideLimitations = '$outside', Person_RabiesYN = '$rabies', Person_RehabilitateYN = '$permit', 
 		Person_TeamLeadNotes = '$teamLeadNotes' WHERE Person_ID = " .$profileEdit; 
 		
 		if(!mysqli_query($conn,$query))
@@ -348,27 +358,33 @@ if(isset($_POST['btnSave']))
           <div class="form-group">
             <label class="col-lg-3 control-label">Allergies:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="None">
+              <input class="form-control" type="text" name="allergies" value="<?php echo ($allergies);?>">
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Physical Limitations:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="None">
+              <input class="form-control" type="text" name="outside" value="<?php echo ($outside);?>">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Rabies Vaccinated?</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="Yes">
-            </div>
-          </div>
+				<label class="col-lg-3 control-label">Rabies Vaccinated?</label>
+				<div class="col-lg-8">
+					<div class="checkbox">
+						<input type="radio" name="rabies" value="Yes" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'Yes') echo ' checked="checked"';?>> Yes
+						<input type="radio" name="rabies" value="No" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'No') echo ' checked="checked"';?>> No
+					</div>
+				</div>
+			</div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Permit?</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="No">
-            </div>
-          </div>
+				<label class="col-lg-3 control-label">Permit to rehabilitate wildlife in Virginia?</label>
+				<div class="col-lg-8">
+					<div class="checkbox" >
+						<input type="radio" name="permit" value="Yes" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'Yes') echo ' checked="checked"';?>> Yes
+						<input type="radio" name="permit" value="No" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'No') echo ' checked="checked"';?>> No
+					</div>
+				</div>
+			</div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Additional Notes:</label>
             <div class="col-lg-8">

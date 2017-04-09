@@ -34,7 +34,8 @@ if ($conn->connect_error) {
 } 
 //SQL Statement to gather hash
 $sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
-Person_State, Person_Zipcode FROM Person WHERE Person_ID = '" . $userID . "'";
+Person_State, Person_Zipcode, Person_AllergiesYN, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_RabiesYN, 
+Person_RehabilitateYN FROM Person WHERE Person_ID = '" . $userID . "'";
 echo sql;
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -48,6 +49,12 @@ if ($result->num_rows > 0) {
 		$city = $row['Person_City'];
 		$state = $row['Person_State'];
 		$zipcode = $row['Person_Zipcode'];
+		$allergiesYN =$row['Person_AllergiesYN'] . " - ";
+		$allergies =$row['Person_Allergies'];
+		$outsideYN = $row['Person_WorkOutside'] . " - ";
+		$outside = $row['Person_OutsideLimitations'];
+		$rabiesYN = $row['Person_RabiesYN'];
+		$permitYN = $row['Person_RehabilitateYN'];
 	}
 	$conn->close();
 }
@@ -190,10 +197,10 @@ if ($result->num_rows > 0) {
                                        
                                          <ul class="additionalinfo" class="fa-ul pull-right">
                                             <h2>Additional info</h2>
-                                            <h4>Allergies</h4> None
-                                            <h4>Physical Limitations</h4> None
-                                            <h4>Rabies Vaccinated</h4> Yes
-                                            <h4>Permit</h4> No
+                                            <h4>Allergies</h4> <?php echo $allergiesYN . $allergies?>
+                                            <h4>Outside/Physical Limitations</h4> <?php echo $outsideYN . $outside ?>
+                                            <h4>Rabies Vaccinated</h4> <?php echo $rabiesYN ?>
+                                            <h4>Permit</h4> <?php echo $permitYN ?>
                                             <h4>Emergency Contact</h4> Sean Young (540)555-8202
 
                                        
