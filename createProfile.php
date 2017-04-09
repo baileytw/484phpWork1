@@ -319,7 +319,7 @@ if(isset($_POST['upload']))
 																
 														</div>
 														<div class="form-group">
-															<label class="col-lg-3 control-label">Allergies / Special Needs:</label>
+															<label class="col-lg-3 control-label">Allergies?:</label>
 															<div class="col-lg-8">
 																<input type="radio" name="limitationsASN" value="Yes" <?php if (isset($_POST['limitationsASN']) && $_POST['limitationsASN'] == 'Yes') echo ' checked="checked"';?>> Yes
 																<input type="radio" name="limitationsASN" value="No" <?php if (isset($_POST['limitationsASN']) && $_POST['limitationsASN'] == 'No') echo ' checked="checked"';?>> No
