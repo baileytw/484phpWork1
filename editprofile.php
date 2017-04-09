@@ -37,7 +37,7 @@ if ($conn->connect_error) {
 }
 //SQL Statement to gather info
 $sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
-Person_State, Person_Zipcode, Person_Allergies, Person_SpecialNeeds, Person_OutsideLimitations FROM Person WHERE Person_ID = " .$userID;
+Person_State, Person_Zipcode, Person_Allergies, Person_OutsideLimitations, Person_RabiesYN, Person_RehabilitateYN FROM Person WHERE Person_ID = " .$userID;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -51,8 +51,9 @@ if ($result->num_rows > 0){
 		$state = $row['Person_State'];
 		$zipcode = $row['Person_Zipcode'];
 		$allergies = $row['Person_Allergies'];
-		$special = $row['Person_SpecialNeeds'];
 		$outside = $row['Person_OutsideLimitations'];
+		$rabies = $row['Person_RabiesYN'];
+		$permit = $row['Person_RehabilitateYN'];
 	}
 }
 $conn->close();
@@ -70,8 +71,9 @@ if(isset($_POST['btnSave']))
 	$state = $_POST['state'];
 	$zipcode = $_POST['zipcode'];
 	$allergies = $_POST['allergies'];
-	$special = null;
 	$outside = $_POST['outside'];
+	$rabies = $_POST['rabies'];
+	$permit = $_POST['permit'];
 	
 	//If passwords null, don't uppdate password
 	if(($_POST['password'] == null) || ($_POST['check'] == null)){
@@ -117,7 +119,7 @@ if(isset($_POST['btnSave']))
 		}
 		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '$first', Person_LastName ='$last', Person_PhonePrimary = '$phone',
 		Person_Email ='$email', Person_StreetAddress = '$street', Person_City = '$city', Person_State ='$state', Person_Zipcode = '$zipcode',
-		Person_Allergies = '$allergies', Person_OutsideLimitations = '$outside' WHERE Person_ID = " .$userID; 
+		Person_Allergies = '$allergies', Person_OutsideLimitations = '$outside', Person_RabiesYN = '$rabies', Person_RehabilitateYN = '$permit' WHERE Person_ID = " .$userID; 
 		
 		if(!mysqli_query($conn,$query))
 
@@ -346,17 +348,23 @@ if(isset($_POST['btnSave']))
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Rabies Vaccinated?</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" name="rabies" >
-            </div>
-          </div>
+				<label class="col-lg-3 control-label">Rabies Vaccinated?</label>
+				<div class="col-lg-8">
+					<div class="checkbox">
+						<input type="radio" name="rabies" value="Yes" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'Yes') echo ' checked="checked"';?>> Yes
+						<input type="radio" name="rabies" value="No" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'No') echo ' checked="checked"';?>> No
+					</div>
+				</div>
+			</div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Permit?</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" name="permit" >
-            </div>
-          </div>
+				<label class="col-lg-3 control-label">Permit to rehabilitate wildlife in Virginia?</label>
+				<div class="col-lg-8">
+					<div class="checkbox" >
+						<input type="radio" name="permit" value="Yes" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'Yes') echo ' checked="checked"';?>> Yes
+						<input type="radio" name="permit" value="No" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'No') echo ' checked="checked"';?>> No
+					</div>
+				</div>
+			</div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Additional Notes:</label>
             <div class="col-lg-8">
