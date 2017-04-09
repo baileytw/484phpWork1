@@ -171,7 +171,7 @@
 				fclose($fp); 
 				
 				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
-				  VALUES ('$personID', 'rehabilitatePermit', '$fileName', '$fileType', '$content', NULL)";
+				  VALUES ('$personID', 'Rehabilitation_Permit', '$fileName', '$fileType', '$content', NULL)";
 
 
 
@@ -193,7 +193,7 @@
 				fclose($fp);
 				
 				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
-				  VALUES ('$personID', 'rabbiesDocumentation', '$fileName', '$fileType', '$content', NULL)";
+				  VALUES ('$personID', 'Rabies_Documentation', '$fileName', '$fileType', '$content', NULL)";
 
 
 

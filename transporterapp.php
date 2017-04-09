@@ -136,7 +136,7 @@ $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserT
 				fclose($fp); 
 				
 				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
-				  VALUES ('$personID', 'rabbiesDocumentation', '$fileName', '$fileType', '$content', NULL)";
+				  VALUES ('$personID', 'Rabbies_Documentation', '$fileName', '$fileType', '$content', NULL)";
 
 
 

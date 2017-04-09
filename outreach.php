@@ -189,7 +189,7 @@ if(isset($_POST['upload']))
         fclose($fp);
 
         $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-            VALUES ('$personID', 'rehabilitatePermit', '$fileName', '$fileType', '$permitRehabVA', NULL)";
+            VALUES ('$personID', 'Rehabilitation_Permit', '$fileName', '$fileType', '$permitRehabVA', NULL)";
         
 
             if(!mysqli_query($conn,$documentQuery))
@@ -213,7 +213,7 @@ if(isset($_POST['upload']))
 
 
         $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-            VALUES ('$personID', 'rabiesDocumentation', '$fileName', '$fileType', '$rabbiesDocumentation', NULL)";
+            VALUES ('$personID', 'Rabies_Documentation', '$fileName', '$fileType', '$rabbiesDocumentation', NULL)";
         
 
             if(!mysqli_query($conn,$documentQuery))
@@ -238,7 +238,7 @@ if(isset($_POST['upload']))
 
 
 			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-				VALUES ('$personID', 'resume', '$fileName', '$fileType', '$userfile', NULL)";
+				VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$userfile', NULL)";
 			
 
             if(!mysqli_query($conn,$documentQuery))
