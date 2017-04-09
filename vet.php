@@ -73,7 +73,6 @@ if(isset($_POST['upload']))
 		$permitrehab = $_POST['permit'];
 		$lastVolunteered = NULL;
 		$allergies = $_POST['allergies'];
-		$specialNeeds = NULL;
 		$workOutside = NULL;
 		$totalHours = NULL;
 		$workOutsideLimitations = NULL;
@@ -85,10 +84,10 @@ if(isset($_POST['upload']))
 	$messy = $_POST['messy'];
 
       $query = "INSERT INTO person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
-			Person_State, Person_Country, Person_Zipcode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+			Person_State, Person_Country, Person_Zipcode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies,
 			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
 					VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
-					NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitrehab', '$allergies', '$specialNeeds', '$workOutside',
+					NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitrehab', '$allergies', '$workOutside',
 					'$workOutsideLimitations', '$lift40', NULL, NULL)";
 
                  mysqli_query($conn, $query) or die(mysqli_error($conn));

@@ -79,7 +79,6 @@
 			$rabiesVac = $rabiesVac2->format('Y-m-d'); */
 			$lastVolunteered = NULL;
 			$allergies = $_POST['allergies'];
-			$specialNeeds = NULL;
 			$workOutside = $_POST['limitationsWO'];
 			$totalHours = NULL;
 			$workOutsideLimitations = $_POST['workOut'];
@@ -90,9 +89,9 @@
 				$permitRehab = NULL;
 			}
 
-				  $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
+				  $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies,
 		  Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', '$county', '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitRehab', '$allergies', NULL, NULL, '$workOutsideLimitations', '$lift40', NULL, NULL)";
+			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', '$county', '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitRehab', '$allergies', NULL, '$workOutsideLimitations', '$lift40', NULL, NULL)";
 
 
 
