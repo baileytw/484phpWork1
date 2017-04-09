@@ -188,8 +188,8 @@ if(isset($_POST['upload']))
         $permitRehabVA = addslashes($permitRehabVA);
         fclose($fp);
 
-        $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-            VALUES ('$personID', 'Rehabilitation_Permit', '$fileName', '$fileType', '$permitRehabVA', NULL)";
+        $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
+            VALUES ('$personID', 'Rehabilitation_Permit', '$fileName', '$fileType', '$fileSize', '$permitRehabVA', NULL)";
         
 
             if(!mysqli_query($conn,$documentQuery))
@@ -212,8 +212,8 @@ if(isset($_POST['upload']))
 
 
 
-        $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-            VALUES ('$personID', 'Rabies_Documentation', '$fileName', '$fileType', '$rabbiesDocumentation', NULL)";
+        $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
+            VALUES ('$personID', 'Rabies_Documentation', '$fileName', '$fileType', '$fileSize', '$rabbiesDocumentation', NULL)";
         
 
             if(!mysqli_query($conn,$documentQuery))
@@ -226,10 +226,10 @@ if(isset($_POST['upload']))
 	   }
 		if($_FILES['userFile']['size'] > 0){		   
             //Document Query
-			$fileName  = $_FILES['userfile']['name'];
-			$tmpName  = $_FILES['userfile']['tmp_name'];
-			$fileType = $_FILES['userfile']['type'];
-			$fileSize = $_FILES['userfile']['size'];
+			$fileName  = $_FILES['userFile']['name'];
+			$tmpName  = $_FILES['userFile']['tmp_name'];
+			$fileType = $_FILES['userFile']['type'];
+			$fileSize = $_FILES['userFile']['size'];
 			$fp      = fopen($tmpName, 'r');
 			$userfile = fread($fp, filesize($tmpName));
 			$userfile = addslashes($userfile);
@@ -237,8 +237,8 @@ if(isset($_POST['upload']))
 
 
 
-			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-				VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$userfile', NULL)";
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
+				VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$fileSize', '$userfile', NULL)";
 			
 
             if(!mysqli_query($conn,$documentQuery))
@@ -805,13 +805,12 @@ alert('$message');
 														<textarea class="form-control" id = 'valueAdded' name = 'valueAdded' value="<?php if (isset($_POST['upload'])) echo ($_POST['valueAdded']);?>" rows="5" cols="90"></textarea>
 													</div>
 													<div class="col-sm-12 col-sm-offset-3">Please upload a current resume.</div>
-													<div class="fileinput fileinput-new btn-lg" data-provides="fileinput">
-														<span class="btn btn-default btn-file">
-															<input name="userfile" id = "userfile" type="file" multiple />
-														</span>
-														<span class="fileinput-filename"></span>
-														<span class="fileinput-new"></span>
-													</div>
+													<div class="fileinput fileinput-new" data-provides="fileinput">
+															<span class="btn btn-default btn-file">
+																<input name="userFile" id = "userFile" type="file" multiple /></span>
+															<span class="fileinput-filename"></span>
+															<span class="fileinput-new"></span>
+														</div>
 												</div>
 											</fieldset>
 											<footer class="panel-footer">

@@ -150,8 +150,8 @@ if(isset($_POST['upload']))
 
 
 
-			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-				VALUES ('$personID', 'Rehabilitation_Permit', '$fileName', '$fileType', '$permitRehabVA', NULL)";
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
+				VALUES ('$personID', 'Rehabilitation_Permit', '$fileName', '$fileType', '$fileSize', '$permitRehabVA', NULL)";
 			
 
 			if(!mysqli_query($conn,$documentQuery))
@@ -173,8 +173,8 @@ if(isset($_POST['upload']))
 
 
 
-			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-				VALUES ('$personID', 'Rabbies_Documentation', '$fileName', '$fileType', '$rabbiesDocumentation', NULL)";
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
+				VALUES ('$personID', 'Rabbies_Documentation', '$fileName', '$fileType', '$fileSize', '$rabbiesDocumentation', NULL)";
 			
 
             if(!mysqli_query($conn,$documentQuery))
@@ -187,10 +187,10 @@ if(isset($_POST['upload']))
 		}
 		if($_FILES['userFile']['size'] > 0){		
             //Document Query
-			$fileName  = $_FILES['userfile']['name'];
-			$tmpName  = $_FILES['userfile']['tmp_name'];
-			$fileType = $_FILES['userfile']['type'];
-			$fileSize = $_FILES['userfile']['size'];
+			$fileName  = $_FILES['userFile']['name'];
+			$tmpName  = $_FILES['userFile']['tmp_name'];
+			$fileType = $_FILES['userFile']['type'];
+			$fileSize = $_FILES['userFile']['size'];
 			$fp      = fopen($tmpName, 'r');
 			$userfile = fread($fp, filesize($tmpName));
 			$userfile = addslashes($userfile);
@@ -198,8 +198,8 @@ if(isset($_POST['upload']))
 
 
 
-			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-				VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$userfile', NULL)";
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
+				VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$fileSize', '$userfile', NULL)";
 			
 
             if(!mysqli_query($conn,$documentQuery))

@@ -135,8 +135,8 @@ $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserT
 				$content = addslashes($content);
 				fclose($fp); 
 				
-				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
-				  VALUES ('$personID', 'Rabbies_Documentation', '$fileName', '$fileType', '$content', NULL)";
+				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes)
+				  VALUES ('$personID', 'Rabbies_Documentation', '$fileName', '$fileType', '$fileSize', '$content', NULL)";
 
 
 

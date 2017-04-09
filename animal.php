@@ -170,8 +170,8 @@
 				$content = addslashes($content);
 				fclose($fp); 
 				
-				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
-				  VALUES ('$personID', 'Rehabilitation_Permit', '$fileName', '$fileType', '$content', NULL)";
+				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes)
+				  VALUES ('$personID', 'Rehabilitation_Permit', '$fileName', '$fileType', '$fileSize', '$content', NULL)";
 
 
 
@@ -192,8 +192,8 @@
 				$content = addslashes($content);
 				fclose($fp);
 				
-				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
-				  VALUES ('$personID', 'Rabies_Documentation', '$fileName', '$fileType', '$content', NULL)";
+				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes)
+				  VALUES ('$personID', 'Rabies_Documentation', '$fileName', '$fileType', '$fileSize', '$content', NULL)";
 
 
 
@@ -205,17 +205,17 @@
 				}
 			}
 			if($_FILES['userFile']['size'] > 0){	
-				$fileName = $_FILES['userfile']['name'];
-				$tmpName  = $_FILES['userfile']['tmp_name'];
-				$fileSize = $_FILES['userfile']['size'];
-				$fileType = $_FILES['userfile']['type'];
+				$fileName = $_FILES['userF`ile']['name'];
+				$tmpName  = $_FILES['userFile']['tmp_name'];
+				$fileSize = $_FILES['userFile']['size'];
+				$fileType = $_FILES['userFile']['type'];
 				$fp      = fopen($tmpName, 'r');
 				$content = fread($fp, filesize($tmpName));
 				$content = addslashes($content);
 				fclose($fp);
 				
-				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
-				  VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$content', NULL)";
+				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes)
+				  VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$fileSize', '$content', NULL)";
 
 
 

@@ -92,7 +92,7 @@ if(isset($_POST['btnresume']))
          mysqli_close($connection);
          exit;
 	}
-	if(isset($_POST['btnRehabilitate_Permit']))
+	if(isset($_POST['btnRehabilitation_Permit']))
 	{
 		$connection =  mysqli_connect("localhost","root","Twspike1994?","wildlife")
                              or die('Database Connection Failed');
@@ -100,7 +100,7 @@ if(isset($_POST['btnresume']))
 
           // Change to whatever necessary Person_ID
 		  $id = $profileID;
-		  $whichDoc = "Rehabilitate_Permit"; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
+		  $whichDoc = "Rehabilitation_Permit"; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
           $query = "SELECT * FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'"; 
           $result = mysqli_query($connection,$query) 
                      or die('Error, query failed');
@@ -113,7 +113,7 @@ if(isset($_POST['btnresume']))
          flush();
          echo $content;
          mysqli_close($connection);
-         exit;
+         exit; 
 	}
 	if(isset($_POST['btnRabies_Documentation']))
 	{
@@ -276,6 +276,7 @@ if(isset($_POST['btnresume']))
 
                                     </div></div></div>
                                </div>
+							   
 <?php
 
 $servername = "localhost";
@@ -298,13 +299,14 @@ if ($result->num_rows > 0){
 		$docType = $row['Documentation_TypeOfDocument'];
 		
 		
-		echo '<p>Download ' .$docType . ':</p>
-		<button name="btn'.$docType.'" class="btn btn-default" type="submit">Download</button>';
+		echo '
+		<form method="post"><p>Download ' .$docType . ':</p>
+		<button  name="btn'.$docType.'" class="btn btn-default" type="submit">Download</button></form>';
 							   
 	}
 }
 ?>
-							  
+
 							   </div>
 							   
                                 <div class="preview-pane col-md-5">
@@ -323,8 +325,8 @@ if ($result->num_rows > 0){
     <h4>Weekly Availability</h4>  </ul>
     <img src="images/joecalendar.png" alt="calendar" class="img-responsive">
 	<div class="form-group">
-		<button name="btnAccept" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Accept Applicant</button>
-		<button name="btnReject" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Reject Applicant</button>
+		<button name="btnAccept" method="post" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Accept Applicant</button>
+		<button name="btnReject" method="post" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Reject Applicant</button>
 	</div>
 	  </div>
                                     
