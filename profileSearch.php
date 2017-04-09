@@ -324,7 +324,7 @@ table, th, td {
 						if($search != null && $sorts == "lastName" && $filter == "Front Desk" && $position == "volunteer"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_LastName ASC";	
 						}
 						
@@ -332,14 +332,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Front Desk" && $position == "applicant"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'applicant'
+						$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'applicant'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'applicant' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Front Desk" && $position == "applicant"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'applicant'
+						$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'applicant'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'applicant' ORDER BY Person.Person_LastName ASC";	
 						}
 						
@@ -347,14 +347,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Front Desk" && $position == "volApp"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Front Desk" && $position == "volApp"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Applicant' ||Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Applicant' ||Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
 								|| Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Applicant'
 								||concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Volunteer' ||concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Applicant' ORDER BY Person.Person_LastName ASC";	
 						}
@@ -363,14 +363,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Front Desk" && $position == "rejected"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'rejected'
+						$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'rejected'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'rejected' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Front Desk" && $position == "rejected"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'rejected'
+						$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'rejected'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'rejected' ORDER BY Person.Person_LastName ASC";	
 						}
 						
@@ -382,14 +382,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Outreach" && $position == "volunteer"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Outreach" && $position == "volunteer"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_LastName ASC";	
 						}
 						
@@ -397,14 +397,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Outreach" && $position == "applicant"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'applicant'
+						$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'applicant'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'applicant' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Outreach" && $position == "applicant"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'applicant'
+						$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'applicant'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'applicant' ORDER BY Person.Person_LastName ASC";	
 						}
 						
@@ -412,14 +412,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Outreach" && $position == "volApp"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Outreach" && $position == "volApp"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Applicant' ||Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Applicant' ||Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
 								|| Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Applicant'
 								||concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Volunteer' ||concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Applicant' ORDER BY Person.Person_LastName ASC";	
 						}
@@ -428,14 +428,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Outreach" && $position == "rejected"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'rejected'
+						$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'rejected'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'rejected' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Outreach" && $position == "rejected"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'rejected'
+						$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'rejected'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'rejected' ORDER BY Person.Person_LastName ASC";	
 						}
 						
@@ -448,14 +448,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Transporter" && $position == "volunteer"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN Transporter ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Transporter" && $position == "volunteer"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN Transporter ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_LastName ASC";	
 						}
 						
@@ -463,14 +463,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Transporter" && $position == "applicant"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'applicant'
+						$sql = "SELECT * FROM Person INNER JOIN Transporter ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'applicant'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'applicant' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Transporter" && $position == "applicant"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'applicant'
+						$sql = "SELECT * FROM Person INNER JOIN Transporter ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'applicant'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'applicant' ORDER BY Person.Person_LastName ASC";	
 						}
 						
@@ -478,14 +478,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Transporter" && $position == "volApp"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN Transporter ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Transporter" && $position == "volApp"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Applicant' ||Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN Transporter ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Applicant' ||Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
 								|| Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Applicant'
 								||concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Volunteer' ||concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Applicant' ORDER BY Person.Person_LastName ASC";	
 						}
@@ -494,14 +494,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Transporter" && $position == "rejected"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'rejected'
+						$sql = "SELECT * FROM Person INNER JOIN Transporter ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'rejected'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'rejected' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Transporter" && $position == "rejected"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'rejected'
+						$sql = "SELECT * FROM Person INNER JOIN Transporter ON Person.Person_ID=Transporter.Transporter_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'rejected'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'rejected' ORDER BY Person.Person_LastName ASC";	
 						}
 						
@@ -516,14 +516,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Vet Team" && $position == "volunteer"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Vet Team" && $position == "volunteer"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_LastName ASC";	
 						}
 						
@@ -531,14 +531,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Vet Team" && $position == "applicant"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'applicant'
+						$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'applicant'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'applicant' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Vet Team" && $position == "applicant"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'applicant'
+						$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'applicant' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'applicant'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'applicant' ORDER BY Person.Person_LastName ASC";	
 						}
 						
@@ -546,14 +546,14 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Vet Team" && $position == "volApp"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'Volunteer'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'Volunteer' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Vet Team" && $position == "volApp"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Applicant' ||Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
+						$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Volunteer' || Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'Applicant' ||Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Volunteer'
 								|| Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'Applicant'
 								||concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Volunteer' ||concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'Applicant' ORDER BY Person.Person_LastName ASC";	
 						}
@@ -562,21 +562,21 @@ table, th, td {
 						if($search != null && $sorts == "firstName" && $filter == "Vet Team" && $position == "rejected"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'rejected'
+						$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%'  and Person.Person_UserType = 'rejected'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%'  and Person.Person_UserType = 'rejected' ORDER BY Person.Person_FirstName ASC";	
 						}
 						
 						if($search != null && $sorts == "lastName" && $filter == "Vet Team" && $position == "rejected"){
 						
 						
-						$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'rejected'
+						$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person.Person_FirstName like '%{$search}%' and Person.Person_UserType = 'rejected' || Person.Person_LastName like '%{$search}%' and Person.Person_UserType = 'rejected'
 								|| concat_ws(' ',Person.Person_FirstName,Person.Person_LastName) like '%{$search}%' and Person.Person_UserType = 'rejected' ORDER BY Person.Person_LastName ASC";	
 						}
 						
 					
 					
 					
-					
+					/*
 					
 					
 					// Default Statments ///////////////////////////////
@@ -680,7 +680,7 @@ table, th, td {
 						// Statments for team
 															
 		
-		
+		*/
 		
 							$result = $conn->query($sql);
 							if ($result->num_rows > 0) {
