@@ -809,8 +809,11 @@
 									</div>
 								</section>
 							</div>
+<?php
 
-<<<<<<< HEAD
+		if(isset($_POST['upload']))
+	{
+		if($_POST['password'] == $_POST['check']){
 		require("PasswordHash.php");
 		$hasher = new PasswordHash(8, false);
 		// Retrieve password
@@ -1140,8 +1143,6 @@ alert('$message');
 
 
   ?>
-=======
->>>>>>> origin/master
 						</div>
 						
 						<!-- Main Section End -->
