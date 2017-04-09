@@ -413,6 +413,7 @@ error_reporting(E_ALL);
 														<div>
 															<select name="VACMonth">
 																<option>- Month -</option>
+																<option value="">--</option>
 																<option value="01">January</option>
 																<option value="02">February</option>
 																<option value="03">March</option>
@@ -428,6 +429,7 @@ error_reporting(E_ALL);
 															</select>
 															<select name="VACDay">
 																<option>- Day -</option>
+																<option value="">--</option>
 																<option value="01">1</option>
 																<option value="02">2</option>
 																<option value="03">3</option>
@@ -462,6 +464,7 @@ error_reporting(E_ALL);
 															</select>
 															<select name="VACYear">
 																<option> - Year - </option>
+																<option value="">--</option>
 																<option value="2017">2017</option>
 																<option value="2016">2016</option>
 																<option value="2015">2015</option>
@@ -637,18 +640,47 @@ error_reporting(E_ALL);
 			$street = $_POST['address'];
 			
 			
-			$rabies = $_POST['rabies'];
 			$status = 'Applicant';
-			/* $rabiesVac1 = $_POST['VACYear'] . '-' . $_POST['VACMonth'] . '-' . $_POST['VACDay'];
-			$rabiesVac2 = DateTime::createFromFormat('Y-m-d' , $rabiesVac1);
-			$rabiesVac = $rabiesVac2->format('Y-m-d'); */
+			if($_POST['VACYear'] != '' && $_POST['VACMonth'] != '' && $_POST['VACDay'] != '')
+				{
+				$rabiesVac1 = $_POST['VACYear'] . '-' . $_POST['VACMonth'] . '-' . $_POST['VACDay'];
+				$rabiesVac2 = DateTime::createFromFormat('Y-m-d' , $rabiesVac1);
+				$rabiesVac = $rabiesVac2->format('Y-m-d');
+				}
+				else{
+					$rabiesVac = NULL;
+				}
 			$lastVolunteered = NULL;
-			$allergies = $_POST['allergies'];
+			if($_POST['allergies'] != '')
+				{
+				$allergies = $_POST['allergies'];
+				}
+				else{
+					$allergies = NULL;
+				}
 			$specialNeeds = NULL;
-			$workOutside = $_POST['limitationsWO'];
+			if($_POST['limitationsWO']=='checked')
+				{
+				$workOutside = $_POST['limitationsWO'];
+				}
+				else{
+					$workOutside = NULL;
+				}
 			$totalHours = NULL;
-			$workOutsideLimitations = $_POST['workOut'];
-			$lift40 = $_POST['fortyLBS'];
+			if($_POST['workOut'] != '')
+				{
+				$workOutsideLimitations = $_POST['workOut'];
+				}
+				else{
+					$workOutsideLimitations = NULL;
+				}
+			if($_POST['fortyLBS']=='checked')
+				{
+				$lift40 = $_POST['fortyLBS'];
+				}
+				else{
+					$lift40 = NULL;
+				}
 			$permitRehab = $_POST['permitCategory'];
 			if ($permitRehab < 1)
 			{
@@ -657,7 +689,7 @@ error_reporting(E_ALL);
 
 				  $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_SpecialNeeds,
 		  Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', '$county', '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitRehab', '$allergies', NULL, NULL, '$workOutsideLimitations', '$lift40', NULL, NULL)";
+			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', '$county', '$state', NULL, '$zip', '$dob', '$status', '$rabiesVac', '$permitRehab', '$allergies', NULL, '$workOutside', '$workOutsideLimitations', '$lift40', NULL, NULL)";
 
 
 
@@ -673,15 +705,63 @@ error_reporting(E_ALL);
 			}
 
 			//animalCare app specific
-
-			$experience = $_POST['experience'];
-			$deadAnimals = $_POST['deadAnimals'];
-			$livePrey = $_POST['livePrey'];
-			$seasons = $_POST['workOut'];
-			$groups = $_POST['groups'];
-			$accomplish = $_POST['accomplish'];
-			$issue = $_POST['issue'];
-			$additionalInfo = $_POST['additionalInfo'];
+	
+			if($_POST['experience'] != '')
+				{
+				$experience = $_POST['experience'];
+				}
+				else{
+					$experience = NULL;
+				}
+			if($_POST['deadAnimals'] != '')
+				{
+				$deadAnimals = $_POST['deadAnimals'];
+				}
+				else{
+					$deadAnimals = NULL;
+				}
+			if($_POST['livePrey'] != '')
+				{
+				$livePrey = $_POST['livePrey'];
+				}
+				else{
+					$$livePrey = NULL;
+				}
+			if($_POST['seasons'] != '')
+				{
+				$seasons = $_POST['workOut'];
+				}
+				else{
+					$seasons = NULL;
+				}
+			if($_POST['groups'] != '')
+				{
+				$groups = $_POST['groups'];
+				}
+				else{
+					$groups = NULL;
+				}
+			if($_POST['accomplish'] != '')
+				{
+				$accomplish = $_POST['accomplish'];
+				}
+				else{
+					$accomplish = NULL;
+				}
+			if($_POST['issue'] != '')
+				{
+				$issue = $_POST['issue'];
+				}
+				else{
+					$issue = NULL;
+				}
+			if($_POST['additionalInfo'] != '')
+				{
+				$additionalInfo = $_POST['additionalInfo'];
+				}
+				else{
+					$additionalInfo = NULL;
+				}
 			/* $ecName = $_POST['ec'];
 			$ecPhone = $_POST['ecPhone'];
 			$ecRelationship = $_POST['ecRelationship']; */
@@ -733,79 +813,87 @@ error_reporting(E_ALL);
 				echo "Application Sent! {animalCareApp table}";
 			}
 			
-			$fileName = $_FILES['permitRehabVA']['name'];
-			$tmpName  = $_FILES['permitRehabVA']['tmp_name'];
-			$fileSize = $_FILES['permitRehabVA']['size'];
-			$fileType = $_FILES['permitRehabVA']['type'];
-			$fp      = fopen($tmpName, 'r');
-			$content = fread($fp, filesize($tmpName));
-			$content = addslashes($content);
-			fclose($fp); 
-			
-			$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
-			  VALUES ('$personID', 'Rehabilitation Permit', '$fileName', '$fileType', '$content', NULL)";
-
-
-
-			  if(!mysqli_query($conn,$documentQuery))
-
+			if($_FILES['permitRehabVA']['size'] > 0)
 			{
-				echo("Error description: " . mysqli_error($conn));
+				$fileName = $_FILES['permitRehabVA']['name'];
+				$tmpName  = $_FILES['permitRehabVA']['tmp_name'];
+				$fileSize = $_FILES['permitRehabVA']['size'];
+				$fileType = $_FILES['permitRehabVA']['type'];
+				$fp      = fopen($tmpName, 'r');
+				$content = fread($fp, filesize($tmpName));
+				$content = addslashes($content);
+				fclose($fp); 
+				
+				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
+				  VALUES ('$personID', 'Rehabilitation Permit', '$fileName', '$fileType', '$content', NULL)";
+
+
+
+				  if(!mysqli_query($conn,$documentQuery))
+
+				{
+					echo("Error description: " . mysqli_error($conn));
+				}
+
+				else
+				{
+					echo "Document1 Sent!";
+				}
 			}
-
-			else
+			if($_FILES['rabbiesDocumentation']['size'] > 0)
 			{
-				echo "Document1 Sent!";
+				$fileName = $_FILES['rabbiesDocumentation']['name'];
+				$tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
+				$fileSize = $_FILES['rabbiesDocumentation']['size'];
+				$fileType = $_FILES['rabbiesDocumentation']['type'];
+				$fp      = fopen($tmpName, 'r');
+				$content = fread($fp, filesize($tmpName));
+				$content = addslashes($content);
+				fclose($fp);
+				
+			  $documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
+				  VALUES ('$personID', 'Proof of Vaccination', '$fileName', '$fileType', '$content', NULL)";
+
+
+
+				  if(!mysqli_query($conn,$documentQuery))
+
+				{
+					echo("Error description: " . mysqli_error($conn));
+				}
+
+				else
+				{
+					echo "Document2 Sent!";
+				}
 			}
 			
-			$fileName = $_FILES['rabbiesDocumentation']['name'];
-			$tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
-			$fileSize = $_FILES['rabbiesDocumentation']['size'];
-			$fileType = $_FILES['rabbiesDocumentation']['type'];
-			$fp      = fopen($tmpName, 'r');
-			$content = fread($fp, filesize($tmpName));
-			$content = addslashes($content);
-			fclose($fp);
-			
-		  $documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
-			  VALUES ('$personID', 'Proof of Vaccination', '$fileName', '$fileType', '$content', NULL)";
-
-
-
-			  if(!mysqli_query($conn,$documentQuery))
-
+			if($_FILES['userfile']['size'] > 0)
 			{
-				echo("Error description: " . mysqli_error($conn));
-			}
-
-			else
-			{
-				echo "Document2 Sent!";
-			}
-			
-			$fileName = $_FILES['userfile']['name'];
-			$tmpName  = $_FILES['userfile']['tmp_name'];
-			$fileSize = $_FILES['userfile']['size'];
-			$fileType = $_FILES['userfile']['type'];
-			$fp      = fopen($tmpName, 'r');
-			$content = fread($fp, filesize($tmpName));
-			$content = addslashes($content);
-			fclose($fp);
-			
-			$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
-			  VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$content', NULL)";
+				$fileName = $_FILES['userfile']['name'];
+				$tmpName  = $_FILES['userfile']['tmp_name'];
+				$fileSize = $_FILES['userfile']['size'];
+				$fileType = $_FILES['userfile']['type'];
+				$fp      = fopen($tmpName, 'r');
+				$content = fread($fp, filesize($tmpName));
+				$content = addslashes($content);
+				fclose($fp);
+				
+				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes)
+				  VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$content', NULL)";
 
 
 
-			  if(!mysqli_query($conn,$documentQuery))
+				  if(!mysqli_query($conn,$documentQuery))
 
-			{
-				echo("Error description: " . mysqli_error($conn));
-			}
+				{
+					echo("Error description: " . mysqli_error($conn));
+				}
 
-			else
-			{
-				echo "Document3 Sent!";
+				else
+				{
+					echo "Document3 Sent!";
+				}
 			}
 		  
 			
