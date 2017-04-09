@@ -672,7 +672,7 @@ table, th, td {
 							$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam_PersonID ORDER BY Person_LastName ASC";
 						}
 						
-						*/
+						
 						
 							
 						
@@ -709,7 +709,7 @@ table, th, td {
 						
 						// Statments for team
 															
-		
+		*/
 		
 		
 							$result = $conn->query($sql);
