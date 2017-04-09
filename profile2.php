@@ -67,36 +67,10 @@ if ($result->num_rows > 0){
 else {
  
 }
+
 $conn->close();
 
 
-
-
-//Download docs
-/*
-if(isset($_POST['downloadResume']))
-	{
-		$connection =  mysqli_connect("localhost","root","Twspike1994?","wildlife")
-                             or die('Database Connection Failed');
-             mysqli_set_charset($connection,'utf-8');
-
-          $id = 1; // Change to whatever necessary Person_ID
-		  $whichDoc = ""; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
-          $query = "SELECT * " ."FROM *****TABLE NAME HERE****** WHERE Person_ID = '$profileID' AND WhichDoc = '$whichDoc'"; //query here to put in document and type of document. IDK how to write the join for that
-          $result = mysqli_query($connection,$query) 
-                     or die('Error, query failed');
-         list($id, $file, $type, $size,$content) =   mysqli_fetch_array($result);
-           //echo $id . $file . $type . $size;
-         header("Content-length: $size");
-         header("Content-type: $type");
-         header("Content-Disposition: attachment; filename=$file");
-         ob_clean();
-         flush();
-         echo $content;
-         mysqli_close($connection);
-         exit;
-	}
-*/
 ?>
 
 
@@ -234,10 +208,38 @@ if(isset($_POST['downloadResume']))
 
                                     </div></div></div>
                                </div>
-							   <p>Download Resume:</p>
-							   <button name="downloadResume" class="btn btn-default" type="submit">Download</button>
-							   <p>Download Letter Of Recommendation:</p>
-							   <button name="downloadLetter" class="btn btn-default" type="submit">Download</button>
+<?php
+$servername = "localhost";
+$username = "root";
+$dbpassword = "Twspike1994?";
+$dbname = "wildlife";
+
+// Create connection
+$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+// Check connection
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
+//SQL Statement to gather Documents to display download buttons
+$sql = "SELECT Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent,
+ Documentation_DocumentNotes FROM Documentation WHERE Person_ID =" .$profileID;
+$result = $conn->query($sql);
+if ($result->num_rows > 0){
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$docType = $row['Documentation_TypeOfDocument'];
+		$fileName = $row['Documentation_FileName'];
+		$fileType = $row['Documentation_FileType'];
+		$fileContent = $row['Documentation_FileContent'];
+		$note = $row['Documentation_DocumentNotes'];
+		
+		echo '<p>Download Resume:</p>
+		<button name="downloadResume" class="btn btn-default" type="submit">Download</button>';
+							   
+	}
+}
+?>
+							  
 							   </div>
 							   
                                 <div class="preview-pane col-md-5">

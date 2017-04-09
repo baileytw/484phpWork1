@@ -138,7 +138,7 @@ if(isset($_POST['upload']))
 			}
 			
 			//Document Query
-		if($_POST['permitRehabVA']['size'] > 0){
+		if($_FILES['permitRehabVA']['size'] > 0){
 			$fileName  = $_FILES['permitRehabVA']['name'];
 			$tmpName  = $_FILES['permitRehabVA']['tmp_name'];
 			$fileType = $_FILES['permitRehabVA']['type'];
@@ -161,7 +161,7 @@ if(isset($_POST['upload']))
 				$insertsPassed = "false";
 			}
 		}
-		if($_POST['rabbiesDocumentation']['size'] > 0){
+		if($_FILES['rabbiesDocumentation']['size'] > 0){
 			$fileName  = $_FILES['rabbiesDocumentation']['name'];
 			$tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
 			$fileType = $_FILES['rabbiesDocumentation']['type'];
@@ -185,7 +185,7 @@ if(isset($_POST['upload']))
             }
             
 		}
-		if($_POST['userFile']['size'] > 0){		
+		if($_FILES['userFile']['size'] > 0){		
             //Document Query
 			$fileName  = $_FILES['userfile']['name'];
 			$tmpName  = $_FILES['userfile']['tmp_name'];

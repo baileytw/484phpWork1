@@ -160,7 +160,7 @@
 				echo("Error description: " . mysqli_error($conn));
 				$insertsPassed = "false";
 			}
-			if($_POST['permitRehabVA']['size'] > 0){	
+			if($_FILES['permitRehabVA']['size'] > 0){	
 				$fileName = $_FILES['permitRehabVA']['name'];
 				$tmpName  = $_FILES['permitRehabVA']['tmp_name'];
 				$fileSize = $_FILES['permitRehabVA']['size'];
@@ -182,7 +182,7 @@
 					$insertsPassed = "false";
 				}
 			}
-			if($_POST['rabbiesDocumentation']['size'] > 0){	
+			if($_FILES['rabbiesDocumentation']['size'] > 0){	
 				$fileName = $_FILES['rabbiesDocumentation']['name'];
 				$tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
 				$fileSize = $_FILES['rabbiesDocumentation']['size'];
@@ -204,7 +204,7 @@
 					$insertsPassed = "false";
 				}
 			}
-			if($_POST['userFile']['size'] > 0){	
+			if($_FILES['userFile']['size'] > 0){	
 				$fileName = $_FILES['userfile']['name'];
 				$tmpName  = $_FILES['userfile']['tmp_name'];
 				$fileSize = $_FILES['userfile']['size'];

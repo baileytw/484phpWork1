@@ -178,7 +178,7 @@ if(isset($_POST['upload']))
 
 
     //Document Query
-       if($_POST['permitRehabVA']['size'] > 0){	
+       if($_FILES['permitRehabVA']['size'] > 0){	
         $fileName  = $_FILES['permitRehabVA']['name'];
         $tmpName  = $_FILES['permitRehabVA']['tmp_name'];
         $fileType = $_FILES['permitRehabVA']['type'];
@@ -187,8 +187,6 @@ if(isset($_POST['upload']))
         $permitRehabVA = fread($fp, filesize($tmpName));
         $permitRehabVA = addslashes($permitRehabVA);
         fclose($fp);
-
-
 
         $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
             VALUES ('$personID', 'rehabilitatePermit', '$fileName', '$fileType', '$permitRehabVA', NULL)";
@@ -202,7 +200,7 @@ if(isset($_POST['upload']))
             }
 
 	   }
-	   if($_POST['rabbiesDocumentation']['size'] > 0){	
+	   if($_FILES['rabbiesDocumentation']['size'] > 0){	
         $fileName  = $_FILES['rabbiesDocumentation']['name'];
         $tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
         $fileType = $_FILES['rabbiesDocumentation']['type'];
@@ -226,7 +224,7 @@ if(isset($_POST['upload']))
             }
             
 	   }
-		if($_POST['userFile']['size'] > 0){		   
+		if($_FILES['userFile']['size'] > 0){		   
             //Document Query
 			$fileName  = $_FILES['userfile']['name'];
 			$tmpName  = $_FILES['userfile']['tmp_name'];
