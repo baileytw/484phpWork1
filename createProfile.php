@@ -35,11 +35,14 @@ if(isset($_POST['upload']))
 	$county = $_POST['county'];
 	$state = $_POST['state'];
 	$zip = $_POST['zipcode'];
+	$limitationsASN = $_POST['limitationsASN'];
 	$allergies = $_POST['allergies'];
-	$special = null;
+	$limitationsWO = $_POST['limitationsWO'];
 	$outside = $_POST['outside'];
 	$fortyLBS = $_POST['fortyLBS'];
+	$rabies = $_POST['rabies'];
 	$vacDate = $_POST['vacDate'];
+	$permit = $_POST['permit'];
 	$permitCategory = $_POST['permitCategory'];
 	 
 	//Make certain passwords match
@@ -78,9 +81,9 @@ if(isset($_POST['upload']))
 			
 		}
 		$query = "INSERT INTO Person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
-			Person_State, Person_Zipcode, Person_Allergies, Person_SpecialNeeds, Person_OutsideLimitations,Person_Lift40Lbs, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory)
+			Person_State, Person_Zipcode, Person_AllergiesYN, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations,Person_Lift40Lbs, Person_RabiesYN, Person_RabbiesVaccinationDate, Person_RehabilitateYN, Person_RehabilitatePermitCategory)
 					VALUES ('$email', '$passwordHashPassed', '$userType', '$firstName', '$lastName', '$email', '$phone', $phoneAlt, '$street', '$city',
-					NULL, '$state', '$zip', '$allergies', '$special', '$outside', '$fortyLBS', '$vacDate', '$permitCategory')"; 
+					NULL, '$state', '$zip', '$limitationsASN', '$allergies', '$limitationsWO', '$outside', '$fortyLBS', '$rabies', '$vacDate', '$permit', '$permitCategory')"; 
 		
 		if(!mysqli_query($conn,$query))
 
