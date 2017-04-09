@@ -46,7 +46,7 @@ if ($conn->connect_error) {
 }
 //SQL Statement to gather info
 $sql = "SELECT Person_UserType, Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
-Person_State, Person_Zipcode FROM Person WHERE Person_ID =" .$profileID;
+Person_State, Person_Zipcode, Person_TeamLeadNotes FROM Person WHERE Person_ID =" .$profileID;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -60,28 +60,26 @@ if ($result->num_rows > 0){
 		$city = $row['Person_City'];
 		$state = $row['Person_State'];
 		$zipcode = $row['Person_Zipcode'];
+		$teamLeadNotes = $row['Person_TeamLeadNotes'];
 		
 	}
 }
 else {
  
 }
+
 $conn->close();
-
-
-
-
-//Download docs
-/*
-if(isset($_POST['downloadResume']))
+if(isset($_POST['btnResume']))
 	{
 		$connection =  mysqli_connect("localhost","root","Twspike1994?","wildlife")
                              or die('Database Connection Failed');
              mysqli_set_charset($connection,'utf-8');
 
-          $id = 1; // Change to whatever necessary Person_ID
-		  $whichDoc = ""; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
-          $query = "SELECT * " ."FROM *****TABLE NAME HERE****** WHERE Person_ID = '$profileID' AND WhichDoc = '$whichDoc'"; //query here to put in document and type of document. IDK how to write the join for that
+          // Change to whatever necessary Person_ID
+		  $id = $profileID;
+		  $whichDoc = "Resume"; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
+          $query = "SELECT Documentation_PersonID, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent
+		  FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'"; 
           $result = mysqli_query($connection,$query) 
                      or die('Error, query failed');
          list($id, $file, $type, $size,$content) =   mysqli_fetch_array($result);
@@ -95,7 +93,55 @@ if(isset($_POST['downloadResume']))
          mysqli_close($connection);
          exit;
 	}
-*/
+	if(isset($_POST['btnRehabilitation_Permit']))
+	{
+		$connection =  mysqli_connect("localhost","root","Twspike1994?","wildlife")
+                             or die('Database Connection Failed');
+             mysqli_set_charset($connection,'utf-8');
+
+          // Change to whatever necessary Person_ID
+		  $id = $profileID;
+		  $whichDoc = "Rehabilitation_Permit"; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
+          $query = "SELECT Documentation_PersonID, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent
+		  FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'"; 
+          $result = mysqli_query($connection,$query) 
+                     or die('Error, query failed');
+         list($id, $file, $type, $size,$content) =   mysqli_fetch_array($result);
+           //echo $id . $file . $type . $size;
+         header("Content-length: $size");
+         header("Content-type: $type");
+         header("Content-Disposition: attachment; filename=$file");
+         ob_clean();
+         flush();
+         echo $content;
+         mysqli_close($connection);
+         exit; 
+	}
+	if(isset($_POST['btnRabies_Documentation']))
+	{
+		$connection =  mysqli_connect("localhost","root","Twspike1994?","wildlife")
+                             or die('Database Connection Failed');
+             mysqli_set_charset($connection,'utf-8');
+
+          // Change to whatever necessary Person_ID
+		  $id = $profileID;
+		  $whichDoc = "Rabies_Documentation"; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
+          $query = "SELECT Documentation_PersonID, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent
+		  FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'";
+          $result = mysqli_query($connection,$query) 
+                     or die('Error, query failed');
+         list($id, $file, $type, $size,$content) =   mysqli_fetch_array($result);
+           //echo $id . $file . $type . $size;
+         header("Content-length: $size");
+         header("Content-type: $type");
+         header("Content-Disposition: attachment; filename=$file");
+         ob_clean();
+         flush();
+         echo $content;
+         mysqli_close($connection);
+         exit;
+	}
+
 ?>
 
 
@@ -194,7 +240,7 @@ if(isset($_POST['downloadResume']))
 </div>    
 <div class="panel panel-default">
   <div class="panel-body">
-    <strong>Address - </strong> <?php echo $street. ', '. $city.', '. $state ?>
+    <strong>Address - </strong> <?php echo $street. ', '. $city.', '. $state . ' ' .$zipcode ?>
   </div>
 </div>    
 
@@ -233,15 +279,42 @@ if(isset($_POST['downloadResume']))
 
                                     </div></div></div>
                                </div>
-							   <p>Download Resume:</p>
-							   <button name="downloadResume" class="btn btn-default" type="submit">Download</button>
-							   <p>Download Letter Of Recommendation:</p>
-							   <button name="downloadLetter" class="btn btn-default" type="submit">Download</button>
+							   
+<?php
+
+$servername = "localhost";
+$username = "root";
+$dbpassword = "Twspike1994?";
+$dbname = "wildlife";
+
+// Create connection
+$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+// Check connection
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+}
+//SQL Statement to gather Documents to display download buttons
+$sql = "SELECT Documentation_TypeOfDocument FROM Documentation WHERE Documentation_PersonID =" .$profileID;
+$result = $conn->query($sql);
+if ($result->num_rows > 0){
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$docType = $row['Documentation_TypeOfDocument'];
+		
+		
+		echo '
+		<form method="post"><p>Download ' .$docType . ':</p>
+		<button  name="btn'.$docType.'" class="btn btn-default" type="submit">Download</button></form>';
+							   
+	}
+}
+?>
+
 							   </div>
 							   
                                 <div class="preview-pane col-md-5">
         <div class="panel panel-default"><div class="panel-body"><h4>Team Lead Notes:</h4>  </ul>
-    None
+		<?php echo ($teamLeadNotes);?>
                                     </div></div>
                                          <ul class="additionalinfo" class="fa-ul pull-right">
                                             <h2>Additional info</h2>
@@ -255,8 +328,8 @@ if(isset($_POST['downloadResume']))
     <h4>Weekly Availability</h4>  </ul>
     <img src="images/joecalendar.png" alt="calendar" class="img-responsive">
 	<div class="form-group">
-		<button name="btnAccept" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Accept Applicant</button>
-		<button name="btnReject" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Reject Applicant</button>
+		<button name="btnAccept" method="post" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Accept Applicant</button>
+		<button name="btnReject" method="post" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Reject Applicant</button>
 	</div>
 	  </div>
                                     

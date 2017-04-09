@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<?php
-ini_set('display_errors', 'On');
-error_reporting(E_ALL);
-?>
+
 
 <?php
 //DO NOT MOVE. KEEP AT TOP
@@ -282,6 +279,57 @@ if(isset($_POST['btnLogIn'])){
 /****************************************
 	END Login CODE 
 ****************************************/
+/****************************************
+	START Apply CODE 
+****************************************/
+if(isset($_POST['apply']))
+{
+	require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
+	$emailAddress = $_POST['username'];
+	$mail = new PHPMailer;
+	//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+	$mail->isSMTP();                                      // Set mailer to use SMTP
+	$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+	$mail->SMTPAuth = true;                               // Enable SMTP authentication
+	$mail->Username = 'wcvtestemail@gmail.com';                 // SMTP username
+	$mail->Password = '1wildcva';                           // SMTP password
+	$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+	$mail->Port = 587;                                    // TCP port to connect to
+
+	$mail->setFrom('wcvtestemail@gmail', 'Wildlife Center of Virginia');
+
+	$mail->addAddress($emailAddress);     // recipient
+
+	$mail->Subject = 'Wildlife Center of Virginia Volunteer Opportunity';
+	$mail->Body    = 'Thank you for your interest in the Wildlife Center!<br>
+                  Please follow the link provided to fill out an application.
+                  ';
+	$mail->AltBody = 'Thank you for your interest in the Wildlife Center!<br>
+	  Please follow the link provided to fill out an application.
+	  ';
+
+	
+	$mail->AltBody = $_POST['emailBody'];
+
+	
+	$mail->isHTML(true);                                  // Set email format to HTML
+
+	if(!$mail->send()) {
+	   echo 'Message could not be sent.';
+		echo 'Mailer Error: ' . $mail->ErrorInfo;
+	}
+	 else {
+		header("Location: apply_confirmation.php");
+		exit(); 
+
+  
+}
+
+}
+/****************************************
+	END Apply CODE 
+****************************************/
 ?>
 
 <html>
@@ -455,66 +503,7 @@ if(isset($_POST['btnLogIn'])){
 
 
 
-<?php
 
-if(isset($_POST['apply']))
-{
-        $server = "localhost";
-        $user = "root";
-        $password = "Twspike1994?";
-        $database = "wildlife";
-        $conn = mysqli_connect($server, $user, $password, $database);
-        if (mysqli_connect_errno()) 
-        {
-      echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
-    
-    if(!mysqli_select_db($conn, 'wildlife'))
-        {
-           echo "Database Not Selected";
-        }
-       
-$emailAddress = $_POST['username'];
-
-
-require_once('C:\inetpub\wwwroot\PHPMailer\class.phpmailer.php');      
-require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
-
-
-$mail = new PHPMailer;
-
-$mail->IsSMTP();
-$mail->Host = "smtp.gmail.com"; // may need to change host depending on which email client we are using
-$mail->SMTPAuth = true;
-$mail->SMTPSecure = "ssl";
-$mail->Username = "<enter wildife email here>";  // the email we want to send from (wildlife email)
-$mail->Password = "<enter password here>"; // above emails password
-$mail->Port = "465"; // may need to change port depending on which email client we are using
-
-
-$mail->setFrom('<enter wildlife email here>', 'Wildlife Center of Virginia');
-$mail->addAddress($emailAddress, 'Applicant');     // recipient
-
-$mail->Subject = 'Wildlife Center of Virginia Volunteer Opportunity';
-$mail->Body    = 'Thank you for your interest in the Wildlife Center!<br>
-                  Please follow the link provided to fill out an application.
-                  ';
-
-if(!$mail->send()) {
-   echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-}
- else {
-	  
-  echo "<script>window.top.location='apply_confirmation.php'</script>";
-  
-}
-
-
-
-
-}
-        ?>
                     
                     
                 </div>

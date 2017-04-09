@@ -4,7 +4,8 @@
 session_start();
 $userID = $_SESSION['userID'];
 $userTypeSession = $_SESSION['userType'];
-$profileID = $_SESSION['profileID']; 
+//Array of emails that were selected
+$profileEmail = $_SESSION['profileEmail']; 
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
@@ -17,11 +18,11 @@ if ($userTypeSession != "Team Lead"){
 
 */
 
-if(isset($_POST['btnLogIn'])){
+if(isset($_POST['btnSend'])){
 	require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
 	
 	//DO A LOOP TO POPULATE EMAIL ADDRESS AND SEND EMAIL FOR EACH ITERATION
-	$emailAddress = 'seilermr@dukes.jmu.edu';
+	
 	$mail = new PHPMailer;
 	
 
@@ -36,13 +37,17 @@ if(isset($_POST['btnLogIn'])){
 	$mail->Port = 587;                                    // TCP port to connect to
 
 	$mail->setFrom('wcvtestemail@gmail', 'Wildlife Center of Virginia');
-	$mail->addAddress($emailAddress);     // recipient
-	//$mail->addAddress('ellen@example.com');               //Add team lead
-
-	$mail->Subject = '';
-	$mail->Body    = ' '; 
 	
-	$mail->AltBody = '';
+	foreach($_SESSION['profileEmail'] as $key=>$value)
+    {
+		$mail->addAddress($value);     // recipient
+    }
+		
+
+	$mail->Subject = $_POST['emailSubject'];
+	$mail->Body    = $_POST['emailBody']; 
+	
+	$mail->AltBody = $_POST['emailBody'];
 
 	
 	$mail->isHTML(true);                                  // Set email format to HTML
@@ -51,11 +56,18 @@ if(isset($_POST['btnLogIn'])){
 		echo 'Message could not be sent.';
 		echo 'Mailer Error: ' . $mail->ErrorInfo;
 	} else {
-		echo 'Message has been sent';
+		header("Location: emailConfirmation.php");
+		exit();
+		
 	}
+	
+	
 }
 
-
+if(isset($_POST['btnCancel'])){
+	header("Location: profileSearch.php");
+	exit();
+}
 ?>
 <!-- Select all checkboxes -->
 <script type="text/javascript">
@@ -154,7 +166,7 @@ if(isset($_POST['btnLogIn'])){
 			<div class="form-group">
 					<label class="col-lg-3 control-label">Sending To: </label>
 					<div class="col-lg-8">
-						<input class="form-control" id="emailTo" name="emailTo" type="text" required="required" />
+						<textarea class="form-control" id="emailTo" readonly name="emailTo" type="text" required="required" rows="2" cols="90" ><?php foreach($_SESSION['profileEmail'] as $key=>$value){ echo $value . '; ';}?></textarea>
 					</div>
 				</div>
 				<div class="form-group">

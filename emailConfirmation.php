@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-<?php//Session variables: KEEP AT TOP
-session_start();
-$profileEdit = $_SESSION['profileEdit'];
-?>
-
-
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -29,14 +23,14 @@ $profileEdit = $_SESSION['profileEdit'];
     <div class="login-box main-content panel panel-default">
       <header class="panel-heading"><img src="../484phpWork1/images/logo_small.png" alt="Wildlife Logo"></header>
     	<section class="panel-body">
-<ul><li>&nbsp;Thank you for updating Volunteer's profile!</li></ul>
+<ul><li>&nbsp;Thank you! Your email has been sent!</li></ul>
 
 <!--clock out form-->
-<form id="form" action="profile2.php" method="post" class="form-horizontal">
+<form id="form" action="profileSearch.php" method="post" class="form-horizontal">
 
           <div class="form-group">
             <div class="col-sm-2 col-sm-offset-3">
-              <button class="btn btn-default" type="submit">Return to profile</button>
+              <button class="btn btn-default" type="submit">Return to Search</button>
             </div>
           </div>
 </form>
