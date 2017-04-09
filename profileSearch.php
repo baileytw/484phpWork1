@@ -705,12 +705,12 @@ table, th, td {
 						
 						if($search == null && $sorts == "lastName" && $filter == "Animal Care" && $position=="applicant"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare.AnimalCare_PersonID where Person_Usertype='applicant' ORDER BY Person_LastName ASC";
+							$sql = "SELECT * FROM Person INNER JOIN AnimalCareApp ON Person.Person_ID=AnimalCareApp.AnimalCareApp_PersonID where Person_Usertype='applicant' ORDER BY Person_LastName ASC";
 						}
 						
 						if($search == null && $sorts == "firstName" && $filter == "Animal Care" && $position=="applicant"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person INNER JOIN AnimalCare ON Person.Person_ID=AnimalCare.AnimalCare_PersonID where Person_Usertype='applicant' ORDER BY Person_FirstName ASC";
+							$sql = "SELECT * FROM Person INNER JOIN AnimalCareApp ON Person.Person_ID=AnimalCareApp.AnimalCareApp_PersonID where Person_Usertype='applicant' ORDER BY Person_FirstName ASC";
 						}
 						
 						if($search == null && $sorts == "lastName" && $filter == "Animal Care" && $position=="volApp"){
@@ -747,12 +747,12 @@ table, th, td {
 						
 						if($search == null && $sorts == "lastName" && $filter == "Front Desk" && $position=="applicant"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person_Usertype='applicant' ORDER BY Person_LastName ASC";
+							$sql = "SELECT * FROM Person INNER JOIN OtherVolunteersApp ON Person.Person_ID=OtherVolunteersApp.OtherVolunteersApp_PersonID where Person_Usertype='applicant' ORDER BY Person_LastName ASC";
 						}
 						
 						if($search == null && $sorts == "firstName" && $filter == "Front Desk" && $position=="applicant"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person INNER JOIN OtherVolunteers ON Person.Person_ID=OtherVolunteers.OtherVolunteers_PersonID where Person_Usertype='applicant' ORDER BY Person_FirstName ASC";
+							$sql = "SELECT * FROM Person INNER JOIN OtherVolunteersApp ON Person.Person_ID=OtherVolunteersApp.OtherVolunteersApp_PersonID where Person_Usertype='applicant' ORDER BY Person_FirstName ASC";
 						}
 						
 						if($search == null && $sorts == "lastName" && $filter == "Front Desk" && $position=="volApp"){
@@ -789,12 +789,12 @@ table, th, td {
 						
 						if($search == null && $sorts == "lastName" && $filter == "Outreach" && $position=="applicant"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person_Usertype='applicant' ORDER BY Person_LastName ASC";
+							$sql = "SELECT * FROM Person INNER JOIN OutreachApp ON Person.Person_ID=OutreachApp.OutreachApp_PersonID where Person_Usertype='applicant' ORDER BY Person_LastName ASC";
 						}
 						
 						if($search == null && $sorts == "firstName" && $filter == "Outreach" && $position=="applicant"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person_Usertype='applicant' ORDER BY Person_FirstName ASC";
+							$sql = "SELECT * FROM Person INNER JOIN OutreachApp ON Person.Person_ID=OutreachApp.OutreachApp_PersonID where Person_Usertype='applicant' ORDER BY Person_FirstName ASC";
 						}
 						
 						if($search == null && $sorts == "lastName" && $filter == "Outreach" && $position=="volApp"){
@@ -833,12 +833,12 @@ table, th, td {
 						
 						if($search == null && $sorts == "lastName" && $filter == "Transporter" && $position=="applicant"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person INNER JOIN Transporter ON Person.Person_ID=Transporter.Transporter_PersonID where Person_Usertype='applicant' ORDER BY Person_LastName ASC";
+							$sql = "SELECT * FROM Person INNER JOIN TransporterApp ON Person.Person_ID=TransporterApp.TransporterApp_PersonID where Person_Usertype='applicant' ORDER BY Person_LastName ASC";
 						}
 						
 						if($search == null && $sorts == "firstName" && $filter == "Transporter" && $position=="applicant"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person INNER JOIN Transporter ON Person.Person_ID=Transporter.Transporter_PersonID where Person_Usertype='applicant' ORDER BY Person_FirstName ASC";
+							$sql = "SELECT * FROM Person INNER JOIN TransporterApp ON Person.Person_ID=TransporterApp.TransporterApp_PersonID where Person_Usertype='applicant' ORDER BY Person_FirstName ASC";
 						}
 						
 						if($search == null && $sorts == "lastName" && $filter == "Transporter" && $position=="volApp"){
@@ -876,12 +876,12 @@ table, th, td {
 						
 						if($search == null && $sorts == "lastName" && $filter == "Vet Team" && $position=="applicant"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person_Usertype='applicant' ORDER BY Person_LastName ASC";
+							$sql = "SELECT * FROM Person INNER JOIN VetTeamApp ON Person.Person_ID=VetTeamApp.VetTeamApp_PersonID where Person_Usertype='applicant' ORDER BY Person_LastName ASC";
 						}
 						
 						if($search == null && $sorts == "firstName" && $filter == "Vet Team" && $position=="applicant"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam.VetTeam_PersonID where Person_Usertype='applicant' ORDER BY Person_FirstName ASC";
+							$sql = "SELECT * FROM Person INNER JOIN VetTeamApp ON Person.Person_ID=VetTeamApp.VetTeamApp_PersonID where Person_Usertype='applicant' ORDER BY Person_FirstName ASC";
 						}
 						
 						if($search == null && $sorts == "lastName" && $filter == "Vet Team" && $position=="volApp"){
