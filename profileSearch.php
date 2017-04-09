@@ -621,7 +621,7 @@ table, th, td {
 						}
 						
 						
-						
+						/*
 						// Animal Care
 						if($search == null && $sorts == "firstName" && $filter == "Animal Care"){
 							// Select statement for default
@@ -672,7 +672,7 @@ table, th, td {
 							$sql = "SELECT * FROM Person INNER JOIN VetTeam ON Person.Person_ID=VetTeam_PersonID ORDER BY Person_LastName ASC";
 						}
 						
-						
+						*/
 						
 							
 						
