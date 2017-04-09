@@ -191,7 +191,7 @@ table, th, td {
                             </select>                               
                         </div> <!-- form group [Select Team] -->   
 						<div class="form-group">
-                            <label class="filter-col" style="margin-right:0;" for="pref-namefilter">Sort By:</label>
+                            <label class="filter-col" style="margin-right:0;" for="pref-namefilter">Filter By:</label>
                             <select name="pref-roleFilter" id="pref-roleFilter" class="form-control">
                                 <option value="volunteer">Volunteer</option>
                                 <option value="applicant">Applicant</option>
@@ -576,7 +576,7 @@ table, th, td {
 					
 					
 					
-					/*
+					
 					
 					
 					// Default Statments ///////////////////////////////
@@ -590,6 +590,36 @@ table, th, td {
 							// Select statement for default
 							$sql = "SELECT * FROM Person where Person_Usertype='volunteer' ORDER BY Person_FirstName ASC";
 						}
+						
+						if($search == null && $sorts == "lastName" && $filter == "null" && $position=="applicant"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person where Person_Usertype='applicant' ORDER BY Person_LastName ASC";
+						}
+						
+						if($search == null && $sorts == "firstName" && $filter == "null" && $position=="applicant"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person where Person_Usertype='applicant' ORDER BY Person_FirstName ASC";
+						}
+						
+						if($search == null && $sorts == "lastName" && $filter == "null" && $position=="volApp"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person where Person_Usertype='applicant' || Person_UserType='volunteer' ORDER BY Person_LastName ASC";
+						}
+						
+						if($search == null && $sorts == "firstName" && $filter == "null" && $position=="volApp"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person where Person_Usertype='applicant'  || Person_UserType='volunteer' ORDER BY Person_FirstName ASC";
+						}
+						if($search == null && $sorts == "lastName" && $filter == "null" && $position=="rejected"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person where Person_Usertype='rejected' ORDER BY Person_LastName ASC";
+						}
+						
+						if($search == null && $sorts == "firstName" && $filter == "null" && $position=="rejected"){
+							// Select statement for default
+							$sql = "SELECT * FROM Person where Person_Usertype='rejected' ORDER BY Person_FirstName ASC";
+						}
+						
 						
 						
 						// Animal Care
@@ -680,7 +710,7 @@ table, th, td {
 						// Statments for team
 															
 		
-		*/
+		
 		
 							$result = $conn->query($sql);
 							if ($result->num_rows > 0) {
