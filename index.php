@@ -164,8 +164,8 @@ session_start();
 			if($userType == "Volunteer" ){									
 				
 				
-				$query = "INSERT INTO LogTransport(LogTransport_TransportID,LogTransport_Date,LogTransport_Species,
-				LogTransport_PickUpAddress,LogTransport_Hours,LogTransport_Miles) VALUES (" . $transporterID . ",'" . $_POST['date'] . "','" 
+				$query = "INSERT INTO LogTransport(LogTransport_TransportID,LogTransport_Date, LogTransport_PickUpAddress, LogTransport_Species,
+				LogTransport_Hours,LogTransport_Miles) VALUES (" . $transporterID . ",'" . $_POST['date'] . "','" 
 				. $_POST['address'] . "','" . $_POST['species'] . "'," . $_POST['hours'] . "," . $_POST['mileage'] . ")";
 
 				mysqli_query($conn, $query) or die(mysqli_error($conn));

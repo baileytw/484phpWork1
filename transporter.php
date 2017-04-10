@@ -23,17 +23,15 @@
     <div class="login-box main-content panel panel-default">
       <header class="panel-heading"><img src="../484phpWork1/images/logo_small.png" alt="Wildlife Logo"></header>
     	<section class="panel-body">
-<ul><li>&nbsp;Thank you for submitting your application!
-
-Our team will be in touch.</li></ul>
+<ul><li>&nbsp;Thank you for submitting your animal transport information.</li></ul>
 
 
 <!--clock out form-->
-<form id="form" action="forms.php" method="post" class="form-horizontal">
+<form id="form" action="index.php" method="post" class="form-horizontal">
 
           <div class="form-group">
             <div class="col-sm-2 col-sm-offset-3">
-              <button class="btn btn-default" type="submit">Return to Applications</button>
+              <button class="btn btn-default" type="submit">Return</button>
             </div>
           </div>
 </form>

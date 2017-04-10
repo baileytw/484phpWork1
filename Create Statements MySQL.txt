@@ -216,7 +216,7 @@ LogTransport_PickUpAddress  VARCHAR(300),
 LogTransport_Hours			INTEGER,
 LogTransport_Miles			INTEGER,
 CONSTRAINT PK_LogTransport PRIMARY KEY (LogTransport_ID),
-CONSTRAINT FK_LogTransport_ID FOREIGN KEY (LogTransport_ID) REFERENCES Transporter(Transporter_ID));
+CONSTRAINT FK_LogTransport_ID FOREIGN KEY (LogTransport_TransportID) REFERENCES Transporter(Transporter_ID));
 
 CREATE TABLE VetTeam (
 VetTeam_ID	                            INTEGER NOT NULL AUTO_INCREMENT,

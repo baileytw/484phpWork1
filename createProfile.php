@@ -92,7 +92,7 @@ if(isset($_POST['upload']))
 			$insertsPassed = "false";
 		}
 		
-		if($_POST['rabbiesDocumentation']['size'] > 0){	
+		if($_FILES['rabbiesDocumentation']['size'] > 0){	
 			$fileName  = $_FILES['rabbiesDocumentation']['name'];
 			$tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
 			$fileType = $_FILES['rabbiesDocumentation']['type'];
@@ -104,8 +104,8 @@ if(isset($_POST['upload']))
 
 
 
-			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileContent, Documentation_DocumentNotes) 
-				VALUES ('$personID', 'rabiesDocumentation', '$fileName', '$fileType', '$rabbiesDocumentation', NULL)";
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
+				VALUES ('$personID', 'rabiesDocumentation', '$fileName', '$fileType', '$fileSize', '$rabbiesDocumentation', NULL)";
         
 
             if(!mysqli_query($conn,$documentQuery))
@@ -166,7 +166,7 @@ if(isset($_POST['upload']))
                             <li class="action">
 
                             <li class="active"><a href="createProfile.php">Create Profile</a></li>
-                            <li><a href="index.php">Sign Out</a></li>
+                            <li><a href="index.php">Back</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -331,7 +331,7 @@ if(isset($_POST['upload']))
 															<div class="col-lg-8">
 																<input type="radio" name="limitationsWO" value="Yes" <?php if (isset($_POST['limitationsWO']) && $_POST['limitationsWO'] == 'Yes') echo ' checked="checked"';?>> Yes
 																<input type="radio" name="limitationsWO" value="No" <?php if (isset($_POST['limitationsWO']) && $_POST['limitationsWO'] == 'No') echo ' checked="checked"';?>> No
-																<input class="form-control" name="outside" type="text" value="None">
+																<input class="form-control" name="outside" type="text">
 															</div>
 														</div>
 														<div class="form-group">
