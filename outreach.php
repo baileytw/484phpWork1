@@ -91,8 +91,8 @@ if(isset($_POST['upload']))
 		$lastVolunteered = NULL;
 		$allergies = $_POST['allergies'];
 		$workOutside = NULL;
-		$totalHours = NULL;
-		$workOutsideLimitations = NULL;
+		$totalHours = $_POST['limitationsWO'];
+		$workOutsideLimitations = $_POST['outside'];
 		$lift40 = NULL;
 
 		$whyInterested = $_POST['whyInterested'];
