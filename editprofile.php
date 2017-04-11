@@ -351,8 +351,8 @@ if(isset($_POST['btnSave']))
 				<label class="col-lg-3 control-label">Rabies Vaccinated?</label>
 				<div class="col-lg-8">
 					<div class="checkbox">
-						<input type="radio" name="rabies" value="Yes" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'Yes') echo ' checked="checked"';?>> Yes
-						<input type="radio" name="rabies" value="No" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'No') echo ' checked="checked"';?>> No
+						<input type="radio" name="rabies" value="Yes" <?php if ($rabies == 'Yes') echo ' checked="checked"';?>> Yes
+						<input type="radio" name="rabies" value="No" <?php if ($rabies == 'No') echo ' checked="checked"';?>> No
 					</div>
 				</div>
 			</div>
@@ -360,8 +360,8 @@ if(isset($_POST['btnSave']))
 				<label class="col-lg-3 control-label">Permit to rehabilitate wildlife in Virginia?</label>
 				<div class="col-lg-8">
 					<div class="checkbox" >
-						<input type="radio" name="permit" value="Yes" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'Yes') echo ' checked="checked"';?>> Yes
-						<input type="radio" name="permit" value="No" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'No') echo ' checked="checked"';?>> No
+						<input type="radio" name="permit" value="Yes" <?php if ($permit == 'Yes') echo ' checked="checked"';?>> Yes
+						<input type="radio" name="permit" value="No" <?php if ($permit == 'No') echo ' checked="checked"';?>> No
 					</div>
 				</div>
 			</div>

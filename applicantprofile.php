@@ -34,7 +34,7 @@ if ($conn->connect_error) {
 } 
 //SQL Statement to gather hash
 $sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
-Person_State, Person_Zipcode, Person_AllergiesYN, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_RabiesYN, 
+Person_State, Person_Zipcode, Person_AllergiesYN, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_TeamLeadNotes, Person_RabiesYN, 
 Person_RehabilitateYN FROM Person WHERE Person_ID = '" . $userID . "'";
 echo sql;
 $result = $conn->query($sql);
@@ -53,6 +53,7 @@ if ($result->num_rows > 0) {
 		$allergies =$row['Person_Allergies'];
 		$outsideYN = $row['Person_WorkOutside'] . " - ";
 		$outside = $row['Person_OutsideLimitations'];
+		$teamLeadNotes = $row['Person_TeamLeadNotes'];
 		$rabiesYN = $row['Person_RabiesYN'];
 		$permitYN = $row['Person_RehabilitateYN'];
 	}
@@ -194,7 +195,9 @@ if ($result->num_rows > 0) {
                                     </div></div></div>
                                </div></div>
                                 <div class="preview-pane col-md-5">
-                                       
+                                   <div class="panel panel-default"><div class="panel-body"><h4>Team Lead Notes:</h4>  </ul>
+		<?php echo ($teamLeadNotes);?>
+                                    </div></div>    
                                          <ul class="additionalinfo" class="fa-ul pull-right">
                                             <h2>Additional info</h2>
                                             <h4>Allergies</h4> <?php echo $allergiesYN . $allergies?>

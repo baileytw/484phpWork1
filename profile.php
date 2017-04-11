@@ -8,14 +8,14 @@ $userTypeSession = $_SESSION['userType'];
 
 
 //UNCOMMENT THIS OUT WHEN READY TO RUN PROGRAM FOR PRESENTATION OR TURN IN
-/*
+
 //If Session is empty, redirect user to restricted access notification
 if ($userTypeSession != "Volunteer"){
 	header("Location: restrictedAccess.php");
 	exit();
 }
 
-*/
+
 //Populate fields code
 $servername = "localhost";
 $username = "root";

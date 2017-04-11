@@ -46,7 +46,7 @@ if ($conn->connect_error) {
 }
 //SQL Statement to gather info
 $sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
-Person_State, Person_Zipcode, Person_Allergies, Person_OutsideLimitations, Person_RabiesYN, Person_RehabilitateYN
+Person_State, Person_Zipcode, Person_Allergies, Person_OutsideLimitations, Person_RabiesYN, Person_RehabilitateYN,
  Person_TeamLeadNotes FROM Person WHERE Person_ID = " .$profileEdit;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
@@ -65,6 +65,7 @@ if ($result->num_rows > 0){
 		$rabies = $row['Person_RabiesYN'];
 		$permit = $row['Person_RehabilitateYN'];
 		$teamLeadNotes = $row['Person_TeamLeadNotes'];
+		
 	}
 }
 else {
@@ -371,8 +372,8 @@ if(isset($_POST['btnSave']))
 				<label class="col-lg-3 control-label">Rabies Vaccinated?</label>
 				<div class="col-lg-8">
 					<div class="checkbox">
-						<input type="radio" name="rabies" value="Yes" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'Yes') echo ' checked="checked"';?>> Yes
-						<input type="radio" name="rabies" value="No" <?php if (isset($_POST['rabies']) && $_POST['rabies'] == 'No') echo ' checked="checked"';?>> No
+						<input type="radio" name="rabies" value="Yes" <?php if ($rabies == 'Yes') echo ' checked="checked"';?>> Yes
+						<input type="radio" name="rabies" value="No" <?php if ($rabies == 'No') echo ' checked="checked"';?>> No
 					</div>
 				</div>
 			</div>
@@ -380,8 +381,8 @@ if(isset($_POST['btnSave']))
 				<label class="col-lg-3 control-label">Permit to rehabilitate wildlife in Virginia?</label>
 				<div class="col-lg-8">
 					<div class="checkbox" >
-						<input type="radio" name="permit" value="Yes" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'Yes') echo ' checked="checked"';?>> Yes
-						<input type="radio" name="permit" value="No" <?php if (isset($_POST['permit']) && $_POST['permit'] == 'No') echo ' checked="checked"';?>> No
+						<input type="radio" name="permit" value="Yes" <?php if ($permit == 'Yes') echo ' checked="checked"';?>> Yes
+						<input type="radio" name="permit" value="No" <?php if ($permit == 'No') echo ' checked="checked"';?>> No
 					</div>
 				</div>
 			</div>
