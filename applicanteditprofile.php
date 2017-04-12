@@ -397,20 +397,16 @@ if(isset($_POST['btnCancel']))
 												</div>
 											</div>
 											<hr>
-
 										</div>
 									</div>
 								</div>
-
-  
 							</div>
 							<div class="preview"></div>
 						</div>
-                            
-
                     </section>
 
                     <!-- Main Section End -->
+					
                 </div>
             </div>
             <div id="push"></div>
