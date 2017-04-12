@@ -320,4 +320,14 @@
 			</div>
 		</section>
 	</div>
+	
+	<footer>
+        <div id="footer-inner" class="container">
+            <div>
+                <span class="pull-right" class="footer" > &copy; 2017. All rights reserved. Owl Team
+            </div>
+        </div>
+    </footer>
+	
 </body>
+</html>
