@@ -89,26 +89,23 @@ if ($result->num_rows > 0) {
             <nav class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                      </button>
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
                     </div>
     
-                  <a class="navbar-brand" href="applicantprofile.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul id="main-nav" class="nav navbar-nav">
-                            <li class="action">
-
-                            <li class="active"><a href="applicantprofile.php">Profile</a></li>
-                            <li><a href="index.php">Sign Out</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                      
-                    </div>
+					<a class="navbar-brand" href="applicantprofile.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul id="main-nav" class="nav navbar-nav">
+							<li class="action">
+							<li class="active"><a href="applicantprofile.php">Profile</a></li>
+							<li><a href="index.php">Sign Out</a></li>
+							</li>
+						</ul>
+					</div>
                 </div>
             </nav>
         </header>
@@ -116,123 +113,153 @@ if ($result->num_rows > 0) {
         <section>
             <div class="container">
                 <div class="row">
-
-    
     
                     <!-- Main Section -->
 
-
-
                     <section class="col-md-9 no-padding">
                         <div class="main-section">
-                        
                             <div class="container-fluid no-padding">
                                 <div class="col-md-7 no-padding">
                                     <div class="main-content panel panel-default no-margin">
                                         <header class="panel-heading clearfix">
-
-                                             <img src="images/johndoe.png" class="img-responsive col-sm-4"></span>
-                                             <hgroup>
-                                                 <a href="applicanteditprofile.php" class="btn btn-default pull-right" rel="#overlay">Edit Profile<i class="fa fa-question-circle"></i></a>
-                                                 <h2>
-                                                     <?php echo $first . " " . $last ?>
-                                                 </h2>
-                                                 <h4>Applicant</h4>
-                                             </hgroup>
-                                            
+											<img src="images/johndoe.png" class="img-responsive col-sm-4"></span>
+											<hgroup>
+												<a href="applicanteditprofile.php" class="btn btn-default pull-right" rel="#overlay">Edit Profile<i class="fa fa-question-circle"></i></a>
+												<h2>
+													<?php echo $first . " " . $last ?>
+												</h2>
+												<h4>Applicant</h4>
+											</hgroup>
                                         </header>
-<div class="content">
-                                        <h3>Contact Information</h3>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <strong>Email - </strong> <?php echo $email ?>
-  </div>
-</div>                                        
-<div class="panel panel-default">
-  <div class="panel-body">
-    <strong>Phone - </strong> <?php echo $phone ?>
-  </div>
-</div>    
-<div class="panel panel-default">
-  <div class="panel-body">
-    <strong>Address - </strong> <?php echo $street . ", " . $city . ", " . $state . " " . $zipcode ?>
-  </div>
-</div>    
-
-                                           
-                                        <h3>Outreach</h3>
-                                        <div class="row">
-                                        <div class="col-sm-6">
-                                        <h4>Tours</h4>
-                                        <ul>
-                                            <li>Shadow: 1</li>
-                                            <li>Intro Portion: Yes</li>
-                                            <li>Lead Alone: No</li>
-                                        </ul>  </div>                                        <div class="col-sm-6"><h4>Off-Site Displays</h4>
-               <p>Yes</p></div></div>
-<div class="row col-sm-12">
-<h4>Animal Handling</h4>
-</div>
-<div class="row">
-<div class="col-sm-6">
-<p>Reptile Handling Overview:</p>
-<ul>      <li>Alligator</li>
-            <li>Iguana</li>
-                  <li>Chameleon</li></ul>
-<p>No additional notes</p></div>
-
-<div class="col-sm-6">
-<p>Raptor Handling Overview:</p>
-                                        <ul>
-                                            <li>Falconers Knot: No</li>
-                                            <li>Parrot</li>
-                                            <li>Flamingo</li>
-                                            <li>Raven</li> 
-                                            <li>Penguin</li>
-                                                                                    </ul>
-                                            <p>No additional notes</p>
-
-                                    </div></div></div>
-                               </div></div>
+										<div class="content">
+											<h3>Contact Information</h3>
+											<div class="panel panel-default">
+												<div class="panel-body">
+													<strong>Email - </strong> <?php echo $email ?>
+												</div>
+											</div>                                        
+											<div class="panel panel-default">
+												<div class="panel-body">
+													<strong>Phone - </strong> <?php echo $phone ?>
+												</div>
+											</div>    
+											<div class="panel panel-default">
+												<div class="panel-body">
+													<strong>Address - </strong> <?php echo $street . ", " . $city . ", " . $state . " " . $zipcode ?>
+												</div>
+											</div>    
+											<h3>Outreach</h3>
+											<div class="row">
+												<div class="col-sm-6">
+													<h4>Tours</h4>
+													<ul>
+														<li>Shadow: 1</li>
+														<li>Intro Portion: Yes</li>
+														<li>Lead Alone: No</li>
+													</ul>
+												</div>
+												<div class="col-sm-6">
+													<h4>Off-Site Displays</h4>
+													<p>Yes</p>
+												</div>
+											</div>
+											<div class="row col-sm-12">
+												<h4>Animal Handling</h4>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+												<p>Reptile Handling Overview:</p>
+													<ul>
+														<li>Alligator</li>
+														<li>Iguana</li>
+														<li>Chameleon</li>
+													</ul>
+													<p>No additional notes</p>
+												</div>
+												<div class="col-sm-6">
+													<p>Raptor Handling Overview:</p>
+													<ul>
+														<li>Falconers Knot: No</li>
+														<li>Parrot</li>
+														<li>Flamingo</li>
+														<li>Raven</li> 
+														<li>Penguin</li>
+													</ul>
+													<p>No additional notes</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
                                 <div class="preview-pane col-md-5">
-                                   <div class="panel panel-default"><div class="panel-body"><h4>Team Lead Notes:</h4>  </ul>
-		<?php echo ($teamLeadNotes);?>
-                                    </div></div>    
-                                         <ul class="additionalinfo" class="fa-ul pull-right">
-                                            <h2>Additional info</h2>
-                                            <h4>Allergies</h4> <?php echo $allergiesYN . $allergies?>
-                                            <h4>Outside/Physical Limitations</h4> <?php echo $outsideYN . $outside ?>
-                                            <h4>Rabies Vaccinated</h4> <?php echo $rabiesYN ?>
-                                            <h4>Permit</h4> <?php echo $permitYN ?>
-                                            <h4>Emergency Contact</h4> Sean Young (540)555-8202
-
+									<div class="panel panel-default">
+										<div class="panel-body">
+											<h4>Team Lead Notes:</h4>
+											<?php echo ($teamLeadNotes);?>
+										</div>
+										</div>    
+											 <ul class="additionalinfo" class="fa-ul pull-right">
+												<h2>Additional info</h2>
+												<h4>Allergies</h4> <?php echo $allergiesYN . $allergies?>
+												<h4>Outside/Physical Limitations</h4> <?php echo $outsideYN . $outside ?>
+												<h4>Rabies Vaccinated</h4> <?php echo $rabiesYN ?>
+												<h4>Permit</h4> <?php echo $permitYN ?>
+												
+												
+												
+												
+												
+												
+												
+												<h4>Emergency Contact</h4> Sean Young (540)555-8202
+												
+												
+												
+												
+												
+												
+												
+												
+												
                                        
-    <h4>Weekly Availability</h4>  </ul>
-    <img src="images/joecalendar.png" alt="calendar" class="img-responsive">
+												<h4>Weekly Availability</h4>
+												
+												
+												
+												
+												
+												
+										<img src="images/joecalendar.png" alt="calendar" class="img-responsive">
 
-                                    </div>
-                                    <div class="preview">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+										
+										
+										
+										
+										
+										
+										
+								</div>
+								<div class="preview"></div>
+							</div>
+						</div>
+					</section>
 
-                    </section>
+					<!-- Main Section End -->
+				
+				</div>
+			</div>
+		</div>
+		<div id="push"></div>
+	</section>
+</div>
 
-                    <!-- Main Section End -->
-                </div>
-            </div>
-            <div id="push"></div>
-        </section>
-    </div>
-    
-    <footer>
-        <div id="footer-inner" class="container">
-            <div>
-                <span class="pull-right"> &copy; 2017. All rights reserved. Owl Team
-            </div>
-        </div>
-    </footer>
+<footer>
+	<div id="footer-inner" class="container">
+		<div>
+			<span class="pull-right"> &copy; 2017. All rights reserved. Owl Team
+		</div>
+	</div>
+</footer>
 
 
     <!-- render blocking scripts -->
