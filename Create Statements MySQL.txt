@@ -180,13 +180,13 @@ CONSTRAINT FK_Reptile_OutreachID FOREIGN KEY (Reptile_OutreachID) REFERENCES Out
 CONSTRAINT FK_Reptile_AnimalID FOREIGN KEY (Reptile_AnimalID) REFERENCES Animal(Animal_ID));
 
 CREATE TABLE Bird (
-Bird_ID	                INTEGER NOT NULL AUTO_INCREMENT,
-Bird_OutreachID	        INTEGER NOT NULL,
-Bird_AnimalID	            INTEGER NOT NULL,
-Bird_Name	                VARCHAR(30),
-Bird_Handle	            CHAR(1),
+Bird_ID	                	INTEGER NOT NULL AUTO_INCREMENT,
+Bird_OutreachID	        	INTEGER NOT NULL,
+Bird_AnimalID	        	INTEGER NOT NULL,
+Bird_Name	            	VARCHAR(30),
+Bird_Handle	            	CHAR(1),
 Bird_RemoveFromEnclosure	CHAR(1),
-Bird_CrateProcedure	    CHAR(1),
+Bird_CrateProcedure	    	CHAR(1),
 Bird_Notes	                VARCHAR(2000),
 CONSTRAINT PK_Bird PRIMARY KEY (Bird_ID),
 CONSTRAINT Bird_OutreachID FOREIGN KEY (Bird_OutreachID) REFERENCES Outreach(Outreach_ID),
@@ -344,7 +344,7 @@ CONSTRAINT FK_VolShift_Department FOREIGN KEY (VolShift_Department) REFERENCES D
 
 CREATE TABLE AvailabilityPerson (
 AvailabilityPerson_ID	                INTEGER NOT NULL AUTO_INCREMENT,
-AvailabilityPerson_PersonID	        INTEGER NOT NULL,
+AvailabilityPerson_PersonID	        	INTEGER NOT NULL,
 AvailabilityPerson_SeasonalYearRound	VARCHAR(10),
 AvailabilityPerson_Notes	            VARCHAR(2000),
 CONSTRAINT PK_AvailabilityPerson PRIMARY KEY (AvailabilityPerson_ID),
