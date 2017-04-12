@@ -74,26 +74,24 @@ $events = $req->fetchAll();
             <nav class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                      </button>
-                      <a class="navbar-brand" href="calendar2.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="calendar2.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     </div>
-    
                   
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul id="main-nav" class="nav navbar-nav">
                             <li class="action">
-							<li class="active"><a href="calendar2.php">Calendar</a></li>
-							<li><a href="profilesearch.php">Search</a></li>							
-                            <li><a href="accountProfile.php">Account</a></li>                          
-                            <li><a href="index.php">Sign Out</a></li>                     
+								<li class="active"><a href="calendar2.php">Calendar</a></li>
+								<li><a href="profilesearch.php">Search</a></li>							
+								<li><a href="accountProfile.php">Account</a></li>                          
+								<li><a href="index.php">Sign Out</a></li>                     
                             </li>
-							</ul>
-                      
+						</ul>
                     </div>
                 </div>
             </nav>
@@ -102,351 +100,302 @@ $events = $req->fetchAll();
         <section>
             <div class="container">
                 <div class="row">
-
-    
     
                     <!-- Main Section -->
     
                     <section class="col-md-9 no-padding">
                         <div class="main-section">
-
                             <div class="main-content panel panel-default">
                                 <header class="panel-heading clearfix">
-                                    
-                                    <h2 class="panel-title col-sm-3">
-                                        Calendar
-                                    </h2>
-                                                                                     <button id="btnPress" class="btn btn-default pull-right col-sm-3" rel="#overlay">Create Event<i class="fa fa-question-circle"></i></button>
+                                    <h2 class="panel-title col-sm-3">Calendar</h2>
+									<button id="btnPress" class="btn btn-default pull-right col-sm-3" rel="#overlay">Create Event<i class="fa fa-question-circle"></i></button>
                                 </header>
                                 <section class="panel-body">
                                    <div id="calendar" class="col-centered"></div> 
                                 </section>
                             </div>
-                          </div>
-        
-                      </section>
+						</div>
+					</section>
 
-                <!-- Main Section End -->
+					<!-- Main Section End -->
 
 
-            </div>
-            <div id="push"></div>
+				</div>
+				<div id="push"></div>
         
 				<!-- Modal -->
-		<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
-			<div class="modal-content">
-			<form class="form-horizontal" method="POST" action="addEvent.php">
-			
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Event</h4>
-			  </div>
-			  <div class="modal-body">
 				
-				  <div class="form-group">
-					<label for="title" class="col-sm-2 control-label">Title:</label>
-					<div class="col-sm-10">
-					  <input type="text" name="title" class="form-control" id="title" placeholder="Title" required>
-					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="color" class="col-sm-2 control-label">Program:</label>
-					<div class="col-sm-10">
-					  <select name="color" class="form-control" id="color" required>
-						  <option value="">Choose</option>
-						  <option style="color:#0033cc;" value="#0033cc">&#9724; Outreach Team Event</option>
-						  <option style="color:#006600;" value="#006600">&#9724; Vet Team Event</option>
-						  <option style="color: #cc0000;" value="#cc0000">&#9724; Animal Care Event</option>						  
-						  <option style="color: #0099cc;" value="#0099cc">&#9724; Outreach Volunteer</option>
-						  <option style="color:#009966;" value="#009966">&#9724; Vet Team Volunteer</option>
-						  <option style="color:#cc6600;" value="#cc6600">&#9724; Animal Care Volunteer</option>
-						  
-						</select>
-					</div>
-				  </div>
-				  
-				  
-				  <div class="form-group">
-					<label for="start" class="col-sm-2 control-label">Start date:</label>
-					<div class="col-sm-10">
-					  <input pattern=".{19,19}" min="2017-02-01T00:00:00" type="datetime-local" name="start" class="form-control" id="start" required>
-					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="end" class="col-sm-2 control-label">End date:</label>
-					<div class="col-sm-10">
-					  <input pattern=".{19,19}" min="2017-02-01T00:00:00" type="datetime-local" name="end" class="form-control" id="end" required>
-					</div>
-				  </div>
-				  
-				
-			  </div>
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary">Save changes</button>
-			  </div>
-			</form>
-			</div>
-		  </div>
-		</div>
-		
-		
-		
-		<!-- Modal -->
-		<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
-			<div class="modal-content">
-			<form class="form-horizontal" method="POST" action="editEventTitle.php">
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Edit Event</h4>
-			  </div>
-			  <div class="modal-body">
-				
-				  <div class="form-group">
-					<label for="title" class="col-sm-2 control-label">Title</label>
-					<div class="col-sm-10">
-					  <input type="text" name="title" class="form-control" id="title" placeholder="Title" required>
-					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="color" class="col-sm-2 control-label">Color</label>
-					<div class="col-sm-10">
-					  <select name="color" class="form-control" id="color" required>
-						  <option value="">Choose</option>
-						  <option style="color:#0033cc;" value="#0033cc">&#9724; Outreach Team Event</option>
-						  <option style="color:#006600;" value="#006600">&#9724; Vet Team Event</option>
-						  <option style="color: #cc0000;" value="#cc0000">&#9724; Animal Care Event</option>						  
-						  <option style="color: #0099cc;" value="#0099cc">&#9724; Outreach Volunteer</option>
-						  <option style="color:#009966;" value="#009966">&#9724; Vet Team Volunteer</option>
-						  <option style="color:#cc6600;" value="#cc6600">&#9724; Animal Care Volunteer</option>
-						  
-						</select>
-					</div>
-				  </div>
-				    <div class="form-group"> 
-						<div class="col-sm-offset-2 col-sm-10">
-						  <div class="checkbox">
-							<label class="text-danger"><input type="checkbox"  name="delete"> Delete event</label>
-							</div>
-						  <div class="checkbox">
-						  <label class="text-danger"><input type="checkbox"  name="approveEvent"> Approve Shift</label>
-						  </div>
+				<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<form class="form-horizontal" method="POST" action="addEvent.php">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="myModalLabel">Add Event</h4>
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+										<label for="title" class="col-sm-2 control-label">Title:</label>
+										<div class="col-sm-10">
+											<input type="text" name="title" class="form-control" id="title" placeholder="Title" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="color" class="col-sm-2 control-label">Program:</label>
+										<div class="col-sm-10">
+											<select name="color" class="form-control" id="color" required>
+												<option value="">Choose</option>
+												<option style="color:#0033cc;" value="#0033cc">&#9724; Outreach Team Event</option>
+												<option style="color:#006600;" value="#006600">&#9724; Vet Team Event</option>
+												<option style="color: #cc0000;" value="#cc0000">&#9724; Animal Care Event</option>						  
+												<option style="color: #0099cc;" value="#0099cc">&#9724; Outreach Volunteer</option>
+												<option style="color:#009966;" value="#009966">&#9724; Vet Team Volunteer</option>
+												<option style="color:#cc6600;" value="#cc6600">&#9724; Animal Care Volunteer</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="start" class="col-sm-2 control-label">Start date:</label>
+										<div class="col-sm-10">
+											<input pattern=".{19,19}" min="2017-02-01T00:00:00" type="datetime-local" name="start" class="form-control" id="start" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="end" class="col-sm-2 control-label">End date:</label>
+										<div class="col-sm-10">
+											<input pattern=".{19,19}" min="2017-02-01T00:00:00" type="datetime-local" name="end" class="form-control" id="end" required>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<button type="submit" class="btn btn-primary">Save changes</button>
+								</div>
+							</form>
 						</div>
-						
 					</div>
-				  
-
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  
-				  <input type="hidden" name="id" class="form-control" id="id">
+				</div>
+		
+				<!-- Modal -->
 				
-				
-			  </div>
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary">Save changes</button>
-			  </div>
-			</form>
+				<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<form class="form-horizontal" method="POST" action="editEventTitle.php">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="myModalLabel">Edit Event</h4>
+								</div>
+								<div class="modal-body">
+						
+								<div class="form-group">
+									<label for="title" class="col-sm-2 control-label">Title</label>
+									<div class="col-sm-10">
+										<input type="text" name="title" class="form-control" id="title" placeholder="Title" required>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="color" class="col-sm-2 control-label">Color</label>
+									<div class="col-sm-10">
+										<select name="color" class="form-control" id="color" required>
+											<option value="">Choose</option>
+											<option style="color:#0033cc;" value="#0033cc">&#9724; Outreach Team Event</option>
+											<option style="color:#006600;" value="#006600">&#9724; Vet Team Event</option>
+											<option style="color: #cc0000;" value="#cc0000">&#9724; Animal Care Event</option>						  
+											<option style="color: #0099cc;" value="#0099cc">&#9724; Outreach Volunteer</option>
+											<option style="color:#009966;" value="#009966">&#9724; Vet Team Volunteer</option>
+											<option style="color:#cc6600;" value="#cc6600">&#9724; Animal Care Volunteer</option>
+											</select>
+									</div>
+								</div>
+									<div class="form-group"> 
+										<div class="col-sm-offset-2 col-sm-10">
+											<div class="checkbox">
+												<label class="text-danger"><input type="checkbox"  name="delete"> Delete event</label>
+											</div>
+											<div class="checkbox">
+												<label class="text-danger"><input type="checkbox"  name="approveEvent"> Approve Shift</label>
+											</div>
+										</div>
+									</div>
+									<input type="hidden" name="id" class="form-control" id="id">
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<button type="submit" class="btn btn-primary">Save changes</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+		
+		
 			</div>
-		  </div>
-		</div>
-		
-		
-    </div>
 	
 	
-	</div>
-    <!-- jQuery Version 1.11.1 -->
-    <script src="js/jquery.js"></script>
+			<!-- jQuery Version 1.11.1 -->
+			<script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-	
-	<!-- FullCalendar -->
-	<link href='fullcalendar.min.css' rel='stylesheet' />
-<link href='fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<script src='lib/moment.min.js'></script>
-<script src='fullcalendar.min.js'></script>
-<script src='gcal.min.js'></script>
-	
-	<script>
+			<!-- Bootstrap Core JavaScript -->
+			<script src="js/bootstrap.min.js"></script>
+			
+			<!-- FullCalendar -->
+			<link href='fullcalendar.min.css' rel='stylesheet' />
+			<link href='fullcalendar.print.min.css' rel='stylesheet' media='print' />
+			<script src='lib/moment.min.js'></script>
+			<script src='fullcalendar.min.js'></script>
+			<script src='gcal.min.js'></script>
+			
+			<script>
+				$(document).ready(function() {
+					
+					$('#calendar').fullCalendar({
+						header: {
+							left: 'prev,next today',
+							center: 'title',
+							right: 'month,agendaWeek,agendaDay'
+						},
+						
+						editable: false,
+						eventLimit: true, // allow "more" link when too many events
+						selectable: false,
+						selectHelper: true,
+						
+						
+						googleCalendarApiKey: 'AIzaSyCOO_AYRid39dFTyP82uqIsbDvQjn571ks',
+						select: function(start, end) {
+							
+							$('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
+							$('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
+							$('#ModalAdd').modal('show');
+						},
+						eventRender: function(event, element) {
+							element.bind('dblclick', function() {
+								$('#ModalEdit #id').val(event.id);
+								$('#ModalEdit #title').val(event.title);
+								$('#ModalEdit #color').val(event.color);
+								$('#ModalEdit').modal('show');
+							});
+						},
+						eventDrop: function(event, delta, revertFunc) { 
 
-	$(document).ready(function() {
-		
-		$('#calendar').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
-			},
+							edit(event);
+
+						},
+						eventResize: function(event,dayDelta,minuteDelta,revertFunc) { 
+
+							edit(event);
+
+						},
 			
-			editable: false,
-			eventLimit: true, // allow "more" link when too many events
-			selectable: false,
-			selectHelper: true,
-			
-			
-			googleCalendarApiKey: 'AIzaSyCOO_AYRid39dFTyP82uqIsbDvQjn571ks',
-			select: function(start, end) {
+						loading: function(bool) {
+							$('#loading').toggle(bool);
+						},
+						eventSources: [
+						'wcvtest@gmail.com'
+						],
+						eventClick: function(event) {
+							if (event.url) {
+								window.open(event.url, 'gcalevent', 'width=1000, height=600');
+								return false;
+							}
+						},
+						events: [
+							<?php foreach($events as $event): 
+					
+							$start = explode(" ", $event['start']);
+							$end = explode(" ", $event['end']);
+							if($start[1] == '00:00:00'){
+								$start = $start[0];
+							}else{
+								$start = $event['start'];
+							}
+							if($end[1] == '00:00:00'){
+								$end = $end[0];
+							}else{
+								$end = $event['end'];
+							}
+							?>
+								{
+									id: '<?php echo $event['id']; ?>',
+									title: '<?php echo $event['title']; ?>',
+									start: '<?php echo $start; ?>',
+									end: '<?php echo $end; ?>',
+									color: '<?php echo $event['color']; ?>',
+								},
+								<?php endforeach; ?>
+						]
+					});
 				
-				$('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
-				$('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
-				$('#ModalAdd').modal('show');
-			},
-			eventRender: function(event, element) {
-				element.bind('dblclick', function() {
-					$('#ModalEdit #id').val(event.id);
-					$('#ModalEdit #title').val(event.title);
-					$('#ModalEdit #color').val(event.color);
-					$('#ModalEdit').modal('show');
-				});
-			},
-			eventDrop: function(event, delta, revertFunc) { 
+					function edit(event){
+						start = event.start.format('YYYY-MM-DD HH:mm:ss');
+						if(event.end){
+							end = event.end.format('YYYY-MM-DD HH:mm:ss');
+						}else{
+							end = start;
+						}
+						
+						id =  event.id;
+						
+						Event = [];
+						Event[0] = id;
+						Event[1] = start;
+						Event[2] = end;
+						
+						$.ajax({
+						 url: 'editEventDate.php',
+						 type: "POST",
+						 data: {Event:Event},
+						 success: function(rep) {
+								if(rep == 'OK'){
+									alert('Saved');
+								}else{
+									alert('Could not be saved. Try again.'); 
+								}
+							}
+						});
+						
+						$.ajax({
+						 url: 'editEventDate2.php',
+						 type: "POST",
+						 data: {Event:Event},
+						 success: function(rep) {
 
-				edit(event);
-
-			},
-			eventResize: function(event,dayDelta,minuteDelta,revertFunc) { 
-
-				edit(event);
-
-			},
-			
-			
-			
-			
-			
-			loading: function(bool) {
-				$('#loading').toggle(bool);
-			},
-			eventSources: [
-        'wcvtest@gmail.com'
-    ],
-	eventClick: function(event) {
-    if (event.url) {
-        window.open(event.url, 'gcalevent', 'width=1000, height=600');
-        return false;
-    }
-	},
-			events: [
-			<?php foreach($events as $event): 
-			
-				$start = explode(" ", $event['start']);
-				$end = explode(" ", $event['end']);
-				if($start[1] == '00:00:00'){
-					$start = $start[0];
-				}else{
-					$start = $event['start'];
-				}
-				if($end[1] == '00:00:00'){
-					$end = $end[0];
-				}else{
-					$end = $event['end'];
-				}
-			?>
-				{
-					id: '<?php echo $event['id']; ?>',
-					title: '<?php echo $event['title']; ?>',
-					start: '<?php echo $start; ?>',
-					end: '<?php echo $end; ?>',
-					color: '<?php echo $event['color']; ?>',
-				},
-			<?php endforeach; ?>
-			]
-		});
-		
-		function edit(event){
-			start = event.start.format('YYYY-MM-DD HH:mm:ss');
-			if(event.end){
-				end = event.end.format('YYYY-MM-DD HH:mm:ss');
-			}else{
-				end = start;
-			}
-			
-			id =  event.id;
-			
-			Event = [];
-			Event[0] = id;
-			Event[1] = start;
-			Event[2] = end;
-			
-			$.ajax({
-			 url: 'editEventDate.php',
-			 type: "POST",
-			 data: {Event:Event},
-			 success: function(rep) {
-					if(rep == 'OK'){
-						alert('Saved');
-					}else{
-						alert('Could not be saved. Try again.'); 
+							}
+						});
 					}
+					
+				});
+			</script>
+
+			<script>
+				// Get the modal
+				var modal = document.getElementById('ModalAdd');
+
+				// Get the button that opens the modal
+				var btn = document.getElementById("btnPress");
+
+				// When the user clicks the button, open the modal 
+				btn.onclick = function() {
+					$('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
+								$('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
+								$('#ModalAdd').modal('show');
 				}
-			});
-			
-			$.ajax({
-			 url: 'editEventDate2.php',
-			 type: "POST",
-			 data: {Event:Event},
-			 success: function(rep) {
+			</script>
+		</section>
+	</div>
 
-				}
-			});
-		}
-		
-	});
-
-</script>
-
-<script>
-// Get the modal
-var modal = document.getElementById('ModalAdd');
-
-// Get the button that opens the modal
-var btn = document.getElementById("btnPress");
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    $('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
-				$('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
-				$('#ModalAdd').modal('show');
-}
-
-</script>
-
-
-
-</section>
-
-    <footer>
-        <div id="footer-inner" class="container">
-            <div>
-                <span class="pull-right" class="footer" > &copy; 2017. All rights reserved. Owl Team
-            </div>
-        </div>
-    </footer>
-    <!-- render blocking scripts -->
+	<footer>
+		<div id="footer-inner" class="container">
+			<div>
+				<span class="pull-right" class="footer" > &copy; 2017. All rights reserved. Owl Team
+			</div>
+		</div>
+	</footer>
+	<!-- render blocking scripts -->
 	<script src="js/jquery-ui.min.js"></script>
 
-
-    <!-- Main Script -->
-    <script src="js/global.js"></script>
-
-
-
-
-
- 
-
-  
+	<!-- Main Script -->
+	<script src="js/global.js"></script>
 </body>
 </html>

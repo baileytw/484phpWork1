@@ -46,8 +46,6 @@ else {
 $conn->close();
 ?>
 
-
-
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -91,8 +89,7 @@ $conn->close();
                             <li class="active"><a href="accountProfile.php">Account</a></li>                          
                             <li><a href="index.php">Sign Out</a></li>                     
                             </li>
-							</ul>
-                      
+						</ul>
                     </div>
                 </div>
             </nav>
@@ -101,55 +98,40 @@ $conn->close();
         <section>
             <div class="container">
                 <div class="row">
-
-    
     
                     <!-- Main Section -->
 
-
-
                     <section class="col-md-9 no-padding">
                         <div class="main-section">
-                        
                             <div id="centered">
                                 <div class="col-md-7 no-padding">
                                     <div class="main-content panel panel-default no-margin">
                                         <header class="panel-heading clearfix">
-
-                                           
-                                             <hgroup>
+											<hgroup>
                                                  <a href="editAccount.php" class="btn btn-default pull-right" rel="#overlay">Edit Account<i class="fa fa-question-circle"></i></a>
                                                  <h2>
-                                                     <?php echo $first . " " . $last?>
+													<?php echo $first . " " . $last?>
                                                  </h2>
                                                  <h4>Team Lead</h4>
-                                             </hgroup>
-                                            
+											</hgroup>
                                         </header>
-<div class="content">
-                                        <h3>Contact Information</h3>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <strong>Email - </strong> <?php echo $email ?>
-  </div>
-</div>                                        
-<div class="panel panel-default">
-  <div class="panel-body">
-    <strong>Phone - </strong> <?php echo $phone ?>
-  </div>
-</div>    
-
-  
-</div>  
- 
-
-                                           
+										<div class="content">
+											<h3>Contact Information</h3>
+											<div class="panel panel-default">
+												<div class="panel-body">
+													<strong>Email - </strong> <?php echo $email ?>
+												</div>
+											</div>                                        
+											<div class="panel panel-default">
+												<div class="panel-body">
+												<strong>Phone - </strong> <?php echo $phone ?>
+												</div>
+											</div>    
+										</div>  
                                         <h3>Department - <strong>Outreach</strong></h3>
-                                       
-
                                     </div>
                                     <div class="preview">
-                                    </div>
+									</div>
                                 </div>
                             </div>
                         </div>
@@ -157,6 +139,7 @@ $conn->close();
                     </section>
 
                     <!-- Main Section End -->
+					
                 </div>
             </div>
             <div id="push"></div>

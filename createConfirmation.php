@@ -21,20 +21,19 @@
 </head>
 <body class="login">
     <div class="login-box main-content panel panel-default">
-      <header class="panel-heading"><img src="../484phpWork1/images/logo_small.png" alt="Wildlife Logo"></header>
+		<header class="panel-heading"><img src="../484phpWork1/images/logo_small.png" alt="Wildlife Logo"></header>
     	<section class="panel-body">
-<ul><li>&nbsp;Thank you for creating an account/profile!</li></ul>
+			<ul><li>&nbsp;Thank you for creating an account/profile!</li></ul>
 
-<!--clock out form-->
-<form id="form" action="index.php" method="post" class="form-horizontal">
-
-          <div class="form-group">
-            <div class="col-sm-2 col-sm-offset-3">
-              <button class="btn btn-default" type="submit">Return to Login Screen</button>
-            </div>
-          </div>
-</form>
-    		
+			<!--clock out form-->
+			
+			<form id="form" action="index.php" method="post" class="form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-2 col-sm-offset-3">
+						<button class="btn btn-default" type="submit">Return to Login Screen</button>
+					</div>
+				</div>
+			</form>
     	</section>
     </div>
 </body>

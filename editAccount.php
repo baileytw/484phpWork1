@@ -149,15 +149,14 @@ if(isset($_POST['btnSave']))
             <nav class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                      </button>
-                      <a class="navbar-brand" href="calendar2.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="calendar2.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     </div>
-                  
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul id="main-nav" class="nav navbar-nav">
@@ -168,121 +167,102 @@ if(isset($_POST['btnSave']))
                             <li><a href="index.php">Sign Out</a></li>                     
                             </li>
 							</ul>
-                      
-                    
-                      
-                    </div>
-                </div>
-            </nav>
-        </header>
-        
-        <section>
-            <div class="container">
-                <div class="row">
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+					
+		<section>
+			<div class="container">
+				<div class="row">
 
-    
-    
-                    <!-- Main Section -->
+					<!-- Main Section -->
 
+					<section class="col-md-9 no-padding">
+						<div class="main-section">
+							<div class="container-fluid no-padding">
+								<div class="col-md-12 no-padding">
+									<div class="main-content panel panel-default no-margin">
+										<header class="panel-heading clearfix"></header>
+										<div class="content">
+											<h3 class="col-md-6">Edit Account Information</h3>
+											<div class="container">
+												<hr>
+												<div class="row">
+												
+													<!-- left column -->
+													
+													<!-- edit form column -->
+													
+													<div class="col-md-7 col-md-offset-1 personal-info">
+														<form class="form-horizontal" method="post" role="form">
+															<div class="form-group">
+																<label class="col-lg-3 control-label">First Name:</label>
+																<div class="col-lg-8">
+																	<input class="form-control" name="firstName" value="<?php echo ($first);?>" maxlength="20" type="text" required="required">
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="col-lg-3 control-label">Last Name:</label>
+																<div class="col-lg-8">
+																	<input class="form-control" name="lastName" value="<?php echo ($last);?>" maxlength="20" type="text" required="required" >
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="col-lg-3 control-label">Email:</label>
+																<div class="col-lg-8">
+																	<input class="form-control" name="email" value="<?php echo ($email);?>" maxlength="254" type="email" required="required" >
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="col-lg-3 control-label">Phone:</label>
+																<div class="col-lg-8">
+																	<input class="form-control" name="phone" value="<?php echo ($phone);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555' required="required"> 
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="col-md-3 control-label">Change Password?</label>
+																<div class="col-md-8"></div>
+															</div>
+															<div class="form-group">
+																<label class="col-md-3 control-label">Password:</label>
+																<div class="col-md-8">
+																	<input class="form-control" name="password" type="password">
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="col-md-3 control-label">Confirm password:</label>
+																<div class="col-md-8">
+																	<input class="form-control" name="check" type="password">
+																</div>
+															</div>
+															<div class="form-group">
+																<label class="col-md-3 control-label"></label>
+																<div class="col-md-8">
+																	<input type="submit" name="btnSave" class="btn btn-primary" value="Save Changes">
+																	<span></span>
+																	<input type="submit" name="btnCancel" class="btn btn-default" formnovalidate value="Cancel">
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+											<hr>
+										</div>
+								   </div>
+								</div>
+							</div>
+							<div class="preview"></div>
+						</div>
+					</section>
+				</div>
+			</div>
 
-
-                    <section class="col-md-9 no-padding">
-                        <div class="main-section">
-                        
-                            <div class="container-fluid no-padding">
-                                <div class="col-md-12 no-padding">
-                                    <div class="main-content panel panel-default no-margin">
-                                        <header class="panel-heading clearfix">
-
-                                             
-
-                                            
-                                        </header>
-<div class="content">
-                                        <h3 class="col-md-6">Edit Account Information</h3>
-                                             
-<div class="container">
-  	<hr>
-	<div class="row">
-      <!-- left column -->
-
-      
-      <!-- edit form column -->
-      <div class="col-md-7 col-md-offset-1 personal-info">
-        
-        <form class="form-horizontal" method="post" role="form">
-          <div class="form-group">
-            <label class="col-lg-3 control-label">First Name:</label>
-            <div class="col-lg-8">
-              <input class="form-control" name="firstName" value="<?php echo ($first);?>" maxlength="20" type="text" required="required">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Last Name:</label>
-            <div class="col-lg-8">
-              <input class="form-control" name="lastName" value="<?php echo ($last);?>" maxlength="20" type="text" required="required" >
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Email:</label>
-            <div class="col-lg-8">
-              <input class="form-control" name="email" value="<?php echo ($email);?>" maxlength="254" type="email" required="required" >
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Phone:</label>
-            <div class="col-lg-8">
-			  <input class="form-control" name="phone" value="<?php echo ($phone);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555' required="required"> 
-            </div>
-          </div>
-		<div class="form-group">
-            <label class="col-md-3 control-label">Change Password?</label>
-            <div class="col-md-8">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Password:</label>
-            <div class="col-md-8">
-              <input class="form-control" name="password" type="password">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Confirm password:</label>
-            <div class="col-md-8">
-              <input class="form-control" name="check" type="password">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label"></label>
-            <div class="col-md-8">
-              <input type="submit" name="btnSave" class="btn btn-primary" value="Save Changes">
-              <span></span>
-              <input type="submit" name="btnCancel" class="btn btn-default" formnovalidate value="Cancel">
-            </div>
-          </div>
-        </form>
-      </div>
-  </div>
-</div>
-<hr>
-
-                                    </div>
-                               </div></div>
-
-  
-                                    </div>
-                                    <div class="preview">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </section>
-
-                    <!-- Main Section End -->
-                </div>
-            </div>
-            <div id="push"></div>
+				<!-- Main Section End -->
+	
+		<div id="push"></div>
         </section>
     </div>
     
