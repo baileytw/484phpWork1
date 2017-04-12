@@ -31,7 +31,7 @@ if ($conn->connect_error) {
 } 
 //SQL Statement to gather hash
 $sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
-Person_State, Person_Zipcode, Person_Allergies, Person_OutsideLimitations, Person_RabiesYN, Person_RehabilitateYN, Person_TeamLeadNotes
+Person_State, Person_Zipcode, Person_Allergies, Person_OutsideLimitations, Person_RabiesYN, Person_RehabilitateYN,
 FROM Person WHERE Person_ID = '" . $userID . "'";
 echo sql;
 $result = $conn->query($sql);
@@ -50,7 +50,6 @@ if ($result->num_rows > 0) {
 		$outside = $row['Person_OutsideLimitations'];
 		$rabies = $row['Person_RabiesYN'];
 		$permit = $row['Person_RehabilitateYN'];
-		$teamLeadNotes = $row['Person_TeamLeadNotes'];
 	}
 	$conn->close();
 }
@@ -72,7 +71,6 @@ if(isset($_POST['btnSave']))
 	$outside = $_POST['outside'];
 	$rabies = $_POST['rabies'];
 	$permit = $_POST['permit'];
-	$teamLeadNotes = $_POST['teamLeadNotes'];
 	
 	
 	//If passwords null, don't uppdate password
@@ -119,8 +117,7 @@ if(isset($_POST['btnSave']))
 		}
 		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '$first', Person_LastName ='$last', Person_PhonePrimary = '$phone',
 		Person_Email ='$email', Person_StreetAddress = '$street', Person_City = '$city', Person_State ='$state', Person_Zipcode = '$zipcode',
-		Person_Allergies = '$allergies', Person_OutsideLimitations = '$outside', Person_RabiesYN = '$rabies', Person_RehabilitateYN = '$permit',
-		Person_TeamLeadNotes = '$teamLeadNotes' WHERE Person_ID = " .$userID; 
+		Person_Allergies = '$allergies', Person_OutsideLimitations = '$outside', Person_RabiesYN = '$rabies', Person_RehabilitateYN = '$permit' WHERE Person_ID = " .$userID; 
 		
 		if(!mysqli_query($conn,$query))
 
@@ -376,12 +373,6 @@ if(isset($_POST['btnCancel']))
             <label class="col-lg-3 control-label">Additional Notes</label>
             <div class="col-lg-8">
               <input class="form-control" type="text" value="">
-            </div>
-          </div>
-		  <div class="form-group">
-            <label class="col-lg-3 control-label">Team Lead Notes:</label>
-            <div class="col-lg-8">
-              <textarea class="form-control" name="teamLeadNotes" type="text" rows="2" cols="90" ><?php echo ($teamLeadNotes);?></textarea>
             </div>
           </div>
           <div class="form-group">

@@ -218,6 +218,7 @@ table, th, td {
 							<th>Profile</th>
 							<th>First Name</th> 
 							<th>Last Name</th>
+							<th>Type</th>
 							<th>Email</th>
 							<th>Phone</th>
 						</tr>
@@ -935,6 +936,7 @@ table, th, td {
 									<td><?php echo '<a href="profile2.php?profileID='.$row['Person_ID'].'">View</a>'; ?></td>
 									<td><?php echo $row['Person_FirstName']; ?></td>
 									<td><?php echo $row['Person_LastName']; ?></td>
+									<td><?php echo $row['Person_UserType']; ?></td>
 									<td><?php echo $row['Person_Email']; ?></td>
 									<td><?php echo $row['Person_PhonePrimary']; ?></td>
 									

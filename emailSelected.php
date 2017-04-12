@@ -40,7 +40,7 @@ if(isset($_POST['btnSend'])){
 	
 	foreach($_SESSION['profileEmail'] as $key=>$value)
     {
-		$mail->addAddress($value);     // recipient
+		$mail->addBCC($value);     // recipient
     }
 		
 
