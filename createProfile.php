@@ -153,23 +153,20 @@ if(isset($_POST['upload']))
             <nav class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                      </button>
-                      <a class="navbar-brand" href="profile.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="profile.php"><img src="../484phpWork1/images/logo_short.png" alt="Wildlife Small Logo"></a>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul id="main-nav" class="nav navbar-nav">
                             <li class="action">
-
                             <li class="active"><a href="createProfile.php">Create Profile</a></li>
                             <li><a href="index.php">Back</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+						</ul>
                     </div>
                 </div>
             </nav>
@@ -191,9 +188,9 @@ if(isset($_POST['upload']))
 											<h3 class="col-md-6">Enter Profile Information</h3>
 											<div class="col-md-3">
 												<div class="text-center">
-												  <img src="images/johndoe.png" class="avatar img-circle img-responsive" alt="avatar">
-												  <h6>Upload a photo...</h6>
-												  <input type="file" class="form-control">
+													<img src="images/johndoe.png" class="avatar img-circle img-responsive" alt="avatar">
+													<h6>Upload a photo...</h6>
+													<input type="file" class="form-control">
 												</div>
 											</div>
 											<div class="container">
@@ -205,20 +202,18 @@ if(isset($_POST['upload']))
 													<!-- edit form column -->
 											  
 													<div class="col-md-7 col-md-offset-1 personal-info">
-
 													<h3>Personal Info</h3>
-											
 													<form class="form-horizontal" method="post" role="form">
 														<div class="form-group">
 															<label class="col-lg-3 control-label">First Name:</label>
 															<div class="col-lg-8">
-															  <input class="form-control" maxlength="20" name="firstName" value="<?php if (isset($_POST['upload'])) echo ($_POST['firstName']);?>" name="first" required="required">
+																<input class="form-control" maxlength="20" name="firstName" value="<?php if (isset($_POST['upload'])) echo ($_POST['firstName']);?>" name="first" required="required">
 															</div>
 														</div>
 														<div class="form-group">
 															<label class="col-lg-3 control-label">Last Name:</label>
 															<div class="col-lg-8">
-															  <input class="form-control" maxlength="20" name="lastName" value="<?php if (isset($_POST['upload'])) echo ($_POST['lastName']);?>" type="text" required="required">
+																<input class="form-control" maxlength="20" name="lastName" value="<?php if (isset($_POST['upload'])) echo ($_POST['lastName']);?>" type="text" required="required">
 															</div>
 														</div>
 														<div class="form-group">
@@ -316,7 +311,6 @@ if(isset($_POST['upload']))
 															<div class="col-lg-8">
 																<input class="form-control" pattern=".{5}" title="Enter 5 digit zipcode" name="zipcode" value="<?php if (isset($_POST['upload'])) echo ($_POST['zipcode']);?>" type="text" required="required" />
 															</div>
-																
 														</div>
 														<div class="form-group">
 															<label class="col-lg-3 control-label">Allergies?:</label>
@@ -395,7 +389,7 @@ if(isset($_POST['upload']))
 <!-- I DON'T HAVE AN ATTRIBUTE IN THE -->				<label class="col-lg-3 control-label">Additional Notes:</label> 
 <!--PERSON ENTITY FOR NOTES, WILL ADD FOR SPRINT 3--> 
 															<div class="col-lg-8">
-															  <input class="form-control" type="text" value="">
+																<input class="form-control" type="text" value="">
 															</div>
 														</div>
 														<div class="form-group">
