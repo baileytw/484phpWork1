@@ -27,10 +27,6 @@ if(isset($_POST['btnCode'])){
 } 
 ?>
 
-
-
-
-
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -53,33 +49,31 @@ if(isset($_POST['btnCode'])){
 </head>
 <body class="login">
     <div class="login-box main-content panel panel-default">
-      <header class="panel-heading"><img src="../484phpWork1/images/logo_small.png" alt="Wildlife Logo"></header>
-    	  <form id="form" method="post" class="form-horizontal">
+		<header class="panel-heading"><img src="../484phpWork1/images/logo_small.png" alt="Wildlife Logo"></header>
+			<form id="form" method="post" class="form-horizontal">
     			<div class="form-group">
-    			  <div class="col-sm-12">
-				  <p>To create an account, enter code sent to your email or ask a Team Lead.</p>
-      				<input type="text" class="form-control" value="" name="code" required="required" placeholder="Code" />
-    				</div>
+					<div class="col-sm-12">
+						<p>To create an account, enter code sent to your email or ask a Team Lead.</p>
+						<input type="text" class="form-control" value="" name="code" required="required" placeholder="Code" />
+					</div>
     			</div>
-    			
     			<div class="form-group">
-    			  <div class="col-sm-2 col-sm-offset-4">
-      				<button ID="btnCode" name="btnCode" class="btn btn-default" type="submit">Create Account</button>
-      			</div>
-      		</div>
-</form>
+					<div class="col-sm-2 col-sm-offset-4">
+						<button ID="btnCode" name="btnCode" class="btn btn-default" type="submit">Create Account</button>
+					</div>
+				</div>
+			</form>
 
-<!--clock out form-->
-<form id="form" action="index.php" method="post" class="form-horizontal">
-
-          <div class="form-group">
-            <div class="col-sm-2 col-sm-offset-3">
-              <button class="btn btn-default" type="submit">Return to Login Screen</button>
-            </div>
-          </div>
-</form>
-    		
-    	</section>
-    </div>
+			<!--clock out form-->
+			
+			<form id="form" action="index.php" method="post" class="form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-2 col-sm-offset-3">
+						<button class="btn btn-default" type="submit">Return to Login Screen</button>
+					</div>
+				</div>
+			</form>
+						
+	</div>
 </body>
 </html>
