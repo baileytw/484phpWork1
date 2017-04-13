@@ -148,7 +148,12 @@ if(isset($_POST['btnResume']))
          mysqli_close($connection);
          exit;
 	}
-
+	if(isset($_POST['btnAccept'])){
+		
+	}
+	if(isset($_POST['btnReject'])){
+		
+	}
 ?>
 
 
@@ -335,7 +340,7 @@ if ($result->num_rows > 0){
     <h4>Weekly Availability</h4>  </ul>
     <img src="images/joecalendar.png" alt="calendar" class="img-responsive">
 	<div class="form-group">
-		<button name="btnAccept" method="post" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Accept Applicant</button>
+		<button name="btnAccept" method="post" class="btn btn-default" <?php if(($userType != "Applicant") || ($userType != "Rejected")) echo 'style="display:none;"'?> type="submit">Accept Applicant</button>
 		<button name="btnReject" method="post" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Reject Applicant</button>
 	</div>
 	  </div>
