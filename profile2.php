@@ -172,9 +172,48 @@ if(isset($_POST['btnAccept'])){
 
 	else
 	{
+	require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
+	$emailAddress = $_POST['email'];
+	$mail = new PHPMailer;
+	//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+	$mail->isSMTP();                                      // Set mailer to use SMTP
+	$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+	$mail->SMTPAuth = true;                               // Enable SMTP authentication
+	$mail->Username = 'wcvtestemail@gmail.com';                 // SMTP username
+	$mail->Password = '1wildcva';                           // SMTP password
+	$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+	$mail->Port = 587;                                    // TCP port to connect to
+
+	$mail->setFrom('wcvtestemail@gmail', 'Wildlife Center of Virginia');
+
+	$mail->addAddress('seilermr@dukes.jmu.edu');     // recipient... change to $emailAddress
+
+	$mail->Subject = 'Wildlife Center of Virginia Application Update';
+	$mail->Body    = 'Thank you for your interest in the Wildlife Center!<br>
+                  We are pleased to inform you of your new volunteer role at the Wildlife Center. We will be in touch with more information soon!
+                  ';
+	$mail->AltBody = 'Thank you for your interest in the Wildlife Center!<br>
+	  We are pleased to inform you of your new volunteer role at the Wildlife Center. We will be in touch with more information soon!
+	  ';
+
+	
+	$mail->AltBody = $_POST['emailBody'];
+
+	
+	$mail->isHTML(true);                                  // Set email format to HTML
+
+	if(!$mail->send()) {
+	   echo 'Message could not be sent.';
+		echo 'Mailer Error: ' . $mail->ErrorInfo;
+	}
+	 else {
 		$conn->close();
-		header("Location: accepted.php");
+		header("Location: rejected.php");
 		exit();
+
+  
+	}
 	}
 }
 if(isset($_POST['btnReject'])){
@@ -198,9 +237,49 @@ if(isset($_POST['btnReject'])){
 	
 	else
 	{
+		require 'C:\inetpub\wwwroot\PHPMailer\PHPMailerAutoload.php';
+	$emailAddress = $_POST['email'];
+	$mail = new PHPMailer;
+	//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+	$mail->isSMTP();                                      // Set mailer to use SMTP
+	$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+	$mail->SMTPAuth = true;                               // Enable SMTP authentication
+	$mail->Username = 'wcvtestemail@gmail.com';                 // SMTP username
+	$mail->Password = '1wildcva';                           // SMTP password
+	$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+	$mail->Port = 587;                                    // TCP port to connect to
+
+	$mail->setFrom('wcvtestemail@gmail', 'Wildlife Center of Virginia');
+
+	$mail->addAddress('seilermr@dukes.jmu.edu');     // recipient... change to $emailAddress
+
+	$mail->Subject = 'Wildlife Center of Virginia Application Update';
+	$mail->Body    = 'Thank you for your interest in the Wildlife Center!<br>
+                  However, at this time we have decided not to move forward with your application.
+                  ';
+	$mail->AltBody = 'Thank you for your interest in the Wildlife Center!<br>
+	  However, at this time we have decided not to move forward with your application.
+	  ';
+
+	
+	$mail->AltBody = $_POST['emailBody'];
+
+	
+	$mail->isHTML(true);                                  // Set email format to HTML
+
+	if(!$mail->send()) {
+	   echo 'Message could not be sent.';
+		echo 'Mailer Error: ' . $mail->ErrorInfo;
+	}
+	 else {
 		$conn->close();
 		header("Location: rejected.php");
 		exit();
+
+  
+	}
+		
 	}
 }
 ?>
@@ -303,9 +382,23 @@ if(isset($_POST['btnReject'])){
   <div class="panel-body">
     <strong>Address - </strong> <?php echo $street. ', '. $city.', '. $state . ' ' .$zipcode ?>
   </div>
-</div>    
+</div>  
+<div class="row">
+<div class="col-sm-6">
+<h4>Volunteer Hours</h4>
+<ul>
+	<li>YTD Hours: 1</li>
+	<li>Total Hours: 5</li>
+</ul>  </div>                                        
+<div class="col-sm-6">
+<h4>Transport Miles</h4>
+<ul>
+	<li>YTD Miles: 1</li>
+	<li>Total Miles: 5</li>
+</ul>
+</div></div>
 
-                                           
+                                      
                                         <h3>Outreach</h3>
                                         <div class="row">
                                         <div class="col-sm-6">

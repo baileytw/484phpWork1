@@ -157,7 +157,20 @@ $conn->close();
     <strong>Address - </strong> <?php echo $street . ", " . $city . ", " . $state . " " . $zipcode ?>
   </div>
 </div>    
-
+<div class="row">
+<div class="col-sm-6">
+<h4>Volunteer Hours</h4>
+<ul>
+	<li>YTD Hours: 1</li>
+	<li>Total Hours: 5</li>
+</ul>  </div>                                        
+<div class="col-sm-6">
+<h4>Transport Miles</h4>
+<ul>
+	<li>YTD Miles: 1</li>
+	<li>Total Miles: 5</li>
+</ul>
+</div></div>
                                            
                                         <h3>Outreach</h3>
                                         <div class="row">
