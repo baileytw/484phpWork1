@@ -178,18 +178,7 @@ table, th, td {
                                 <option value="firstName">First Name</option>
                             </select> 
 						</div>
-						<div class="form-group">
-                             <select id="pref-days" class="form-control">
-                                <option value="daysA">Days Available</option>
-                                <option value="Monday">Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option>
-                            </select>                               
-                        </div> <!-- form group [Select Team] -->   
+						<!-- form group [Select Team] -->   
 						<div class="form-group">
                             <label class="filter-col" style="margin-right:0;" for="pref-namefilter">Filter By:</label>
                             <select name="pref-roleFilter" id="pref-roleFilter" class="form-control">
@@ -242,7 +231,7 @@ table, th, td {
 						$search = $_POST['pref-search'];
 						$filter = $_POST['pref-selectteam'];
 						$sorts = $_POST['pref-namefilter'];
-						$days = $_POST['pref-days'];
+						
 						$position = $_POST['pref-roleFilter'];
 						
 						
