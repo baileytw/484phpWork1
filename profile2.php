@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 
-
+<?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+?>
 <?php
 //Session variables: KEEP AT TOP
 session_start();
@@ -100,60 +103,106 @@ if(isset($_POST['btnResume']))
          mysqli_close($connection);
          exit;
 	}
-	if(isset($_POST['btnRehabilitation_Permit']))
-	{
-		$connection =  mysqli_connect("localhost","root","Twspike1994?","wildlife")
-                             or die('Database Connection Failed');
-             mysqli_set_charset($connection,'utf-8');
+if(isset($_POST['btnRehabilitation_Permit']))
+{
+	$connection =  mysqli_connect("localhost","root","Twspike1994?","wildlife")
+						 or die('Database Connection Failed');
+		 mysqli_set_charset($connection,'utf-8');
 
-          // Change to whatever necessary Person_ID
-		  $id = $profileID;
-		  $whichDoc = "Rehabilitation_Permit"; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
-          $query = "SELECT Documentation_PersonID, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent
-		  FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'"; 
-          $result = mysqli_query($connection,$query) 
-                     or die('Error, query failed');
-         list($id, $file, $type, $size,$content) =   mysqli_fetch_array($result);
-           //echo $id . $file . $type . $size;
-         header("Content-length: $size");
-         header("Content-type: $type");
-         header("Content-Disposition: attachment; filename=$file");
-         ob_clean();
-         flush();
-         echo $content;
-         mysqli_close($connection);
-         exit; 
-	}
-	if(isset($_POST['btnRabies_Documentation']))
-	{
-		$connection =  mysqli_connect("localhost","root","Twspike1994?","wildlife")
-                             or die('Database Connection Failed');
-             mysqli_set_charset($connection,'utf-8');
+	  // Change to whatever necessary Person_ID
+	  $id = $profileID;
+	  $whichDoc = "Rehabilitation_Permit"; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
+	  $query = "SELECT Documentation_PersonID, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent
+	  FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'"; 
+	  $result = mysqli_query($connection,$query) 
+				 or die('Error, query failed');
+	 list($id, $file, $type, $size,$content) =   mysqli_fetch_array($result);
+	   //echo $id . $file . $type . $size;
+	 header("Content-length: $size");
+	 header("Content-type: $type");
+	 header("Content-Disposition: attachment; filename=$file");
+	 ob_clean();
+	 flush();
+	 echo $content;
+	 mysqli_close($connection);
+	 exit; 
+}
+if(isset($_POST['btnRabies_Documentation']))
+{
+	$connection =  mysqli_connect("localhost","root","Twspike1994?","wildlife")
+						 or die('Database Connection Failed');
+		 mysqli_set_charset($connection,'utf-8');
 
-          // Change to whatever necessary Person_ID
-		  $id = $profileID;
-		  $whichDoc = "Rabies_Documentation"; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
-          $query = "SELECT Documentation_PersonID, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent
-		  FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'";
-          $result = mysqli_query($connection,$query) 
-                     or die('Error, query failed');
-         list($id, $file, $type, $size,$content) =   mysqli_fetch_array($result);
-           //echo $id . $file . $type . $size;
-         header("Content-length: $size");
-         header("Content-type: $type");
-         header("Content-Disposition: attachment; filename=$file");
-         ob_clean();
-         flush();
-         echo $content;
-         mysqli_close($connection);
-         exit;
+	  // Change to whatever necessary Person_ID
+	  $id = $profileID;
+	  $whichDoc = "Rabies_Documentation"; //Change to the docType (Resume, Picture, LetterOfReccomendation1, LetterOfReccomendation2, etc.)
+	  $query = "SELECT Documentation_PersonID, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent
+	  FROM Documentation WHERE Documentation_PersonID = '$id' AND Documentation_TypeOfDocument = '$whichDoc'";
+	  $result = mysqli_query($connection,$query) 
+				 or die('Error, query failed');
+	 list($id, $file, $type, $size,$content) =   mysqli_fetch_array($result);
+	   //echo $id . $file . $type . $size;
+	 header("Content-length: $size");
+	 header("Content-type: $type");
+	 header("Content-Disposition: attachment; filename=$file");
+	 ob_clean();
+	 flush();
+	 echo $content;
+	 mysqli_close($connection);
+	 exit;
+}
+if(isset($_POST['btnAccept'])){
+	$servername = "localhost";
+	$username = "root";
+	$dbpassword = "Twspike1994?";
+	$dbname = "wildlife";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
 	}
-	if(isset($_POST['btnAccept'])){
-		
+	$query = "UPDATE Person SET Person_UserType = 'Volunteer' WHERE Person_ID = " .$profileID; 
+	
+	if(!mysqli_query($conn,$query))
+
+	{
+		echo("Error description: " . mysqli_error($conn));
 	}
-	if(isset($_POST['btnReject'])){
-		
+
+	else
+	{
+		$conn->close();
+		header("Location: accepted.php");
+		exit();
 	}
+}
+if(isset($_POST['btnReject'])){
+	$servername = "localhost";
+	$username = "root";
+	$dbpassword = "Twspike1994?";
+	$dbname = "wildlife";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	}
+	$query = "UPDATE Person SET Person_UserType = 'Rejected' WHERE Person_ID = " .$profileID; 
+	
+	if(!mysqli_query($conn,$query))
+
+	{
+		echo("Error description: " . mysqli_error($conn));
+	}
+	
+	else
+	{
+		$conn->close();
+		header("Location: rejected.php");
+		exit();
+	}
+}
 ?>
 
 
@@ -214,7 +263,7 @@ if(isset($_POST['btnResume']))
             <div class="container">
                 <div class="row">
 
-    
+
     
                     <!-- Main Section -->
 
@@ -340,8 +389,10 @@ if ($result->num_rows > 0){
     <h4>Weekly Availability</h4>  </ul>
     <img src="images/joecalendar.png" alt="calendar" class="img-responsive">
 	<div class="form-group">
-		<button name="btnAccept" method="post" class="btn btn-default" <?php if(($userType != "Applicant") || ($userType != "Rejected")) echo 'style="display:none;"'?> type="submit">Accept Applicant</button>
-		<button name="btnReject" method="post" class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Reject Applicant</button>
+	<form method="post">
+		<button name="btnAccept"  class="btn btn-default" <?php if(($userType != "Applicant") && ($userType != "Rejected")) echo 'style="display:none;"'?> type="submit">Accept Applicant</button>
+		<button name="btnReject"class="btn btn-default" <?php if($userType != "Applicant") echo 'style="display:none;"'?> type="submit">Reject Applicant</button>
+	</form>
 	</div>
 	  </div>
                                     
@@ -360,10 +411,11 @@ if ($result->num_rows > 0){
             <div id="push"></div>
         </section>
     </div>
-    
+
     <footer>
         <div id="footer-inner" class="container">
             <div>
+			    
                 <span class="pull-right"> &copy; 2017. All rights reserved. Owl Team
             </div>
         </div>
