@@ -257,7 +257,7 @@ $events = $req->fetchAll();
 						},
 						
 						editable: false,
-						eventLimit: true, // allow "more" link when too many events
+						eventLimit: true, 
 						selectable: false,
 						selectHelper: true,
 						
