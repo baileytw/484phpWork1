@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-
 <?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+?>
+<?php
+
 //Session variables: KEEP AT TOP
 session_start();
 $userID = $_SESSION['userID'];
@@ -14,8 +18,26 @@ if ($userTypeSession != "Team Lead"){
 	header("Location: restrictedAccess.php");
 	exit();
 }
-
 */
+
+if(isset($_POST['btnExport'])){
+	
+//EXPORT TO EXCEL USING PHPExcel
+date_default_timezone_set('America/New_York');
+
+require_once('PHPExcel.php');
+
+$sheet = array();
+    $sheet[] = array(
+      'First Name',
+      'Last Name',
+      'Email',
+      'YTD Hours',
+	  'Total Hours',
+      'YTD Miles',
+      'Total Miles');
+	  
+	
 //Populate fields code
 $servername = "localhost";
 $username = "root";
@@ -29,21 +51,50 @@ if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
 //SQL Statement to gather info
-$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email FROM Person WHERE Person_ID = " .$userID;
+$sql = "SELECT Person_FirstName, Person_LastName, Person_Email FROM Person";
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
 	while($row = $result->fetch_assoc()) {
-		$first = $row['Person_FirstName'];
-		$last = $row['Person_LastName'];
-		$phone = $row['Person_PhonePrimary'];
-		$email = $row['Person_Email'];
+		
+		$sheet[] = array(
+      $row['Person_FirstName'],
+      $row['Person_LastName'],
+      $row['Person_Email'],
+      'YTD Hours',
+	  'Total Hours',
+      'YTD Miles',
+      'Total Miles');
 	}
 }
 else {
  
 }
 $conn->close();
+
+	
+	
+
+	
+
+
+
+  $doc = new PHPExcel();
+  $doc->setActiveSheetIndex(0);
+
+  $doc->getActiveSheet()->fromArray($sheet, null, 'A1');
+header('Content-Type: application/vnd.ms-excel');
+header('Content-Disposition: attachment;filename="your_name.xls"');
+header('Cache-Control: max-age=0');
+ob_end_clean();
+
+  // Do your stuff here
+  $writer = PHPExcel_IOFactory::createWriter($doc, 'Excel5');
+
+$writer->save('php://output');
+}
+
+
 ?>
 
 <html>
@@ -86,8 +137,8 @@ $conn->close();
                             <li class="action">
 							<li><a href="calendar2.php">Calendar</a></li>
 							<li><a href="profilesearch.php">Search</a></li>	
-							<li><a href="excel.php">Excel</a></li>
-                            <li class="active"><a href="accountProfile.php">Account</a></li>                          
+							<li class="active"><a href="excel.php">Excel</a></li>								
+                            <li><a href="accountProfile.php">Account</a></li>                          
                             <li><a href="index.php">Sign Out</a></li>                     
                             </li>
 						</ul>
@@ -107,29 +158,10 @@ $conn->close();
                             <div id="centered">
                                 <div class="col-md-7 no-padding">
                                     <div class="main-content panel panel-default no-margin">
-                                        <header class="panel-heading clearfix">
-											<hgroup>
-                                                 <a href="editAccount.php" class="btn btn-default pull-right" rel="#overlay">Edit Account<i class="fa fa-question-circle"></i></a>
-                                                 <h2>
-													<?php echo $first . " " . $last?>
-                                                 </h2>
-                                                 <h4>Team Lead</h4>
-											</hgroup>
-                                        </header>
-										<div class="content">
-											<h3>Contact Information</h3>
-											<div class="panel panel-default">
-												<div class="panel-body">
-													<strong>Email - </strong> <?php echo $email ?>
-												</div>
-											</div>                                        
-											<div class="panel panel-default">
-												<div class="panel-body">
-												<strong>Phone - </strong> <?php echo $phone ?>
-												</div>
-											</div>    
-										</div>  
-                                        <h3>Department - <strong>Outreach</strong></h3>
+									<form method="post">
+									<h4>Export Hours/Miles to Excel</h4>
+                                        <input type="submit" name="btnExport" class="btn btn-primary" value="Export to Excel">
+									</form>
                                     </div>
                                     <div class="preview">
 									</div>

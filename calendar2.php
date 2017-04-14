@@ -87,7 +87,8 @@ $events = $req->fetchAll();
                         <ul id="main-nav" class="nav navbar-nav">
                             <li class="action">
 								<li class="active"><a href="calendar2.php">Calendar</a></li>
-								<li><a href="profilesearch.php">Search</a></li>							
+								<li><a href="profilesearch.php">Search</a></li>	
+								<li><a href="excel.php">Excel</a></li>								
 								<li><a href="accountProfile.php">Account</a></li>                          
 								<li><a href="index.php">Sign Out</a></li>                     
                             </li>

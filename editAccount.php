@@ -162,7 +162,8 @@ if(isset($_POST['btnSave']))
                         <ul id="main-nav" class="nav navbar-nav">
                             <li class="action">
 							<li><a href="calendar2.php">Calendar</a></li>
-							<li><a href="profilesearch.php">Search</a></li>							
+							<li><a href="profilesearch.php">Search</a></li>	
+							<li><a href="excel.php">Excel</a></li>
                             <li class="active"><a href="accountProfile.php">Account</a></li>                          
                             <li><a href="index.php">Sign Out</a></li>                     
                             </li>
