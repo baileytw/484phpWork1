@@ -60,30 +60,6 @@ if ($result->num_rows > 0) {
 
 }
 
-	$sql = "SELECT OutreachApp_WhyInterested, OutreachApp_PassionateWildlifeIssue,
-					OutreachApp_ExperiencePublicSpeaking, OutreachApp_BelongToAnimalRightsGroup,
-					OutreachApp_BringToTeam FROM OutreachApp 
-				WHERE OutreachApp_PersonID = '" . $userID . "'";
-
-
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-	// output data of each row
-	while($row = $result->fetch_assoc()) {
-		$whyInterested = $row['OutreachApp_WhyInterested'];
-		$wildlifeIssue = $row['OutreachApp_PassionateWildlifeIssue'];
-		$publicSpeaking = $row['OutreachApp_ExperiencePublicSpeaking'];
-		$wildlifeGroup = $row['OutreachApp_BelongToAnimalRightsGroup'];
-		$bringToTeam = $row['OutreachApp_BringToTeam'];
-	}
-	$conn->close();
-}
-
-
-// 	$conn->close();
-// }
-
 ?>
 
 
@@ -211,31 +187,7 @@ if ($result->num_rows > 0) {
 													</ul>
 													<p>No additional notes</p>
 												</div>
-												<h3>Application Responses</h3>
-											<div class="row">
-												<div class="col-sm-6">
-													<h4>Why Interested</h4>
-													<ul>
-														<strong>Why are you interested in volunteering as an outreach docent? </strong> <?php echo $whyInterested ?>
-													</ul>
-													<h4>Wildlife Issues</h4>
-													<ul>
-														<strong>What’s an environmental or wildlife issue you feel passionately about, and why? </strong> <?php echo $wildlifeIssue ?>
-													</ul>
-													<h4>Public Speaking</h4>
-													<ul>
-														<strong>Do you have prior experience speaking to the public? Please describe. </strong> <?php echo $publicSpeaking ?>
-													</ul>
-													<h4>Wildlife Groups</h4>
-													<ul>
-														<strong>Do you belong to any animal rights groups (PETA, The Humane Society, etc.)? If so, which ones? </strong> <?php echo $wildlifeGroup ?>
-													</ul>
-													<h4>Contributions</h4>
-													<ul>
-														<strong>What do you think you’d bring to the outreach volunteer team?</strong> <?php echo $bringToTeam ?>
-													</ul>
-													
-												</div>
+												
 											</div>
 										</div>
 									</div>
