@@ -452,11 +452,11 @@ CREATE TABLE IF NOT EXISTS `events2` (
 ALTER TABLE `events` AUTO_INCREMENT = 5001;
 
 
-INSERT INTO PERSON(Person_UserName, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('rkrasner@wildlifecenter.org','Team Lead','Raina','Krasner','rkrasner@wildlifecenter.org');
-INSERT INTO PERSON(Person_UserName, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('lhorne@wildlifecenter.org','Team Lead','Leigh-Ann','Horne','lhorne@wildlifecenter.org');
-INSERT INTO PERSON(Person_UserName, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('lmcdaniel@wildlifecenter.org','Team Lead','Linda','McDaniel','lmcdaniel@wildlifecenter.org');
-INSERT INTO PERSON(Person_UserName, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('ebrooks@wildlifecenter.org','Team Lead','Elizabeth','Brooks','ebrooks@wildlifecenter.org');
-INSERT INTO PERSON(Person_UserName, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('wildlife@wildlifecenter.org','Team Lead','Front Desk','Coordinators','wildlife@wildlifecenter.org');
+INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('rkrasner@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Raina','Krasner','rkrasner@wildlifecenter.org');
+INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('lhorne@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Leigh-Ann','Horne','lhorne@wildlifecenter.org');
+INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('lmcdaniel@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Linda','McDaniel','lmcdaniel@wildlifecenter.org');
+INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('ebrooks@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Elizabeth','Brooks','ebrooks@wildlifecenter.org');
+INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('wildlife@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Front Desk','Coordinators','wildlife@wildlifecenter.org');
 
 INSERT INTO Outreach(Outreach_PersonID, Outreach_Department) VALUES(1,1);
 INSERT INTO VetTeam(VetTeam_PersonID, VetTeam_Department) VALUES(2,3);
