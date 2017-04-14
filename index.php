@@ -100,13 +100,18 @@ session_start();
 				// output data of each row
 				while($row = $result->fetch_assoc()) {
 					$logID = $row['MAX(LogHours_ID)'];
+					
 				}
 				$query = "UPDATE LogHours SET LogHours_EndTime = NOW() WHERE LogHours_ID =" . $logID;
+				mysqli_query($conn, $query) or die(mysqli_error($conn));
+				
+				$query = "UPDATE LogHours SET LogHours_DayHours = TIMESTAMPDIFF(HOUR, LogHours_BeginTime, LogHours_EndTime) WHERE LogHours_ID =" .$logID;
 				mysqli_query($conn, $query) or die(mysqli_error($conn));
 				
 				header("Location: clockin.php");
 				exit();
 			}
+			
 		}
 		else {
 		// Not a volunteer, show an error
@@ -169,10 +174,24 @@ session_start();
 				. $_POST['address'] . "','" . $_POST['species'] . "'," . $_POST['hours'] . "," . $_POST['mileage'] . ")";
 
 				mysqli_query($conn, $query) or die(mysqli_error($conn));
+				
+				$sql = "SELECT SUM(LogTransport_Hours), SUM(LogTransport_Miles) FROM LogTransport WHERE LogTransport_TransportID = " . $transporterID;
+				$result = $conn->query($sql);
+				if ($result->num_rows > 0){
+					// output data of each row
+					while($row = $result->fetch_assoc()) {
+						$totalHours = $row['SUM(LogTransport_Hours)'];
+						$totalMiles = $row['SUM(LogTransport_Miles)'];
+					}
+					$query = "UPDATE LogTransport SET LogTransport_TotalHours = '$totalHours', LogTransport_TotalMiles = '$totalMiles' WHERE LogTransport_TransportID = " .$transporterID;
+
+					mysqli_query($conn, $query) or die(mysqli_error($conn));
+				}
 				$conn->close();
 				header("Location: transporter.php");
 				exit();
 			}
+			
 		}
 		else {
 		// Not a volunteer, show an error
