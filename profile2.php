@@ -29,7 +29,6 @@ if ($userTypeSession != "Team Lead"){
 
 
 //THIS IS THE TEAM LEAD VIEW, SO MAKE SURE YOU ARE GETTING THE VOLUNTEER'S INFO AND NOT TEAM LEAD. DO NOT USE THE $userID variable
-//Determine the "userType" of the persons profile in order to determine if "Accept Application" button should be shown
 
 
 
@@ -388,7 +387,7 @@ if(isset($_POST['btnReject'])){
 <div class="col-sm-6">
 <h4>Volunteer Hours</h4>
 <ul>
-	<li>YTD Hours: 1</li>
+	<li>YTD Hours: 1</li> <!--TRANSPORTERS add LogHours total + Transport_Hours to get real total-->
 	<li>Total Hours: 5</li>
 </ul>  </div>                                        
 <div class="col-sm-6">

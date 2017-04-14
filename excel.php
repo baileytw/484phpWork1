@@ -61,7 +61,7 @@ if ($result->num_rows > 0){
       $row['Person_FirstName'],
       $row['Person_LastName'],
       $row['Person_Email'],
-      'YTD Hours',
+      'YTD Hours',			//TRANSPORTERS add LogHours total + Transport_Hours to get real total
 	  'Total Hours',
       'YTD Miles',
       'Total Miles');
