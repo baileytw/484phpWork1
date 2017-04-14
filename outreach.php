@@ -574,63 +574,35 @@ alert('$message');
 												</div>
 												<div class="form-group">
 													<label class="col-sm-2">Availability *</label>
-													<table style="width:80%">
-														<tr>
-															<th></th>
-															<th><label>Morning</label></th>
-															<th><label>Early Afternoon</label></th>
-															<th><label>Late Afternoon</label></th>
-															<th><label>Evening</label></th>
-														</tr>
+													<table style="width:10%">
 														<tr>
 															<td>Sundays</td>
 															<td><label><input type="checkbox" name="text1" value="sun1" /></label></td>
-															<td><label><input type="checkbox" name="text2" value="sun2" /></label></td>
-															<td><label><input type="checkbox" name="text3" value="sun3" /></label></td>
-															<td><label><input type="checkbox" name="text4" value="sun4" /></label></td>
 														</tr>
 														<tr>
 															<td>Mondays</td>
 															<td><label><input type="checkbox" name="text5" value="mon1" /></label></td>
-															<td><label><input type="checkbox" name="text6" value="mon2" /></label></td>
-															<td><label><input type="checkbox" name="text7" value="mon3" /></label></td>
-															<td><label><input type="checkbox" name="text8" value="mon4" /></label></td>
-														</tr>
+															</tr>
 														<tr>
 															<td>Tuesdays</td>
 															<td><label><input type="checkbox" name="text9" value="tue1" /></label></td>
-															<td><label><input type="checkbox" name="text10" value="tue2" /></label></td>
-															<td><label><input type="checkbox" name="text11" value="tue3" /></label></td>
-															<td><label><input type="checkbox" name="text12" value="tue4" /></label></td>
-														</tr>
+															</tr>
 														<tr>
 															<td>Wednesdays</td>
 															<td><label><input type="checkbox" name="text13" value="wed1" /></label></td>
-															<td><label><input type="checkbox" name="text14" value="wed2" /></label></td>
-															<td><label><input type="checkbox" name="text15" value="wed3" /></label></td>
-															<td><label><input type="checkbox" name="text16" value="wed4" /></label></td>
-														</tr>
+															</tr>
 														<tr>
 															<td>Thursdays</td>
 															<td><label><input type="checkbox" name="text17" value="thu1" /></label></td>
-															<td><label><input type="checkbox" name="text18" value="thu2" /></label></td>
-															<td><label><input type="checkbox" name="text19" value="thu3" /></label></td>
-															<td><label><input type="checkbox" name="text20" value="thu4" /></label></td>
-														</tr>
+															</tr>
 														<tr>
 															<td>Fridays</td>
 															<td><label><input type="checkbox" name="text21" value="fri1" /></label></td>
-															<td><label><input type="checkbox" name="text22" value="fri2" /></label></td>
-															<td><label><input type="checkbox" name="text23" value="fri3" /></label></td>
-															<td><label><input type="checkbox" name="text24" value="fri4" /></label></td>
-														</tr>
+															</tr>
 														<tr>
 															<td>Saturdays</td>
 															<td><label><input type="checkbox" name="text25" value="sat1" /></label></td>
-															<td><label><input type="checkbox" name="text26" value="sat2" /></label></td>
-															<td><label><input type="checkbox" name="text27" value="sat3" /></label></td>
-															<td><label><input type="checkbox" name="text28" value="sat4" /></label></td>
-														</tr>
+															</tr>
 													</table>
 												</div>
 												
