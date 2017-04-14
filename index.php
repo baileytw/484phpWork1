@@ -105,8 +105,21 @@ session_start();
 				$query = "UPDATE LogHours SET LogHours_EndTime = NOW() WHERE LogHours_ID =" . $logID;
 				mysqli_query($conn, $query) or die(mysqli_error($conn));
 				
-				$query = "UPDATE LogHours SET LogHours_DayHours = TIMESTAMPDIFF(HOUR, LogHours_BeginTime, LogHours_EndTime) WHERE LogHours_ID =" .$logID;
+				$query = "UPDATE LogHours SET LogHours_DayHours = ROUND((TIMESTAMPDIFF(MINUTE, LogHours_BeginTime, LogHours_EndTime)/60),2) WHERE LogHours_ID =" .$logID;
 				mysqli_query($conn, $query) or die(mysqli_error($conn));
+				
+				$sql = "SELECT SUM(LogHours_DayHours) FROM LogHours WHERE LogHours_PersonID = " . $personID;
+				$result = $conn->query($sql);
+				if ($result->num_rows > 0){
+					// output data of each row
+					while($row = $result->fetch_assoc()) {
+						$hours = $row['SUM(LogHours_DayHours)'];
+						
+					}
+					$query = "UPDATE LogHours SET LogHours_TotalHours = '$hours' WHERE LogHours_PersonID =" .$personID;
+					mysqli_query($conn, $query) or die(mysqli_error($conn));
+				}
+				
 				
 				header("Location: clockin.php");
 				exit();

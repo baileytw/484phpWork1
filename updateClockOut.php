@@ -50,7 +50,7 @@ if(isset($_POST['btnUpdate'])){
 
 	else
 	{
-		$query = "UPDATE LogHours SET LogHours_DayHours = TIMESTAMPDIFF(HOUR, LogHours_BeginTime, LogHours_EndTime) WHERE LogHours_ID =" .$idEntered;
+		$query = "UPDATE LogHours SET LogHours_DayHours = ROUND((TIMESTAMPDIFF(HOUR, LogHours_BeginTime, LogHours_EndTime)/60),2) WHERE LogHours_ID =" .$idEntered;
 		mysqli_query($conn, $query) or die(mysqli_error($conn)); 
 				
 		header("Location: updateConfirmation.php");
