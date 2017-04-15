@@ -199,6 +199,10 @@ session_start();
 					$query = "UPDATE LogTransport SET LogTransport_TotalHours = '$totalHours', LogTransport_TotalMiles = '$totalMiles' WHERE LogTransport_TransportID = " .$transporterID;
 
 					mysqli_query($conn, $query) or die(mysqli_error($conn));
+					
+					$query = "CALL lastVolunteered2(".$personID.",'".$_POST['date']."')";					;
+
+					mysqli_query($conn, $query) or die(mysqli_error($conn));
 				}
 				$conn->close();
 				header("Location: transporter.php");

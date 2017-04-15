@@ -3,7 +3,7 @@ DROP TABLE Events;
 DROP EVENT clock_out;
 DROP EVENT status;
 DROP TRIGGER lastVolunteered;
-DROP TRIGGER lastVolunteered2;
+DROP PROCEDURE lastVolunteered2;
 DROP TABLE AvailabilityTransporter;
 DROP TABLE VolAvailabilityTime;
 DROP TABLE AppAvailabilityTime;
@@ -516,22 +516,11 @@ DELIMITER ;
 
 
 DELIMITER $$
-CREATE TRIGGER lastVolunteered2
-AFTER INSERT ON LogTransport FOR EACH ROW
-
+CREATE PROCEDURE lastVolunteered2
+(IN id INT, IN date DATE)
 BEGIN
 
-DECLARE id INT;
-DECLARE personID INT;
-DECLARE date DATE;
-
-
-SET id = (SELECT NEW.LogTransport_TransportID);
-SET personID = (SELECT Transporter_PersonID FROM Transporter WHERE Transporter_ID = id);
-SET date = (SELECT NEW.LogTransport_Date);
-
-UPDATE Person SET Person_LastVolunteered=date WHERE Person_ID = personID;
-
+UPDATE Person SET Person_LastVolunteered=date WHERE Person_ID = id;
 
 END $$
 
