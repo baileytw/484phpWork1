@@ -119,6 +119,7 @@ session_start();
 					$query = "UPDATE LogHours SET LogHours_TotalHours = '$hours' WHERE LogHours_PersonID =" .$personID;
 					mysqli_query($conn, $query) or die(mysqli_error($conn));
 				}
+				//Set YTD Hours
 				$sql = "SELECT SUM(LogHours_DayHours) FROM LogHours WHERE (LogHours_PersonID = " . $personID.") AND (YEAR(LogHours_BeginTime) = YEAR(CURDATE()))";
 				$result = $conn->query($sql);
 				if ($result->num_rows > 0){
