@@ -51,32 +51,105 @@ if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
 //SQL Statement to gather info
-$sql = "SELECT Person_FirstName, Person_LastName, Person_Email FROM Person";
-$result = $conn->query($sql);
-if ($result->num_rows > 0){
-	// output data of each row
-	while($row = $result->fetch_assoc()) {
-		
-		$sheet[] = array(
-      $row['Person_FirstName'],
-      $row['Person_LastName'],
-      $row['Person_Email'],
-      'YTD Hours',			//TRANSPORTERS add LogHours total + Transport_Hours to get real total
-	  'Total Hours',
-      'YTD Miles',
-      'Total Miles');
+	$sql = "SELECT MAX(Person_ID) FROM Person";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0){
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			$total = $row['MAX(Person_ID)'];
+		}
+	} 
+for($i = 1; $i <= $total; $i++){
+	$id = $i;
+	$transID = null;
+	$ytdHours = 0;
+	$totalHours = 0;
+	$ytdHoursTrans = 0;
+	$totalHoursTrans = 0;
+	$ytdMiles = 0;
+	$totalMiles = 0;
+	$first = null;
+	//SQL Statement to gather Person info
+	$sql = "SELECT Person_FirstName, Person_LastName, Person_Email FROM Person WHERE Person_ID = " .$id;
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0){
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+		  $first = $row['Person_FirstName'];
+		  $last = $row['Person_LastName'];
+		  $email = $row['Person_Email'];
+		}
+	} 
+	else {
+		$id = null;
 	}
-}
-else {
- 
+	 //Gather YTD and Total hours
+	 if($id != null){
+		$sql = "SELECT DISTINCT(LogHours_YTDHours), DISTINCT(LogHours_TotalHours) WHERE LogHours_PersonID = ".$id;
+		$result = $conn->query($sql);
+		if ($result->num_rows > 0){
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				
+			  $ytdHours = $row['DISTINCT(LogHours_YTDHours)'];
+			  $totalHours = $row['DISTINCT(LogHours_TotalHours)']; 
+			}
+		}
+		else{
+			$id = null;
+		}
+	}
+	//Get transporterID
+	if($id !=null){
+		$sql = "SELECT Transporter_ID FROM Transporter WHERE Transporter_PersonID = " . $id;
+		$result = $conn->query($sql);
+		if ($result->num_rows > 0){
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				$transID = $row['Transporter_ID'];
+			}
+		}
+		else{
+			$transID = null;
+		}
+	}
+	 //Gather YTD and Total Miles if exists
+	 if($transID != null){
+		$sql = "SELECT LogTransport_YTDHours, LogTransport_TotalHours, LogTransport_YTDMiles, LogTransport_TotalMiles WHERE LogTransport_TransportID = ".$transID;
+		$result = $conn->query($sql);
+		if ($result->num_rows > 0){
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				
+			  $ytdHoursTrans = $row['LogTransport_YTDHours'];
+			  $totalHoursTrans = $row['LogTransport_TotalHours'];
+			  $ytdMiles = $row['LogTransport_YTDMiles'];
+			  $totalMiles = $row['LogTransport_TotalMiles']; 		  
+			}
+		}
+	 }
+	 else
+	 {
+		 $ytdHoursTrans = 0;
+		 $totalHoursTrans = 0;
+		 $ytdMiles = 0;
+		 $totalMiles = 0;
+	 }
+	
+	if($first != null){
+		$sheet[] = array(
+			$first,
+			$last,
+			$email,
+			$ytdHours + $ytdHoursTrans,
+			$totalHours + $totalHoursTrans,
+			$ytdMiles,
+			$totalMiles );
+	}
+
+
 }
 $conn->close();
-
-	
-	
-
-	
-
 
 
   $doc = new PHPExcel();
@@ -93,8 +166,11 @@ ob_end_clean();
 
 $writer->save('php://output');
 }
-
-
+//Go to tableau page
+if(isset($_POST['btnTableau'])){
+	header("Location: tableauChart.php");
+	exit();
+}
 ?>
 
 <html>
@@ -161,6 +237,10 @@ $writer->save('php://output');
 									<form method="post">
 									<h4>Export Hours/Miles to Excel</h4>
                                         <input type="submit" name="btnExport" class="btn btn-primary" value="Export to Excel">
+									</form>
+									<form method="post">
+									<h4>View Transporter data in Tableau</h4>
+                                        <input type="submit" name="btnTableau" class="btn btn-primary" value="View Tableau">
 									</form>
                                     </div>
                                     <div class="preview">
