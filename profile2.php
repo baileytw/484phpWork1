@@ -49,7 +49,7 @@ if ($conn->connect_error) {
 //SQL Statement to gather info
 $sql = "SELECT Person_UserType, Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
 Person_State, Person_Zipcode, Person_AllergiesYN, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_RabiesYN, 
-Person_RehabilitateYN, Person_TeamLeadNotes FROM Person WHERE Person_ID =" .$profileID;
+Person_RehabilitateYN, Person_TeamLeadNotes, Person_DepartmentID FROM Person WHERE Person_ID =" .$profileID;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -70,14 +70,63 @@ if ($result->num_rows > 0){
 		$rabiesYN = $row['Person_RabiesYN'];
 		$permitYN = $row['Person_RehabilitateYN'];
 		$teamLeadNotes = $row['Person_TeamLeadNotes'];
+		$departmentID = $row['Person_DepartmentID'];
 		
 	}
 }
-else {
- 
+
+
+
+
+	$sql = "SELECT OutreachApp_WhyInterested, OutreachApp_PassionateWildlifeIssue,
+					OutreachApp_ExperiencePublicSpeaking, OutreachApp_BelongToAnimalRightsGroup,
+					OutreachApp_BringToTeam FROM OutreachApp 
+				WHERE OutreachApp_PersonID = '" . $profileID . "'";
+
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$whyInterested = $row['OutreachApp_WhyInterested'];
+		$wildlifeIssue = $row['OutreachApp_PassionateWildlifeIssue'];
+		$publicSpeaking = $row['OutreachApp_ExperiencePublicSpeaking'];
+		$wildlifeGroup = $row['OutreachApp_BelongToAnimalRightsGroup'];
+		$bringToTeam = $row['OutreachApp_BringToTeam'];
+	}
+	
 }
 
-$conn->close();
+
+
+$sql = "SELECT AnimalCareApp_HandsOnExperience, AnimalCareApp_HandleDeadAnimals,
+					AnimalCareApp_OpinionLivePrey, AnimalCareApp_WorkOutside, AnimalCareApp_BelongToAnimalRightsGroup,
+					AnimalCareApp_HopeToLearnAccomplish, AnimalCareApp_PassionateWildlifeIssue,
+					AnimalCareApp_MoreAboutExperience FROM AnimalCareApp 
+				WHERE AnimalCareApp_PersonID = '" . $profileID . "'";
+
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$handsOnExperience = $row['AnimalCareApp_HandsOnExperience'];
+		$deadAnimals = $row['AnimalCareApp_HandleDeadAnimals'];
+		$livePrey = $row['AnimalCareApp_OpinionLivePrey'];
+		$workOutside= $row['AnimalCareApp_WorkOutside'];
+		$animalRightsGroup= $row['AnimalCareApp_BelongToAnimalRightsGroup'];
+		$learn = $row['AnimalCareApp_HopeToLearnAccomplish'];
+		$wildlifeIssueA = $row['AnimalCareApp_PassionateWildlifeIssue'];
+		$additionalExperience = $row['AnimalCareApp_MoreAboutExperience'];
+	}
+	$conn->close();
+
+}
+
+
+
 if(isset($_POST['btnResume']))
 	{
 		$connection =  mysqli_connect("localhost","root","Twspike1994?","wildlife")
@@ -431,8 +480,87 @@ if(isset($_POST['btnReject'])){
                                                                                     </ul>
                                             <p>No additional notes</p>
 
-                                    </div></div></div>
+                                    </div>
+
+
+                                    </div>
+                                    <div>
+
+                                    
+                                    <h3>Application Responses</h3>
+                                    
+											<div class="row">
+												<div class="col-sm-6">
+
+												<? if ($departmentID == 1) :  ?>
+												<h4>Outreach Questions <?= $departmentID ?><h4>
+													<h4>Why Interested</h4>
+													<ul>
+														<strong>Why are you interested in volunteering as an outreach docent? </strong> <?php echo $whyInterested ?>
+													</ul>
+
+													<h4>Wildlife Issues</h4>
+													<ul>
+														<strong>What’s an environmental or wildlife issue you feel passionately about, and why? </strong> <?php echo $wildlifeIssue ?>
+													</ul>
+													<h4>Public Speaking</h4>
+													<ul>
+														<strong>Do you have prior experience speaking to the public? Please describe. </strong> <?php echo $publicSpeaking ?>
+													</ul>
+													<h4>Wildlife Groups</h4>
+													<ul>
+														<strong>Do you belong to any animal rights groups (PETA, The Humane Society, etc.)? If so, which ones? </strong> <?php echo $wildlifeGroup ?>
+													</ul>
+													<h4>Contributions</h4>
+													<ul>
+														<strong>What do you think you’d bring to the outreach volunteer team?</strong> <?php echo $bringToTeam ?>
+													</ul>
+													<? endif; ?>
+													</div>
+													
                                </div>
+                               
+
+                               
+                               <div class="col-sm-6">
+                           
+
+												<? elseif($departmentID == 2) :  ?>
+												<h4>Animal Care Questions<h4>
+													<h4>Hands On Experience</h4>
+													<ul>
+														<strong>Please briefly describe your relevant hands-on experience with animals, if any. What did you enjoy about the experience? What did you dislike? </strong> <?php echo $handsOnExperience ?>
+													</ul>
+
+													<h4>Animal Handling</h4>
+													<ul>
+														<strong>Carnivorous patients are sometimes unable to eat food items whole due to their injuries; you may be required to cut and divide dead rodents, chicks, and fishes into smaller portions. Are you comfortable handling dead animals for this purpose? </strong> <?php echo $deadAnimals ?>
+													</ul>
+													<h4>Use of Live Prey</h4>
+													<ul>
+														<strong>Prior to release from the Wildlife Center, many predatory birds are presented with live mice in order to evaluate their ability to capture prey in a controlled and measurable environment. What is your opinion on using live-prey for this purpose? </strong> <?php echo $livePrey ?>
+													</ul>
+													<h4>Wildlife Groups</h4>
+													<ul>
+														<strong>Do you belong to any animal rights groups (PETA, The Humane Society, etc.)? If so, which ones? </strong> <?php echo $animalRightsGroup ?>
+													</ul>
+													<h4>Accomplish from WCVA</h4>
+													<ul>
+														<strong>What do you hope to learn or accomplish by volunteering at the Wildlife Center of Virginia?</strong> <?php echo $learn ?>
+													</ul>
+													<h4>Wildlife Issue</h4>
+													<ul>
+														<strong>Please describe an environmental or wildlife-based issue you feel passionately about, and why.</strong> <?php echo $wildlifeIssueA ?>
+													</ul>
+													<h4>Additional Info</h4>
+													<ul>
+														<strong>Is there anything else that you’d like us to know about yourself or your experience?</strong> <?php echo $additionalExperience ?>
+													</ul>
+													
+													</div>
+													
+                               </div>
+                               <? endif; ?>
 							   
 <?php
 
