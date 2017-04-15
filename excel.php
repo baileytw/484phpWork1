@@ -62,12 +62,12 @@ if ($conn->connect_error) {
 for($i = 1; $i <= $total; $i++){
 	$id = $i;
 	$transID = null;
-	$ytdHours = 0;
-	$totalHours = 0;
-	$ytdHoursTrans = 0;
-	$totalHoursTrans = 0;
-	$ytdMiles = 0;
-	$totalMiles = 0;
+	$ytdHours = '0';
+	$totalHours = '0';
+	$ytdHoursTrans = '0';
+	$totalHoursTrans = '0';
+	$ytdMiles = '0';
+	$totalMiles = '0';
 	$first = null;
 	//SQL Statement to gather Person info
 	$sql = "SELECT Person_FirstName, Person_LastName, Person_Email FROM Person WHERE Person_ID = " .$id;
@@ -85,14 +85,14 @@ for($i = 1; $i <= $total; $i++){
 	}
 	 //Gather YTD and Total hours
 	 if($id != null){
-		$sql = "SELECT DISTINCT(LogHours_YTDHours), DISTINCT(LogHours_TotalHours) WHERE LogHours_PersonID = ".$id;
+		$sql = "SELECT LogHours_YTDHours, LogHours_TotalHours FROM LogHours WHERE LogHours_PersonID = ".$id;
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0){
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
 				
-			  $ytdHours = $row['DISTINCT(LogHours_YTDHours)'];
-			  $totalHours = $row['DISTINCT(LogHours_TotalHours)']; 
+			  $ytdHours = $row['LogHours_YTDHours'];
+			  $totalHours = $row['LogHours_TotalHours']; 
 			}
 		}
 		else{
@@ -115,7 +115,7 @@ for($i = 1; $i <= $total; $i++){
 	}
 	 //Gather YTD and Total Miles if exists
 	 if($transID != null){
-		$sql = "SELECT LogTransport_YTDHours, LogTransport_TotalHours, LogTransport_YTDMiles, LogTransport_TotalMiles WHERE LogTransport_TransportID = ".$transID;
+		$sql = "SELECT LogTransport_YTDHours, LogTransport_TotalHours, LogTransport_YTDMiles, LogTransport_TotalMiles FROM LogTransport WHERE LogTransport_TransportID = ".$transID;
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0){
 			// output data of each row
@@ -128,13 +128,6 @@ for($i = 1; $i <= $total; $i++){
 			}
 		}
 	 }
-	 else
-	 {
-		 $ytdHoursTrans = 0;
-		 $totalHoursTrans = 0;
-		 $ytdMiles = 0;
-		 $totalMiles = 0;
-	 }
 	
 	if($first != null){
 		$sheet[] = array(
@@ -144,7 +137,7 @@ for($i = 1; $i <= $total; $i++){
 			$ytdHours + $ytdHoursTrans,
 			$totalHours + $totalHoursTrans,
 			$ytdMiles,
-			$totalMiles );
+			$totalMiles);
 	}
 
 
