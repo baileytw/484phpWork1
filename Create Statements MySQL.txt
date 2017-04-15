@@ -1,6 +1,7 @@
 DROP TABLE Events2;
 DROP TABLE Events;
 DROP EVENT clock_out;
+DROP EVENT status;
 DROP TRIGGER lastVolunteered;
 DROP TABLE AvailabilityTransporter;
 DROP TABLE VolAvailabilityTime;
@@ -410,6 +411,40 @@ CREATE
 	END$$
 
 DELIMITER ;
+
+
+
+
+
+
+SET GLOBAL event_scheduler = ON;
+DELIMITER $$
+
+CREATE 
+	EVENT status
+	ON SCHEDULE EVERY 1 DAY
+	ON COMPLETION PRESERVE
+	DO BEGIN
+		SET @total = (SELECT MAX(Person_ID) FROM Person);
+		SET @id = 1;
+		WHILE @id <= @total DO
+			SET @lastDay = (SELECT Person_LastVolunteered FROM Person WHERE Person_ID = @id);
+				
+					SET @difference = (SELECT DATEDIFF(CURDATE(), @lastDay) FROM Person WHERE Person_ID= @id);
+					IF  @difference>= 365 THEN
+						UPDATE Peron SET Person_Status = "Inactive" 
+						WHERE Person_ID = @id;
+					ELSE
+						UPDATE Person SET Person_Status = "Active"
+						WHERE Person_ID = @id;
+					END IF;
+			SET @id = @id + 1;
+		END WHILE;
+	END$$
+
+DELIMITER ;
+
+
 
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
