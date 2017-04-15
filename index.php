@@ -104,10 +104,10 @@ session_start();
 				}
 				$query = "UPDATE LogHours SET LogHours_EndTime = NOW() WHERE LogHours_ID =" . $logID;
 				mysqli_query($conn, $query) or die(mysqli_error($conn));
-				
+				//Set total hours for the day
 				$query = "UPDATE LogHours SET LogHours_DayHours = ROUND((TIMESTAMPDIFF(MINUTE, LogHours_BeginTime, LogHours_EndTime)/60),2) WHERE LogHours_ID =" .$logID;
 				mysqli_query($conn, $query) or die(mysqli_error($conn));
-				
+				//Set total hours for lifetime
 				$sql = "SELECT SUM(LogHours_DayHours) FROM LogHours WHERE LogHours_PersonID = " . $personID;
 				$result = $conn->query($sql);
 				if ($result->num_rows > 0){
@@ -119,7 +119,17 @@ session_start();
 					$query = "UPDATE LogHours SET LogHours_TotalHours = '$hours' WHERE LogHours_PersonID =" .$personID;
 					mysqli_query($conn, $query) or die(mysqli_error($conn));
 				}
-				
+				$sql = "SELECT SUM(LogHours_DayHours) FROM LogHours WHERE (LogHours_PersonID = " . $personID.") AND (YEAR(LogHours_BeginTime) = YEAR(CURDATE()))";
+				$result = $conn->query($sql);
+				if ($result->num_rows > 0){
+					// output data of each row
+					while($row = $result->fetch_assoc()) {
+						$ytdHours = $row['SUM(LogHours_DayHours)'];
+						
+					}
+					$query = "UPDATE LogHours SET LogHours_YTDHours = '$ytdHours' WHERE LogHours_PersonID =" .$personID;
+					mysqli_query($conn, $query) or die(mysqli_error($conn));
+				}
 				
 				header("Location: clockin.php");
 				exit();
@@ -188,6 +198,7 @@ session_start();
 
 				mysqli_query($conn, $query) or die(mysqli_error($conn));
 				
+				//Calculate total hours and mile
 				$sql = "SELECT SUM(LogTransport_Hours), SUM(LogTransport_Miles) FROM LogTransport WHERE LogTransport_TransportID = " . $transporterID;
 				$result = $conn->query($sql);
 				if ($result->num_rows > 0){
@@ -201,6 +212,19 @@ session_start();
 					mysqli_query($conn, $query) or die(mysqli_error($conn));
 					
 					$query = "CALL lastVolunteered2(".$personID.",'".$_POST['date']."')";					;
+
+					mysqli_query($conn, $query) or die(mysqli_error($conn));
+				}
+				//Calculate YTD hours and mile
+				$sql = "SELECT SUM(LogTransport_Hours), SUM(LogTransport_Miles) FROM LogTransport WHERE (LogTransport_TransportID = " . $transporterID .") AND (YEAR(LogTransport_Date) = YEAR(CURDATE()))";
+				$result = $conn->query($sql);
+				if ($result->num_rows > 0){
+					// output data of each row
+					while($row = $result->fetch_assoc()) {
+						$ytdHours = $row['SUM(LogTransport_Hours)'];
+						$ytdMiles = $row['SUM(LogTransport_Miles)'];
+					}
+					$query = "UPDATE LogTransport SET LogTransport_YTDHours = '$ytdHours', LogTransport_YTDMiles = '$ytdMiles' WHERE LogTransport_TransportID = " .$transporterID;
 
 					mysqli_query($conn, $query) or die(mysqli_error($conn));
 				}
