@@ -1,6 +1,7 @@
 DROP TABLE Events2;
 DROP TABLE Events;
 DROP EVENT clock_out;
+DROP TRIGGER lastVolunteered;
 DROP TABLE AvailabilityTransporter;
 DROP TABLE VolAvailabilityTime;
 DROP TABLE AppAvailabilityTime;
@@ -450,6 +451,31 @@ CREATE TABLE IF NOT EXISTS `events2` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 ALTER TABLE `events` AUTO_INCREMENT = 5001;
+
+
+
+
+
+
+DELIMITER $$
+CREATE TRIGGER lastVolunteered
+AFTER INSERT ON LogHours FOR EACH ROW
+
+BEGIN
+
+DECLARE id INT;
+DECLARE date DATE;
+
+
+SET id = (SELECT NEW.LogHours_PersonID);
+SET date = (SELECT NEW.LogHours_BeginTime);
+
+UPDATE Person SET Person_LastVolunteered=date WHERE Person_ID = id;
+
+
+END $$
+
+DELIMITER ;
 
 
 INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('rkrasner@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Raina','Krasner','rkrasner@wildlifecenter.org');
