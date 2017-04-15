@@ -3,6 +3,7 @@ DROP TABLE Events;
 DROP EVENT clock_out;
 DROP EVENT status;
 DROP TRIGGER lastVolunteered;
+DROP TRIGGER lastVolunteered2;
 DROP TABLE AvailabilityTransporter;
 DROP TABLE VolAvailabilityTime;
 DROP TABLE AppAvailabilityTime;
@@ -506,6 +507,30 @@ SET id = (SELECT NEW.LogHours_PersonID);
 SET date = (SELECT NEW.LogHours_BeginTime);
 
 UPDATE Person SET Person_LastVolunteered=date WHERE Person_ID = id;
+
+
+END $$
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE TRIGGER lastVolunteered2
+AFTER INSERT ON LogTransport FOR EACH ROW
+
+BEGIN
+
+DECLARE id INT;
+DECLARE personID INT;
+DECLARE date DATE;
+
+
+SET id = (SELECT NEW.LogTransport_TransportID);
+SET personID = (SELECT Transporter_PersonID FROM Transporter WHERE Transporter_ID = id);
+SET date = (SELECT NEW.LogTransport_Date);
+
+UPDATE Person SET Person_LastVolunteered=date WHERE Person_ID = personID;
 
 
 END $$
