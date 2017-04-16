@@ -158,7 +158,13 @@ if(isset($_POST['btnSave']))
 		else
 		{
 		//Insert profile picture
-		 if($_FILES['picture']['size'] > 0){	
+		 if($_FILES['picture']['size'] > 0){
+			//First delete current pictures
+			$query = "DELETE FROM Documentation WHERE (Documentation_PersonID = '$profileEdit') AND (Documentation_TypeOfDocument='picture')";
+
+				mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+			//Upload new picture
 			$fileName  = $_FILES['picture']['name'];
 			$tmpName  = $_FILES['picture']['tmp_name'];
 			$fileType = $_FILES['picture']['type'];
