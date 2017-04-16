@@ -41,7 +41,7 @@ if(isset($_POST['upload']))
 	$outside = $_POST['outside'];
 	$fortyLBS = $_POST['fortyLBS'];
 	$rabies = $_POST['rabies'];
-	$vacDate = $_POST['vacDate'];
+	$vacDate = null;
 	$permit = $_POST['permit'];
 	$permitCategory = $_POST['permitCategory'];
 	 
@@ -83,7 +83,7 @@ if(isset($_POST['upload']))
 		$query = "INSERT INTO Person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
 			Person_State, Person_Zipcode, Person_AllergiesYN, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations,Person_Lift40Lbs, Person_RabiesYN, Person_RabbiesVaccinationDate, Person_RehabilitateYN, Person_RehabilitatePermitCategory)
 					VALUES ('$email', '$passwordHashPassed', '$userType', '$firstName', '$lastName', '$email', '$phone', $phoneAlt, '$street', '$city',
-					NULL, '$state', '$zip', '$limitationsASN', '$allergies', '$limitationsWO', '$outside', '$fortyLBS', '$rabies', '$vacDate', '$permit', '$permitCategory')"; 
+					NULL, '$state', '$zip', '$limitationsASN', '$allergies', '$limitationsWO', '$outside', '$fortyLBS', '$rabies', NULL , '$permit', '$permitCategory')"; 
 		
 		if(!mysqli_query($conn,$query))
 
@@ -104,7 +104,7 @@ if(isset($_POST['upload']))
 		}
 			
 		//Insert rehabilitation permit document	
-       if($_FILES['permitRehabVA']['size'] > 0){	
+       if($_FILES['permitRehabVA']['size'] > 0){		   
         $fileName  = $_FILES['permitRehabVA']['name'];
         $tmpName  = $_FILES['permitRehabVA']['tmp_name'];
         $fileType = $_FILES['permitRehabVA']['type'];
@@ -151,7 +151,7 @@ if(isset($_POST['upload']))
             }
             
 	   }	   //Insert profile picture
-		if($_FILES['picture']['size'] > 0){	
+		 if($_FILES['picture']['size'] > 0){	
 			$fileName  = $_FILES['picture']['name'];
 			$tmpName  = $_FILES['picture']['tmp_name'];
 			$fileType = $_FILES['picture']['type'];
@@ -172,9 +172,8 @@ if(isset($_POST['upload']))
             {
                 echo("Error description: " . mysqli_error($conn));
 				$insertsPassed = "false";
-            }
-            
-	   }
+            }    
+	   } 
 		
 		
 		if($insertsPassed == "true"){
@@ -247,13 +246,8 @@ if(isset($_POST['upload']))
 											<div class="col-md-3">
 												<div class="text-center">
 													<img src="images/johndoe.png" class="avatar img-circle img-responsive" alt="avatar">
-													<h6>Upload a photo...</h6>
-													<div class="fileinput fileinput-new" data-provides="fileinput">
-																<span class="btn btn-default btn-file">
-																<input name="picture" type="file" multiple /></span>
-																<span class="fileinput-filename"></span>
-																<span class="fileinput-new"></span>
-													</div>
+													
+													
 												</div>
 											</div>
 											<div class="container">
@@ -265,8 +259,16 @@ if(isset($_POST['upload']))
 													<!-- edit form column -->
 											  
 													<div class="col-md-7 col-md-offset-1 personal-info">
+													<form class="form-horizontal" enctype = "multipart/form-data" method="post" role="form">
+													<h6>Upload a photo...</h6>
+													<div class="fileinput fileinput-new" data-provides="fileinput">
+															<span class="btn btn-default btn-file">
+																<input name="picture" id = "picture" type="file" multiple /></span>
+															<span class="fileinput-filename"></span>
+															<span class="fileinput-new"></span>
+														</div> 
 													<h3>Personal Info</h3>
-													<form class="form-horizontal" method="post" role="form">
+													
 														<div class="form-group">
 															<label class="col-lg-3 control-label">First Name:</label>
 															<div class="col-lg-8">
@@ -406,11 +408,11 @@ if(isset($_POST['upload']))
 																<input type="date" id="vacDate" name="vacDate" class="form-control" name="VacDate"/>								
 															
 															<div class="fileinput fileinput-new" data-provides="fileinput">
-																<span class="btn btn-default btn-file">
-																<input name="rabbiesDocumentation" type="file" multiple /></span>
-																<span class="fileinput-filename"></span>
-																<span class="fileinput-new"></span>
-															</div>
+															<span class="btn btn-default btn-file">
+																<input name="rabbiesDocumentation" id = "rabbiesDocumentation" type="file" multiple /></span>
+															<span class="fileinput-filename"></span>
+															<span class="fileinput-new"></span>
+														</div>
 															</div>
 														</div>
 														<div class="form-group">
@@ -433,11 +435,11 @@ if(isset($_POST['upload']))
 																	</select>
 																</div>
 																<div class="fileinput fileinput-new" data-provides="fileinput">
-																	<span class="btn btn-default btn-file">
-																		<input name="permitRehabVA" id = "permitRehabVA" type="file" multiple /></span>
-																	<span class="fileinput-filename"></span>
-																	<span class="fileinput-new"></span>
-																</div>
+															<span class="btn btn-default btn-file">
+																<input name="permitRehabVA" id = "permitRehabVA" type="file" multiple /></span>
+															<span class="fileinput-filename"></span>
+															<span class="fileinput-new"></span>
+														</div>
 														</div>
 														<div class="form-group">
 															<label class="col-sm-3">Are you able to lift 40 lbs?</label>
