@@ -71,6 +71,14 @@ if ($result->num_rows > 0){
 else {
  
 }
+//Get profile pic
+ $pic = false;
+ $sql = "SELECT * FROM Documentation WHERE (Documentation_PersonID = ".$profileEdit.") AND (Documentation_TypeOfDocument = 'picture')";
+	$sth = $conn->query($sql);
+	$result=mysqli_fetch_array($sth);
+	if ($result != null){
+		$pic = true;
+	}
 $conn->close();
 
 
@@ -149,6 +157,29 @@ if(isset($_POST['btnSave']))
 
 		else
 		{
+		//Insert profile picture
+		 if($_FILES['picture']['size'] > 0){	
+			$fileName  = $_FILES['picture']['name'];
+			$tmpName  = $_FILES['picture']['tmp_name'];
+			$fileType = $_FILES['picture']['type'];
+			$fileSize = $_FILES['picture']['size'];
+			$fp      = fopen($tmpName, 'r');
+			$picture = fread($fp, filesize($tmpName));
+			$picture = addslashes($picture);
+			fclose($fp);
+
+
+
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
+				VALUES ('$profileEdit', 'picture', '$fileName', '$fileType', '$fileSize', '$picture', NULL)";
+        
+
+            if(!mysqli_query($conn,$documentQuery))
+
+            {
+                echo("Error description: " . mysqli_error($conn));
+            }    
+	   } 
 			$conn->close();
 			header("Location: updateConfirmation4.php");
 			exit();
@@ -236,10 +267,15 @@ if(isset($_POST['btnSave']))
                                         <h3 class="col-md-6">Edit Contact Information</h3>
                                               <div class="col-md-3">
         <div class="text-center">
-          <img src="images/johndoe.png" class="avatar img-circle img-responsive" alt="avatar">
+          <?php
+			if($pic == true){
+				echo '<img class="img-responsive col-sm-4" src="data:image/jpeg;base64,'.base64_encode( $result['Documentation_FileContent'] ).'"/>';
+			}
+			else{
+				echo '<img src="images/johndoe.png" class="img-responsive col-sm-4"></span>';
+			}
+			?>
           <h6>Upload a different photo...</h6>
-          
-          <input type="file" class="form-control">
         </div>
       </div>
 <div class="container">
@@ -250,10 +286,14 @@ if(isset($_POST['btnSave']))
       
       <!-- edit form column -->
       <div class="col-md-7 col-md-offset-1 personal-info">
-
+		<form class="form-horizontal" enctype = "multipart/form-data" method="post" role="form">
+		<div class="fileinput fileinput-new" data-provides="fileinput">
+				<span class="btn btn-default btn-file">
+					<input name="picture" id = "picture" type="file" multiple /></span>
+				<span class="fileinput-filename"></span>
+				<span class="fileinput-new"></span>
+			</div>
         <h3>Personal info</h3>
-        
-        <form class="form-horizontal" method="post" role="form">
           <div class="form-group">
             <label class="col-lg-3 control-label">First Name:</label>
             <div class="col-lg-8">
