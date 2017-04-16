@@ -32,7 +32,7 @@ if(isset($_POST['upload']))
 	$email = $_POST['email'];
 	$street= $_POST['street'];
 	$city = $_POST['city'];
-	$county = $_POST['county'];
+	$county = null;
 	$state = $_POST['state'];
 	$zip = $_POST['zipcode'];
 	$limitationsASN = $_POST['limitationsASN'];
@@ -92,20 +92,79 @@ if(isset($_POST['upload']))
 			$insertsPassed = "false";
 		}
 		
-		if($_FILES['rabbiesDocumentation']['size'] > 0){	
-			$fileName  = $_FILES['rabbiesDocumentation']['name'];
-			$tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
-			$fileType = $_FILES['rabbiesDocumentation']['type'];
-			$fileSize = $_FILES['rabbiesDocumentation']['size'];
+		//Get personID for this person
+		$sql = "SELECT MAX(Person_ID) FROM Person";
+		$result = $conn->query($sql);
+		$personID = null;
+		if($result->num_rows > 0) {
+			//output data of each row
+			while($row = $result->fetch_assoc()) {
+				$personID = $row['MAX(Person_ID)'];
+			}
+		}
+			
+		//Insert rehabilitation permit document	
+       if($_FILES['permitRehabVA']['size'] > 0){	
+        $fileName  = $_FILES['permitRehabVA']['name'];
+        $tmpName  = $_FILES['permitRehabVA']['tmp_name'];
+        $fileType = $_FILES['permitRehabVA']['type'];
+        $fileSize = $_FILES['permitRehabVA']['size'];
+        $fp      = fopen($tmpName, 'r');
+        $permitRehabVA = fread($fp, filesize($tmpName));
+        $permitRehabVA = addslashes($permitRehabVA);
+        fclose($fp);
+
+        $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
+            VALUES ('$personID', 'Rehabilitation_Permit', '$fileName', '$fileType', '$fileSize', '$permitRehabVA', NULL)";
+        
+
+            if(!mysqli_query($conn,$documentQuery))
+
+            {
+                echo("Error description: " . mysqli_error($conn));
+				$insertsPassed = "false";
+            }
+
+	   }
+	   //Insert rabies document
+	   if($_FILES['rabbiesDocumentation']['size'] > 0){	
+        $fileName  = $_FILES['rabbiesDocumentation']['name'];
+        $tmpName  = $_FILES['rabbiesDocumentation']['tmp_name'];
+        $fileType = $_FILES['rabbiesDocumentation']['type'];
+        $fileSize = $_FILES['rabbiesDocumentation']['size'];
+        $fp      = fopen($tmpName, 'r');
+        $rabbiesDocumentation = fread($fp, filesize($tmpName));
+        $rabbiesDocumentation = addslashes($rabbiesDocumentation);
+        fclose($fp);
+
+
+
+        $documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
+            VALUES ('$personID', 'Rabies_Documentation', '$fileName', '$fileType', '$fileSize', '$rabbiesDocumentation', NULL)";
+        
+
+            if(!mysqli_query($conn,$documentQuery))
+
+            {
+                echo("Error description: " . mysqli_error($conn));
+				$insertsPassed = "false";
+            }
+            
+	   }	   //Insert profile picture
+		if($_FILES['picture']['size'] > 0){	
+			$fileName  = $_FILES['picture']['name'];
+			$tmpName  = $_FILES['picture']['tmp_name'];
+			$fileType = $_FILES['picture']['type'];
+			$fileSize = $_FILES['picture']['size'];
 			$fp      = fopen($tmpName, 'r');
-			$rabbiesDocumentation = fread($fp, filesize($tmpName));
-			$rabbiesDocumentation = addslashes($rabbiesDocumentation);
+			$picture = fread($fp, filesize($tmpName));
+			$picture = addslashes($picture);
 			fclose($fp);
 
 
 
 			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
-				VALUES ('$personID', 'rabiesDocumentation', '$fileName', '$fileType', '$fileSize', '$rabbiesDocumentation', NULL)";
+				VALUES ('$personID', 'picture', '$fileName', '$fileType', '$fileSize', '$picture', NULL)";
         
 
             if(!mysqli_query($conn,$documentQuery))
@@ -116,7 +175,6 @@ if(isset($_POST['upload']))
             }
             
 	   }
-		
 		
 		
 		if($insertsPassed == "true"){
@@ -190,7 +248,12 @@ if(isset($_POST['upload']))
 												<div class="text-center">
 													<img src="images/johndoe.png" class="avatar img-circle img-responsive" alt="avatar">
 													<h6>Upload a photo...</h6>
-													<input type="file" class="form-control">
+													<div class="fileinput fileinput-new" data-provides="fileinput">
+																<span class="btn btn-default btn-file">
+																<input name="picture" type="file" multiple /></span>
+																<span class="fileinput-filename"></span>
+																<span class="fileinput-new"></span>
+													</div>
 												</div>
 											</div>
 											<div class="container">

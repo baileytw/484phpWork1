@@ -100,6 +100,15 @@ else{
 		}
 	}
  }
+ 
+ //Get profile pic
+ $pic = false;
+ $sql = "SELECT * FROM Documentation WHERE (Documentation_PersonID = ".$userID.") AND (Documentation_TypeOfDocument = 'picture')";
+	$sth = $conn->query($sql);
+	$result=mysqli_fetch_array($sth);
+	if ($result != null){
+		$pic = true;
+	}
 
 $conn->close();
 ?>
@@ -174,8 +183,15 @@ $conn->close();
                                 <div class="col-md-7 no-padding">
                                     <div class="main-content panel panel-default no-margin">
                                         <header class="panel-heading clearfix">
-
-                                             <img src="images/johndoe.png" class="img-responsive col-sm-4"></span>
+										<?php
+										if($pic == true){
+											echo '<img class="img-responsive col-sm-4" src="data:image/jpeg;base64,'.base64_encode( $result['image'] ).'"/>';
+										}
+										else{
+											echo '<img src="images/johndoe.png" class="img-responsive col-sm-4"></span>';
+										}
+										?>
+                                             
                                              <hgroup>
                                                  <a href="editprofile.php" class="btn btn-default pull-right" rel="#overlay">Edit Profile<i class="fa fa-question-circle"></i></a>
                                                  <h2>
