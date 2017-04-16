@@ -76,8 +76,6 @@ if ($result->num_rows > 0){
 }
 
 
-
-
 	$sql = "SELECT OutreachApp_WhyInterested, OutreachApp_PassionateWildlifeIssue,
 					OutreachApp_ExperiencePublicSpeaking, OutreachApp_BelongToAnimalRightsGroup,
 					OutreachApp_BringToTeam FROM OutreachApp 
@@ -116,16 +114,52 @@ if ($result->num_rows > 0) {
 		$deadAnimals = $row['AnimalCareApp_HandleDeadAnimals'];
 		$livePrey = $row['AnimalCareApp_OpinionLivePrey'];
 		$workOutside= $row['AnimalCareApp_WorkOutside'];
-		$animalRightsGroup= $row['AnimalCareApp_BelongToAnimalRightsGroup'];
+		$animalRightsGroup = $row['AnimalCareApp_BelongToAnimalRightsGroup'];
 		$learn = $row['AnimalCareApp_HopeToLearnAccomplish'];
 		$wildlifeIssueA = $row['AnimalCareApp_PassionateWildlifeIssue'];
 		$additionalExperience = $row['AnimalCareApp_MoreAboutExperience'];
 	}
-	$conn->close();
+	
 
 }
 
+$sql = "SELECT VetTeamApp_PreviousTraining, VetTeamApp_WorkEnvironment,
+					VetTeamApp_Euthansia, VetTeamApp_Messy FROM VetTeamApp 
+				WHERE VetTeamApp_PersonID = '" . $profileID . "'";
 
+				$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$training = $row['VetTeamApp_PreviousTraining'];
+		$workEnvironment = $row['VetTeamApp_WorkEnvironment'];
+		$euthansia = $row['VetTeamApp_Euthansia'];
+		$messy = $row['VetTeamApp_Messy'];
+		
+	}
+	
+
+}
+
+$sql = "SELECT TransporterApp_DistanceWillingToTravel, TransporterApp_CaptureAnimals
+				FROM TransporterApp 
+				WHERE TransporterApp_PersonID = '" . $profileID . "'";
+
+				$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$distance = $row['TransporterApp_DistanceWillingToTravel'];
+		$capture = $row['TransporterApp_CaptureAnimals'];
+		
+	}
+	
+
+}
+
+$conn->close();
 
 if(isset($_POST['btnResume']))
 	{
@@ -375,7 +409,6 @@ if(isset($_POST['btnReject'])){
                             <li class="action">
 							<li><a href="calendar2.php">Calendar</a></li>
 							<li class="active"><a href="profilesearch.php">Search</a></li>
-							<li><a href="tableauChart.php">Chart</a></li>
 							<li><a href="excel.php">Excel</a></li>							
                             <li><a href="accountProfile.php">Account</a></li>                          
                             <li><a href="index.php">Sign Out</a></li>                     
@@ -493,31 +526,72 @@ if(isset($_POST['btnReject'])){
 											<div class="row">
 												<div class="col-sm-6">
 
-												<? if ($departmentID == 1) :  ?>
-												<h4>Outreach Questions <?= $departmentID ?><h4>
+												<?php if ($departmentID == 1) { ?> 
+												<?= ' <h4>Outreach Questions <?= $departmentID ?></h4>
 													<h4>Why Interested</h4>
 													<ul>
-														<strong>Why are you interested in volunteering as an outreach docent? </strong> <?php echo $whyInterested ?>
+														<strong>Why are you interested in volunteering as an outreach docent? </strong> ' .$whyInterested. '
+
 													</ul>
 
 													<h4>Wildlife Issues</h4>
 													<ul>
-														<strong>What’s an environmental or wildlife issue you feel passionately about, and why? </strong> <?php echo $wildlifeIssue ?>
+														<strong>What’s an environmental or wildlife issue you feel passionately about, and why? </strong> ' .$wildlifeIssue. '
 													</ul>
 													<h4>Public Speaking</h4>
 													<ul>
-														<strong>Do you have prior experience speaking to the public? Please describe. </strong> <?php echo $publicSpeaking ?>
+														<strong>Do you have prior experience speaking to the public? Please describe. </strong> ' .$publicSpeaking. '
 													</ul>
 													<h4>Wildlife Groups</h4>
 													<ul>
-														<strong>Do you belong to any animal rights groups (PETA, The Humane Society, etc.)? If so, which ones? </strong> <?php echo $wildlifeGroup ?>
+														<strong>Do you belong to any animal rights groups (PETA, The Humane Society, etc.)? If so, which ones? </strong> ' .$wildlifeGroup. '
 													</ul>
 													<h4>Contributions</h4>
 													<ul>
-														<strong>What do you think you’d bring to the outreach volunteer team?</strong> <?php echo $bringToTeam ?>
-													</ul>
-													<? endif; ?>
+														<strong>What do you think you’d bring to the outreach volunteer team?
+														</strong> ' .$bringToTeam. '
+													</ul>';}?>
 													</div>
+
+
+													<?php if ($departmentID == 2) { ?> 
+												<?= ' <h4>Animal Care Questions </h4>
+													<h4>Hands On Experience</h4>
+													<ul>
+														<strong>Please briefly describe your relevant hands-on experience with animals, if any. What did you enjoy about the experience? What did you dislike? </strong> ' .$handsOnExperience. '
+													</ul>
+
+													<h4>Wildlife Issues</h4>
+													<ul>
+														<strong>Carnivorous patients are sometimes unable to eat food items whole due to their injuries; you may be required to cut and divide dead rodents, chicks, and fishes into smaller portions. Are you comfortable handling dead animals for this purpose? 
+														</strong> ' .$deadAnimals. '
+													</ul>
+													<h4>Public Speaking</h4>
+													<ul>
+														<strong>Prior to release from the Wildlife Center, many predatory birds are presented with live mice in order to evaluate their ability to capture prey in a controlled and measurable environment. What is your opinion on using live-prey for this purpose? 
+														</strong> ' .$livePrey. '
+													</ul>
+													<h4>Wildlife Groups</h4>
+													<ul>
+														<strong>Wildlife rehabilitation requires daily outdoor work -- year-round and regardless of weather conditions. Are you able to work outside during all seasons? If not, what are your limitations? </strong> ' .$workOutside. '
+													</ul>
+													<h4>Wildlife Groups</h4>
+													<ul>
+														<strong>Do you belong to any animal rights groups (PETA, The Humane Society, etc.)? If so, which ones? </strong> ' .$animalRightsGroup. '
+													</ul>
+													<h4>Wildlife Groups</h4>
+													<ul>
+														<strong>What do you hope to learn or accomplish by volunteering at the Wildlife Center of Virginia? </strong> ' .$learn. '
+													</ul>
+													<h4>Wildlife Groups</h4>
+													<ul>
+														<strong>Please describe an environmental or wildlife-based issue you feel passionately about, and why. </strong> ' .$wildlifeIssueA. '
+													</ul>
+													<h4>Contributions</h4>
+													<ul>
+														<strong>Is there anything else that you’d like us to know about yourself or your experience?
+														</strong> ' .$additionalExperience.'
+													</ul>';}?>
 													
                                </div>
                                
@@ -526,42 +600,50 @@ if(isset($_POST['btnReject'])){
                                <div class="col-sm-6">
                            
 
-												<? elseif($departmentID == 2) :  ?>
-												<h4>Animal Care Questions<h4>
-													<h4>Hands On Experience</h4>
+												<?php if ($departmentID == 3) {  ?>
+												<?= '<h4>Vet Team Questions</h4>
+													<h4>Previous Training</h4>
 													<ul>
-														<strong>Please briefly describe your relevant hands-on experience with animals, if any. What did you enjoy about the experience? What did you dislike? </strong> <?php echo $handsOnExperience ?>
+														<strong>Please describe any previous medical or veterinary training you have completed.
+														</strong> ' .$training. ' 
 													</ul>
 
 													<h4>Animal Handling</h4>
 													<ul>
-														<strong>Carnivorous patients are sometimes unable to eat food items whole due to their injuries; you may be required to cut and divide dead rodents, chicks, and fishes into smaller portions. Are you comfortable handling dead animals for this purpose? </strong> <?php echo $deadAnimals ?>
+														<strong>The case load at the Center can be unpredictable and vary greatly depending on the time of year. Please describe the work environment that you work best in including how you best retain information that is taught to you.
+														</strong> ' .$workEnvironment. '
 													</ul>
-													<h4>Use of Live Prey</h4>
+													<h4>Euthanasia Experience</h4>
 													<ul>
-														<strong>Prior to release from the Wildlife Center, many predatory birds are presented with live mice in order to evaluate their ability to capture prey in a controlled and measurable environment. What is your opinion on using live-prey for this purpose? </strong> <?php echo $livePrey ?>
+														<strong>The Center admits many trauma cases. In order for a patient to be released back into the wild it must be able to successfully survive on its own free of chronic pain. Due to this, the Center does humanely euthanize patients that do not meet this standard. Do you have experience with euthanasia and how does it affect you? 
+														</strong> ' .$euthansia. '
 													</ul>
-													<h4>Wildlife Groups</h4>
+													<h4>Maintenance</h4>
 													<ul>
-														<strong>Do you belong to any animal rights groups (PETA, The Humane Society, etc.)? If so, which ones? </strong> <?php echo $animalRightsGroup ?>
-													</ul>
-													<h4>Accomplish from WCVA</h4>
-													<ul>
-														<strong>What do you hope to learn or accomplish by volunteering at the Wildlife Center of Virginia?</strong> <?php echo $learn ?>
-													</ul>
-													<h4>Wildlife Issue</h4>
-													<ul>
-														<strong>Please describe an environmental or wildlife-based issue you feel passionately about, and why.</strong> <?php echo $wildlifeIssueA ?>
-													</ul>
-													<h4>Additional Info</h4>
-													<ul>
-														<strong>Is there anything else that you’d like us to know about yourself or your experience?</strong> <?php echo $additionalExperience ?>
-													</ul>
+														<strong>Taking care of animals is a messy job that requires all team members to clean out dirty crates, chop rats or mice for feeding to patients, and collect fecal samples for analysis for example. Is this something that you foresee struggling with?
+														</strong> ' .$messy. '
+													</ul>';}
+													 ?>
+
 													
 													</div>
+
+													<?php if ($departmentID == 4) {  ?>
+													<?= '<h4>Transporter Questions</h4>
+													<h4>Travel Distance</h4>
+													<ul>
+														<strong>How far are you willing to travel for transport (i.e., 30-45 miles from your location, to a specific location, etc)?
+														</strong> ' .$distance. ' 
+													</ul>
+
+													<h4>Animal Handling</h4>
+													<ul>
+														<strong>Sometimes rescuers need assistance with capturing and containing a wild animal in need. For those who are interested in capturing injured animals. With that in mind, would you be willing to assist with capturing animals, if needed?
+														</strong> ' .$capture. '
+													</ul>';} ?>
 													
                                </div>
-                               <? endif; ?>
+                               
 							   
 <?php
 

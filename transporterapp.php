@@ -76,6 +76,7 @@
 			$rabiesVac2 = DateTime::createFromFormat('Y-m-d' , $rabiesVac1);
 			$rabiesVac = $rabiesVac2->format('Y-m-d'); */
 			$lastVolunteered = NULL;
+			$departmentID = 4;
 			$allergies = NULL;
 			$workOutside = NULL;
 			$totalHours = NULL;
@@ -90,8 +91,8 @@
 				$permitRehab = NULL;
 			}
 $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies,
-		  Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+		  Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered, Person_DepartmentID)
+			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$departmentID')";
 
 
 

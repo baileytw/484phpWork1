@@ -71,7 +71,7 @@
 			$dob = $dob2->format('Y-m-d');
 			$street = $_POST['address'];
 			
-			
+			$departmentID = 2;
 			$rabies = $_POST['rabies'];
 			$status = 'Applicant';
 			/* $rabiesVac1 = $_POST['VACYear'] . '-' . $_POST['VACMonth'] . '-' . $_POST['VACDay'];
@@ -84,14 +84,14 @@
 			$workOutsideLimitations = $_POST['workOut'];
 			$lift40 = $_POST['fortyLBS'];
 			$permitRehab = $_POST['permitCategory'];
+
 			if ($permitRehab < 1)
 			{
 				$permitRehab = NULL;
 			}
 
-				  $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies,
-		  Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
-			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', '$county', '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitRehab', '$allergies', NULL, '$workOutsideLimitations', '$lift40', NULL, NULL)";
+				  $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered, Person_DepartmentID)
+			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', '$county', '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitRehab', '$allergies', NULL, '$workOutsideLimitations', '$lift40', NULL, NULL, '$departmentID')";
 
 
 

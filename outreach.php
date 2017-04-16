@@ -100,16 +100,17 @@ if(isset($_POST['upload']))
 		$priorExperience = $_POST['priorExperience'];
 		$animalRightsGroup = $_POST['animalRightsGroup'];
 		$valueAdded = $_POST['valueAdded'];
+		$departmentID = 1;
 
 
 
 
 		$query = "INSERT INTO person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
 			Person_State, Person_Country, Person_Zipcode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies,
-			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
+			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered, Person_DepartmentID)
 					VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
 					NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitrehabCategory', '$allergies', '$workOutside',
-					'$workOutsideLimitations', NULL, NULL, NULL)";
+					'$workOutsideLimitations', NULL, NULL, NULL, '$departmentID')";
 
 					
 			
@@ -317,7 +318,7 @@ alert('$message');
                                 </ul>
                             </li>
                         </ul>
-                      
+                        
                     </div>
                 </div>
             </nav>
