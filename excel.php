@@ -70,7 +70,7 @@ for($i = 1; $i <= $total; $i++){
 	$totalMiles = '0';
 	$first = null;
 	//SQL Statement to gather Person info
-	$sql = "SELECT Person_FirstName, Person_LastName, Person_Email FROM Person WHERE Person_ID = " .$id;
+	$sql = "SELECT Person_FirstName, Person_LastName, Person_Email FROM Person WHERE (Person_ID = " .$id.") AND (Person_UserType = 'Volunteer')";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0){
 		// output data of each row
