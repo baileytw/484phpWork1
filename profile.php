@@ -185,7 +185,7 @@ $conn->close();
                                         <header class="panel-heading clearfix">
 										<?php
 										if($pic == true){
-											echo '<img class="img-responsive col-sm-4" src="data:image/jpeg;base64,'.base64_encode( $result['image'] ).'"/>';
+											echo '<img class="img-responsive col-sm-4" src="data:image/jpeg;base64,'.base64_encode( $result['Documentation_FileContent'] ).'"/>';
 										}
 										else{
 											echo '<img src="images/johndoe.png" class="img-responsive col-sm-4"></span>';
