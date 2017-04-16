@@ -70,26 +70,27 @@ if(isset($_POST['upload']))
       
 		$status = 'Applicant';
 		$rabiesVac = NULL;
-		$permitRehab = $_POST['permitCategory'];
+		$permitrehabYN = $_POST['permit'];
+		$permitrehab = $_POST['permitCategory'];
 		$lastVolunteered = NULL;
 		$allergies = $_POST['allergies'];
 		$workOutside = NULL;
 		$totalHours = NULL;
 		$workOutsideLimitations = NULL;
 		$lift40 = NULL;
-		$rehabYN = $_POST['permit'];
 	
 	$previousTraining = $_POST['training'];
 	$workEnvironment = $_POST['workEnvironment'];
 	$euthanasia = $_POST['trauma'];
 	$messy = $_POST['messy'];
 
-      $query = "INSERT INTO person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County,
-			Person_State, Person_Country, Person_Zipcode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies,
+      $query = "INSERT INTO person (Person_UserName, Person_PasswordHash,Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate,
+	  Person_StreetAddress, Person_City, Person_County,
+			Person_State, Person_Country, Person_Zipcode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitateYN, Person_RehabilitatePermitCategory, Person_Allergies,
 			Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered)
 					VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city',
-					NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitRehab', '$allergies', '$workOutside','$workOutsideLimitations', '$lift40', 
-					NULL, NULL)";
+					NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitrehabYN', '$permitrehab', '$allergies', '$workOutside',
+					'$workOutsideLimitations', '$lift40', NULL, NULL)";
 
                  mysqli_query($conn, $query) or die(mysqli_error($conn));
 				 
