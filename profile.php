@@ -53,9 +53,54 @@ if ($result->num_rows > 0){
 		
 	}
 }
-else {
- 
+//Get Hours/Miles data
+$ytdHours = '0';
+$totalHours = '0';
+$ytdHoursTrans = '0';
+$totalHoursTrans = '0';
+$ytdMiles = '0';
+$totalMiles = '0';
+//Gather YTD and Total hours
+$sql = "SELECT LogHours_YTDHours, LogHours_TotalHours FROM LogHours WHERE LogHours_PersonID = ".$userID;
+$result = $conn->query($sql);
+if ($result->num_rows > 0){
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		
+	  $ytdHours = $row['LogHours_YTDHours'];
+	  $totalHours = $row['LogHours_TotalHours']; 
+	}
 }
+
+//Get transporterID
+$transID = null;
+$sql = "SELECT Transporter_ID FROM Transporter WHERE Transporter_PersonID = " . $userID;
+$result = $conn->query($sql);
+if ($result->num_rows > 0){
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$transID = $row['Transporter_ID'];
+	}
+}
+else{
+	$transID = null;
+}
+ //Gather YTD and Total Miles if exists
+ if($transID != null){
+	$sql = "SELECT LogTransport_YTDHours, LogTransport_TotalHours, LogTransport_YTDMiles, LogTransport_TotalMiles FROM LogTransport WHERE LogTransport_TransportID = ".$transID;
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0){
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			
+		  $ytdHoursTrans = $row['LogTransport_YTDHours'];
+		  $totalHoursTrans = $row['LogTransport_TotalHours'];
+		  $ytdMiles = $row['LogTransport_YTDMiles'];
+		  $totalMiles = $row['LogTransport_TotalMiles']; 		  
+		}
+	}
+ }
+
 $conn->close();
 ?>
 
@@ -161,14 +206,14 @@ $conn->close();
 <div class="col-sm-6">
 <h4>Volunteer Hours</h4>
 <ul>
-	<li>YTD Hours: 1</li>
-	<li>Total Hours: 5</li>
+	<li>YTD Hours: <?php echo $ytdHours + $ytdHoursTrans ?></li>
+	<li>Total Hours: <?php echo $totalHours + $totalHoursTrans ?></li>
 </ul>  </div>                                        
 <div class="col-sm-6">
 <h4>Transport Miles</h4>
 <ul>
-	<li>YTD Miles: 1</li>
-	<li>Total Miles: 5</li>
+	<li>YTD Miles: <?php echo $ytdMiles ?></li>
+	<li>Total Miles: <?php echo $totalMiles ?></li>
 </ul>
 </div></div>
                                            
