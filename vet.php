@@ -334,13 +334,13 @@ alert('$message');
 												<div class="form-group">
                                                     <label class="col-sm-2">Address *</label>
                                                     <div class="col-sm-10">
-														<input class="form-control" id= 'address' name="address" type="text" value="<?php if (isset($_POST['upload'])) echo ($_POST['address']);?>" placeholder="street" name="street" />
+														<input class="form-control" id= 'address' name="address" type="text" value="<?php if (isset($_POST['upload'])) echo ($_POST['address']);?>" placeholder="street" name="street" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2">City *</label>
                                                     <div class="col-sm-2">
-														<input class="form-control" type="text" id="city" name="city" value="<?php if (isset($_POST['upload'])) echo ($_POST['city']);?>" placeholder="City" name="city" />
+														<input class="form-control" type="text" id="city" name="city" value="<?php if (isset($_POST['upload'])) echo ($_POST['city']);?>" placeholder="City" name="city" required="required"/>
                                                     </div>
                                                     <label class="col-sm-1">State *</label>
 													<div class="col-sm-3">
@@ -401,14 +401,14 @@ alert('$message');
 													</div>
 													<label class="col-sm-2">Zip Code *</label>
 													<div class="col-sm-2">
-														<input class="form-control" type="text" id="zipcode" name="zipcode" value="<?php if (isset($_POST['upload'])) echo ($_POST['zipcode']);?>" placeholder="Zip" name="zip" />
+														<input class="form-control" type="text" id="zipcode" name="zipcode" value="<?php if (isset($_POST['upload'])) echo ($_POST['zipcode']);?>" placeholder="Zip" name="zip" required="required" />
 													</div>
 												</div>
 												<div class="form-group">
 													<label class="col-sm-2">Date of Birth *</label>
 													<div class="col-sm-10">
-														<select name="DOBMonth">
-															<option>- Month -</option> 				<!-- Make required -->
+														<select name="DOBMonth" required>
+															<option value="">- Month -</option> 				<!-- Make required -->
 															<option value="01">January</option>
 															<option value="02">February</option>
 															<option value="03">March</option>
@@ -422,8 +422,8 @@ alert('$message');
 															<option value="11">November</option>
 															<option value="12">December</option>
 														</select>
-														<select name="DOBDay">
-															<option>- Day -</option> 				<!-- Make required -->
+														<select name="DOBDay" required>
+															<option value="">- Day -</option> 				<!-- Make required -->
 															<option value="01">1</option>
 															<option value="02">2</option>
 															<option value="03">3</option>
@@ -456,8 +456,8 @@ alert('$message');
 															<option value="30">30</option>
 															<option value="31">31</option>
 														</select>
-														<select name="DOBYear">
-															<option> - Year - </option>										<!-- Make required -->
+														<select name="DOBYear" required>
+															<option value=""> - Year - </option>										<!-- Make required -->
 															<option value="1999">1999</option>
 															<option value="1998">1998</option>
 															<option value="1997">1997</option>
@@ -555,6 +555,7 @@ alert('$message');
 															<td><label><input type="checkbox" name="text25" value="sat1" /></label></td>
 															</tr>
 													</table>
+													
 												</div>
 												
 												<h4>Please answer the following questions.</h4>
@@ -599,7 +600,7 @@ alert('$message');
 													<label class="col-sm-3">If so, how recently? Please provide proof of vaccination. Upload an attachment.</label>
 													<div>
 														<select name="DOBMonth">
-															<option>- Month -</option>
+															<option value="">- Month -</option>
 															<option value="01">January</option>
 															<option value="02">February</option>
 															<option value="03">March</option>
