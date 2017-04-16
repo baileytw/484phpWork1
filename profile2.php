@@ -375,6 +375,7 @@ if(isset($_POST['btnReject'])){
                             <li class="action">
 							<li><a href="calendar2.php">Calendar</a></li>
 							<li class="active"><a href="profilesearch.php">Search</a></li>
+							<li><a href="tableauChart.php">Chart</a></li>
 							<li><a href="excel.php">Excel</a></li>							
                             <li><a href="accountProfile.php">Account</a></li>                          
                             <li><a href="index.php">Sign Out</a></li>                     
