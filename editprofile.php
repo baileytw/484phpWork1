@@ -23,6 +23,7 @@ if(isset($_POST['btnCancel']))
 	header("Location: profile.php");
 	exit();
 }
+
 //Populate fields code
 $servername = "localhost";
 $username = "root";

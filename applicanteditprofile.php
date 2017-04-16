@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-
+<?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+?>
 <?php
 //Session variables: KEEP AT TOP
 session_start();
@@ -17,7 +20,7 @@ if ($userTypeSession != "Applicant"){
 
 */
 
-//Get user info
+//Populate fields code
 $servername = "localhost";
 $username = "root";
 $dbpassword = "Twspike1994?";
@@ -28,14 +31,12 @@ $conn = new mysqli($servername, $username, $dbpassword, $dbname);
 // Check connection
 if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
-} 
-//SQL Statement to gather hash
+}
+//SQL Statement to gather info
 $sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
-Person_State, Person_Zipcode, Person_Allergies, Person_OutsideLimitations, Person_RabiesYN, Person_RehabilitateYN,
-FROM Person WHERE Person_ID = '" . $userID . "'";
-echo sql;
+Person_State, Person_Zipcode, Person_Allergies, Person_OutsideLimitations, Person_RabiesYN, Person_RehabilitateYN FROM Person WHERE Person_ID = " .$userID;
 $result = $conn->query($sql);
-if ($result->num_rows > 0) {
+if ($result->num_rows > 0){
 	// output data of each row
 	while($row = $result->fetch_assoc()) {
 		$first = $row['Person_FirstName'];
@@ -51,7 +52,6 @@ if ($result->num_rows > 0) {
 		$rabies = $row['Person_RabiesYN'];
 		$permit = $row['Person_RehabilitateYN'];
 	}
-	
 }
 //Get profile pic
  $pic = false;
@@ -61,8 +61,7 @@ if ($result->num_rows > 0) {
 	if ($result != null){
 		$pic = true;
 	}
-	$conn->close();
-//If Save button clicked, update data
+$conn->close();
 if(isset($_POST['btnSave']))
 {
 	//Set run query to false
@@ -80,7 +79,6 @@ if(isset($_POST['btnSave']))
 	$outside = $_POST['outside'];
 	$rabies = $_POST['rabies'];
 	$permit = $_POST['permit'];
-	
 	
 	//If passwords null, don't uppdate password
 	if(($_POST['password'] == null) || ($_POST['check'] == null)){
@@ -169,7 +167,7 @@ if(isset($_POST['btnSave']))
 //If Cancel button clicked, go back to profile
 if(isset($_POST['btnCancel']))
 {
-	header("Location: accountProfile.php");
+	header("Location: applicantprofile.php");
 	exit();
 }
 
@@ -237,194 +235,195 @@ if(isset($_POST['btnCancel']))
                                         <header class="panel-heading clearfix"></header>
 										<div class="content">
 											<h3 class="col-md-6">Edit Contact Information</h3>
-											<div class="col-md-3">
-												<div class="text-center">
-													<?php
-													if($pic == true){
-														echo '<img class="img-responsive col-sm-4" src="data:image/jpeg;base64,'.base64_encode( $result['Documentation_FileContent'] ).'"/>';
-													}
-													else{
-														echo '<img src="images/johndoe.png" class="img-responsive col-sm-4"></span>';
-													}
-													?>
-												</div>
-											</div>
-											<div class="container">
-												<hr>
-												<div class="row">
-												
-													<!-- left column -->
-												  
-													<!-- edit form column -->
-													<div class="col-md-7 col-md-offset-1 personal-info">
-													<h6>Upload a different photo...</h6>
-													<form class="form-horizontal" enctype = "multipart/form-data" method="post" role="form">
-													<div class="fileinput fileinput-new" data-provides="fileinput">
-														<span class="btn btn-default btn-file">
-															<input name="picture" id = "picture" type="file" multiple /></span>
-														<span class="fileinput-filename"></span>
-														<span class="fileinput-new"></span>
-													</div>
-														<h3>Personal Info</h3>
-															<div class="form-group">
-																<label class="col-lg-3 control-label">First Name:</label>
-																	<div class="col-lg-8">
-																	<input class="form-control" maxlength="20" name="firstName" value="<?php echo ($first);?>" type="text" required="required">
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-3 control-label">Last Name:</label>
-																<div class="col-lg-8">
-																	<input class="form-control" maxlength="20" name="lastName" value="<?php echo ($last);?>" type="text" required="required">
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-3 control-label">Email:</label>
-																<div class="col-lg-8">
-																	<input class="form-control" maxlength="254" name="email" value="<?php echo ($email);?>" type="email" required="required">
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-3 control-label">Phone:</label>
-																<div class="col-lg-8">
-																	<input class="form-control" name="phone" value="<?php echo ($phone);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555'>
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-3 control-label">Address:</label>
-																<div class="col-lg-8">
-																	<input class="form-control" maxlength="50" name="street" value="<?php echo ($street);?>" type="text" required="required">
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-3 control-label">City:</label>
-																<div class="col-lg-8">
-																	<input class="form-control" maxlength="40" name="city" value="<?php echo ($city);?>" type="text" required="required" />
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-3 control-label">State:</label>
-																<div class="col-lg-8">
-				
-																<select name="state" required="required">
-																	<option <?php if ($state == 'Virginia' ) echo 'selected' ; ?> value="Virginia">Virginia</option>
-																	<option <?php if ($state == 'Alabama' ) echo 'selected' ; ?> value="Alabama">Alabama</option>
-																	<option <?php if ($state == 'Alaska' ) echo 'selected' ; ?> value="Alaska">Alaska</option>
-																	<option <?php if ($state == 'Arizona' ) echo 'selected' ; ?> value="Arizona">Arizona</option>
-																	<option <?php if ($state == 'Arkansas' ) echo 'selected' ; ?> value="Arkansas">Arkansas</option>
-																	<option <?php if ($state == 'California' ) echo 'selected' ; ?> value="California">California</option>
-																	<option <?php if ($state == 'Colorado' ) echo 'selected' ; ?> value="Colorado">Colorado</option>
-																	<option <?php if ($state == 'Connecticut' ) echo 'selected' ; ?> value="Connecticut">Connecticut</option>
-																	<option <?php if ($state == 'Delaware' ) echo 'selected' ; ?> value="Delaware">Delaware</option>
-																	<option <?php if ($state == 'Florida' ) echo 'selected' ; ?> value="Florida">Florida</option>
-																	<option <?php if ($state == 'Georgia' ) echo 'selected' ; ?> value="Georgia">Georgia</option>
-																	<option <?php if ($state == 'Hawaii' ) echo 'selected' ; ?> value="Hawaii">Hawaii</option>
-																	<option <?php if ($state == 'Idaho' ) echo 'selected' ; ?> value="Idaho">Idaho</option>
-																	<option <?php if ($state == 'Illinois' ) echo 'selected' ; ?> value="Illinois">Illinois</option>
-																	<option <?php if ($state == 'Indiana' ) echo 'selected' ; ?> value="Indiana">Indiana</option>
-																	<option <?php if ($state == 'Iowa' ) echo 'selected' ; ?> value="Iowa">Iowa</option>
-																	<option <?php if ($state == 'Kansas' ) echo 'selected' ; ?> value="Kansas">Kansas</option>
-																	<option <?php if ($state == 'Kentucky' ) echo 'selected' ; ?> value="Kentucky">Kentucky</option>
-																	<option <?php if ($state == 'Louisiana' ) echo 'selected' ; ?> value="Louisiana">Louisiana</option>
-																	<option <?php if ($state == 'Maine' ) echo 'selected' ; ?> value="Maine">Maine</option>
-																	<option <?php if ($state == 'Maryland' ) echo 'selected' ; ?> value="Maryland">Maryland</option>
-																	<option <?php if ($state == 'Massachusetts' ) echo 'selected' ; ?> value="Massachusetts">Massachusetts</option>
-																	<option <?php if ($state == 'Michigan' ) echo 'selected' ; ?> value="Michigan">Michigan</option>
-																	<option <?php if ($state == 'Minnesota' ) echo 'selected' ; ?> value="Minnesota">Minnesota</option>
-																	<option <?php if ($state == 'Mississippi' ) echo 'selected' ; ?> value="Mississippi">Mississippi</option>
-																	<option <?php if ($state == 'Missouri' ) echo 'selected' ; ?> value="Missouri">Missouri</option>
-																	<option <?php if ($state == 'Montana' ) echo 'selected' ; ?> value="Montana">Montana</option>
-																	<option <?php if ($state == 'Nebraska' ) echo 'selected' ; ?> value="Nebraska">Nebraska</option>
-																	<option <?php if ($state == 'Nevada' ) echo 'selected' ; ?> value="Nevada">Nevada</option>
-																	<option <?php if ($state == 'New Hampshire' ) echo 'selected' ; ?> value="New Hampshire">New Hampshire</option>
-																	<option <?php if ($state == 'New Jersey' ) echo 'selected' ; ?> value="New Jersey">New Jersey</option>
-																	<option <?php if ($state == 'New Mexico' ) echo 'selected' ; ?> value="New Mexico">New Mexico</option>
-																	<option <?php if ($state == 'New York' ) echo 'selected' ; ?> value="New York">New York</option>
-																	<option <?php if ($state == 'North Carolina' ) echo 'selected' ; ?> value="North Carolina">North Carolina</option>
-																	<option <?php if ($state == 'North Dakota' ) echo 'selected' ; ?> value="North Dakota">North Dakota</option>
-																	<option <?php if ($state == 'Ohio' ) echo 'selected' ; ?> value="Ohio">Ohio</option>
-																	<option <?php if ($state == 'Oklahoma' ) echo 'selected' ; ?> value="Oklahoma">Oklahoma</option>
-																	<option <?php if ($state == 'Oregon' ) echo 'selected' ; ?> value="Oregon">Oregon</option>
-																	<option <?php if ($state == 'Pennsylvania' ) echo 'selected' ; ?> value="Pennsylvania">Pennsylvania</option>
-																	<option <?php if ($state == 'Rhode Island' ) echo 'selected' ; ?> value="Rhode Island">Rhode Island</option>
-																	<option <?php if ($state == 'South Carolina' ) echo 'selected' ; ?> value="South Carolina">South Carolina</option>
-																	<option <?php if ($state == 'South Dakota' ) echo 'selected' ; ?> value="South Dakota">South Dakota</option>
-																	<option <?php if ($state == 'Tennessee' ) echo 'selected' ; ?> value="Tennessee">Tennessee</option>
-																	<option <?php if ($state == 'Texas' ) echo 'selected' ; ?> value="Texas">Texas</option>
-																	<option <?php if ($state == 'Utah' ) echo 'selected' ; ?> value="Utah">Utah</option>
-																	<option <?php if ($state == 'Virginia' ) echo 'selected' ; ?> value="Virginia">Virginia</option>
-																	<option <?php if ($state == 'Vermont' ) echo 'selected' ; ?> value="Vermont">Vermont</option>
-																	<option <?php if ($state == 'Washington' ) echo 'selected' ; ?> value="Washington">Washington</option>
-																	<option <?php if ($state == 'West Virginia' ) echo 'selected' ; ?> value="West Virginia">West Virginia</option>
-																	<option <?php if ($state == 'Wisconsin' ) echo 'selected' ; ?> value="Wisconsin">Wisconsin</option>
-																	<option <?php if ($state == 'Wyoming' ) echo 'selected' ; ?> value="Wyoming">Wyoming</option>
-																	</select>  
-																	
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-3 control-label">Zip Code:</label>
-																<div class="col-lg-8">
-																	<input class="form-control" pattern=".{5}" title="Enter 5 digit zipcode" name="zipcode" value="<?php echo ($zipcode);?>" type="text" required="required" />
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-3 control-label">Allergies:</label>
-																<div class="col-lg-8">
-																	<input class="form-control" type="text" name="allergies" value="<?php echo ($allergies);?>">
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-3 control-label">Physical Limitations:</label>
-																<div class="col-lg-8">
-																  <input class="form-control" type="text" name="outside" value="<?php echo ($outside);?>">
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-3 control-label">Rabies Vaccinated?</label>
-																<div class="col-lg-8">
-																	<div class="checkbox">
-																		<input type="radio" name="rabies" value="Yes" <?php if ($rabies == 'Yes') echo ' checked="checked"';?>> Yes
-																		<input type="radio" name="rabies" value="No" <?php if ($rabies == 'No') echo ' checked="checked"';?>> No
-																	</div>
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-3 control-label">Permit to rehabilitate wildlife in Virginia?</label>
-																<div class="col-lg-8">
-																	<div class="checkbox" >
-																		<input type="radio" name="permit" value="Yes" <?php if ($permit == 'Yes') echo ' checked="checked"';?>> Yes
-																		<input type="radio" name="permit" value="No" <?php if ($permit == 'No') echo ' checked="checked"';?>> No
-																	</div>
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-lg-3 control-label">Additional Notes</label>
-																<div class="col-lg-8">
-																	<input class="form-control" type="text" value="">
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-md-3 control-label">Change Password?</label>
-															</div>
-															<div class="form-group">
-																<label class="col-md-3 control-label">Password:</label>
-																<div class="col-md-8">
-																	<input class="form-control" name="password" type="password">
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-md-3 control-label">Confirm password:</label>
-																<div class="col-md-8">
-																  <input class="form-control" name="check" type="password">
-																</div>
-															</div>
-															<div class="form-group">
-																<label class="col-md-3 control-label"></label>
-																<div class="col-md-8">
-																	<input type="submit" name="btnSave" class="btn btn-primary" value="Save Changes">
-																	<span></span>
-																	<input type="submit" name="btnCancel" class="btn btn-default" formnovalidate value="Cancel">
+                                              <div class="col-md-3">
+        <div class="text-center">
+          <?php
+			if($pic == true){
+				echo '<img class="img-responsive col-sm-4" src="data:image/jpeg;base64,'.base64_encode( $result['Documentation_FileContent'] ).'"/>';
+			}
+			else{
+				echo '<img src="images/johndoe.png" class="img-responsive col-sm-4"></span>';
+			}
+			?>
+          <h6>Upload a different photo...</h6>
+          
+        </div>
+      </div>
+<div class="container">
+  	<hr>
+	<div class="row">
+      <!-- left column -->
+
+      
+      <!-- edit form column -->
+      <div class="col-md-7 col-md-offset-1 personal-info">
+		<form class="form-horizontal" enctype = "multipart/form-data" method="post" role="form">
+		<div class="fileinput fileinput-new" data-provides="fileinput">
+				<span class="btn btn-default btn-file">
+					<input name="picture" id = "picture" type="file" multiple /></span>
+				<span class="fileinput-filename"></span>
+				<span class="fileinput-new"></span>
+			</div>
+        <h3>Personal Info</h3>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">First Name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" maxlength="20" name="firstName" value="<?php echo ($first);?>" type="text" required="required">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last Name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" maxlength="20" name="lastName" value="<?php echo ($last);?>" type="text" required="required">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              <input class="form-control" maxlength="254" name="email" value="<?php echo ($email);?>" type="email" required="required">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Phone:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="phone" value="<?php echo ($phone);?>" type='tel' pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number Format: 555-555-5555'>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Address:</label>
+            <div class="col-lg-8">
+              <input class="form-control" maxlength="50" name="street" value="<?php echo ($street);?>" type="text" required="required">
+            </div>
+          </div>
+		  <div class="form-group">
+			<label class="col-lg-3 control-label">City:</label>
+			<div class="col-lg-8">
+			  <input class="form-control" maxlength="40" name="city" value="<?php echo ($city);?>" type="text" required="required" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">State:</label>
+			<div class="col-lg-8">
+			
+				<select name="state" required="required">
+				<option <?php if ($state == 'Virginia' ) echo 'selected' ; ?> value="Virginia">Virginia</option>
+				<option <?php if ($state == 'Alabama' ) echo 'selected' ; ?> value="Alabama">Alabama</option>
+				<option <?php if ($state == 'Alaska' ) echo 'selected' ; ?> value="Alaska">Alaska</option>
+				<option <?php if ($state == 'Arizona' ) echo 'selected' ; ?> value="Arizona">Arizona</option>
+				<option <?php if ($state == 'Arkansas' ) echo 'selected' ; ?> value="Arkansas">Arkansas</option>
+				<option <?php if ($state == 'California' ) echo 'selected' ; ?> value="California">California</option>
+				<option <?php if ($state == 'Colorado' ) echo 'selected' ; ?> value="Colorado">Colorado</option>
+				<option <?php if ($state == 'Connecticut' ) echo 'selected' ; ?> value="Connecticut">Connecticut</option>
+				<option <?php if ($state == 'Delaware' ) echo 'selected' ; ?> value="Delaware">Delaware</option>
+				<option <?php if ($state == 'Florida' ) echo 'selected' ; ?> value="Florida">Florida</option>
+				<option <?php if ($state == 'Georgia' ) echo 'selected' ; ?> value="Georgia">Georgia</option>
+				<option <?php if ($state == 'Hawaii' ) echo 'selected' ; ?> value="Hawaii">Hawaii</option>
+				<option <?php if ($state == 'Idaho' ) echo 'selected' ; ?> value="Idaho">Idaho</option>
+				<option <?php if ($state == 'Illinois' ) echo 'selected' ; ?> value="Illinois">Illinois</option>
+				<option <?php if ($state == 'Indiana' ) echo 'selected' ; ?> value="Indiana">Indiana</option>
+				<option <?php if ($state == 'Iowa' ) echo 'selected' ; ?> value="Iowa">Iowa</option>
+				<option <?php if ($state == 'Kansas' ) echo 'selected' ; ?> value="Kansas">Kansas</option>
+				<option <?php if ($state == 'Kentucky' ) echo 'selected' ; ?> value="Kentucky">Kentucky</option>
+				<option <?php if ($state == 'Louisiana' ) echo 'selected' ; ?> value="Louisiana">Louisiana</option>
+				<option <?php if ($state == 'Maine' ) echo 'selected' ; ?> value="Maine">Maine</option>
+				<option <?php if ($state == 'Maryland' ) echo 'selected' ; ?> value="Maryland">Maryland</option>
+				<option <?php if ($state == 'Massachusetts' ) echo 'selected' ; ?> value="Massachusetts">Massachusetts</option>
+				<option <?php if ($state == 'Michigan' ) echo 'selected' ; ?> value="Michigan">Michigan</option>
+				<option <?php if ($state == 'Minnesota' ) echo 'selected' ; ?> value="Minnesota">Minnesota</option>
+				<option <?php if ($state == 'Mississippi' ) echo 'selected' ; ?> value="Mississippi">Mississippi</option>
+				<option <?php if ($state == 'Missouri' ) echo 'selected' ; ?> value="Missouri">Missouri</option>
+				<option <?php if ($state == 'Montana' ) echo 'selected' ; ?> value="Montana">Montana</option>
+				<option <?php if ($state == 'Nebraska' ) echo 'selected' ; ?> value="Nebraska">Nebraska</option>
+				<option <?php if ($state == 'Nevada' ) echo 'selected' ; ?> value="Nevada">Nevada</option>
+				<option <?php if ($state == 'New Hampshire' ) echo 'selected' ; ?> value="New Hampshire">New Hampshire</option>
+				<option <?php if ($state == 'New Jersey' ) echo 'selected' ; ?> value="New Jersey">New Jersey</option>
+				<option <?php if ($state == 'New Mexico' ) echo 'selected' ; ?> value="New Mexico">New Mexico</option>
+				<option <?php if ($state == 'New York' ) echo 'selected' ; ?> value="New York">New York</option>
+				<option <?php if ($state == 'North Carolina' ) echo 'selected' ; ?> value="North Carolina">North Carolina</option>
+				<option <?php if ($state == 'North Dakota' ) echo 'selected' ; ?> value="North Dakota">North Dakota</option>
+				<option <?php if ($state == 'Ohio' ) echo 'selected' ; ?> value="Ohio">Ohio</option>
+				<option <?php if ($state == 'Oklahoma' ) echo 'selected' ; ?> value="Oklahoma">Oklahoma</option>
+				<option <?php if ($state == 'Oregon' ) echo 'selected' ; ?> value="Oregon">Oregon</option>
+				<option <?php if ($state == 'Pennsylvania' ) echo 'selected' ; ?> value="Pennsylvania">Pennsylvania</option>
+				<option <?php if ($state == 'Rhode Island' ) echo 'selected' ; ?> value="Rhode Island">Rhode Island</option>
+				<option <?php if ($state == 'South Carolina' ) echo 'selected' ; ?> value="South Carolina">South Carolina</option>
+				<option <?php if ($state == 'South Dakota' ) echo 'selected' ; ?> value="South Dakota">South Dakota</option>
+				<option <?php if ($state == 'Tennessee' ) echo 'selected' ; ?> value="Tennessee">Tennessee</option>
+				<option <?php if ($state == 'Texas' ) echo 'selected' ; ?> value="Texas">Texas</option>
+				<option <?php if ($state == 'Utah' ) echo 'selected' ; ?> value="Utah">Utah</option>
+				<option <?php if ($state == 'Virginia' ) echo 'selected' ; ?> value="Virginia">Virginia</option>
+				<option <?php if ($state == 'Vermont' ) echo 'selected' ; ?> value="Vermont">Vermont</option>
+				<option <?php if ($state == 'Washington' ) echo 'selected' ; ?> value="Washington">Washington</option>
+				<option <?php if ($state == 'West Virginia' ) echo 'selected' ; ?> value="West Virginia">West Virginia</option>
+				<option <?php if ($state == 'Wisconsin' ) echo 'selected' ; ?> value="Wisconsin">Wisconsin</option>
+				<option <?php if ($state == 'Wyoming' ) echo 'selected' ; ?> value="Wyoming">Wyoming</option>
+				</select> 
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-lg-3 control-label">Zip Code:</label>
+			<div class="col-lg-8">
+			  <input class="form-control" pattern=".{5}" title="Enter 5 digit zipcode" name="zipcode" value="<?php echo ($zipcode);?>" type="text" required="required" />
+			</div>
+			
+		</div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Allergies:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="allergies" value="<?php echo ($allergies);?>">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Physical Limitations:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="outside" value="<?php echo ($outside);?>">
+            </div>
+          </div>
+          <div class="form-group">
+				<label class="col-lg-3 control-label">Rabies Vaccinated?</label>
+				<div class="col-lg-8">
+					<div class="checkbox">
+						<input type="radio" name="rabies" value="Yes" <?php if ($rabies == 'Yes') echo ' checked="checked"';?>> Yes
+						<input type="radio" name="rabies" value="No" <?php if ($rabies == 'No') echo ' checked="checked"';?>> No
+					</div>
+				</div>
+			</div>
+          <div class="form-group">
+				<label class="col-lg-3 control-label">Permit to rehabilitate wildlife in Virginia?</label>
+				<div class="col-lg-8">
+					<div class="checkbox" >
+						<input type="radio" name="permit" value="Yes" <?php if ($permit == 'Yes') echo ' checked="checked"';?>> Yes
+						<input type="radio" name="permit" value="No" <?php if ($permit == 'No') echo ' checked="checked"';?>> No
+					</div>
+				</div>
+			</div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Additional Notes:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="notes">
+            </div>
+          </div>
+		  <div class="form-group">
+            <label class="col-md-3 control-label">Change Password?</label>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Password:</label>
+            <div class="col-md-8">
+              <input class="form-control" name="password" type="password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Confirm password:</label>
+            <div class="col-md-8">
+              <input class="form-control" name="check" type="password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="submit" name="btnSave" class="btn btn-primary" value="Save Changes">
+              <span></span>
+              <input type="submit" name="btnCancel" class="btn btn-default" formnovalidate value="Cancel">
 																</div>
 															</div>
 														</form>
