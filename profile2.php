@@ -49,7 +49,7 @@ if ($conn->connect_error) {
 //SQL Statement to gather info
 $sql = "SELECT Person_UserType, Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
 Person_State, Person_Zipcode, Person_AllergiesYN, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_RabiesYN, 
-Person_RehabilitateYN, Person_TeamLeadNotes, Person_DepartmentID FROM Person WHERE Person_ID =" .$profileID;
+Person_RehabilitateYN, Person_TeamLeadNotes, Person_Status, Person_DepartmentID FROM Person WHERE Person_ID =" .$profileID;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -70,6 +70,7 @@ if ($result->num_rows > 0){
 		$rabiesYN = $row['Person_RabiesYN'];
 		$permitYN = $row['Person_RehabilitateYN'];
 		$teamLeadNotes = $row['Person_TeamLeadNotes'];
+		$status = $row['Person_Status'];
 		$departmentID = $row['Person_DepartmentID'];
 		
 	}
@@ -158,7 +159,61 @@ if ($result->num_rows > 0) {
 	
 
 }
+//Get Hours/Miles data
+$ytdHours = '0';
+$totalHours = '0';
+$ytdHoursTrans = '0';
+$totalHoursTrans = '0';
+$ytdMiles = '0';
+$totalMiles = '0';
+//Gather YTD and Total hours
+$sql = "SELECT LogHours_YTDHours, LogHours_TotalHours FROM LogHours WHERE LogHours_PersonID = ".$profileID;
+$result = $conn->query($sql);
+if ($result->num_rows > 0){
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		
+	  $ytdHours = $row['LogHours_YTDHours'];
+	  $totalHours = $row['LogHours_TotalHours']; 
+	}
+}
 
+//Get transporterID
+$transID = null;
+$sql = "SELECT Transporter_ID FROM Transporter WHERE Transporter_PersonID = " . $profileID;
+$result = $conn->query($sql);
+if ($result->num_rows > 0){
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$transID = $row['Transporter_ID'];
+	}
+}
+else{
+	$transID = null;
+}
+ //Gather YTD and Total Miles if exists
+ if($transID != null){
+	$sql = "SELECT LogTransport_YTDHours, LogTransport_TotalHours, LogTransport_YTDMiles, LogTransport_TotalMiles FROM LogTransport WHERE LogTransport_TransportID = ".$transID;
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0){
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			
+		  $ytdHoursTrans = $row['LogTransport_YTDHours'];
+		  $totalHoursTrans = $row['LogTransport_TotalHours'];
+		  $ytdMiles = $row['LogTransport_YTDMiles'];
+		  $totalMiles = $row['LogTransport_TotalMiles']; 		  
+		}
+	}
+ }
+ //Get profile pic
+ $pic = false;
+ $sql = "SELECT * FROM Documentation WHERE (Documentation_PersonID = ".$profileID.") AND (Documentation_TypeOfDocument = 'picture')";
+	$sth = $conn->query($sql);
+	$result=mysqli_fetch_array($sth);
+	if ($result != null){
+		$pic = true;
+	}
 $conn->close();
 
 if(isset($_POST['btnResume']))
@@ -439,13 +494,21 @@ if(isset($_POST['btnReject'])){
                                     <div class="main-content panel panel-default no-margin">
                                         <header class="panel-heading clearfix">
 
-                                             <img src="images/johndoe.png" class="img-responsive col-sm-4"></span> <!-- add image php /////////////////////////////////////////////////////// -->
+                                             <?php
+										if($pic == true){
+											echo '<img class="img-responsive col-sm-4" src="data:image/jpeg;base64,'.base64_encode( $result['Documentation_FileContent'] ).'"/>';
+										}
+										else{
+											echo '<img src="images/johndoe.png" class="img-responsive col-sm-4"></span>';
+										}
+										?>
                                              <hgroup>
                                                  <a href="editprofile2.php" class="btn btn-default pull-right" rel="#overlay">Edit Profile<i class="fa fa-question-circle"></i></a>
                                                  <h2>
                                                      <?php echo $first . " " . $last?>
                                                  </h2>
                                                  <h4><?php echo $userType ?> </h4>
+												 <h5><?php echo "Status: " . $status ?> </h5>
                                              </hgroup>
                                             
                                         </header>
@@ -470,14 +533,14 @@ if(isset($_POST['btnReject'])){
 <div class="col-sm-6">
 <h4>Volunteer Hours</h4>
 <ul>
-	<li>YTD Hours: 1</li> <!--TRANSPORTERS add LogHours total + Transport_Hours to get real total-->
-	<li>Total Hours: 5</li>
+	<li>YTD Hours: <?php echo $ytdHours + $ytdHoursTrans ?></li>
+	<li>Total Hours: <?php echo $totalHours + $totalHoursTrans ?></li>
 </ul>  </div>                                        
 <div class="col-sm-6">
 <h4>Transport Miles</h4>
 <ul>
-	<li>YTD Miles: 1</li>
-	<li>Total Miles: 5</li>
+	<li>YTD Miles: <?php echo $ytdMiles ?></li>
+	<li>Total Miles: <?php echo $totalMiles ?></li>
 </ul>
 </div></div>
 
@@ -514,11 +577,7 @@ if(isset($_POST['btnReject'])){
                                                                                     </ul>
                                             <p>No additional notes</p>
 
-                                    </div>
-
-
-                                    </div>
-                                    <div>
+                                    </div> <div>
 
                                     
                                     <h3>Application Responses</h3>
@@ -642,7 +701,9 @@ if(isset($_POST['btnReject'])){
 														</strong> ' .$capture. '
 													</ul>';} ?>
 													
+                               </div></div></div>
                                </div>
+                                   
                                
 							   
 <?php
