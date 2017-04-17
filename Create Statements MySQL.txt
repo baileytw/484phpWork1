@@ -533,11 +533,12 @@ END $$
 DELIMITER ;
 
 
-INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('rkrasner@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Raina','Krasner','rkrasner@wildlifecenter.org');
-INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('lhorne@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Leigh-Ann','Horne','lhorne@wildlifecenter.org');
-INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('lmcdaniel@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Linda','McDaniel','lmcdaniel@wildlifecenter.org');
-INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('ebrooks@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Elizabeth','Brooks','ebrooks@wildlifecenter.org');
-INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email) VALUES('wildlife@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Front Desk','Coordinators','wildlife@wildlifecenter.org');
+																												
+INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email, Person_DepartmentID) VALUES('rkrasner@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Raina','Krasner','rkrasner@wildlifecenter.org',1);
+INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email, Person_DepartmentID) VALUES('lhorne@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Leigh-Ann','Horne','lhorne@wildlifecenter.org',2);
+INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email, Person_DepartmentID) VALUES('lmcdaniel@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Linda','McDaniel','lmcdaniel@wildlifecenter.org',3);
+INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email, Person_DepartmentID) VALUES('ebrooks@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Elizabeth','Brooks','ebrooks@wildlifecenter.org',5);
+INSERT INTO PERSON(Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_LastName, Person_Email, Person_DepartmentID) VALUES('wildlife@wildlifecenter.org','$2a$08$1WTbkHa6r3OWNwewiqkMHOTfIinT0cUKmy5cld3L8xRZZGSNNsYvi','Team Lead','Front Desk','Coordinators','wildlife@wildlifecenter.org',4);
 
 INSERT INTO Outreach(Outreach_PersonID, Outreach_Department) VALUES(1,1);
 INSERT INTO VetTeam(VetTeam_PersonID, VetTeam_Department) VALUES(2,3);

@@ -31,7 +31,7 @@ if ($conn->connect_error) {
 //SQL Statement to gather info
 $sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
 Person_State, Person_Zipcode, Person_AllergiesYN, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_RabiesYN, 
-Person_RehabilitateYN FROM Person WHERE Person_ID = " .$userID;
+Person_RehabilitateYN, Person_DepartmentID FROM Person WHERE Person_ID = " .$userID;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -50,9 +50,50 @@ if ($result->num_rows > 0){
 		$outside = $row['Person_OutsideLimitations'];
 		$rabiesYN = $row['Person_RabiesYN'];
 		$permitYN = $row['Person_RehabilitateYN'];
+		$departmentID = $row['Person_DepartmentID'];
 		
 	}
 }
+//SQL Statement to gather info
+$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
+Person_State, Person_Zipcode, Person_AllergiesYN, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_RabiesYN, 
+Person_RehabilitateYN, Person_DepartmentID FROM Person WHERE Person_ID = " .$userID;
+$result = $conn->query($sql);
+if ($result->num_rows > 0){
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$first = $row['Person_FirstName'];
+		$last = $row['Person_LastName'];
+		$phone = $row['Person_PhonePrimary'];
+		$email = $row['Person_Email'];
+		$street = $row['Person_StreetAddress'];
+		$city = $row['Person_City'];
+		$state = $row['Person_State'];
+		$zipcode = $row['Person_Zipcode'];
+		$allergiesYN =$row['Person_AllergiesYN'] . " - ";
+		$allergies =$row['Person_Allergies'];
+		$outsideYN = $row['Person_WorkOutside'] . " - ";
+		$outside = $row['Person_OutsideLimitations'];
+		$rabiesYN = $row['Person_RabiesYN'];
+		$permitYN = $row['Person_RehabilitateYN'];
+		$departmentID = $row['Person_DepartmentID'];
+		
+	}
+}
+//Get Team Lead info
+$sql = "SELECT Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email FROM Person WHERE (Person_DepartmentID = " .$departmentID .") AND (Person_UserType = 'Team Lead')";
+$result = $conn->query($sql);
+if ($result->num_rows > 0){
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+		$teamFirst = $row['Person_FirstName'];
+		$teamLast = $row['Person_LastName'];
+		$teamPhone = $row['Person_PhonePrimary'];
+		$teamEmail = $row['Person_Email'];
+		
+	}
+}
+
 //Get Hours/Miles data
 $ytdHours = '0';
 $totalHours = '0';
@@ -275,11 +316,11 @@ $conn->close();
                                             <h4>Outside/Physical Limitations</h4> <?php echo $outsideYN . $outside ?>
                                             <h4>Rabies Vaccinated</h4> <?php echo $rabiesYN ?>
                                             <h4>Permit</h4> <?php echo $permitYN ?>
-                                            <h4>Emergency Contact</h4> Sean Young (540)555-8202
+                                            <h4>Team Lead Info</h4> <?php echo $teamFirst . " " . $teamLast . "<br>" .
+																		$teamPhone . "<br>" . $teamEmail ?>
 
                                        
     <h4>Weekly Availability</h4>  </ul>
-    <img src="images/joecalendar.png" alt="calendar" class="img-responsive">
 
                                     </div>
                                     <div class="preview">
