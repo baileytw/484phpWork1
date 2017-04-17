@@ -155,17 +155,24 @@ table, th, td {
                 <div class="panel-body">
                     <form class="form-inline" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" role="form"> <!-- action="Datebase.php" -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 						View current building occupants: <button type="occupants" name="occupants" value="Search" class="btn btn-default filter-col">
 =======
 					View current building occupants: <button type="occupants" name="occupants" value="Search" class="btn btn-default filter-col">
 >>>>>>> origin/master
+=======
+					View current building occupants: <button type="occupants" name="occupants" value="Search" class="btn btn-default filter-col">
+>>>>>>> parent of a3892ae... updated
                                 Occupants
                             </button>
 							<br>	
 								<h4>Search Profiles</h4>
 <<<<<<< HEAD
+<<<<<<< HEAD
 					   <div class="form-group">
 =======
+=======
+>>>>>>> parent of a3892ae... updated
                         <div class="form-group">
 >>>>>>> origin/master
                             <div class="form-group">
@@ -947,6 +954,7 @@ table, th, td {
 						
 						// Statments for team
 <<<<<<< HEAD
+<<<<<<< HEAD
 															
 						}
 						if(($tableType=="Search") || ($tableType=="Occupants")){
@@ -955,6 +963,10 @@ table, th, td {
 						}
 						if(($tableType=="Search") || ($tableType=="Occupants")){
 >>>>>>> origin/master
+=======
+						}
+						if(($tableType=="Search") || ($tableType=="Occupants")){
+>>>>>>> parent of a3892ae... updated
 		
 							$result = $conn->query($sql);
 							if ($result->num_rows > 0) {
@@ -985,11 +997,14 @@ table, th, td {
 									<td><?php echo $row['Person_FirstName']; ?></td>
 									<td><?php echo $row['Person_LastName']; ?></td>
 <<<<<<< HEAD
+<<<<<<< HEAD
 									<td><?php if($tableType == 'Search'){echo $row['Person_UserType'];} ?></td>
 									<td><?php echo $dept; ?></td>
 									<td><?php if($tableType == 'Search'){echo $row['Person_Email'];} ?></td>
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> parent of a3892ae... updated
 									<td><?php echo $row['Person_UserType']; ?></td>
 									<td><?php echo $dept; ?></td>
 									<td><?php echo $row['Person_Email']; ?></td>
@@ -997,7 +1012,10 @@ table, th, td {
 									<td><?php if($tableType == 'Search'){echo $row['Person_UserType'];} ?></td>
 									<td><?php if($tableType == 'Search'){echo $row['Person_Email'];} ?></td>
 >>>>>>> origin/master
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of a3892ae... updated
 									<td><?php echo $row['Person_PhonePrimary']; ?></td>
 									
 									
