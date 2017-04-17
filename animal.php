@@ -90,8 +90,35 @@
 				$permitRehab = NULL;
 			}
 
-				  $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered, Person_DepartmentID)
-			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', '$county', '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitRehab', '$allergies', NULL, '$workOutsideLimitations', '$lift40', NULL, NULL, '$departmentID')";
+			$availabilityType = $_POST['work'];
+
+
+		if ($_POST['cbSunday'] == 'sun1'){
+				$cbDays .= ' |Sunday|';
+			}
+
+			if ($_POST['cbMonday'] == 'mon1'){
+				$cbDays .= ' |Monday|';
+			}
+			if ($_POST['cbTuesday'] == 'tue1'){
+				$cbDays .= ' |Tuesday|';
+			}
+			if ($_POST['cbWednesday'] == 'wed1'){
+				$cbDays .= ' |Wednesday|';
+			}
+			if ($_POST['cbThursday'] == 'thu1'){
+				$cbDays .= ' |Thursday|';
+			}
+			if ($_POST['cbFriday'] == 'fri1'){
+				$cbDays .= ' |Friday|';
+			}
+			if ($_POST['cbSaturday'] == 'sat1'){
+				$cbDays .= ' |Saturday|';
+			}
+
+				  $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered, Person_DepartmentID, Person_Days,
+				  	  Person_AvailabilityType)
+			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', '$county', '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitRehab', '$allergies', NULL, '$workOutsideLimitations', '$lift40', NULL, NULL, '$departmentID', '$cbDays', '$availabilityType')";
 
 
 
@@ -543,8 +570,8 @@
 													<label class="col-sm-3">Are you able to work All Year or Seasonal?</label>
 													<div class="col-sm-7">
 														<div class="checkbox" >
-															<input type="radio" name="work" value="Y" <?php if (isset($_POST['work']) && $_POST['work'] == 'Y') echo ' checked="checked"';?>> All Year
-															<input type="radio" name="work" value="S" <?php if (isset($_POST['work']) && $_POST['work'] == 'S') echo ' checked="checked"';?>> Seasonal
+															<input type="radio" name="work" value="All Year" <?php if (isset($_POST['work']) && $_POST['work'] == 'Y') echo ' checked="checked"';?>> All Year
+															<input type="radio" name="work" value="Seasonal" <?php if (isset($_POST['work']) && $_POST['work'] == 'S') echo ' checked="checked"';?>> Seasonal
 														</div>
 													</div>
 												</div>
@@ -553,31 +580,31 @@
 													<table style="width:10%">
 														<tr>
 															<td>Sundays</td>
-															<td><label><input type="checkbox" name="text1" value="sun1" /></label></td>
+															<td><label><input type="checkbox" name="cbSunday" value="sun1" /></label></td>
 															</tr>
 														<tr>
 															<td>Mondays</td>
-															<td><label><input type="checkbox" name="text5" value="mon1" /></label></td>
+															<td><label><input type="checkbox" name="cbMonday" value="mon1" /></label></td>
 															</tr>
 														<tr>
 															<td>Tuesdays</td>
-															<td><label><input type="checkbox" name="text9" value="tue1" /></label></td>
+															<td><label><input type="checkbox" name="cbTuesday" value="tue1" /></label></td>
 															</tr>
 														<tr>
 															<td>Wednesdays</td>
-															<td><label><input type="checkbox" name="text13" value="wed1" /></label></td>
+															<td><label><input type="checkbox" name="cbWednesday" value="wed1" /></label></td>
 															</tr>
 														<tr>
 															<td>Thursdays</td>
-															<td><label><input type="checkbox" name="text17" value="thu1" /></label></td>
+															<td><label><input type="checkbox" name="cbThursday" value="thu1" /></label></td>
 															</tr>
 														<tr>
 															<td>Fridays</td>
-															<td><label><input type="checkbox" name="text21" value="fri1" /></label></td>
+															<td><label><input type="checkbox" name="cbFriday" value="fri1" /></label></td>
 															</tr>
 														<tr>
 															<td>Saturdays</td>
-															<td><label><input type="checkbox" name="text25" value="sat1" /></label></td>
+															<td><label><input type="checkbox" name="cbSaturday" value="sat1" /></label></td>
 															</tr>
 													</table>
 												</div>

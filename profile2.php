@@ -49,7 +49,7 @@ if ($conn->connect_error) {
 //SQL Statement to gather info
 $sql = "SELECT Person_UserType, Person_FirstName, Person_LastName, Person_PhonePrimary, Person_Email, Person_StreetAddress, Person_City,
 Person_State, Person_Zipcode, Person_AllergiesYN, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_RabiesYN, 
-Person_RehabilitateYN, Person_TeamLeadNotes, Person_Status, Person_DepartmentID FROM Person WHERE Person_ID =" .$profileID;
+Person_RehabilitateYN, Person_TeamLeadNotes, Person_Status, Person_DepartmentID, Person_Days, Person_AvailabilityType FROM Person WHERE Person_ID =" .$profileID;
 $result = $conn->query($sql);
 if ($result->num_rows > 0){
 	// output data of each row
@@ -72,6 +72,8 @@ if ($result->num_rows > 0){
 		$teamLeadNotes = $row['Person_TeamLeadNotes'];
 		$status = $row['Person_Status'];
 		$departmentID = $row['Person_DepartmentID'];
+		$daysAvailable = $row['Person_Days'];
+		$availabilityType = $row['Person_AvailabilityType'];
 		
 	}
 }
@@ -174,6 +176,8 @@ if ($result->num_rows > 0) {
 	
 
 }
+
+
 //Get Hours/Miles data
 $ytdHours = '0';
 $totalHours = '0';
@@ -766,8 +770,11 @@ if ($result->num_rows > 0){
                                             <h4>Emergency Contact</h4> Sean Young (540)555-8202
 
                                        
-    <h4>Weekly Availability</h4>  </ul>
-    <img src="images/joecalendar.png" alt="calendar" class="img-responsive">
+    <h4>Weekly Availability</h4> 
+    <i><?php echo $availabilityType ?></i> <br>
+    <?php echo $daysAvailable ?> </ul>
+    <!-- <img src="images/joecalendar.png" alt="calendar" class="img-responsive"> -->
+
 	<div class="form-group">
 	<form method="post">
 		<button name="btnAccept"  class="btn btn-default" <?php if(($userType != "Applicant") && ($userType != "Rejected")) echo 'style="display:none;"'?> type="submit">Accept Applicant</button>
