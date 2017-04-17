@@ -94,7 +94,6 @@ if(isset($_POST['upload']))
 					NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, '$permitrehabYN', '$permitrehab', '$allergies', '$workOutside',
 					'$workOutsideLimitations', '$lift40', NULL, NULL)";
 
-                 mysqli_query($conn, $query) or die(mysqli_error($conn));
 				 
 				 if(!mysqli_query($conn,$query))
 
@@ -132,7 +131,7 @@ if(isset($_POST['upload']))
 													'$messy')";
 													
 
-					mysqli_query($conn, $vetQuery) or die(mysqli_error($conn)); 
+		
 					
 					if(!mysqli_query($conn,$vetQuery))
 
