@@ -86,13 +86,26 @@
 			$travel = $_POST['travel'];
 			$capture = $_POST['capture'];
 			$acknowledge = $_POST['acknowledge'];
+
+
+			if ($_POST['transport1'] == 'Weekdays'){
+				$cbDays .= ' |Weedkdays|';
+			}
+			if ($_POST['transport2'] == 'Weekends'){
+				$cbDays .= ' |Weekends|';
+			}
+			if ($_POST['transport3'] == 'Anytime'){
+				$cbDays .= ' |Any Time|';
+			}
+
+			
+			
 			if ($permitRehab < 1)
 			{
 				$permitRehab = NULL;
 			}
-$query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies,
-		  Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered, Person_DepartmentID)
-			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$departmentID')";
+$query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered, Person_DepartmentID, Person_Days)
+			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$departmentID', '$cbDays')";
 
 
 
@@ -461,9 +474,9 @@ $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserT
                                                     <label class="col-sm-5">When are you able to transport animals?</label>
                                                     <div class="col-sm-7">
                                                         <div class="checkbox">
-                                                            <p><input type="checkbox" name="transport" value="Weekdays">Weekdays</p>
-															<p><input type="checkbox" name="transport" value="Weekends">Weekends</p>
-                                                            <p><input type="checkbox" name="transport" value="Anytime">Anytime</p>
+                                                            <p><input type="checkbox" name="transport1" value="Weekdays">Weekdays</p>
+															<p><input type="checkbox" name="transport2" value="Weekends">Weekends</p>
+                                                            <p><input type="checkbox" name="transport3" value="Anytime">Anytime</p>
                                                         </div>
                                                     </div>
                                                 </div>
