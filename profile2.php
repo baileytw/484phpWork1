@@ -361,7 +361,7 @@ if(isset($_POST['btnAccept'])){
 	}
 	 else {
 		$conn->close();
-		header("Location: rejected.php");
+		header("Location: accepted.php");
 		exit();
 
   
