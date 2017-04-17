@@ -154,7 +154,12 @@ table, th, td {
             <div class="panel panel-default">
                 <div class="panel-body">
                     <form class="form-inline" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" role="form"> <!-- action="Datebase.php" -->
-                        <div class="form-group">
+						View current building occupants: <button type="occupants" name="occupants" value="Search" class="btn btn-default filter-col">
+                                Occupants
+                            </button>
+							<br>	
+								<h4>Search Profiles</h4>
+					   <div class="form-group">
                             <div class="form-group">
                             <label class="filter-col" style="margin-right:0;" for="pref-search">Search:</label>
                             <input type="text" class="form-control input-sm" name="pref-search" placeholder="First or Last Name" id="pref-search">
@@ -217,7 +222,32 @@ table, th, td {
 					<tbody> 
 						<!--Use a while loop to make a table row for every Database row-->
 						<?php 
+						$tableType = null;
+						//For occupancy
+						if (isset($_POST['occupants'])){
+							$tableType = "Occupants";
+							
+							$servername = "localhost";
+							$username = "root";
+							$dbpassword = "Twspike1994?";
+							$dbname = "wildlife";
+
+							// Create connection
+							$conn = new mysqli($servername, $username, $dbpassword, $dbname);
+							// Check connection
+							if ($conn->connect_error) {
+								die("Connection failed: " . $conn->connect_error);
+							}
+							
+							$sql = "SELECT Person.Person_FirstName, Person.Person_LastName, Person.Person_PhonePrimary
+									FROM Person
+									INNER JOIN LogHours ON Person.Person_ID=LogHours.LogHours_PersonID WHERE (LogHours_EndTime IS NULL) 
+									AND (DATEDIFF(CURDATE(), LogHours_BeginTime)<=1)";
+									
+						}
+						//For search
 						if (isset($_POST['submit'])){
+							$tableType="Search";
 								$servername = "localhost";
 								$username = "root";
 								$dbpassword = "Twspike1994?";
@@ -909,7 +939,8 @@ table, th, td {
 						
 						// Statments for team
 															
-		
+						}
+						if(($tableType=="Search") || ($tableType=="Occupants")){
 		
 		
 							$result = $conn->query($sql);
@@ -937,12 +968,12 @@ table, th, td {
 
 
 									<td><input type="checkbox" name="check[]" value="<?php echo $row['Person_Email'] ?>"></td>
-									<td><?php echo '<a href="profile2.php?profileID='.$row['Person_ID'].'">View</a>'; ?></td>
+									<td><?php if($tableType == 'Search'){echo '<a href="profile2.php?profileID='.$row['Person_ID'].'">View</a>';} ?></td>
 									<td><?php echo $row['Person_FirstName']; ?></td>
 									<td><?php echo $row['Person_LastName']; ?></td>
-									<td><?php echo $row['Person_UserType']; ?></td>
+									<td><?php if($tableType == 'Search'){echo $row['Person_UserType'];} ?></td>
 									<td><?php echo $dept; ?></td>
-									<td><?php echo $row['Person_Email']; ?></td>
+									<td><?php if($tableType == 'Search'){echo $row['Person_Email'];} ?></td>
 									<td><?php echo $row['Person_PhonePrimary']; ?></td>
 									
 									
