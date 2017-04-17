@@ -154,12 +154,20 @@ table, th, td {
             <div class="panel panel-default">
                 <div class="panel-body">
                     <form class="form-inline" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" role="form"> <!-- action="Datebase.php" -->
+<<<<<<< HEAD
 						View current building occupants: <button type="occupants" name="occupants" value="Search" class="btn btn-default filter-col">
+=======
+					View current building occupants: <button type="occupants" name="occupants" value="Search" class="btn btn-default filter-col">
+>>>>>>> origin/master
                                 Occupants
                             </button>
 							<br>	
 								<h4>Search Profiles</h4>
+<<<<<<< HEAD
 					   <div class="form-group">
+=======
+                        <div class="form-group">
+>>>>>>> origin/master
                             <div class="form-group">
                             <label class="filter-col" style="margin-right:0;" for="pref-search">Search:</label>
                             <input type="text" class="form-control input-sm" name="pref-search" placeholder="First or Last Name" id="pref-search">
@@ -938,10 +946,15 @@ table, th, td {
 
 						
 						// Statments for team
+<<<<<<< HEAD
 															
 						}
 						if(($tableType=="Search") || ($tableType=="Occupants")){
 		
+=======
+						}
+						if(($tableType=="Search") || ($tableType=="Occupants")){
+>>>>>>> origin/master
 		
 							$result = $conn->query($sql);
 							if ($result->num_rows > 0) {
@@ -971,9 +984,20 @@ table, th, td {
 									<td><?php if($tableType == 'Search'){echo '<a href="profile2.php?profileID='.$row['Person_ID'].'">View</a>';} ?></td>
 									<td><?php echo $row['Person_FirstName']; ?></td>
 									<td><?php echo $row['Person_LastName']; ?></td>
+<<<<<<< HEAD
 									<td><?php if($tableType == 'Search'){echo $row['Person_UserType'];} ?></td>
 									<td><?php echo $dept; ?></td>
 									<td><?php if($tableType == 'Search'){echo $row['Person_Email'];} ?></td>
+=======
+<<<<<<< HEAD
+									<td><?php echo $row['Person_UserType']; ?></td>
+									<td><?php echo $dept; ?></td>
+									<td><?php echo $row['Person_Email']; ?></td>
+=======
+									<td><?php if($tableType == 'Search'){echo $row['Person_UserType'];} ?></td>
+									<td><?php if($tableType == 'Search'){echo $row['Person_Email'];} ?></td>
+>>>>>>> origin/master
+>>>>>>> origin/master
 									<td><?php echo $row['Person_PhonePrimary']; ?></td>
 									
 									
