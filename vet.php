@@ -402,7 +402,7 @@ alert('$message');
 													</div>
 													<label class="col-sm-2">Zip Code *</label>
 													<div class="col-sm-2">
-														<input class="form-control" type="text" id="zipcode" name="zipcode" value="<?php if (isset($_POST['upload'])) echo ($_POST['zipcode']);?>" placeholder="Zip" name="zip" required="required" />
+														<input class="form-control" type="text" id="zipcode" name="zipcode" value="<?php if (isset($_POST['upload'])) echo ($_POST['zipcode']);?>" placeholder="Zip" name="zip" required="required" maxlength="5"/>
 													</div>
 												</div>
 												<div class="form-group">
