@@ -162,7 +162,8 @@ $sql = "SELECT TransporterApp_DistanceWillingToTravel, TransporterApp_CaptureAni
 				WHERE TransporterApp_PersonID = '" . $profileID . "'";
 
 				$result = $conn->query($sql);
-
+$distance = "";
+$capture = "";
 if ($result->num_rows > 0) {
 	// output data of each row
 	while($row = $result->fetch_assoc()) {
