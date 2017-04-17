@@ -649,23 +649,23 @@ if(isset($_POST['btnReject'])){
 														<strong>Prior to release from the Wildlife Center, many predatory birds are presented with live mice in order to evaluate their ability to capture prey in a controlled and measurable environment. What is your opinion on using live-prey for this purpose? 
 														</strong> ' .$livePrey. '
 													</ul>
-													<h4>Wildlife Groups</h4>
+													<h4>Limitations</h4>
 													<ul>
 														<strong>Wildlife rehabilitation requires daily outdoor work -- year-round and regardless of weather conditions. Are you able to work outside during all seasons? If not, what are your limitations? </strong> ' .$workOutside. '
 													</ul>
-													<h4>Wildlife Groups</h4>
+													<h4>Animal Rights Groups</h4>
 													<ul>
 														<strong>Do you belong to any animal rights groups (PETA, The Humane Society, etc.)? If so, which ones? </strong> ' .$animalRightsGroup. '
 													</ul>
-													<h4>Wildlife Groups</h4>
+													<h4>Accomplishment</h4>
 													<ul>
 														<strong>What do you hope to learn or accomplish by volunteering at the Wildlife Center of Virginia? </strong> ' .$learn. '
 													</ul>
-													<h4>Wildlife Groups</h4>
+													<h4>Wildlife-Based Issue</h4>
 													<ul>
 														<strong>Please describe an environmental or wildlife-based issue you feel passionately about, and why. </strong> ' .$wildlifeIssueA. '
 													</ul>
-													<h4>Contributions</h4>
+													<h4>Additional Information</h4>
 													<ul>
 														<strong>Is there anything else that you’d like us to know about yourself or your experience?
 														</strong> ' .$additionalExperience.'
