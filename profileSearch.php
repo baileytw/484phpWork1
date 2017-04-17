@@ -801,12 +801,12 @@ table, th, td {
 						
 						if($search == null && $sorts == "lastName" && $filter == "Outreach" && $position=="volunteer"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person_Usertype='volunteer' ORDER BY Person_LastName ASC";
+							$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person_Usertype='Volunteer' ORDER BY Person_LastName ASC";
 						}
 						
 						if($search == null && $sorts == "firstName" && $filter == "Outreach" && $position=="volunteer"){
 							// Select statement for default
-							$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person_Usertype='volunteer' ORDER BY Person_FirstName ASC";
+							$sql = "SELECT * FROM Person INNER JOIN Outreach ON Person.Person_ID=Outreach.Outreach_PersonID where Person_Usertype='Volunteer' ORDER BY Person_FirstName ASC";
 						}
 						
 						if($search == null && $sorts == "lastName" && $filter == "Outreach" && $position=="applicant"){
