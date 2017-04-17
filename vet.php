@@ -67,6 +67,8 @@ if(isset($_POST['upload']))
 		$dob2 = DateTime::createFromFormat('Y-m-d' , $dob1);
 		$dob = $dob2->format('Y-m-d');
         $street = $_POST['address'];
+		
+
       
 		$status = 'Applicant';
 		$rabiesVac = NULL;
@@ -599,7 +601,7 @@ alert('$message');
 												<div class="form-group">
 													<label class="col-sm-3">If so, how recently? Please provide proof of vaccination. Upload an attachment.</label>
 													<div>
-														<select name="DOBMonth">
+														<select name="rabiesMonth">
 															<option value="">- Month -</option>
 															<option value="01">January</option>
 															<option value="02">February</option>
@@ -614,8 +616,8 @@ alert('$message');
 															<option value="11">November</option>
 															<option value="12">December</option>
 														</select>
-														<select name="DOBDay">
-															<option>- Day -</option>
+														<select name="rabiesDay">
+															<option value="">- Day -</option>
 															<option value="01">1</option>
 															<option value="02">2</option>
 															<option value="03">3</option>
@@ -648,8 +650,8 @@ alert('$message');
 															<option value="30">30</option>
 															<option value="31">31</option>
 														</select>
-														<select name="DOBYear">
-															<option> - Year - </option>
+														<select name="rabiesYear">
+															<option value=""> - Year - </option>
 															<option value="2017">2017</option>
 															<option value="2016">2016</option>
 															<option value="2015">2015</option>
