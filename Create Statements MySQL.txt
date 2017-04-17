@@ -69,6 +69,8 @@ Person_LastVolunteered				DATE,
 Person_RehabilitateYN				VARCHAR(3),				
 Person_TeamLeadNotes				VARCHAR (2000),
 Person_DepartmentID				INT(11),
+Person_Days					VARCHAR(150),
+Person_AvailabilityType				VARCHAR(45),
 CONSTRAINT PK_Person PRIMARY KEY (Person_ID),
 CONSTRAINT FK_Person_DepartmentID FOREIGN KEY (Person_DepartmentID) REFERENCES Department(Department_ID));
 
