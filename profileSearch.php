@@ -209,6 +209,7 @@ table, th, td {
 							<th>First Name</th> 
 							<th>Last Name</th>
 							<th>Type</th>
+							<th>Department</th>
 							<th>Email</th>
 							<th>Phone</th>
 						</tr>
@@ -904,12 +905,7 @@ table, th, td {
 						// Statements for filter ///////////////////////////////
 						
 											
-						
-						
-						
-						
-						
-			
+
 						
 						// Statments for team
 															
@@ -922,11 +918,30 @@ table, th, td {
 								while($row = $result->fetch_assoc()) {?>
 								<tr>
 									<!--Each table column is echoed in to a td cell-->
+									<?php
+									if ($row['Person_DepartmentID'] == 1)
+									{
+										$dept = 'Outreach';
+									}
+									elseif ($row['Person_DepartmentID'] == 2) {
+										$dept = 'Animal Care';
+									}
+									elseif ($row['Person_DepartmentID'] == 3) {
+										$dept = 'Vet Team';
+									}
+									elseif ($row['Person_DepartmentID'] == 4) {
+										$dept = 'Transporter';
+									}
+
+									?>
+
+
 									<td><input type="checkbox" name="check[]" value="<?php echo $row['Person_Email'] ?>"></td>
 									<td><?php echo '<a href="profile2.php?profileID='.$row['Person_ID'].'">View</a>'; ?></td>
 									<td><?php echo $row['Person_FirstName']; ?></td>
 									<td><?php echo $row['Person_LastName']; ?></td>
 									<td><?php echo $row['Person_UserType']; ?></td>
+									<td><?php echo $dept; ?></td>
 									<td><?php echo $row['Person_Email']; ?></td>
 									<td><?php echo $row['Person_PhonePrimary']; ?></td>
 									
@@ -943,8 +958,9 @@ table, th, td {
 		</section>
 		<div class="form-group">
 <label>Send email to selected: </label>
-	<button type="submit" name="emailSelected"  class="btn btn-default filter-col">Send Email </button> 
+	<button type="submit" name="emailSelected"  class="btn btn-default filter-col">Send Email </button>
 </div>	
+
                         </div>
                     </form>
                 </div>
