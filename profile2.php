@@ -84,7 +84,11 @@ if ($result->num_rows > 0){
 
 
 $result = $conn->query($sql);
-
+$whyInterested = "";
+$wildlifeIssue = "";
+$publicSpeaking = "";
+$wildlifeGroup = "";
+$bringToTeam = "";
 if ($result->num_rows > 0) {
 	// output data of each row
 	while($row = $result->fetch_assoc()) {
@@ -107,7 +111,14 @@ $sql = "SELECT AnimalCareApp_HandsOnExperience, AnimalCareApp_HandleDeadAnimals,
 
 
 $result = $conn->query($sql);
-
+$handsOnExperience = "";
+$deadAnimals = "";
+$livePrey = "";
+$workOutside= "";
+$animalRightsGroup = "";
+$learn = "";
+$wildlifeIssueA = "";
+$additionalExperience = "";
 if ($result->num_rows > 0) {
 	// output data of each row
 	while($row = $result->fetch_assoc()) {
@@ -129,7 +140,10 @@ $sql = "SELECT VetTeamApp_PreviousTraining, VetTeamApp_WorkEnvironment,
 				WHERE VetTeamApp_PersonID = '" . $profileID . "'";
 
 				$result = $conn->query($sql);
-
+$training = "";
+$workEnvironment = "";
+$euthansia = "";
+$messy = "";
 if ($result->num_rows > 0) {
 	// output data of each row
 	while($row = $result->fetch_assoc()) {
@@ -582,8 +596,8 @@ if(isset($_POST['btnReject'])){
                                     
                                     <h3>Application Responses</h3>
                                     
-											<div class="row">
-												<div class="col-sm-6">
+											<div class="panel panel-default">
+												<div >
 
 												<?php if ($departmentID == 1) { ?> 
 												<?= ' <h4>Outreach Questions <?= $departmentID ?></h4>
