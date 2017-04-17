@@ -85,14 +85,15 @@ for($i = 1; $i <= $total; $i++){
 	}
 	 //Gather YTD and Total hours
 	 if($id != null){
-		$sql = "SELECT LogHours_YTDHours, LogHours_TotalHours FROM LogHours WHERE LogHours_PersonID = ".$id;
+		$sql = "SELECT MAX(LogHours_YTDHours), MAX(LogHours_TotalHours) FROM LogHours WHERE LogHours_PersonID = ".$id;
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0){
 			// output data of each row
 			while($row = $result->fetch_assoc()) {
 				
-			  $ytdHours = $row['LogHours_YTDHours'];
-			  $totalHours = $row['LogHours_TotalHours']; 
+			  $ytdHours = $row['MAX(LogHours_YTDHours)'];
+			  $totalHours = $row['MAX(LogHours_TotalHours)']; 
+			  
 			}
 		}
 		else{

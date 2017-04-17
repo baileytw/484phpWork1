@@ -527,7 +527,7 @@ if(isset($_POST['btnReject'])){
                                                      <?php echo $first . " " . $last?>
                                                  </h2>
                                                  <h4><?php echo $userType ?> </h4>
-												 <h5><?php echo "Status: " . $status ?> </h5>
+												 <h5><?php if ($userType == 'Volunteer') echo "Status: " . $status; ?> </h5>
                                              </hgroup>
                                             
                                         </header>
