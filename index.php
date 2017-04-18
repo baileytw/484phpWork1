@@ -366,10 +366,13 @@ if(isset($_POST['apply']))
 	$mail->Subject = 'Wildlife Center of Virginia Volunteer Opportunity';
 	$mail->Body    = 'Thank you for your interest in the Wildlife Center!<br>
                   Please follow the link provided to fill out an application.
-                  ';
+					<br><br>
+					http://52.42.132.241/484phpWork1/forms.php';
+					
 	$mail->AltBody = 'Thank you for your interest in the Wildlife Center!<br>
 	  Please follow the link provided to fill out an application.
-	  ';
+	  <br><br>
+					http://52.42.132.241/484phpWork1/forms.php';
 
 	
 	$mail->AltBody = $_POST['emailBody'];
