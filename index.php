@@ -103,7 +103,7 @@ session_start();
 					$logID = $row['MAX(LogHours_ID)'];
 					
 				}
-				$query = "UPDATE LogHours SET LogHours_EndTime = NOW() WHERE LogHours_ID =" . $logID;
+				$query = "UPDATE LogHours SET LogHours_EndTime = NOW(), LastModifiedBy = ".$personID.", LastModifiedDate = NOW() WHERE LogHours_ID =" . $logID;
 				mysqli_query($conn, $query) or die(mysqli_error($conn));
 				//Set total hours for the day
 				$query = "UPDATE LogHours SET LogHours_DayHours = ROUND((TIMESTAMPDIFF(MINUTE, LogHours_BeginTime, LogHours_EndTime)/60),2) WHERE LogHours_ID =" .$logID;
@@ -195,8 +195,8 @@ session_start();
 				
 				
 				$query = "INSERT INTO LogTransport(LogTransport_TransportID,LogTransport_Date, LogTransport_PickUpAddress, LogTransport_Species,
-				LogTransport_Hours,LogTransport_Miles) VALUES (" . $transporterID . ",'" . $_POST['date'] . "','" 
-				. $_POST['address'] . "','" . $_POST['species'] . "'," . $_POST['hours'] . "," . $_POST['mileage'] . ")";
+				LogTransport_Hours,LogTransport_Miles, LastModifiedBy, LastModifiedDate) VALUES (" . $transporterID . ",'" . $_POST['date'] . "','" 
+				. $_POST['address'] . "','" . $_POST['species'] . "'," . $_POST['hours'] . "," . $_POST['mileage'] . ",".$personID.",NOW())";
 
 				mysqli_query($conn, $query) or die(mysqli_error($conn));
 				
