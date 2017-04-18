@@ -156,7 +156,8 @@
 			}
 			
 			
-			
+			$query = "UPDATE Person SET LastModifiedBy=".$personID.",LastModifiedDate=NOW() WHERE Person_ID = ".$personID;	
+		mysqli_query($conn, $query) or die(mysqli_error($conn));
 			
 			/* $iceQuery = "INSERT INTO Ice (ICE_PersonID, ICE_Name, ICE_Phone, ICE_Relationship)
 			  VALUES ('$personID', '$ecName', '$ecPhone', '$ecRelationship')";
@@ -176,8 +177,10 @@
 
 			
 
-			$animalQuery = "INSERT INTO AnimalCareApp (AnimalCareApp_PersonID, AnimalCareApp_HandsOnExperience, AnimalCareApp_HandleDeadAnimals, AnimalCareApp_OpinionLivePrey, AnimalCareApp_WorkOutside, AnimalCareApp_BelongToAnimalRightsGroup, AnimalCareApp_HopeToLearnAccomplish, AnimalCareApp_PassionateWildlifeIssue, AnimalCareApp_MoreAboutExperience)
-			  VALUES ('$personID', '$experience', '$deadAnimals', '$livePrey', '$seasons', '$groups', '$accomplish', '$issue', '$additionalInfo')";
+			$animalQuery = "INSERT INTO AnimalCareApp (AnimalCareApp_PersonID, AnimalCareApp_HandsOnExperience, AnimalCareApp_HandleDeadAnimals, AnimalCareApp_OpinionLivePrey,
+			AnimalCareApp_WorkOutside, AnimalCareApp_BelongToAnimalRightsGroup, AnimalCareApp_HopeToLearnAccomplish, AnimalCareApp_PassionateWildlifeIssue,
+			AnimalCareApp_MoreAboutExperience,LastModifiedBy,LastModifiedDate)
+			  VALUES ('$personID', '$experience', '$deadAnimals', '$livePrey', '$seasons', '$groups', '$accomplish', '$issue', '$additionalInfo','$personID',NOW())";
 
 
 
@@ -197,8 +200,9 @@
 				$content = addslashes($content);
 				fclose($fp); 
 				
-				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes)
-				  VALUES ('$personID', 'Rehabilitation_Permit', '$fileName', '$fileType', '$fileSize', '$content', NULL)";
+				$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize,
+		Documentation_FileContent, Documentation_DocumentNotes, LastModifiedBy, LastModifiedDate) 
+            VALUES ('$personID', 'Rehabilitation_Permit', '$fileName', '$fileType', '$fileSize', '$content', NULL,'$personID',NOW())";
 
 
 
@@ -219,8 +223,9 @@
 				$content = addslashes($content);
 				fclose($fp);
 				
-				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes)
-				  VALUES ('$personID', 'Rabies_Documentation', '$fileName', '$fileType', '$fileSize', '$content', NULL)";
+				$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize,
+		Documentation_FileContent, Documentation_DocumentNotes, LastModifiedBy, LastModifiedDate)
+            VALUES ('$personID', 'Rabies_Documentation', '$fileName', '$fileType', '$fileSize', '$content', NULL,'$personID',NOW())";
 
 
 
@@ -241,8 +246,9 @@
 				$content = addslashes($content);
 				fclose($fp);
 				
-				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes)
-				  VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$fileSize', '$content', NULL)";
+				$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize,
+			Documentation_FileContent, Documentation_DocumentNotes, LastModifiedBy,LastModifiedDate) 
+				VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$fileSize', '$content', NULL,'$personID,NOW())";
 
 
 

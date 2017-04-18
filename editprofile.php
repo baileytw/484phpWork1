@@ -128,7 +128,8 @@ if(isset($_POST['btnSave']))
 		}
 		$query = "UPDATE Person SET" . $passwordQuery . "Person_FirstName = '$first', Person_LastName ='$last', Person_PhonePrimary = '$phone',
 		Person_Email ='$email', Person_StreetAddress = '$street', Person_City = '$city', Person_State ='$state', Person_Zipcode = '$zipcode',
-		Person_Allergies = '$allergies', Person_OutsideLimitations = '$outside', Person_RabiesYN = '$rabies', Person_RehabilitateYN = '$permit' WHERE Person_ID = " .$userID; 
+		Person_Allergies = '$allergies', Person_OutsideLimitations = '$outside', Person_RabiesYN = '$rabies', Person_RehabilitateYN = '$permit',
+		LastModifiedBy = '$userID', LastModifiedDate = NOW() WHERE Person_ID = " .$userID; 
 		
 		if(!mysqli_query($conn,$query))
 
@@ -157,8 +158,9 @@ if(isset($_POST['btnSave']))
 
 
 
-			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
-				VALUES ('$userID', 'picture', '$fileName', '$fileType', '$fileSize', '$picture', NULL)";
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType,
+			Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes, LastModifiedBy, LastModifiedDate) 
+				VALUES ('$userID', 'picture', '$fileName', '$fileType', '$fileSize', '$picture', NULL,'$userID',NOW())";
         
 
             if(!mysqli_query($conn,$documentQuery))

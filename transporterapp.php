@@ -104,8 +104,12 @@
 			{
 				$permitRehab = NULL;
 			}
-$query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary, Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status, Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs, Person_TotalVolunteeredHours, Person_LastVolunteered, Person_DepartmentID, Person_Days)
-			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', NULL, '$state', NULL, '$zip', '$dob', '$status', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$departmentID', '$cbDays')";
+$query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserType, Person_FirstName, Person_MiddleName, Person_LastName, Person_Email, Person_PhonePrimary,
+ Person_PhoneAlternate, Person_StreetAddress, Person_City, Person_County, Person_State, Person_Country, Person_ZipCode, Person_DateOfBirth, Person_Status,
+ Person_RabbiesVaccinationDate, Person_RehabilitatePermitCategory, Person_Allergies, Person_WorkOutside, Person_OutsideLimitations, Person_Lift40Lbs,
+ Person_TotalVolunteeredHours, Person_LastVolunteered, Person_DepartmentID, Person_Days,LastModifiedBy,LastModifiedDate)
+			  VALUES ('$userName', '$passwordHash', '$userType', '$firstName', NULL, '$lastName', '$email', '$primaryPhone', NULL, '$street', '$city', NULL, '$state',
+			  NULL, '$zip', '$dob', '$status', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$departmentID', '$cbDays','$personID',NOW())";
 
 
 
@@ -126,6 +130,8 @@ $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserT
 					$personID = $row['MAX(Person_ID)'];
 				}
 			}
+			$query = "UPDATE Person SET LastModifiedBy=".$personID.",LastModifiedDate=NOW() WHERE Person_ID = ".$personID;	
+		mysqli_query($conn, $query) or die(mysqli_error($conn));
 			
 			$transporterQuery = "INSERT INTO Transporterapp (TransporterApp_PersonID, TransporterApp_DistanceWillingToTravel, TransporterApp_CaptureAnimals, TransporterApp_Acknowledgement)
 			  VALUES ('$personID', '$travel', '$capture', '$acknowledge')";
@@ -149,8 +155,10 @@ $query = "INSERT INTO person (Person_UserName, Person_PasswordHash, Person_UserT
 				$content = addslashes($content);
 				fclose($fp); 
 				
-				$documentQuery = "INSERT INTO Documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes)
-				  VALUES ('$personID', 'Rabbies_Documentation', '$fileName', '$fileType', '$fileSize', '$content', NULL)";
+				$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize,
+		Documentation_FileContent, Documentation_DocumentNotes, LastModifiedBy, LastModifiedDate)
+            VALUES ('$personID', 'Rabies_Documentation', '$fileName', '$fileType', '$fileSize', '$rabbiesDocumentation', NULL,'$personID',NOW())";
+
 
 
 

@@ -139,18 +139,23 @@ if(isset($_POST['upload']))
 			
 			// vet specific
 			
-
+		$query = "UPDATE Person SET LastModifiedBy=".$personID.",LastModifiedDate=NOW() WHERE Person_ID = ".$personID;	
+		mysqli_query($conn, $query) or die(mysqli_error($conn));
 			
 		$vetQuery = "INSERT INTO vetteamapp (	VetTeamApp_PersonID,
 													VetTeamApp_PreviousTraining,
 													VetTeamApp_WorkEnvironment,
 													VetTeamApp_Euthansia,
-													VetTeamApp_Messy)
+													VetTeamApp_Messy,
+													LastModifiedBy,
+													LastModifiedDate)
 										VALUES (	'$personID',
 													'$previousTraining',
 													'$workEnvironment',
 													'$euthanasia',
-													'$messy')";
+													'$messy',
+													'$personID,
+													NOW())";
 													
 
 		
@@ -175,8 +180,9 @@ if(isset($_POST['upload']))
 
 
 
-			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
-				VALUES ('$personID', 'Rehabilitation_Permit', '$fileName', '$fileType', '$fileSize', '$permitRehabVA', NULL)";
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize,
+		Documentation_FileContent, Documentation_DocumentNotes, LastModifiedBy, LastModifiedDate) 
+            VALUES ('$personID', 'Rehabilitation_Permit', '$fileName', '$fileType', '$fileSize', '$permitRehabVA', NULL,'$personID',NOW())";
 			
 
 			if(!mysqli_query($conn,$documentQuery))
@@ -198,8 +204,9 @@ if(isset($_POST['upload']))
 
 
 
-			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
-				VALUES ('$personID', 'Rabbies_Documentation', '$fileName', '$fileType', '$fileSize', '$rabbiesDocumentation', NULL)";
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize,
+		Documentation_FileContent, Documentation_DocumentNotes, LastModifiedBy, LastModifiedDate)
+            VALUES ('$personID', 'Rabies_Documentation', '$fileName', '$fileType', '$fileSize', '$rabbiesDocumentation', NULL,'$personID',NOW())";
 			
 
             if(!mysqli_query($conn,$documentQuery))
@@ -223,8 +230,9 @@ if(isset($_POST['upload']))
 
 
 
-			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize, Documentation_FileContent, Documentation_DocumentNotes) 
-				VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$fileSize', '$userfile', NULL)";
+			$documentQuery = "INSERT INTO documentation (Documentation_PersonID, Documentation_TypeOfDocument, Documentation_FileName, Documentation_FileType, Documentation_FileSize,
+			Documentation_FileContent, Documentation_DocumentNotes, LastModifiedBy,LastModifiedDate) 
+				VALUES ('$personID', 'Resume', '$fileName', '$fileType', '$fileSize', '$userfile', NULL,'$personID,NOW())";
 			
 
             if(!mysqli_query($conn,$documentQuery))
