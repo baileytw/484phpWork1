@@ -37,8 +37,9 @@ session_start();
 		}
 		
 		if($userType == "Volunteer" ){														
-			$query = "INSERT INTO LogHours(LogHours_PersonID,LogHours_BeginTime) VALUES(" . $personID . ",NOW())";
+			$query = "INSERT INTO LogHours(LogHours_PersonID,LogHours_BeginTime, LastModifiedBy, LastModifiedDate) VALUES(" . $personID . ",NOW(),".$personID.",NOW())";
 			mysqli_query($conn, $query) or die(mysqli_error($conn));
+								
 			
 			header("Location: clockin.php");
 			exit();
@@ -212,7 +213,7 @@ session_start();
 
 					mysqli_query($conn, $query) or die(mysqli_error($conn));
 					
-					$query = "CALL lastVolunteered2(".$personID.",'".$_POST['date']."')";					;
+					$query = "CALL lastVolunteered2(".$personID.",'".$_POST['date']."')";					
 
 					mysqli_query($conn, $query) or die(mysqli_error($conn));
 				}
